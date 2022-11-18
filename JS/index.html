@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    </link>
+    <title>Java Script Basics</title>
+</head>
+
+<body>
+    <h1 class="center">JAVASCRIPT Tutorial</h1>
+    <h2 class="center">JS Basics</h2>
+    <h3 class="center">JavaScript is a lightweight, single threaded programming language</h3>
+    <h4>KEYWORDS - Var, Let, Const</h4>
+    <h4>VAR - keyword (storing a value purpose) we can store all the data like integer, float, string.
+        its popular one we used in older js , but in the es6 we have some other options like Const and let.
+        <br>
+        <pre>
+            var myName;
+        console.log(myName); // will receive undefined here
+        </pre>
+    </h4>
+    <h4>LET - keyword, in the es6 we have some other option like let. ,<br>
+        <pre>
+        let petName;
+        console.log(petName); // will receive undefined here    </pre>
+    </h4>
+    <hr>
+    <h3 class="center">DIFERENCE BETWEEN LET & CONST</h3>
+    <br>
+    <pre>
+        let sentence = "This is the sample sentence";
+        console.log(sentence); ,<br>
+
+        sentence = "we changed the LET value";
+        console.log(sentence); // here we can able to chnaged the sentence value by using let ,<br>
+
+        const word = "Hello";
+        console.log(word); <br>
+
+        word = "hai"; //Uncaught TypeError: Assignment to constant variable (js error) <br>
+        console.log(word); // here we cant get value again.
+    </pre>
+    <hr><br>
+    <h3 class="center">DIFERENCE BETWEEN VAR & LET</h3>
+    <pre>
+
+        <b>Let is the block scope</b>
+        <b> Var is the function scope</b>
+        <b>Note - var is related to the window object , in console window.lorry means will see the value, let is not related
+        </b>
+
+        var lorry = "ashok leyland"; <b>get by window obj like window.lorry</b>
+        let auto = "bajaj";          <b>Not get it by window object</b> 
+
+            (function scope() {
+            let car = "Honda";       <b>global declaration</b> 
+            console.log(car);
+            if (true) {
+                console.log(car);    <b>its prints because of its global</b> 
+                var bike = "hero";
+                let bus = "Benz";    <b>error in console - bus is not defined</b> 
+
+                console.log(bus);    <b> its prints</b>
+            }
+             console.log(bus);       <b> error in console - bus is not defined its not print</b>
+            console.log(bike);       <b>its print</b> 
+            })() <b>IIFE here</b>
+
+    </pre>
+    <br>
+    <hr>
+    <h3 class="center"> DIFFERENCE BETWEEN Null & Undefined</h3><br>
+    <p>Basically null value means a variable has been explicitly set as <b>(no value = null) </b>or has been initialized
+        and
+        defined to be nothing.<br> While undefined means. it was probably never initialized or if it was it was <b>never
+            defined.</b> </p>
+    <br>
+    <p> <b>Typeof</b> - It will give type of datatype is used. like words means <b>string</b>, number means
+        <b>number</b>, true false
+        means <b>boolean</b>, not defined means <b>undefined</b><br> but <b>null</b> means it will give as
+        <b>object</b>,
+        because its assume its a object so it will return <b>object</b>
+    </p>
+    <hr>
+    <br>
+    <h3 class="center">This keyword</h3>
+    <pre>
+
+        console.log(this) <b> this return all the window objects like - Window {window: Window, self: Window, document: document, name: ''</b>
+
+            const thisObj = {
+            company_name : 'Thinkpalm',
+            location : 'Chennai',
+            experiance:'Good',
+            openings :['Node','Mern','Mean'],
+
+            test(){
+                var offers = [];
+                console.log(this) <b>its return thisObj only like - {company_name: 'Thinkpalm', location: 'Chennai', experi..</b> 
+
+                let Msg = `${this.company_name} is the ${this.experiance} company! located in ${this.location}. openings are`
+
+                this.openings.forEach(a=>{
+                console.log(a)
+
+                offers.push(a.toUpperCase()); 
+
+                })
+                return Msg + " " + offers; 
+            }
+            }
+
+            let testingFun = thisObj.test();
+            console.log(testingFun) <b>Thinkpalm is the Good company! located in Chennai. openings are NODE,MERN,MEAN</b>
+    </pre>
+    <hr>
+    <h3 class="center">DATA TYPES</h3>
+    <table>
+        <tr>
+            <th>Primitive Data Types</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Non Primitive Data Types (Reference Data Types)</th>
+        </tr>
+        <tr>
+            <td>String</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Object</td>
+        </tr>
+        <tr>
+            <td>Integer / Number</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Array</td>
+        </tr>
+        <tr>
+            <td>Boolean</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Function</td>
+        </tr>
+        <tr>
+            <td>Undefined</td>
+        </tr>
+        <tr>
+            <td>Null</td>
+        </tr>
+    </table><br>
+    <hr>
+    <h3 class="center">Object</h3>
+    <pre>
+        let person = {
+            name:'xyz',
+            age:25,
+            gender:"male",
+            address:"chennai",
+            info:{
+                isGood:'yes',
+                isTaxpayer:false
+            }
+        }
+        console.log(person);
+    </pre><br>
+    <p class="heading">If get value from object - 2 methods</p>
+    <br>
+    <h3>.Dot Notation</h3>
+    <p>console.log(person.name) // xyz</p> <br>
+    <h3>Bracket Notation</h3>
+    <p>console.log(person['name']) // xyz</p><br>
+    <p class="heading">Deleting object item
+    </p>
+    <pre>
+        delete person.gender;
+        delete person.name;
+        console.log(person)
+    </pre>
+    <p class="heading">
+        Convert Obj to a Array
+    </p>
+    <pre>
+
+        let convertObj = Object.keys(person);
+        console.log(convertObj)
+
+        (output): 
+                  0: "age"
+                  1: "address"       <b>we deleted name and gender previously so this three are there!</b> 
+                  2: "info"
+    </pre>
+    <p class="heading"> Object Entries</p>
+    <pre>
+
+        let objEntries = Object.entries(person);
+        console.log(objEntries)
+
+        Output :
+        0:  ['age', 25]
+        1:  ['address', 'chennai']      <b>Each entry or row will separated by an array!</b>
+        2:  ['info', {…}]
+
+    </pre>
+    <p class="heading"> Check the key exist or not in the object</p>
+    <pre>
+
+        // check key is in the obj or not 
+
+            'name' in person ? console.log('YES') : console.log('NO');  (output: NO) // name already deleted.
+            'age' in person ? console.log('YES') : console.log('NO');   (output: YES)
+    </pre>
+    <p class="heading">Clone a Object</p>
+    <pre>
+
+        let cloneObj ={
+            state :'Tamilnadu'
+          }
+
+          cloneObj = person;
+          console.log(cloneObj) // here just assign object to another variable 
+          
+          output :
+            address: "chennai"
+            age : 25                 <b>Here only old object is cloning but new object values not there</b>
+            info: {isGood: 'yes', isTaxpayer: false}
+
+            <b>ES6 with spread operator</b>
+
+            cloneObj = { ... person };  <b>Spread Operator</b>
+            console.log(cloneObj);
+    </pre>
+    <hr>
+    <h3 class="center">Array</h3><br>
+    <pre>
+        let colors= ['red','green','blue','yellow'];
+        console.log(colors)
+        console.log(colors[3]) // return yellow
+        console.log(typeof colors) <b>// it will return object</b>
+
+        <p class="heading"> Adding element to array</p>
+
+            <b>push</b> 
+
+            colors.push("white","pink");
+            console.log(colors) // its pushing elements to end of existing array
+
+            <b> unshift</b> 
+ 
+            colors.unshift("orange","purple") // its add elements to start of the existing array
+            console.log(colors);
+
+             <b>splice</b>
+          
+            colors.splice(2,0,"peech","grey");  //(2) start — The zero-based location in the array from which to start removing elements. (0) - param deleteCount — The number of elements to remove.
+
+            console.log(colors);
+    </pre>
+    <p class="heading">Finding the element in array </p>
+    <pre>
+
+        <b>includes() - its works in Primitive data types</b>
+
+        console.log(colors.includes('red')); // true - its return simply array contains the item or not 
+        console.log(colors.includes('brown')) // false 
+    </pre>
+    <pre>
+
+        <b>Find elements in non primitive data types</b>
+
+                let sampleArray = [
+                { id: 1, product: "TV" },
+                { id: 2, product: "AC" },
+                { id: 3, product: "Fridge" },
+                { id: 4, product: "Washer" },
+                ];
+                    console.log(sampleArray);
+
+                <b>find()</b> 
+
+                let find = sampleArray.find(function (product) {
+
+                console.log(product); // its gives seprate object because its looping
+                return product.product == "Washer"; // its return the whole object if existing, {id: 4, product: 'Washer'}
+                });
+
+                    console.log(find);
+
+                <b>findIndex()</b>
+
+                let findIndx = sampleArray.findIndex(function (product) {
+
+                return product.product == "Washer"; // its return the index position only, if existing, (output - 3)
+                });
+
+                    console.log(findIndx);
+    </pre>
+    <br>
+    <h3 class="heading">Removing elements from array</h3>
+    <pre>
+
+        let removeArray = ['Tamil','english','malayalam','telugu'];
+
+        <b>pop</b> 
+
+        removeArray.pop();
+        console.log(removeArray) // ['Tamil', 'english', 'malayalam'] - removes last element
+
+        <b>shift</b>
+
+        removeArray.shift();
+        console.log(removeArray) // ['english', 'malayalam'] - removes first element
+
+        <b>splice</b>
+
+        removeArray.splice(0,1)
+        console.log(removeArray)
+        
+        // ['malayalam'] - in the parameter 0 is array start value 1 is number element we want to remove so 0 postion is english remove that so 1
+
+    </pre>
+    <h3 class="heading">Empty an Array </h3>
+    <pre>
+
+        // empty a array 
+            removeArray = [];
+            console.log(removeArray) // []
+
+    </pre>
+    <h3 class="heading">Array Concat and Slice</h3>
+    <pre>
+
+            let firstArray = [{ item: "Fruit" }, { item: "Vegetables" }, { item: "Food" }];
+
+            let secondArray = [{ item: "Hot drinks" }, { item: "Liquer" }];
+
+            let combinedArray = firstArray.concat(secondArray);
+            console.log(combinedArray);
+
+            // get some objects from array
+
+            let extractedArray = combinedArray.slice(1, 3); <b> 1 is the start value , 3 is the end value before 3 its ended</b>
+            console.log(extractedArray);
+
+    </pre>
+    <h3 class="heading"> Spread Oprerator</h3>
+    <pre>
+
+        combinedArray = [...firstArray, ...secondArray];
+        console.log(combinedArray)
+    </pre><br>
+    <h3 class="heading">For each - Array Itreation</h3>
+    <pre>
+
+        firstArray.forEach((item, index) =>{
+            console.log(index, item) <b>index means array position,  item means user defined one</b>
+          })
+    </pre>
+    <br>
+    <h3 class="heading">Array Join & Split</h3>
+    <pre>
+
+        <b>Array Join </b>
+
+        let hashTags = ['freedom','india','social','trend']
+        hashTags.unshift('')
+        let joinHashTag = hashTags.join(' #');  <b></b>its works based on the space giving here we give space on start so its not consider 0 th position , so added empty one by using unshift
+        
+        console.log(joinHashTag)
+
+        <b>Array Split </b>
+
+        let splitArr = 'This sentence with space!';
+        let result = splitArr.split(' ')
+
+        console.log(result) <b> its spliting the sentence by space </b>
+        console.log(result.join('_')) <b>its joing the sentence with _ </b> 
+    </pre><br>
+    <h3 class="heading">Array Sort </h3>
+    <pre>
+
+        let studentsArray = [
+                { id: 8, name: "kamal" },
+                { id: 4, name: "Sao" },
+                { id: 21, name: "Raj" },
+                { id: 10, name: "Lol" },
+                { id: 6, name: "burge" },
+                { id: 1, name: "John" },
+                { id: 13, name: "Owel" }
+            ];
+
+            let sortArr = [7,8,0,3,1,98,32,65,9,5,12,34];
+            console.log(sortArr.sort()) <b>[0, 1, 12, 3, 32, 34, 5, 65, 7, 8, 9, 98] , its sorting small to big for this data type</b>
+            console.log(studentsArray.sort()) <b>its not working for reference data type </b> 
+
+            studentsArray.sort((a,b)=>{
+
+            <b>Here we change the case for ascii convertion </b>
+            <b>We sort by name alphabetical order based on ascii its working</b> 
+
+            name1 = a.name.toUpperCase();
+            name2 = b.name.toUpperCase();
+
+            <b>NOTE - any one will work comment and uncomment </b> 
+            <b> here we sort by id </b>
+
+            name1 = a.id
+            name2 = b.id
+
+            if(name1 < name2) return -1;
+            if( name1 > name2 ) return 1;
+            return 0;
+            });
+
+                console.log(studentsArray)
+    </pre>
+    <br>
+    <h3 class="heading">Array Some & Every </h3>
+    <pre>
+
+                let everyArray = [
+                { id: 2, name: "table", isOk: true },
+                { id: 3, name: "chair", isOk: true },
+                { id: 6, name: "door", isOk: true },
+                { id: 4, name: "window", isOk: false },
+                { id: 9, name: "steel", isOk: true }
+                 ];
+
+                    let every = everyArray.every(function (value, index, array) {
+
+                    <b>value,index,array - are default provision of every
+                       Note - check with primitive data</b>
+
+                    console.log(`value ${value.id}`);
+                    console.log(`index ${index}`);
+                    console.log(`array ${array}`);
+                    });
+
+        let allOk = everyArray.every(function (value) {
+            <b>every means check every its all true means its return true</b> 
+        return value.isOk == true;
+        });
+
+        console.log(allOk);
+
+        let allNotOk = everyArray.some(function (value) {
+             <b>some means check some values are true means its return true</b>
+        return value.isOk == true;
+        });
+
+        console.log(allNotOk);
+    </pre>
+    <br>
+    <h3 class="heading">Array Filter</h3>
+    <pre>
+
+            let adultsArray = [30, 89, 12, 34, 29, 17, 56, 27, 22, 24, 13, 15, 18, 27];
+            let adult = adultsArray.filter((value) => {
+            return value >= 18;
+            });
+            console.log("Adult", adult); // [30, 89, 34, 29, 56, 27, 22, 24, 18, 27]
+
+    <b> Odd or Even Numbers</b>
+
+        let numberArray = [1, 2, 4, 5, 13, 12, 10, 9, 8, 22, 23, 90, 45, 38, 3, 7];
+        let evenNumbrs = numberArray.filter((value) => {
+        return value % 2 == 0;
+        });
+
+        let oddNumbers = numberArray.filter((value) => {
+        return value % 2 == 1;
+        });
+
+        console.log("Even Numbers", evenNumbrs);
+        console.log("Odd Numbers", oddNumbers);
+
+    <b>Reference type array</b> 
+
+            let dataArray = [
+            { id: 1, name: "Mobile", price: 5200 },
+            { id: 2, name: "Tab", price: 6800 },
+            { id: 4, name: "Headset", price: 2000 },
+            { id: 3, name: "Bluetooth", price: 3000 },
+            { id: 5, name: "Laptop", price: 6000 },
+            { id: 9, name: "Battery", price: 4100 },
+            ];
+
+            let budgetPrducts = dataArray.filter((value) => {
+            return value.price < 5000;
+            });
+
+            console.log("Budget Products", budgetPrducts);
+    </pre><br>
+    <h3>Array Find & FindIndex with reference data type</h3>
+    <pre>
+
+        let arrayFind = dataArray.find((value) => {
+            return value.price < 5000;
+          });
+          
+          console.log("FIND", arrayFind); <b> Its return one value with the satisfied first data only returned.</b>
+          
+          <b>Array findIndex</b>
+
+          let arrayFindIndx = dataArray.findIndex((value) => {
+            return value.price < 5000;
+          });
+          
+          console.log("FIND-Index", arrayFindIndx); <b>Its return position with the satisfied first position only returned.</b> 
+          
+    </pre> <br>
+    <h3 class="heading"> Array Map</h3>
+    <pre>
+
+        let employeeData = [
+            { id: 2, firstName: "Raj", lastName: "Kumar" },
+            { id: 3, firstName: "Rajesh", lastName: "kanna" },
+            { id: 5, firstName: "Hari", lastName: "Prathi" },
+            { id: 6, firstName: "Vasu", lastName: "deva" },
+        ];
+
+        let fullName = employeeData.map((value) => {
+        let fName = value.firstName + value.lastName; <b>join the name here</b> 
+        let obj = { id: value.id, Name: fName }; <b>construct correct object with full name</b> 
+        return obj;
+        });
+
+        console.log("Full Name", fullName);
+    </pre><br>
+    <h3 class="heading">Array Multiple methods calling (shorthand)</h3>
+    <pre>
+
+                    let productsArray = [
+                    { id: 9, name: "Battery", price: 4100 },
+                    { id: 1, name: "Mobile", price: 5200 },
+                    { id: 2, name: "Tab", price: 6800 },
+                    { id: 4, name: "Headset", price: 2000 },
+                    { id: 5, name: "Laptop", price: 6000 },
+                    { id: 3, name: "Bluetooth", price: 3000 },
+                    { id: 7, name: "Alexa", price: 5000 },
+                    ];
+
+<b>sort the array with lowest price - Condition 1</b> 
+
+        let sortByPrice = productsArray.sort((a, b) => {
+        return a.price - b.price; // low to high
+        });
+        console.log(sortByPrice);
+
+<b>sort by title - Condition 2</b>
+
+        let sortByTitle = sortByPrice.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+        });
+        console.log(sortByTitle);
+
+<b> filter product - Condition 3</b>
+
+        let filterBudgetPrducts = sortByTitle.filter((value) => {
+        return value.price >= 5000;
+        });
+        console.log(filterBudgetPrducts);
+
+<b>map the response structure - Condition 4</b>
+
+        let final = filterBudgetPrducts.map((value) => {
+        return `Product - ${value.name}, Price ₹${value.price}`;
+        });
+        console.log(final);  // same result 
+
+<b>Here we used like chain calling Multiple in term</b>
+
+        let chainArray = productsArray
+        .sort((a, b) => {
+            return a.price - b.price; // low to high
+        })
+        .sort((a, b) => {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+            return 0;
+        })
+        .filter((value) => {
+            return value.price >= 5000;
+        })
+        .map((value) => {
+            return `Product - ${value.name}, Price ₹${value.price}`;
+        });
+
+        console.log(chainArray);   // same result 
+
+    </pre><br>
+    <h3 class="heading">Array Reduce</h3>
+    <pre>
+                    let reduceArray = [
+                        { id: 1, name: "milk", amount: 30 },
+                        { id: 3, name: "tea", amount: 20 },
+                        { id: 6, name: "coffee", amount: 25 },
+                        { id: 9, name: "lemon tea", amount: 15 },
+                                     ];
+
+        <b> If we need sum of array values like we use reduce</b>
+        <b>Reduce have 4 params but this example we use 2 like (previous value and current value)</b> 
+
+            let totalAmount = reduceArray.reduce((previousVal, currentVal) => {
+            console.log(previousVal.amount);
+            console.log(currentVal.amount);
+            return previousVal + currentVal.amount;
+            }, 0); <b>Here we 0 for intial value will be that zero, if add 10 means 10 is initial value</b> 
+
+            console.log(totalAmount); <b> 30 + 20 + 25 + 15 =  90</b>
+    </pre>
+    <hr>
+    <h3 class="center">Difference between Sort , Find , Filter , Map , Reduce</h3>
+    <pre>
+
+    <b>Sort</b> 
+
+        let resultlog;
+
+        const diffArray = [12, 2, 56, 89, 45, 8, 45, 26, 17];
+
+        resultlog = diffArray.sort();
+        console.log(resultlog);  
+        
+        <b>[12, 17, 2, 26, 45, 45, 56, 8, 89] here we didn't see the actual sort // because its working based on the ascii value  and charCodeAt</b>
+
+    <b>Find</b>
+
+        resultlog = diffArray.find((value) => {
+        return value > 50;
+        });
+        console.log(resultlog); 
+        
+        <b>56 its giving one value moreover we have other values there greater than 50 but its give first result only</b> 
+
+    <b>Filter</b> 
+
+        resultlog = diffArray.filter((value) => {
+        return value > 50;
+        });
+        console.log(resultlog); //[56, 89] its give all data which is mached
+
+    <b>Map</b> 
+
+        resultlog = diffArray.map((value) => {
+        return "*" + value; <b>we construct means we do by map</b> 
+        return value < 50;  <b>[true, true, true, true, true, true, false, true, false] its return true false</b>
+        });
+        console.log(resultlog);
+
+    <b>Reduce</b>
+
+        resultlog = diffArray.reduce((preVal, curVal) => {
+        return preVal + curVal; // same condition
+        }, 0);
+        console.log(resultlog); // 300
+
+<h3 class="heading">Map and Reduce diff</h3> 
+
+            resultlog = diffArray.map((preVal, curVal) => {
+            return preVal + curVal; // same condition
+            });
+
+            console.log(resultlog); 
+            <b>[12, 18, 4, 29, 49, 50, 62, 15, 97] // if do map instead of reduce its set value itself in the array , not give the  sum value</b> 
+    </pre>
+    <hr>
+    <h3 class="center">Function</h3><br>
+    <pre>
+      <b> sample function</b> 
+
+        function displyUser(){
+            let name = 'Am Raja';
+            let age = ' my age is '+ 56
+            let msg = name + age
+            console.log(msg)
+        }
+        
+        displyUser();  // funtion calling
+    </pre>
+    <pre>
+       <b>funtion with parameter</b> 
+
+        function displyUserwithParams(name,age){
+        let Name = name
+        let Age = ' my age is '+ age
+        let Msg = Name + Age
+        console.log(Msg)
+    }
+
+displyUserwithParams('Am kesav',26); // Its argument
+
+    </pre>
+    <input type="number" id="first">
+    <input type="number" id=second>
+    <button onclick="add()">Add</button>
+    <pre>
+        <b>Simple add funtionality with html inputs with document.getElementById.</b> 
+
+            function add(){
+                var fisrtVal = document.getElementById('first').value;
+                var secondVal = document.getElementById('second').value;
+                console.log(parseInt(fisrtVal) + parseInt(secondVal)) // without parseInt it will concate not sum
+            }
+
+        <h3 class="heading">Multiple Types Of Functions</h3>
+
+        <b>Function Declaration</b> 
+
+            let val1 = 20;
+            let val2 = 25;
+            function addNumbrs() {
+            console.log("Function Declaration", val1 + val2);
+            }
+
+            addNumbrs();
+
+       <b> Function expression or Named function</b>
+
+            const addNo = function addNumbrs() {
+            console.log("Function Expression", val1 + val2);
+            };  <B>Function expression end with SEMICOLON; </B>
+
+            addNo();
+
+        <b>Anonymous function or Arrow function</b>
+
+            const sumNos = () => {
+            console.log("Anonymous Function or Arrow Function", val1 + val2);
+            };
+
+            sumNos();
+    </pre>
+    <br>
+    <h3 class="heading">Function Hoisting</h3>
+    <pre>
+
+        sampleFunction();  // call the same fun. anywhere
+
+                function sampleFunction(){
+                console.log('Sample Function Declaration!') // display 2 times because called 2 times
+                }
+        
+        sampleFunction(); // call the same fun. anywhere
+        
+        // function expression
+        
+        sampleFunctionExpress() // Cannot access 'sampleFunctionExpress' before initialization
+        
+                const sampleFunctionExpress = function(){
+                console.log('Sample Function Expression!')
+                }
+        sampleFunctionExpress()
+    </pre>
+    <br>
+    <h3>IIFE - Immediately Invoked Function Expression</h3>
+    <pre>
+
+        function functionName() {
+            console.log("Normal Function!");
+          }
+
+     functionName(); <b>we need call like this</b> 
+          
+          (function nameOfFun(n1, n2) {
+            console.log("IIFE Function");
+            console.log(n1 + n2);
+          })(12, 3); <b>after the function add bracket here passing aruguments , like react useeffect there we use []</b>
+          
+    </pre>
+    <br>
+    <h3>Function Arguments</h3>
+    <pre>
+
+        function addExpenses() {
+
+            console.log(arguments); <b>Here we see the arguments whether we passed or not</b>
+
+            let total = 0;
+            for (let val of arguments) {
+              total += val;
+            }
+            return total; // return the total here
+          }
+          
+          let totalExp = addExpenses(12, 8, 30, 10, 20, 25); <b>Function retuen the total so we save it to one variable</b> 
+          console.log(`TOTAL - ₹${totalExp}`);
+    </pre>
+    <br>
+    <h3>REST Operator</h3>
+    <pre>
+
+        <b>in function this is the rest operator (...)</b>
+
+        function nameOfFunction (...arguments){
+          console.log('Args ' , arguments)
+          let sumOf = arguments.reduce((preVal,curVal)=>preVal +curVal);
+          return sumOf;
+        }
+        
+        let answer = nameOfFunction(78,12,45);
+        console.log('TOTAL ARGS VALUE' , answer)
+    </pre>
+    <br>
+    <h3>Default Arguments</h3>
+    <Pre>
+
+        function calculateGst (cost, tax = 18) { <b>here configured tax 18% as default if not give in arguments its take this or we specify tax in argument its take that</b> 
+
+            let taxAmount = cost * (tax/100)
+            let total = cost + taxAmount;
+            return taxAmount ,total
+          }
+          
+          let rateOfItem = calculateGst(4500); <b>here i pass 1 argument </b> 
+          console.log('Rate with Tax ₹' ,rateOfItem+'/-')
+    </Pre>
+    <hr>
+    <h3 class="center">Operators</h3><br>
+    <table>
+        <tr>
+            <th>OPERATOR</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>DESCRIPTION</th>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+            <td>Arithmetic Operators</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>same like (+,-,*,/) operations, here is the special one like <b>Increment</b> and <b>Decrement</b>
+                Operators, (e.g)
+                let x = 5
+                console.log(x) // 5
+                <pre>
+                console.log(++x) // 6 if using prefix ++ it will instanly change the value 
+                console.log(x++) //6 if using suffix ++ it will change after the line 
+                console.log(x) //7</pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Comparison Operators</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> It will return boolean based on the value like , Relational, Equality, String ,type comaprison, outputs
+                check the js file and console
+            </td>
+        </tr>
+        <tr>
+            <td>Assignment Operators</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>its assign value to variable(=)
+                let x = 5 , if want to increse the number x += 10 ,output will be 15
+            </td>
+        </tr>
+        <tr>
+            <td>Ternary Operators</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <pre>Let age = 20; let admit = age > 18 ? 'Admit':'No Admission'</pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Logical Operators</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>AND , OR , NOT - check in js and console</td>
+        </tr>
+        <tr>
+            <td>Bitwise Operators</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Its based on binary values, its syntax is ( OR - | AND - &) simply one charector from the logical
+                operator. its rarely used in practical</td>
+        </tr>
+    </table><br>
+    <hr>
+    <h3 class="center">expression</h3><br>
+    <p class="heading">variable + Operators = Expression</p>
+    <p>(e.g) a=0 // expression</p>
+    <Br></Br>
+    <hr>
+    <h3 class="center">Operators Precendence</h3><br>
+    <pre>
+        let c = 5 + 5 * 2;  
+        console.log(c) // output is 15 <b>As per our mind set 20 will be but js first look on the multiplication as per Precendence</b><br>
+
+        let d = (5+5)*2;  <b>so we give () Bracket</b>
+        console.log(d) // output is 20
+    </pre>
+    <hr>
+    <br>
+    <h3 class="center">Conditional Statements</h3>
+    <P class="heading">
+        If , If else , Switch case
+    </P><br>
+    <p class="heading">If</p>
+    <pre>
+        let condition = true
+        if(condition){
+            console.log('Condition is true')
+        }else{
+            console.log('Condition is false')
+        }
+    </pre><br>
+    <p class="heading">If Else</p><br>
+    <pre>
+        var hour = new Date().getHours();
+        console.log(hour);
+
+        // 0 - 13 - morning
+        // 13 - 17 - afternoon
+        //5 - 12 - eve
+        
+        if(hour>=0 && hour <=13){
+            console.log('Good Morning');
+
+        }else if (hour>=13 && hour <=17){
+            console.log('Good Afternoon');
+
+        }else{
+            console.log('Good Evening')
+        }
+    </pre>
+    <br>
+    <p class="heading">Switch Case</p><br>
+    <pre>
+        let amountIs = 10000;
+        console.log(amountIs);
+
+        switch (true) {
+        case (amountIs < 10000):
+            console.log("Buy Android Phone");
+            break;  <b>// if not use break all the cases will work once satisfy condition just break it.</b>
+        case (amountIs > 10000):
+            console.log("Buy Keypad Phone");
+            break;
+        default:
+            console.log('No Phone');
+        }
+    </pre><br>
+    <hr>
+    <h3 class="center">looping</h3>
+    <p class="heading"> 1. For loop <br>2. While loop <br>3. Do while loop <br> 4. For in loop <br> 5. For of loop </p>
+    <br>
+    <p class="heading">For Loop</p>
+    <pre>
+
+        syntax:
+
+        for(initialExpression; Condition ; Increment/Decrement){
+
+         }
+            
+        <b>sample for loop Increment / Decrement</b>
+
+        <b> x++ - means +1 will increse till loop</b>
+
+        for (let x = 1; x <= 10; x++) {
+        console.log(x); 
+        // start with 1 to end with 10 because x =1
+        }
+
+        <b>(i--) - means -1 will decrease till loop</b> 
+
+        for (let i = 10; i >= 1; i--) {
+        console.log(i); 
+        // start with 10 to end with i because 1 =1 0
+        }
+
+    </pre>
+    <p class="heading">While Loop</p>
+    <br>
+    <pre>
+        syntax:
+
+        initialExpression;
+
+        while(Condition){
+
+            Increment/Decrement
+         }
+
+
+        let k = 10;
+        while (k < = 20) {
+        console.log(k);
+        k++; <b>we give increment / decrement here , without this it will loop infinite browser will hang</b>
+        }
+    </pre><br>
+    <p class="heading">Do While Loop</p><br>
+    <pre>
+        syntax:
+
+        initialExpression;
+
+        do {
+            //code here
+            
+            Increment/Decrement;
+
+         } while(condition;)
+
+
+        let j = 1;
+
+        do {
+        // code
+        console.log(j);
+        j++;
+        } while (j <= 10);
+
+    </pre><br>
+    <p class="heading">For in loop</p>
+    <pre>
+        syntax:
+
+        for(let userDefineName in array or obj){
+
+        }
+
+        let obj = {
+            name: "raja",
+            age: 60,
+            sex: "male",
+            city: "chennai",
+          };
+          
+        <b>We can itrate obj or array with this</b> 
+        <b>Key is the left hand side value</b>
+
+        for (let key in obj) {
+                                    <b>key is the user defined one</b> 
+        console.log(key);              // prints left hand side value
+        console.log(obj[key]);           // prints right hand side value
+        console.log(key + ':' +obj[key])   //prints both side values
+        }
+
+    </pre><br>
+    <p class="heading">For of loop</p>
+    <pre>
+
+        syntax:
+
+        for(userDefineName of obj or arrayName){
+
+        }
+
+        let array = [
+        {
+        name: "kavi",
+        age: 25,
+        city: "chennai",
+        },
+        {
+        name: "Ravi",
+        age: 76,
+        city: "Trichy",
+        },
+        ];
+
+        <b>It will give right hand side value from obj </b>
+        <b>No Key and value sepration</b>
+
+        for (l of array) {
+        console.log(l);        // gives the same object one by one
+        console.log(l.name);   // gives object right hand side value
+        }
+    </pre>
+    <hr>
+    <br>
+    <p class="heading">Literals</p>
+    <pre>
+        <b>Literals means its javascript actual convertion for which datatype we provide, 
+           Here below example is the our writing code </b>
+
+            let sample = "sample"; 
+            let number = 12;
+            let boolean = false;
+            let sampleObj = {
+            sample:'sample'
+            }
+
+            console.log(sample, number, boolean , sampleObj)
+
+        // here javascript converts to understand our code 
+
+            let smple = new String('sample');  // String Literal
+            let nmbr = new Number(12);         // Number Literal
+            let bool = new Boolean(false);     // Boolean Literal
+            let smpleObj = new Object({        // Object Literal
+            sample:'sample'
+            })
+
+            console.log(smple, nmbr ,bool, smpleObj)
+    </pre>
+    <hr><br>
+    <h3 class="center"> string objects</h3><br>
+    <pre>
+        let sampleString = 'sample';
+        
+            console.log(sampleString.length) // 6 - length of string start with 0
+            console.log(sampleString.charAt(1)) // a - because start with 0
+            console.log(sampleString.concat(' ','concate string')) // sample concate string
+            console.log(sampleString.includes('sam')) // true - its return boolean find the string combination, but its a case sensitive
+            console.log(sampleString.indexOf('s')) // 0 // return the position of the string
+            console.log(sampleString.repeat(2)) // samplesample // its repeat the string based on the given value
+            console.log(sampleString.replace(sampleString,'demo')) // demo // replace sample to demo
+            console.log(sampleString.slice(1)) //ample // its start with one cut the position letter
+
+        let exampleString = 'Demo text';
+
+            console.log(exampleString.split(' ',2)) // ['Demo', 'text'] - its spliting by space
+            console.log(exampleString.substring(3)) // o text - its also split by index value
+            console.log(exampleString.toLowerCase()) // demo text
+            console.log(exampleString.toUpperCase()) // DEMO TEXT
+            console.log(exampleString.trim()) // removes unwanted space
+    </pre>
+    <hr><br>
+    <h3 class="center">Template Literals</h3>
+    <br>
+    <p class="heading"> `Template literals` used for hassle free adding dynamic values in the string and single quote
+        and
+        double quote in string</p>
+    <pre>
+
+            let skill = 'JavaScript'
+            let sampleSentence = `"This is the sample sentence" , \n Kindly learn ${skill};`
+            console.log(sampleSentence)
+        </pre>
+</body>
+
+</html>
