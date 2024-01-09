@@ -35,20 +35,46 @@ console.log(word); // here we cant assign value again.
 // Note - var is related to the window object , in console window.lorry means will see the value, let is not related
 var lorry = "ashok leyland";
 let auto = "bajaj"; // Not get it by window object
-function scope() {
+(function scope() {
   let car = "Honda"; // global declaration
   console.log(car);
   if (true) {
-    console.log(car); // its prints because of its global
+    console.log(car); // its prints because of its inside the function block
     var bike = "hero";
-    let bus = "Benz"; // error in console - bus is not defined
+    let bus = "Benz";
     console.log(bus); // its prints
   }
   // console.log(bus); // error in console - bus is not defined its not print
   console.log(bike); // its print
-  console.log(car); // its print
+  console.log(car); //  its prints because of its inside the function block
+  console.log(lorry) // its print
+})();
+
+console.log(lorry) // its print
+
+// this keyword 
+console.log(this) // this return all the window objects like - Window {window: Window, self: Window, document: document, name: ''
+
+const thisObj = {
+  company_name: 'Thinkpalm',
+  location: 'Chennai',
+  experiance: 'Good',
+  openings: ['Node', 'Mern', 'Mean'],
+  test() {
+    var offers = [];
+    console.log(this) // its return thisObj only like - {company_name: 'Thinkpalm', location: 'Chennai', experi..
+    let Msg = `${this.company_name} is the ${this.experiance} company! located in ${this.location}. openings are`
+    this.openings.forEach(a => {
+      console.log(a)
+      offers.push(a.toUpperCase());
+    })
+    return Msg + " " + offers;
+  }
 }
-scope();
+
+let testingFun = thisObj.test(); // here call the function inside the obj
+console.log(testingFun) // Thinkpalm is the Good company! located in Chennai. openings are NODE,MERN,MEAN
+
 
 // object
 let person = {
@@ -383,7 +409,7 @@ let chainArray = productsArray
     return 0;
   })
   .filter((value) => {
-    return value.price >= 5000;
+    return value.price <= 5000;
   })
   .map((value) => {
     return `Product - ${value.name}, Price ₹${value.price}`;
@@ -475,7 +501,11 @@ displyUserwithParams("Am kesav", 26); // Its argument
 function add() {
   var fisrtVal = document.getElementById("first").value;
   var secondVal = document.getElementById("second").value;
-  console.log(parseInt(fisrtVal) + parseInt(secondVal)); // without parseInt it will concate not sum
+  if (fisrtVal && secondVal) {
+    console.log(parseInt(fisrtVal) + parseInt(secondVal)); // without parseInt it will concate not sum
+  } else {
+    alert('Please fill the fields!')
+  }
 }
 
 // fuction declaration
@@ -533,7 +563,7 @@ functionName(); // we need call like this
 (function nameOfFun(n1, n2) {
   console.log("IIFE Function");
   console.log(n1 + n2);
-})(12, 3); // () after the function add bracket here passing aruguments
+})(12, 11); // () after the function add bracket here passing aruguments
 
 // Function Arguments
 
@@ -563,17 +593,17 @@ console.log("TOTAL ARGS VALUE", answer);
 // Default paremeter
 
 // calculate gst
-
+let taxAmount;
 function calculateGst(cost, tax = 18) {
   // here configured tax 18% as default if not give in arguments its take this or we specify tax in argument its take that
 
-  let taxAmount = cost * (tax / 100);
+  taxAmount = cost * (tax / 100);
   let total = cost + taxAmount;
   return taxAmount, total;
 }
 
 let rateOfItem = calculateGst(4500); // here i pass 1 argument
-console.log("Rate with Tax ₹", rateOfItem + "/-");
+console.log("Tax -₹" + taxAmount + " Total - " + rateOfItem + "/-");
 // oprators
 
 let x = 5;
@@ -798,25 +828,91 @@ let skill = "JavaScript";
 let sampleSentence = `"This is the sample sentence" , \n Kindly learn ${skill};`;
 console.log(sampleSentence);
 
-// this keyword 
-console.log(this) // this return all the window objects like - Window {window: Window, self: Window, document: document, name: ''
-
-const thisObj = {
-   company_name : 'Thinkpalm',
-   location : 'Chennai',
-   experiance:'Good',
-   openings :['Node','Mern','Mean'],
-   test(){
-    var offers = [];
-    console.log(this) // its return thisObj only like - {company_name: 'Thinkpalm', location: 'Chennai', experi..
-    let Msg = `${this.company_name} is the ${this.experiance} company! located in ${this.location}. openings are`
-    this.openings.forEach(a=>{
-      console.log(a)
-      offers.push(a.toUpperCase()); 
-    })
-    return Msg + " " + offers; 
-   }
+// callbacks
+function logging() { // one function its called from the another one function(settimeout) arugument its a call back
+  console.log('Callback - Logging Function - Prints after 1secs');
 }
 
-let testingFun = thisObj.test();
-console.log(testingFun) // Thinkpalm is the Good company! located in Chennai. openings are NODE,MERN,MEAN
+setTimeout(() => {
+  logging();
+}, 1000)
+
+// example 2
+
+setTimeout(() => {
+  console.log('1 - prints in 1 sec')
+  setTimeout(() => {
+    console.log('2 - prints in 2 sec')
+    setTimeout(() => {
+      console.log('3 - prints in 3 sec')
+      setTimeout(() => {
+        console.log('4 - prints in 4 sec')
+      }, 4000)
+    }, 3000)
+  }, 2000)
+}, 1000)
+
+// promise
+var PromiseValue; // declare common variable 
+const myPromise = new Promise((resolve, reject) => {   // resolve, reject are default properties we can change those
+  let x = 10;
+  let randomNum = Math.floor(Math.random() * 98) // here we generate random number
+  console.log('Random Number =====>', randomNum);
+  if (randomNum % 2 == 0) {  // based on the random value if odd means resolve even means reject 
+    resolve();
+    PromiseValue = "Even Random Number"
+  } else {
+    reject();
+    PromiseValue = "Odd Random Number"
+  }
+
+});
+
+myPromise.then(() => console.log(PromiseValue)).catch(() => console.log(PromiseValue));
+
+// here we use then for get the result and catch for get the error
+
+// example 2 
+// here also nested promise we can use so its a drawback of promise its called promise hell.
+const promiseHell = new Promise((resolve, reject) => {
+  let hell = true;
+  if (hell) {
+    resolve(console.log('OK'));
+    const Hello = new Promise((resolve, reject) => {
+      let hell1 = true;
+      if (hell1) {
+        resolve(console.log('OK 2'))
+      } else {
+        reject(console.log('ERROR 2'));
+      }
+    });
+    Hello.then(() => console.log('****')).catch(() => console.log('####'))
+  } else {
+    reject(console.log('ERROR'));
+  }
+}).catch((err) => { console.log(err) });
+
+promiseHell.then(() => console.log('FINAL OK')).catch(() => console.log('FINAL ERROR'));
+
+// async / await 
+
+ function getData(){
+
+  console.log('1 - Not wait for settimeout'); // this will print when the function is called
+
+   setTimeout(async () => {
+    let resp = await fetch('https://jsonplaceholder.typicode.com/todos/1'); // with out using this await its going to be pending state like undefined refer promise properties
+    console.log(resp);    // this will print after the time interval
+    console.log('Wait for settimeout 5 secs');
+  }, 5000)
+
+  console.log('2 - Not wait for settimeout'); // this will print when the function is called
+
+  setTimeout(async () => {
+    let res = await fetch('https://jsonplaceholder.typicode.com/posts/2');
+    console.log(res);     // this will print after the time interval
+    console.log('Wait for settimeout 6 secs');
+  }, 6000)
+}
+
+getData();
