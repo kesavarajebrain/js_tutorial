@@ -58,18 +58,22 @@
         let auto = "bajaj";          <b>Not get it by window object</b> 
 
             (function scope() {
-            let car = "Honda";       <b>global declaration</b> 
-            console.log(car);
-            if (true) {
-                console.log(car);    <b>its prints because of its global</b> 
-                var bike = "hero";
-                let bus = "Benz";    <b>error in console - bus is not defined</b> 
+                let car = "Honda"; // global declaration
+                console.log(car); // its prints because of its inside the function block
 
-                console.log(bus);    <b> its prints</b>
-            }
-             console.log(bus);       <b> error in console - bus is not defined its not print</b>
-            console.log(bike);       <b>its print</b> 
-            })() <b>IIFE here</b>
+                if (true) {
+                  console.log(car); // its prints because of its inside the function block
+                  var bike = "hero";
+                  let bus = "Benz"; 
+                  console.log(bus); // its prints
+                }
+
+                console.log(car); //  its prints because of its inside the function block 
+                console.log(bus); // error in console - bus is not defined its not print because its not in the current block {}
+                console.log(bike); // its print 
+                console.log(lorry) // its print
+
+            })() <b>IIFE (Immediately Invoked Function Expression) here (? The function start running itself not using tradition method for call the function)</b>
 
     </pre>
     <br>
@@ -115,7 +119,7 @@
             }
             }
 
-            let testingFun = thisObj.test();
+            let testingFun = thisObj.test(); <b>here call the function inside the obj</b>
             console.log(testingFun) <b>Thinkpalm is the Good company! located in Chennai. openings are NODE,MERN,MEAN</b>
     </pre>
     <hr>
@@ -1148,6 +1152,128 @@ displyUserwithParams('Am kesav',26); // Its argument
             let sampleSentence = `"This is the sample sentence" , \n Kindly learn ${skill};`
             console.log(sampleSentence)
         </pre>
+    <hr><br>
+    <h3 class="center">Callbacks</h3>
+    <br>
+    <p class="heading">Callback <br> One function is to be a argument of another one function is the callback.</p><br>
+    <pre>Example 1:</pre><br>
+    <pre>
+            function logging(){ // one function its called from the another one function(settimeout) arugument its a call back
+                console.log('Callback - Logging Function - Prints after 1secs');
+              }
+              
+              setTimeout(()=>{
+                logging();
+              },1000)
+        </pre><br>
+    <pre>Example 2:</pre><br>
+    <p class="heading">Callback Hell <br> Here this example inside the timeout we use multiple functions (timeouts)
+        in the nested structure so its very difficult to debug and understand the code so its called callback hell. Its
+        a ES 5 Feature.
+    </p><br>
+    <pre>
+            setTimeout(() => {
+                console.log('1 - prints in 1 sec')
+                setTimeout(() => {
+                  console.log('2 - prints in 2 sec')
+                  setTimeout(() => {
+                    console.log('3 - prints in 3 sec')
+                    setTimeout(() => {
+                      console.log('4 - prints in 4 sec')
+                    }, 4000)
+                  }, 3000)
+                }, 2000)
+              }, 1000)
+        </pre><br>
+    <hr><br>
+    <h3 class="center">Promise</h3>
+    <br>
+    <p class="heading">For overcome this callback hell ES 6 introduced Promise.</p><br>
+    <p class="heading">Promise obj have 3 properties.<br><br> 1.Pending - undefined value<br>
+        2.Fulfilled - Resolve (Sucess value)<br>
+        3.Rejected - Reject (Error value)</p>
+    <br>
+    <pre>
+        Example 1: 
+        <br>
+        var PromiseValue; // declare common variable 
+
+        const myPromise = new Promise((resolve,reject)=>{   // resolve, reject are default properties we can change those
+       
+        let randomNum = Math.floor(Math.random() * 98) // here we generate random number
+        console.log('Random Number =====>', randomNum);
+
+        if(randomNum % 2 == 0){  // based on the random value if odd means resolve even means reject 
+            resolve();
+            PromiseValue = "Even Random Number"
+        }else{
+            reject();
+            PromiseValue = "Odd Random Number"
+        }
+
+        });
+
+        myPromise.then(()=>console.log(PromiseValue)).catch(()=>console.log(PromiseValue)); 
+
+        // here we use then for get the result and catch for get the error
+    </pre><br>
+    <p class="heading">Here also nested promise we can use so its a drawback of promise its called promise hell.</p>
+    <br>
+    <pre>
+        Example 2:
+
+        const promiseHell = new Promise((resolve, reject) => {
+
+            let hell = true;
+            if (hell) {
+              resolve(console.log('OK'));
+
+              const Hello = new Promise((resolve, reject) => {
+                let hell1 = true;
+                if (hell1) {
+                  resolve(console.log('OK 2'))
+                } else {
+                  reject(console.log('ERROR 2'));
+                }
+              });
+
+              Hello.then(() => console.log('****')).catch(() => console.log('####'))
+              
+            } else {
+              reject(console.log('ERROR'));
+            }
+          }).catch((err) => { console.log(err) });
+          
+          promiseHell.then(() => console.log('FINAL OK')).catch(() => console.log('FINAL ERROR'))
+    </pre>
+    <hr><br>
+    <h3 class="center">Async / Await </h3>
+    <br>
+    <p class="heading">For overcome this Promise hell ES 7 introduced ASYNC / AWAIT.</p>
+    <pre><br>
+        Example : <br>
+        function getData(){
+
+            console.log('1 - Not wait for settimeout'); // this will print when the function is called
+          
+             setTimeout(async () => {
+                let resp = await fetch('https://jsonplaceholder.typicode.com/todos/1'); // with out using this await its going to be pending state like undefined refer promise properties
+                console.log(resp);    // this will print after the time interval
+              console.log('Wait for settimeout 5 secs');
+            }, 5000)
+          
+            console.log('2 - Not wait for settimeout'); // this will print when the function is called
+          
+            setTimeout(async () => {
+              let res = await fetch('https://jsonplaceholder.typicode.com/posts/2');
+              console.log(res);     // this will print after the time interval
+              console.log('Wait for settimeout 6 secs');
+            }, 6000)
+          }
+          
+          getData();
+    </pre><br><br>
+
 </body>
 
 </html>
