@@ -923,6 +923,15 @@ reverseStr.reverse();   // after the split only can reverse the string
 
 let reveStr = reverseStr.join('')  // then join the string
 console.log(reveStr)  // tpircsavaj - here the output 
+//
+function reverseString(str) {
+  var newString = "";
+  for (var i = str.length - 1; i >= 0; i--) {
+      newString += str[i];
+  }
+  return newString;
+}
+console.log(reverseString('javascript'))
 
 // sorting array        
 

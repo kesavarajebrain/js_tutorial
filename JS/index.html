@@ -1275,7 +1275,7 @@ displyUserwithParams('Am kesav',26); // Its argument
     </pre><br><br><hr>
     <h3 class="center">String Reverse </h3>
     <br>
-    <p class="heading">Asked in interview</p>
+    <p class="heading">Asked in interview - with inbuilt method</p>
     <pre>
 
         var string ='javascript'; // here the string value 
@@ -1286,6 +1286,20 @@ displyUserwithParams('Am kesav',26); // Its argument
 
         let reveStr = a.join('')  // then join the string
         console.log(reveStr)  // tpircsavaj - here the output 
+
+    </pre>
+    <br>
+    <p class="heading">Asked in interview - without inbuilt method</p>
+    <pre>
+
+        function reverseString(str) {
+            var newString = "";
+            for (var i = str.length - 1; i >= 0; i--) {
+                newString += str[i];
+            }
+            return newString;
+        }
+        reverseString('hello');
 
     </pre>
     <br><hr>
