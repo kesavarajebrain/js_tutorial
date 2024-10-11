@@ -1,6 +1,3 @@
-// basic
-// end with semicolon which means the line is ended
-// alert("Welcome to JS Basics");
 console.log("Welcome to JS Basics");
 /* its popular one we used in older js , but in the es6 we have some other options like Const and let. */
 // var - datatype (storing a value purpose) we can store all the data like integer, float, string
@@ -896,11 +893,11 @@ promiseHell.then(() => console.log('FINAL OK')).catch(() => console.log('FINAL E
 
 // async / await 
 
- function getData(){
+function getData() {
 
   console.log('1 - Not wait for settimeout'); // this will print when the function is called
 
-   setTimeout(async () => {
+  setTimeout(async () => {
     let resp = await fetch('https://jsonplaceholder.typicode.com/todos/1'); // with out using this await its going to be pending state like undefined refer promise properties
     console.log(resp);    // this will print after the time interval
     console.log('Wait for settimeout 5 secs');
@@ -916,3 +913,259 @@ promiseHell.then(() => console.log('FINAL OK')).catch(() => console.log('FINAL E
 }
 
 getData();
+
+// string reverse 
+var string = 'javascript'; // here the string value 
+
+let reverseStr = string.split('') // first we split charectors by space
+console.log(string) // javascript
+reverseStr.reverse();   // after the split only can reverse the string 
+
+let reveStr = reverseStr.join('')  // then join the string
+console.log(reveStr)  // tpircsavaj - here the output 
+
+// sorting array        
+
+var namesArray = [
+  {
+    "name": 'Raja',
+    "age": 4
+  }, {
+    "name": 'Abi',
+    "age": 10
+  }, {
+    "name": 'Josh',
+    "age": 23
+  }, {
+    "name": 'wegan',
+    "age": 50
+  }, {
+    "name": 'Sree',
+    "age": 43
+  }
+]
+
+const sortByName = namesArray.sort((a,b)=>{
+  b.name.length - a.name.length
+})
+
+console.log(sortByName)
+
+const sortByAge = namesArray.sort((a,b)=>{
+  b.age - a.age
+})
+
+console.log(sortByAge)
+
+// closure
+
+var initialValue = 5;  // declared value outside of function
+
+const firstFunction = (arg) =>{
+
+  var secVal = 6; // declare in the first func
+
+  console.log('First Function');
+
+  const secondFunction = () =>{
+
+    var thirdVal = 10; // declare in the third func
+
+    console.log('Second Function');
+
+    console.log(initialValue);  // this second fun can understand the variable which located outside of the function 
+    console.log(arg)  /// here also this second function access the first function arg this is called closure
+  
+    var closureTotal = initialValue + secVal + thirdVal // sum all the values
+    console.log(closureTotal)
+    return closureTotal;
+  }
+
+  return secondFunction();  // here we return second funtion 
+ }
+
+ firstFunction('Argument Passing to first function but we return second funtion still the second funtion knowing the first funtion argument');  // first function arg pass
+
+ // arrow functions
+  // functions are 4 types 1. Anonymous Functions 2. Named Functions 3. Immeadiate invoked functions 4 . Arrow functions
+
+  //1. Anonymous Functions
+
+  var anonymousFunc = function () {
+    console.log('This is Anonymous Function')
+  }
+
+  anonymousFunc();  // calling the func
+
+  // 2. Named Functions
+
+  function namedFunction () {
+    console.log('This is Named Function')
+  }
+
+  namedFunction(); // calling the func
+
+  // 3. Immeadiate Invoked Functions
+
+  (function immediateInvokedFunction () {
+    console.log('This is Immediate Invoked Function')
+  })();  // calling like this because its IIF
+
+  // 4 . Arrow functions
+
+  arrowFunc = () => { 
+    console.log('This is Arrow Function')
+  }
+
+  arrowFunc() // calling the func
+
+  // arrow function possibilities
+
+  // here we add some static like sum value plus 3 is added
+  const plusThree = (sum) =>{
+    total = sum + 3
+    console.log(total)
+  }
+
+  plusThree(3);
+
+// here we sum two values
+const sumTwoNumbers = (a,b)=> {
+  sumTot = a + b 
+  return sumTot;
+} 
+
+console.log(sumTwoNumbers(9838,67))
+
+// we filter ages above 18 years
+var agesArray = [34,77,63,12,45,98,34,20,3,4,9,15,65,55,43,35]
+
+const voteEligible = agesArray.filter(x => x > 18 )
+console.log(voteEligible)
+
+// here we add plus 2 in all numbers in the array 
+const agePlusTwo = agesArray.map(x => x + 2)
+console.log(agePlusTwo)
+
+// bind , call , apply 
+
+// Bind 
+
+let employeeOne = {
+  name :'Kesavaraj',
+  id:65738,
+  getEmpName : function(){
+    console.log('Employee Name is ' + this.name) // access this block with use of THIS keyword
+    // Employee Name is Kesavaraj
+  }
+}
+
+let employeeTwo = {
+  name :'Ravi',
+  id:65738
+}
+
+employeeOne.getEmpName();
+
+var bindValue = employeeOne.getEmpName.bind(employeeTwo);
+bindValue(); // bind is return function only, here its binding another object property
+
+// Employee Name is Ravi
+
+// Call 
+
+employeeOne.getEmpName.call(employeeTwo); // here we get output without covert as function this is call ()
+
+// Employee Name is Ravi
+
+// Passing arguments with Bind
+ 
+let employeeThree = {
+  name :'Kesavaraj',
+  id:65738,
+  getEmpName : function(techName){
+    console.log('Employee Name is ' + this.name + techName) // access this block with use of THIS keyword
+    // Employee Name is Kesavaraj
+  }
+}
+
+let employeeFour = {
+  name :'Ravi',
+  id:65738
+}
+
+var bindValueWithArgs = employeeThree.getEmpName.bind(employeeFour, ' MEAN Stack');
+bindValueWithArgs();
+
+// Passing arguments with call 
+
+employeeThree.getEmpName.call(employeeFour , ' MERN STACK');
+
+// Apply 
+
+employeeThree.getEmpName.apply(employeeFour , [' LAMP STACK']); // Here we give an array for agrs this is called Apply
+
+// Shallow copy and Deep copy 
+
+// scanario here like one array is there , then create another array , then copy the data from first arr to second 
+// array and change the second array data but it wont reflect in the first array this is the condition so using spread 
+// operator its deeply copy but json not like that 
+  var firtArray = [{"name":'raj', "age":55},
+  {"name":'Rani', "age":55},{"name":'Josh', "age":55}];
+
+  // cmt below any one will see difference
+
+   var secArr = JSON.parse(JSON.stringify(firtArray)) //  SHALLOW COPY
+
+   var secArr = [...firtArray] // DEEP COPY 
+
+  var secArr = secArr.map(e =>{
+      if(e.name =='Rani'){
+          e.name = 'Raja'
+      }
+      return e;
+      });
+    
+  console.log(firtArray)
+  console.log(secArr)
+
+  // second method
+
+  // Primitive data we always do a deep copy but non primitive data we cant do 
+
+  let copyString = 'COPY STRING';
+
+  let copyStringTwo = copyString;
+  console.log(copyStringTwo)
+
+  copyStringTwo = 'DEEP COPY'
+  console.log(copyStringTwo)
+
+  // sync and async functions
+
+  // Synchronous code
+function addSync(a, b) {
+  console.log('Function called in sync') // display in the sequential order - this is  print first 1
+  console.log('Second console in sync')  // - this is print second 2
+  return a + b;
+}
+
+console.log('RESULT OF Sync' ,addSync(1, 2)); // 3    // - this is print third 3
+
+
+// Asynchronous code
+function addAsync(a, b, callback) {  // display in the non - sequential order 
+  console.log('Function called in async')   // - this is print FIRST 1
+  setTimeout(function() {
+    console.log('Function called inside Async timeout') // - this is print THIRD 3
+    callback(a + b);
+  }, 1000);
+
+  console.log('END of ASYNC')  // - this is print SECOND 2
+}
+
+addAsync(1, 2, function(result) {
+  console.log('RESULT OF ASync',result); // 3  - this is print FOURTH 4
+});
+
+// event bubbling
