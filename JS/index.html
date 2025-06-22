@@ -8,7 +8,7 @@
     <script src="index.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css">
     </link>
-    <title>Java Script Basics</title>
+    <title>JavaScript Zero to Hero</title>
 </head>
 
 <body>
@@ -1272,7 +1272,8 @@ displyUserwithParams('Am kesav',26); // Its argument
           }
           
           getData();
-    </pre><br><br><hr>
+    </pre><br><br>
+    <hr>
     <h3 class="center">String Reverse </h3>
     <br>
     <p class="heading">Asked in interview - with inbuilt method</p>
@@ -1302,7 +1303,8 @@ displyUserwithParams('Am kesav',26); // Its argument
         reverseString('hello');
 
     </pre>
-    <br><hr>
+    <br>
+    <hr>
     <h3 class="center">Sort Names</h3>
     <br>
     <p class="heading">Asked in interview</p>
@@ -1339,7 +1341,8 @@ displyUserwithParams('Am kesav',26); // Its argument
         console.log(sortByAge)
 
     </pre>
-    <br><hr>
+    <br>
+    <hr>
     <h3 class="center">Closure</h3>
     <br>
     <p class="heading">Asked in interview</p>
@@ -1377,7 +1380,8 @@ displyUserwithParams('Am kesav',26); // Its argument
         firstFunction('Argument Pass');  // first function arg pass
 
     </pre>
-    <br><hr>
+    <br>
+    <hr>
     <h3 class="center">Arrow Functions</h3>
     <br>
     <p class="heading">Functions are 4 types <br><br>
@@ -1385,10 +1389,10 @@ displyUserwithParams('Am kesav',26); // Its argument
         2. Named Functions <br>
         3. Immeadiate invoked functions <br>
         4 . Arrow functions</p>
-<br>
-<p class="heading">Bind, This, Apply, Call These methods are usable in Arrow Function<br><br>
+    <br>
+    <p class="heading">Bind, This, Apply, Call These methods are usable in Arrow Function<br><br>
 
-<pre>
+    <pre>
 
                 //1. Anonymous Functions
 
@@ -1420,12 +1424,12 @@ displyUserwithParams('Am kesav',26); // Its argument
             
                 arrowFunc() // calling the func
 
-</pre> 
-<br>
-<p class="heading">Arrow Function Possibilities</p><br>
-<p class="heading">Here we add some static like sum value plus 3 is added</p>
-<pre>
-            
+</pre>
+    <br>
+    <p class="heading">Arrow Function Possibilities</p><br>
+    <p class="heading">Here we add some static like sum value plus 3 is added</p>
+    <pre>
+
         const plusThree = (sum) =>{
             total = sum + 3
             console.log(total)
@@ -1433,9 +1437,9 @@ displyUserwithParams('Am kesav',26); // Its argument
         
             plusThree(3);
 
- </pre> 
- <p class="heading">Here we sum two values</p>
-<pre>     
+ </pre>
+    <p class="heading">Here we sum two values</p>
+    <pre>
 
         const sumTwoNumbers = (a,b)=> {
             sumTot = a + b 
@@ -1444,10 +1448,10 @@ displyUserwithParams('Am kesav',26); // Its argument
         
         console.log(sumTwoNumbers(9838,67))
   
-</pre>   
-<br>
-<p class="heading"> We filter ages above 18 years</p>
-<pre>
+</pre>
+    <br>
+    <p class="heading"> We filter ages above 18 years</p>
+    <pre>
 
     var agesArray = [34,77,63,12,45,98,34,20,3,4,9,15,65,55,43,35]
 
@@ -1455,21 +1459,21 @@ displyUserwithParams('Am kesav',26); // Its argument
     console.log(voteEligible) // [34, 77, 63, 45, 98, 34, 20, 65, 55, 43, 35]
 
 </pre>
-<p class="heading">We add plus 2 in all numbers in the array 
-</p>
-<pre>
+    <p class="heading">We add plus 2 in all numbers in the array
+    </p>
+    <pre>
 
     const agePlusTwo = agesArray.map(x => x + 2)
     console.log(agePlusTwo) // [36, 79, 65, 14, 47, 100, 36, 22, 5, 6, 11, 17, 67, 57, 45, 37]
 
 </pre>
-<hr>
-<h3 class="center"> Keywords</h3>
-<h3 class="center">Bind - Call - apply </h3>
-<br>
-<p class="heading">BIND</p>
-<br>
-<pre>
+    <hr>
+    <h3 class="center"> Keywords</h3>
+    <h3 class="center">Bind - Call - apply </h3>
+    <br>
+    <p class="heading">BIND</p>
+    <br>
+    <pre>
 
     // Bind 
 
@@ -1496,9 +1500,9 @@ displyUserwithParams('Am kesav',26); // Its argument
         // Employee Name is Ravi
 
 </pre>
-<br>
-<p class="heading"> Passing arguments with Bind</p><br>
-<pre>
+    <br>
+    <p class="heading"> Passing arguments with Bind</p><br>
+    <pre>
 
     // Passing arguments with Bind
  
@@ -1520,9 +1524,9 @@ displyUserwithParams('Am kesav',26); // Its argument
         bindValueWithArgs();
 
 </pre><br>
-<p class="heading">CALL</p>
-<br>
-<pre>
+    <p class="heading">CALL</p>
+    <br>
+    <pre>
 
     employeeOne.getEmpName.call(employeeTwo); 
 
@@ -1530,16 +1534,16 @@ displyUserwithParams('Am kesav',26); // Its argument
 
     // Employee Name is Ravi
 </pre>
-<br>
-<p class="heading">Passing arguments with call </p>
-<pre>
+    <br>
+    <p class="heading">Passing arguments with call </p>
+    <pre>
 
         employeeThree.getEmpName.call(employeeFour , ' MERN STACK');
         // Employee Name is Ravi MERN STACK
 </pre>
-<br>
-<p class="heading">APPLY</p>
-<pre>
+    <br>
+    <p class="heading">APPLY</p>
+    <pre>
 
     // Apply 
 
@@ -1548,25 +1552,56 @@ displyUserwithParams('Am kesav',26); // Its argument
         // Employee Name is Ravi LAMP STACK
 
 </pre>
-<hr><br>
-<h3 class="center"> Shallow and deep copy </h3>
-<br>
-<p class="heading">Asked in interview</p>
-<br>
-<p class="heading">
-    Scanario here like one array is there , then create another array , then copy the data from first arr to second 
-    array and change the second array data but it wont reflect in the first array this is the condition so using spread 
-    operator its deeply copy both arrays got changed. So we use shallow copy using JSON. 
-</p><br>
-<pre>
+    <hr><br>
+    <h3 class="center"> Shallow and deep copy </h3>
+    <br>
+    <p class="heading">Asked in interview</p>
+    <br>
+    <p class="heading">
+        Scanario here like one array is there , then create another array , then copy the data from first arr to second
+        array and change the second array data but it wont reflect in the first array this is the condition so using
+        spread
+        operator its deeply copy both arrays got changed. So we use shallow copy using JSON.
+    </p><br>
+    <p>
+        // SHALLOW COPY and DEEP COPY <br>
+        // SHALLOW COPY - If we change the second array it will reflect in the first array <br>
+        // DEEP COPY - If we change the second array it wont reflect in the first array
+    </p>
+    <p>Simple example</p>
+    <pre>
+                const original = {
+                    name: "Ravi",
+                    address: {
+                        city: "Chennai"
+                    }
+                };
+
+        const shallowCopy = { ...original };
+            console.log(shallowCopy)
+        shallowCopy.address.city = "Madurai";
+            console.log(shallowCopy)
+            console.log(original) // original also got changed even made changes in shallow copy only
+
+            console.log("++++++++++++")
+        const deepCopy = JSON.parse(JSON.stringify(original));
+            console.log(deepCopy)
+        deepCopy.address.city = "salem";
+            console.log(deepCopy)
+            console.log(original) // original not changed    
+</pre>
+    <pre>
+
+    Example with array
+
             var firtArray = [{"name":'raj', "age":55},
             {"name":'Rani', "age":55},{"name":'Josh', "age":55}];
         
-            // cmt below any one will see difference
+            console.log(firtArray)
         
-            var secArr = JSON.parse(JSON.stringify(firtArray)) // SHALLOW COPY
+            var secArr = JSON.parse(JSON.stringify(firtArray)) // DEEP COPY
         
-            var secArr = [...firtArray] // DEEP COPY 
+            var secArr = [...firtArray] // SHALLOW COPY 
         
             var secArr = secArr.map(e =>{
                 if(e.name =='Rani'){
@@ -1579,9 +1614,9 @@ displyUserwithParams('Am kesav',26); // Its argument
             console.log(secArr)
   
 </pre>
-<br>
-<p class="heading"> Second method - Primitive data we always do a deep copy but non primitive data we cant do </p>
-<pre>
+    <br>
+    <p class="heading"> Second method - Primitive data we always do a deep copy but non primitive data we cant do </p>
+    <pre>
 
         let copyString = 'COPY STRING';
     
@@ -1592,14 +1627,33 @@ displyUserwithParams('Am kesav',26); // Its argument
         console.log(copyStringTwo)
 
 </pre>
-<hr><br>
-<h3 class="center"> Sync and Async Functions </h3>
-<br>
-<p class="heading">Sync Functions</p><br>
-<p class="heading">JavaScript is synchronous by default <br>
-    Every line of code is executed one after the other, and each task must wait for the previous one to be completed before moving to the next.</p>
-<br>
-<pre>
+    <hr><br>
+    <h3 class="center"> Object.assign() </h3>
+    <p class="heading"> It's one of the most useful ES6 methods for working with objects in JavaScript. Its also allows
+        you to merge multiple objects into one. Its also shallow copy.</p>
+    <br>
+    <pre>
+
+    const user = { name: "Sara" };
+    const details = { age: 30, city: "Delhi" };
+
+    const fullProfileArr = Object.assign([],user, details);
+    const fullProfileObj = Object.assign({},user, details);
+    
+    console.log(fullProfileArr); // [ name: "Sara", age: 30, city: "Delhi" ]
+    console.log(fullProfileObj); // { name: "Sara", age: 30, city: "Delhi" }
+
+</pre>
+    <br>
+    <hr><br>
+    <h3 class="center"> Sync and Async Functions </h3>
+    <br>
+    <p class="heading">Sync Functions</p><br>
+    <p class="heading">JavaScript is synchronous by default <br>
+        Every line of code is executed one after the other, and each task must wait for the previous one to be completed
+        before moving to the next.</p>
+    <br>
+    <pre>
 
     // Synchronous code
 
@@ -1612,11 +1666,12 @@ displyUserwithParams('Am kesav',26); // Its argument
     console.log('RESULT OF Sync' ,add(1, 2)); // 3    // - this is print third 3
 
 </pre>
-<p class="heading">Async Functions</p><br>
-<p class="heading">Asynchronous that allows multiple events to occur simultaneously. Asynchronous code starts now and finishes later.</p>
-<br>
-<pre>
-  
+    <p class="heading">Async Functions</p><br>
+    <p class="heading">Asynchronous that allows multiple events to occur simultaneously. Asynchronous code starts now
+        and finishes later.</p>
+    <br>
+    <pre>
+
         // Asynchronous code
 
         function addAsync(a, b, callback) {  // display in the non - sequential order 
@@ -1634,103 +1689,117 @@ displyUserwithParams('Am kesav',26); // Its argument
         });
 
 </pre>
-<hr><br>
-<h3 class="center"> SQL and NOSQL </h3>
-<br>
-<p class="heading">Asked in interview</p>
-<br>
-<table style="width:100%">
-    <tr>
-      <th>SQL</th>
-      <th>NOSQL</th> 
-    </tr>
-    <tr>
-      <td>RELATIONAL DATABASE MANAGEMENT SYSTEM (RDBMS)</td>
-      <td>Non-relational or distributed database system.</td>
-    </tr>
-    <tr>
-      <td>These databases have fixed or static or predefined schema</td>
-      <td>They have a dynamic schema</td>
-    </tr>
-    <tr>
-      <td>These databases are best suited for complex queries</td>
-      <td>These databases are not so good for complex queries</td>
-    </tr>
-    <tr>
-        <td>manage Structured data</td>
-        <td>manage Unstructured / Semi Structured data</td>
-      </tr>
-  </table>
-<br>
-<br>
-<p class="heading">Where SQL and NOSQL Used</p>
-<br>
-<p>
-    <b>SQL</b> databases are typically used in applications that require <b>Complex queries and transaction management And Mange Structured data in big level</b>
-     whereas <b>NoSQL</b> databases are used in applications that require <b>high performance and scalability, 
-        such as web applications and mobile apps.</b> 
-</p>
-<br>
-<p class="heading">Why NOSQL performance good?</p><br>
-<p><b>SQL</b> databases scale vertically, meaning they <b>require more powerful hardware to handle increased loads.</b> 
-    <b>NoSQL</b> databases scale horizontally, <b>Allowing them to distribute data across multiple servers to manage 
-        larger volumes of traffic or data, making them better suited for web-scale applications.</b></p><br>
+    <hr><br>
+    <h3 class="center"> SQL and NOSQL </h3>
+    <br>
+    <p class="heading">Asked in interview</p>
+    <br>
+    <table style="width:100%">
+        <tr>
+            <th>SQL</th>
+            <th>NOSQL</th>
+        </tr>
+        <tr>
+            <td>RELATIONAL DATABASE MANAGEMENT SYSTEM (RDBMS)</td>
+            <td>Non-relational or distributed database system.</td>
+        </tr>
+        <tr>
+            <td>These databases have fixed or static or predefined schema</td>
+            <td>They have a dynamic schema</td>
+        </tr>
+        <tr>
+            <td>These databases are best suited for complex queries</td>
+            <td>These databases are not so good for complex queries</td>
+        </tr>
+        <tr>
+            <td>manage Structured data</td>
+            <td>manage Unstructured / Semi Structured data</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <p class="heading">Where SQL and NOSQL Used</p>
+    <br>
+    <p>
+        <b>SQL</b> databases are typically used in applications that require <b>Complex queries and transaction
+            management And Mange Structured data in big level</b>
+        whereas <b>NoSQL</b> databases are used in applications that require <b>high performance and scalability,
+            such as web applications and mobile apps.</b>
+    </p>
+    <br>
+    <p class="heading">Why NOSQL performance good?</p><br>
+    <p><b>SQL</b> databases scale vertically, meaning they <b>require more powerful hardware to handle increased
+            loads.</b>
+        <b>NoSQL</b> databases scale horizontally, <b>Allowing them to distribute data across multiple servers to manage
+            larger volumes of traffic or data, making them better suited for web-scale applications.</b>
+    </p><br>
 
-<p class="heading">Horizontal Vs Vertical Scalling</p><br>
-<p> <b>Horizontal scaling </b>refers to <b>adding additional nodes.</b> <br><b>Vertical scaling</b> describes adding <b>more power to your current machines.</b></p>
-<br><hr><br>
-<h3 class="center"> Nodejs optimization </h3>
-<br>
-<p class="heading">How to Optimize Node.js APIs</p><br>
-<ol style="margin-left: 5%;">
-    <li class="heading">Always Use Asynchronous Functions</li>
-    <li class="heading">Avoid Sessions and Cookies in APIs, and Send Only Data in the API Response</li>
-    <li class="heading">Optimize Database Queries (Add indexing)</li>
-    <li class="heading">Use Error Scripts with Logging (winston logging)</li>
-    <li class="heading">Use Redis to Cache the App</li>
-</ol> <br>
-<br>
-<h3 class="center">Secure Nodejs App</h3>
-<br>
-<ol style="margin-left: 5%;">
-    <li class="heading">Never Run Node.js With Root Privileges. Like add admin user and guest user for access / deployments of the node app</li>
-    <li class="heading">Keep Your NPM Libraries Up To Date (npm audit , npm audit fix)</li>
-    <li class="heading">Additionally, you can use Snyk to check your dependencies against Snyk's Open Source Vulnerability Database.</li>
-    <li class="heading">Do Not Send Unnecessary Info</li>
-    <li class="heading">Adopt an HTTPS-Only Policy (Https api calls)</li>
-    <li class="heading">Limit Request Size ( set the request size limit to 1 MB
-        app.use(bodyParser.json({ limit: '1mb' }));)</li>
-</ol> <br>
-<br>
-<h3 class="center">Event loop - nodejs</h3>
-<br>
-<p class="heading">LIBUV, LIB UV is a C library originally written for Node.js to abstract non-blocking I/O operations. </p>
-<p class="heading">Nodejs is a single threaded asynchronous I/O approach, hence it is tied to a single thread. but it handles async functions with the help of this.</p>
-<br>
-<p class="heading">Core Concepts</p>
-<ol style="margin-left: 5%;">
-<li class="heading">Call Stack - (Execution stack - in the browser or memory of runtime in each and every function execute based on 
-    first-in-first-out basis. if all functions get executed the call stack will be empty. This is a normal sync function and after all executed function also closed.)</li>
-<li class="heading">Callback Queue - (Here if its a async function, example we have settimeout after the function execution stack will empty and 
-    after that the settimeout is triggered so inside the stack like queue system it happen)</li>
-</ol><br>
-<h3>The event loop continues this process, ensuring that the call stack is always empty before taking the next function from the callback queue.</h3>
-<br>
-<hr>
-<br>
-<h3 class="center">Event Bubbling</h3>
-<br>
-<p class="heading"> It is a process that starts with the element that triggered the event and then bubbles up to the containing elements in the hierarchy.</p>
-<br>
-<div id="parent"> 
-    <button> 
-        <h2>Parent</h2> 
-    </button> 
-    <button id="child"> 
-        <p>Child</p> 
-    </button> 
-</div><br>
-<pre>
+    <p class="heading">Horizontal Vs Vertical Scalling</p><br>
+    <p> <b>Horizontal scaling </b>refers to <b>adding additional nodes.</b> <br><b>Vertical scaling</b> describes adding
+        <b>more power to your current machines.</b></p>
+    <br>
+    <hr><br>
+    <h3 class="center"> Nodejs optimization </h3>
+    <br>
+    <p class="heading">How to Optimize Node.js APIs</p><br>
+    <ol style="margin-left: 5%;">
+        <li class="heading">Always Use Asynchronous Functions</li>
+        <li class="heading">Avoid Sessions and Cookies in APIs, and Send Only Data in the API Response</li>
+        <li class="heading">Optimize Database Queries (Add indexing)</li>
+        <li class="heading">Use Error Scripts with Logging (winston logging)</li>
+        <li class="heading">Use Redis to Cache the App</li>
+    </ol> <br>
+    <br>
+    <h3 class="center">Secure Nodejs App</h3>
+    <br>
+    <ol style="margin-left: 5%;">
+        <li class="heading">Never Run Node.js With Root Privileges. Like add admin user and guest user for access /
+            deployments of the node app</li>
+        <li class="heading">Keep Your NPM Libraries Up To Date (npm audit , npm audit fix)</li>
+        <li class="heading">Additionally, you can use Snyk to check your dependencies against Snyk's Open Source
+            Vulnerability Database.</li>
+        <li class="heading">Do Not Send Unnecessary Info</li>
+        <li class="heading">Adopt an HTTPS-Only Policy (Https api calls)</li>
+        <li class="heading">Limit Request Size ( set the request size limit to 1 MB
+            app.use(bodyParser.json({ limit: '1mb' }));)</li>
+    </ol> <br>
+    <br>
+    <h3 class="center">Event loop - nodejs</h3>
+    <br>
+    <p class="heading">LIBUV, LIB UV is a C library originally written for Node.js to abstract non-blocking I/O
+        operations. </p>
+    <p class="heading">Nodejs is a single threaded asynchronous I/O approach, hence it is tied to a single thread. but
+        it handles async functions with the help of this.</p>
+    <br>
+    <p class="heading">Core Concepts</p>
+    <ol style="margin-left: 5%;">
+        <li class="heading">Call Stack - (Execution stack - in the browser or memory of runtime in each and every
+            function execute based on
+            first-in-first-out basis. if all functions get executed the call stack will be empty. This is a normal sync
+            function and after all executed function also closed.)</li>
+        <li class="heading">Callback Queue - (Here if its a async function, example we have settimeout after the
+            function execution stack will empty and
+            after that the settimeout is triggered so inside the stack like queue system it happen)</li>
+    </ol><br>
+    <h3>The event loop continues this process, ensuring that the call stack is always empty before taking the next
+        function from the callback queue.</h3>
+    <br>
+    <hr>
+    <br>
+    <h3 class="center">Event Bubbling</h3>
+    <br>
+    <p class="heading"> It is a process that starts with the element that triggered the event and then bubbles up to the
+        containing elements in the hierarchy.</p>
+    <br>
+    <div id="parent">
+        <button>
+            <h2>Parent</h2>
+        </button>
+        <button id="child">
+            <p>Child</p>
+        </button>
+    </div><br>
+    <pre>
     <xmp>
         <div id="parent"> 
             <button> 
@@ -1750,21 +1819,24 @@ displyUserwithParams('Am kesav',26); // Its argument
         alert("You clicked the parent element!"); 
     }); 
 </pre>
-<script>
-      document.getElementById("parent").addEventListener('click', function () { 
-      alert("You clicked the parent element!"); 
-  });  
-    document.getElementById("child").addEventListener('click', function () { 
-      alert("You clicked the Child element!"); 
-  }); 
-</script>
-<br><hr>
-<h3 class="center">rxjs</h3>
-<p class="heading">RXJS - is a library for reactive programming using Observables, to make it easier to compose asynchronous or callback-based code.</p>
-<br><p class="heading">Install Guide </p>
-<br>
-<p class="heading">Install via NPM - so add npm init</p><br>
-<p class="heading"> npm install rxjs </p>
-<br>
+    <script>
+        document.getElementById("parent").addEventListener('click', function () {
+            alert("You clicked the parent element!");
+        });
+        document.getElementById("child").addEventListener('click', function () {
+            alert("You clicked the Child element!");
+        }); 
+    </script>
+    <br>
+    <hr>
+    <h3 class="center">rxjs</h3>
+    <p class="heading">RXJS - is a library for reactive programming using Observables, to make it easier to compose
+        asynchronous or callback-based code.</p>
+    <br>
+    <p class="heading">Install Guide </p>
+    <br>
+    <p class="heading">Install via NPM - so add npm init</p><br>
+    <p class="heading"> npm install rxjs </p>
+    <br>
 </body>
 </html>

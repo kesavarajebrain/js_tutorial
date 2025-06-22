@@ -11,7 +11,7 @@ console.log(myName); // will receive undefined here
 let petName;
 console.log(petName); // will receive undefined here
 // let myName = '' // we cant declare same name for multiple data types
-
+console.warn("DIFERENCE BETWEEN LET & CONST");
 // DIFERENCE BETWEEN LET & CONST
 let sentence = "This is the sample sentence";
 console.log(sentence);
@@ -24,7 +24,7 @@ console.log(word);
 
 // word = "hai"; //Uncaught TypeError: Assignment to constant variable
 console.log(word); // here we cant assign value again.
-
+console.warn("DIFERENCE BETWEEN VAR & LET");
 // DIFERENCE BETWEEN VAR & LET
 
 // Let is the block scope
@@ -48,9 +48,9 @@ let auto = "bajaj"; // Not get it by window object
 })();
 
 console.log(lorry) // its print
-
-// this keyword 
-console.log(this) // this return all the window objects like - Window {window: Window, self: Window, document: document, name: ''
+console.warn("THIS KEYWORD");
+// this keyword
+console.log(this) // this return all the window objects like - Window {window: Window, self: Window, document: document, name: ''}
 
 const thisObj = {
   company_name: 'Thinkpalm',
@@ -72,7 +72,7 @@ const thisObj = {
 let testingFun = thisObj.test(); // here call the function inside the obj
 console.log(testingFun) // Thinkpalm is the Good company! located in Chennai. openings are NODE,MERN,MEAN
 
-
+console.warn("OBJECTS");
 // object
 let person = {
   name: "xyz",
@@ -120,25 +120,29 @@ console.log(cloneObj); // here just assign object to another variable
 cloneObj = { ...person };
 console.log(cloneObj);
 
+console.warn("ARRAYS");
 // array
 
 let colors = ["red", "green", "blue", "yellow"];
 console.log(colors);
 console.log(colors[3]);
 console.log(typeof colors);
-
+console.warn("ARRAY METHODS");
 // adding element to array
-
+console.warn("Adding elements to array");
 //push
+console.warn("Push - Adding elements to end of array");
 colors.push("white", "pink");
 console.log(colors); // its pushing elements to end of existing array
+console.warn("Unshift - Adding elements to start of array");
 //unshift
 colors.unshift("orange", "purple"); // its add elements to start of the existing array
 console.log(colors);
+console.warn("splice");
 //splice
 colors.splice(2, 0, "peech", "grey"); //(2) start — The zero-based location in the array from which to start removing elements. (0) - param deleteCount — The number of elements to remove.
 console.log(colors);
-
+console.warn("Finding elements in array");
 // Finding elements in array
 console.log(colors.includes("red")); // true - its return simply array contains the item or not
 console.log(colors.includes("brown")); // false
@@ -157,34 +161,38 @@ let find = sampleArray.find(function (product) {
   console.log(product); // its gives seprate object because its looping
   return product.product == "Washer"; // its return the whole object if existing, {id: 4, product: 'Washer'}
 });
-
+console.warn("Find Method");
 console.log(find);
 // findIndex()
 let findIndx = sampleArray.findIndex(function (product) {
   return product.product == "Washer"; // its return the index position only, if existing, (output - 3)
 });
-
+console.warn("FindIndex Method");
 console.log(findIndx);
 
 // Remove elements in array
-
+console.warn( "Remove elements in array");
 let removeArray = ["Tamil", "english", "malayalam", "telugu"];
 // pop
+console.warn("Pop - Removes last element from array");
 removeArray.pop();
 console.log(removeArray); //  ['Tamil', 'english', 'malayalam'] - removes last element
 //shift
+console.warn("Shift - Removes first element from array");
 removeArray.shift();
 console.log(removeArray); // ['english', 'malayalam'] - removes first element
 //splice
+console.warn ("Splice - Removes element from array based on position");
 removeArray.splice(0, 1);
 console.log(removeArray); // ['malayalam'] - in the parameter 0 is array start value 1 is number element we want to remove so 0 postion is english remove that so 1
 
 // empty a array
+console.warn("Empty a array");
 removeArray = [];
 console.log(removeArray); // []
 
 // combine 2 arrays
-
+console.warn("Combine 2 arrays");
 let firstArray = [{ item: "Fruit" }, { item: "Vegetables" }, { item: "Food" }];
 
 let secondArray = [{ item: "Hot drinks" }, { item: "Liquer" }];
@@ -197,29 +205,32 @@ let extractedArray = combinedArray.slice(1, 3); // 1 is the start value , 3 is t
 console.log(extractedArray);
 
 // spread operator
+console.warn("Spread Operator");
 combinedArray = [...firstArray, ...secondArray];
 console.log(combinedArray);
 
 // array iteration
-
+console.warn("Array Iteration");
 firstArray.forEach((item, index) => {
   console.log(index, item); //index means array position,  item means user defined one
 });
 
 // array join
+console.warn("Array Join");
 let hashTags = ["freedom", "india", "social", "trend"];
 hashTags.unshift("");
 let joinHashTag = hashTags.join(" #"); // its works based on the space giving here we give space on start so its not consider 0 th position , so added empty one by using unshift
 console.log(joinHashTag);
 
 // array split
-
+console.warn("Array Split");
 let splitArr = "This sentence with space!";
 let result = splitArr.split(" ");
 console.log(result); // its spliting the sentence by space
 console.log(result.join("_")); // its joing the sentence with _
 
 // sort array
+console.warn("Sort Array");
 let studentsArray = [
   { id: 8, name: "kamal" },
   { id: 4, name: "Sao" },
@@ -250,7 +261,7 @@ studentsArray.sort((a, b) => {
 console.log(studentsArray);
 
 // array every & some
-
+console.warn("Array Every & Some");
 let everyArray = [
   { id: 2, name: "table", isOk: true },
   { id: 3, name: "chair", isOk: true },
@@ -282,6 +293,7 @@ let allNotOk = everyArray.some(function (value) {
 console.log(allNotOk);
 
 // Array filter
+console.warn("Array Filter");
 let adultsArray = [30, 89, 12, 34, 29, 17, 56, 27, 22, 24, 13, 15, 18, 27];
 let adult = adultsArray.filter((value) => {
   return value >= 18;
@@ -289,7 +301,7 @@ let adult = adultsArray.filter((value) => {
 console.log("Adult", adult); // [30, 89, 34, 29, 56, 27, 22, 24, 18, 27]
 
 // Odd or Even Numbers
-
+console.warn("Odd or Even Numbers");
 let numberArray = [1, 2, 4, 5, 13, 12, 10, 9, 8, 22, 23, 90, 45, 38, 3, 7];
 let evenNumbrs = numberArray.filter((value) => {
   return value % 2 == 0;
@@ -320,7 +332,7 @@ let budgetPrducts = dataArray.filter((value) => {
 console.log("Budget Products", budgetPrducts);
 
 // array find
-
+console.warn("Array Find");
 let arrayFind = dataArray.find((value) => {
   return value.price < 5000;
 });
@@ -328,6 +340,7 @@ let arrayFind = dataArray.find((value) => {
 console.log("FIND", arrayFind); // its return one value with the satisfied first data only returned.
 
 // array findIndex
+console.warn("Array FindIndex");
 let arrayFindIndx = dataArray.findIndex((value) => {
   return value.price < 5000;
 });
@@ -335,7 +348,7 @@ let arrayFindIndx = dataArray.findIndex((value) => {
 console.log("FIND-Index", arrayFindIndx); // its return position with the satisfied first position only returned.
 
 // Array map
-
+console.warn("Array Map");
 let employeeData = [
   { id: 2, firstName: "Raj", lastName: "Kumar" },
   { id: 3, firstName: "Rajesh", lastName: "kanna" },
@@ -364,7 +377,7 @@ let productsArray = [
 ];
 
 // sort the array with lowest price
-
+console.warn("Sort the array with lowest price");
 let sortByPrice = productsArray.sort((a, b) => {
   return a.price - b.price; // low to high
 });
@@ -381,7 +394,7 @@ let sortByTitle = sortByPrice.sort((a, b) => {
 console.log(sortByTitle);
 
 // filter product
-
+console.warn("Filter Product with price >= 5000");
 let filterBudgetPrducts = sortByTitle.filter((value) => {
   return value.price >= 5000;
 });
@@ -389,7 +402,7 @@ let filterBudgetPrducts = sortByTitle.filter((value) => {
 console.log(filterBudgetPrducts);
 
 // map the response structure
-
+console.warn("Map the response structure");
 let final = filterBudgetPrducts.map((value) => {
   return `Product - ${value.name}, Price ₹${value.price}`;
 });
@@ -415,7 +428,7 @@ let chainArray = productsArray
 console.log(chainArray);
 
 // Array Reduce
-
+console.warn("Array Reduce");
 let reduceArray = [
   { id: 1, name: "milk", amount: 30 },
   { id: 3, name: "tea", amount: 20 },
@@ -432,27 +445,30 @@ let totalAmount = reduceArray.reduce((previousVal, currentVal) => {
 console.log(totalAmount); //30+20+25+15 =  90
 
 // Difference between Sort , Find , Filter , Map , Reduce
+console.warn("Difference between Sort , Find , Filter , Map , Reduce");
 // sort
+console.warn("Sort");
 let resultlog;
 const diffArray = [12, 2, 56, 89, 45, 8, 45, 26, 17];
 resultlog = diffArray.sort();
 console.log(resultlog); //  [12, 17, 2, 26, 45, 45, 56, 8, 89] here we didn't see the actual sort // because its working based on the ascii value  and charCodeAt
 
 // find
+console.warn("Find");
 resultlog = diffArray.find((value) => {
   return value > 50;
 });
 console.log(resultlog); // 56 its giving one value moreover we have other values there greater than 50 but its give first result only
 
 // filter
-
+console.warn("Filter");
 resultlog = diffArray.filter((value) => {
   return value > 50;
 });
 console.log(resultlog); //[56, 89] its give all data which is mached
 
 // map
-
+console.warn("Map");
 resultlog = diffArray.map((value) => {
   return "*" + value; // we construct means we do by map
   return value < 50; //   [true, true, true, true, true, true, false, true, false] its return true false
@@ -460,21 +476,21 @@ resultlog = diffArray.map((value) => {
 console.log(resultlog);
 
 //Reduce
-
+console.warn("Reduce");
 resultlog = diffArray.reduce((preVal, curVal) => {
   return preVal + curVal;
 }, 0);
 console.log(resultlog); // 300
 
 // map and reduce diff
-
+console.warn("Map and Reduce Difference");
 resultlog = diffArray.map((preVal, curVal) => {
   return preVal + curVal;
 });
 console.log(resultlog); // [12, 18, 4, 29, 49, 50, 62, 15, 97] // if do map instead of reduce its set value itself in the array , not give the  sum value
 
 // function
-
+console.warn("Function");
 function displyUser() {
   let name = "Am Raja";
   let age = " my age is " + 56;
@@ -484,6 +500,7 @@ function displyUser() {
 displyUser();
 
 // funtion with parameter
+console.warn("Function with Parameter");
 function displyUserwithParams(name, age) {
   let Name = name;
   let Age = " my age is " + age;
@@ -506,7 +523,7 @@ function add() {
 }
 
 // fuction declaration
-
+console.warn("Function Declaration, Function Expression, Anonymous Function or Arrow Function");
 let val1 = 20;
 let val2 = 25;
 function addNumbrs() {
@@ -516,7 +533,7 @@ function addNumbrs() {
 addNumbrs();
 
 // Function expression or Named function
-
+console.warn("Function Expression or Named Function");
 const addNo = function addNumbrs() {
   console.log("Function Expression", val1 + val2);
 };
@@ -524,7 +541,7 @@ const addNo = function addNumbrs() {
 addNo();
 
 // anonymous function or arrow function
-
+console.warn("Anonymous Function or Arrow Function");
 const sumNos = () => {
   console.log("Anonymous Function or Arrow Function", val1 + val2);
 };
@@ -552,6 +569,7 @@ const sampleFunctionExpress = function () {
 sampleFunctionExpress();
 
 // IIFE
+console.warn("IIFE - Immediately Invoked Function Expression");
 function functionName() {
   console.log("Normal Function!");
 }
@@ -563,7 +581,7 @@ functionName(); // we need call like this
 })(12, 11); // () after the function add bracket here passing aruguments
 
 // Function Arguments
-
+console.warn("Function Arguments");
 function addExpenses() {
   console.log(arguments); // here we see the arguments whether we passed or not
   let total = 0;
@@ -602,7 +620,7 @@ function calculateGst(cost, tax = 18) {
 let rateOfItem = calculateGst(4500); // here i pass 1 argument
 console.log("Tax -₹" + taxAmount + " Total - " + rateOfItem + "/-");
 // oprators
-
+console.warn("Operators");
 let x = 5;
 console.log(x); // 5
 console.log(++x); // 6 if using prefix ++ it will instanly change the value
@@ -610,6 +628,7 @@ console.log(x++); //6 if using suffix ++ it will change after the line
 console.log(x); //7
 
 // comparison operators - Relational
+console.warn("Comparison Operators - Relational");
 let y = 1;
 console.log(y < 0); // false
 console.log(y > 0); // true
@@ -617,15 +636,18 @@ console.log(y <= 0); // false
 console.log(y >= 0); // true
 
 // operators - Equality
+console.warn("Operators - Equality");
 let z = 1;
 console.log(z == 1); // true
 console.log(z !== 1); // fasle
 console.log(z === 1); // true
 
 // strict equality operators
+console.warn("Strict Equality Operators");
 console.log(1 === 1); // true
 console.log("1" === 1); // false
 // lose equality opreators
+console.warn("Lose Equality Operators");
 console.log(1 == 1); // true
 console.log("1" == 1); //true
 //  operators - String
@@ -633,33 +655,40 @@ let a = "aaa";
 console.log(a == "aa"); // false
 console.log(a == "aaa"); // true
 
-// Type comaprison operators
-
+// Type comparison operators
+console.warn("Type Comparison Operators");
 let b = true;
 console.log(b);
 console.log(true == b); // true
 console.log(b == false); //false
 console.log("5" == 5); //true
 
-// Ternary Oprators
+// Ternary Operators
+console.warn("Ternary Operators");
 let age = 20;
 let admit = age > 18 ? "Admit granted" : "No Admission";
 console.log(admit);
 
 // logical operators
 // AND Operators
+console.warn("Logical Operators");
+console.warn("AND Operators");
 console.log(true && true); // true
 console.log(false && false); // false
 console.log(true && false); // false
 // OR Operators
+console.warn("OR Operators");
 console.log(true || false); // true
 console.log(false || true); // true
 console.log(false || false); // false
 //NOT Operators
+console.warn("NOT Operators");
 console.log(!true); // false
 console.log(!false); // true
-
+console.log(!!true); // true
+console.log(!!false); // false
 // Precedence
+console.warn("Precedence");
 let c = 5 + 5 * 2;
 console.log(c); // output is 15
 
@@ -667,6 +696,7 @@ let d = (5 + 5) * 2;
 console.log(d); // output is 20
 
 // conditional statements
+console.warn("Conditional Statements");
 // If and Switch or conditional statements
 let condition = true;
 if (condition) {
@@ -675,6 +705,7 @@ if (condition) {
   console.log("Condition is false");
 }
 // if else
+console.warn("If Else");
 var hour = new Date().getHours();
 console.log(hour);
 // 0 - 13 - morning
@@ -688,7 +719,7 @@ if (hour >= 0 && hour <= 13) {
   console.log("Good Evening");
 }
 // Switch case
-
+console.warn("Switch Case");
 let amountIs = 10000;
 console.log(amountIs);
 switch (true) {
@@ -703,6 +734,7 @@ switch (true) {
 }
 
 // Loop
+console.warn("Loop");
 // // for(initialExpression; Condition ; Increment/Decrement){
 
 // }
@@ -718,7 +750,7 @@ for (let i = 10; i >= 1; i--) {
 }
 
 // while loop
-
+console.warn("While Loop");
 let k = 10;
 while (k <= 20) {
   console.log(k);
@@ -726,7 +758,7 @@ while (k <= 20) {
 }
 
 // do while loop
-
+console.warn("Do While Loop");
 let j = 1;
 
 do {
@@ -736,7 +768,7 @@ do {
 } while (j <= 10);
 
 // for in loop
-
+console.warn("For In Loop");
 let obj = {
   name: "raja",
   age: 60,
@@ -755,7 +787,7 @@ for (let key in obj) {
 }
 
 // for of loop
-
+console.warn("For Of Loop");
 let array = [
   {
     name: "kavi",
@@ -778,7 +810,7 @@ for (l of array) {
 }
 
 // Literals (Letters)
-
+console.warn("Literals");
 // Literals means its javascript actual convertion for which datatype we provide
 // here below example is the our writing code
 let sample = "sample";
@@ -802,7 +834,7 @@ let smpleObj = new Object({
 console.log(smple, nmbr, bool, smpleObj);
 
 // String Objects
-
+console.warn("String Objects");
 let sampleString = "sample";
 console.log(sampleString.length); // 6 - length of string start with 0
 console.log(sampleString.charAt(1)); // a - because start with 0
@@ -821,11 +853,13 @@ console.log(exampleString.toUpperCase()); // DEMO TEXT
 console.log(exampleString.trim()); // removes unwanted space
 
 // template literals
+console.warn("Template Literals");
 let skill = "JavaScript";
 let sampleSentence = `"This is the sample sentence" , \n Kindly learn ${skill};`;
 console.log(sampleSentence);
 
 // callbacks
+console.warn("Callbacks");
 function logging() { // one function its called from the another one function(settimeout) arugument its a call back
   console.log('Callback - Logging Function - Prints after 1secs');
 }
@@ -850,6 +884,7 @@ setTimeout(() => {
 }, 1000)
 
 // promise
+console.warn("Promise");
 var PromiseValue; // declare common variable 
 const myPromise = new Promise((resolve, reject) => {   // resolve, reject are default properties we can change those
   let x = 10;
@@ -892,7 +927,7 @@ const promiseHell = new Promise((resolve, reject) => {
 promiseHell.then(() => console.log('FINAL OK')).catch(() => console.log('FINAL ERROR'));
 
 // async / await 
-
+console.warn("Async / Await");
 function getData() {
 
   console.log('1 - Not wait for settimeout'); // this will print when the function is called
@@ -915,6 +950,7 @@ function getData() {
 getData();
 
 // string reverse 
+console.warn("String Reverse");
 var string = 'javascript'; // here the string value 
 
 let reverseStr = string.split('') // first we split charectors by space
@@ -927,14 +963,14 @@ console.log(reveStr)  // tpircsavaj - here the output
 function reverseString(str) {
   var newString = "";
   for (var i = str.length - 1; i >= 0; i--) {
-      newString += str[i];
+    newString += str[i];
   }
   return newString;
 }
 console.log(reverseString('javascript'))
 
 // sorting array        
-
+console.warn("Sorting Array");
 var namesArray = [
   {
     "name": 'Raja',
@@ -954,29 +990,29 @@ var namesArray = [
   }
 ]
 
-const sortByName = namesArray.sort((a,b)=>{
+const sortByName = namesArray.sort((a, b) => {
   b.name.length - a.name.length
 })
 
 console.log(sortByName)
 
-const sortByAge = namesArray.sort((a,b)=>{
+const sortByAge = namesArray.sort((a, b) => {
   b.age - a.age
 })
 
 console.log(sortByAge)
 
 // closure
-
+console.warn("Closure");
 var initialValue = 5;  // declared value outside of function
 
-const firstFunction = (arg) =>{
+const firstFunction = (arg) => {
 
   var secVal = 6; // declare in the first func
 
   console.log('First Function');
 
-  const secondFunction = () =>{
+  const secondFunction = () => {
 
     var thirdVal = 10; // declare in the third func
 
@@ -984,94 +1020,97 @@ const firstFunction = (arg) =>{
 
     console.log(initialValue);  // this second fun can understand the variable which located outside of the function 
     console.log(arg)  /// here also this second function access the first function arg this is called closure
-  
+
     var closureTotal = initialValue + secVal + thirdVal // sum all the values
     console.log(closureTotal)
     return closureTotal;
   }
 
   return secondFunction();  // here we return second funtion 
- }
+}
 
- firstFunction('Argument Passing to first function but we return second funtion still the second funtion knowing the first funtion argument');  // first function arg pass
+firstFunction('Argument Passing to first function but we return second funtion still the second funtion knowing the first funtion argument');  // first function arg pass
 
- // arrow functions
-  // functions are 4 types 1. Anonymous Functions 2. Named Functions 3. Immeadiate invoked functions 4 . Arrow functions
+// arrow functions
+console.warn("Arrow Functions");
+// functions are 4 types 1. Anonymous Functions 2. Named Functions 3. Immeadiate invoked functions 4 . Arrow functions
 
-  //1. Anonymous Functions
+//1. Anonymous Functions
+console.warn("Anonymous Functions");
+var anonymousFunc = function () {
+  console.log('This is Anonymous Function')
+}
 
-  var anonymousFunc = function () {
-    console.log('This is Anonymous Function')
-  }
+anonymousFunc();  // calling the func
 
-  anonymousFunc();  // calling the func
+// 2. Named Functions
+console.warn("Named Functions");
+function namedFunction() {
+  console.log('This is Named Function')
+}
 
-  // 2. Named Functions
+namedFunction(); // calling the func
 
-  function namedFunction () {
-    console.log('This is Named Function')
-  }
+// 3. Immeadiate Invoked Functions
+console.warn("Immeadiate Invoked Functions");
+(function immediateInvokedFunction() {
+  console.log('This is Immediate Invoked Function')
+})();  // calling like this because its IIF
 
-  namedFunction(); // calling the func
+// 4 . Arrow functions
+console.warn("Arrow Functions");
+arrowFunc = () => {
+  console.log('This is Arrow Function')
+}
 
-  // 3. Immeadiate Invoked Functions
+arrowFunc() // calling the func
 
-  (function immediateInvokedFunction () {
-    console.log('This is Immediate Invoked Function')
-  })();  // calling like this because its IIF
+// arrow function possibilities
 
-  // 4 . Arrow functions
+// here we add some static like sum value plus 3 is added
+const plusThree = (sum) => {
+  total = sum + 3
+  console.log(total)
+}
 
-  arrowFunc = () => { 
-    console.log('This is Arrow Function')
-  }
-
-  arrowFunc() // calling the func
-
-  // arrow function possibilities
-
-  // here we add some static like sum value plus 3 is added
-  const plusThree = (sum) =>{
-    total = sum + 3
-    console.log(total)
-  }
-
-  plusThree(3);
+plusThree(3);
 
 // here we sum two values
-const sumTwoNumbers = (a,b)=> {
-  sumTot = a + b 
+const sumTwoNumbers = (a, b) => {
+  sumTot = a + b
   return sumTot;
-} 
+}
 
-console.log(sumTwoNumbers(9838,67))
+console.log(sumTwoNumbers(9838, 67))
 
 // we filter ages above 18 years
-var agesArray = [34,77,63,12,45,98,34,20,3,4,9,15,65,55,43,35]
-
-const voteEligible = agesArray.filter(x => x > 18 )
+console.warn("Filter Ages Above 18 Years");
+var agesArray = [34, 77, 63, 12, 45, 98, 34, 20, 3, 4, 9, 15, 65, 55, 43, 35]
+console.log(agesArray)
+const voteEligible = agesArray.filter(x => x > 18)
 console.log(voteEligible)
 
 // here we add plus 2 in all numbers in the array 
+console.warn("Add Plus 2 in All Numbers in the Array");
 const agePlusTwo = agesArray.map(x => x + 2)
 console.log(agePlusTwo)
 
 // bind , call , apply 
-
+console.warn("Bind, Call, Apply");
 // Bind 
-
+console.warn("Bind");
 let employeeOne = {
-  name :'Kesavaraj',
-  id:65738,
-  getEmpName : function(){
+  name: 'Kesavaraj',
+  id: 65738,
+  getEmpName: function () {
     console.log('Employee Name is ' + this.name) // access this block with use of THIS keyword
     // Employee Name is Kesavaraj
   }
 }
 
 let employeeTwo = {
-  name :'Ravi',
-  id:65738
+  name: 'Ravi',
+  id: 65738
 }
 
 employeeOne.getEmpName();
@@ -1082,25 +1121,25 @@ bindValue(); // bind is return function only, here its binding another object pr
 // Employee Name is Ravi
 
 // Call 
-
+console.warn("Call");
 employeeOne.getEmpName.call(employeeTwo); // here we get output without covert as function this is call ()
 
 // Employee Name is Ravi
 
 // Passing arguments with Bind
- 
+
 let employeeThree = {
-  name :'Kesavaraj',
-  id:65738,
-  getEmpName : function(techName){
+  name: 'Kesavaraj',
+  id: 65738,
+  getEmpName: function (techName) {
     console.log('Employee Name is ' + this.name + techName) // access this block with use of THIS keyword
     // Employee Name is Kesavaraj
   }
 }
 
 let employeeFour = {
-  name :'Ravi',
-  id:65738
+  name: 'Ravi',
+  id: 65738
 }
 
 var bindValueWithArgs = employeeThree.getEmpName.bind(employeeFour, ' MEAN Stack');
@@ -1108,64 +1147,93 @@ bindValueWithArgs();
 
 // Passing arguments with call 
 
-employeeThree.getEmpName.call(employeeFour , ' MERN STACK');
+employeeThree.getEmpName.call(employeeFour, ' MERN STACK');
 
 // Apply 
-
-employeeThree.getEmpName.apply(employeeFour , [' LAMP STACK']); // Here we give an array for agrs this is called Apply
+console.warn("Apply");
+employeeThree.getEmpName.apply(employeeFour, [' LAMP STACK']); // Here we give an array for agrs this is called Apply
 
 // Shallow copy and Deep copy 
-
+console.warn("Shallow Copy and Deep Copy");
 // scanario here like one array is there , then create another array , then copy the data from first arr to second 
 // array and change the second array data but it wont reflect in the first array this is the condition so using spread 
 // operator its deeply copy but json not like that 
-  var firtArray = [{"name":'raj', "age":55},
-  {"name":'Rani', "age":55},{"name":'Josh', "age":55}];
+const original = {
+  name: "Ravi",
+  address: {
+    city: "Chennai"
+  }
+};
 
-  // cmt below any one will see difference
+const shallowCopy = { ...original };
+console.log(shallowCopy)
+shallowCopy.address.city = "Madurai";
+console.log(shallowCopy)
+console.log(original) // original also got changed even made changes in shallow copy only
+console.log("++++++++++++")
+const deepCopy = JSON.parse(JSON.stringify(original));
+console.log(deepCopy)
+deepCopy.address.city = "salem";
+console.log(deepCopy)
+console.log(original) // original not changed    
 
-   var secArr = JSON.parse(JSON.stringify(firtArray)) //  SHALLOW COPY
+var firtArray = [{ "name": 'raj', "age": 55 },
+{ "name": 'Rani', "age": 55 }, { "name": 'Josh', "age": 55 }];
 
-   var secArr = [...firtArray] // DEEP COPY 
+// SHALLOW COPY
 
-  var secArr = secArr.map(e =>{
-      if(e.name =='Rani'){
-          e.name = 'Raja'
-      }
-      return e;
-      });
-    
-  console.log(firtArray)
-  console.log(secArr)
+var secArr = JSON.parse(JSON.stringify(firtArray)) //  DEEP COPY
 
-  // second method
+var secArr = [...firtArray] // SHALLOW COPY
 
-  // Primitive data we always do a deep copy but non primitive data we cant do 
+var secArr = secArr.map(e => {
+  if (e.name == 'Rani') {
+    e.name = 'Raja'
+  }
+  return e;
+});
 
-  let copyString = 'COPY STRING';
+console.log(firtArray)
+console.log(secArr)
 
-  let copyStringTwo = copyString;
-  console.log(copyStringTwo)
+// second method
 
-  copyStringTwo = 'DEEP COPY'
-  console.log(copyStringTwo)
+// Primitive data we always do a deep copy but non primitive data we cant do 
 
-  // sync and async functions
+let copyString = 'COPY STRING';
 
-  // Synchronous code
+let copyStringTwo = copyString;
+console.log(copyStringTwo)
+
+copyStringTwo = 'DEEP COPY'
+console.log(copyStringTwo)
+
+// Object.assign()
+console.warn("Object.assign()");
+const user = { name: "Sara" };
+const details = { age: 30, city: "Delhi" };
+
+const fullProfileArr = Object.assign([],user, details);
+const fullProfileObj = Object.assign({},user, details);
+console.log(fullProfileArr); // [ name: "Sara", age: 30, city: "Delhi" ]
+console.log(fullProfileObj); // { name: "Sara", age: 30, city: "Delhi" }
+
+// sync and async functions
+console.warn("Sync and Async Functions");
+// Synchronous code
 function addSync(a, b) {
   console.log('Function called in sync') // display in the sequential order - this is  print first 1
   console.log('Second console in sync')  // - this is print second 2
   return a + b;
 }
 
-console.log('RESULT OF Sync' ,addSync(1, 2)); // 3    // - this is print third 3
+console.log('RESULT OF Sync', addSync(1, 2)); // 3    // - this is print third 3
 
 
 // Asynchronous code
 function addAsync(a, b, callback) {  // display in the non - sequential order 
   console.log('Function called in async')   // - this is print FIRST 1
-  setTimeout(function() {
+  setTimeout(function () {
     console.log('Function called inside Async timeout') // - this is print THIRD 3
     callback(a + b);
   }, 1000);
@@ -1173,8 +1241,8 @@ function addAsync(a, b, callback) {  // display in the non - sequential order
   console.log('END of ASYNC')  // - this is print SECOND 2
 }
 
-addAsync(1, 2, function(result) {
-  console.log('RESULT OF ASync',result); // 3  - this is print FOURTH 4
+addAsync(1, 2, function (result) {
+  console.log('RESULT OF ASync', result); // 3  - this is print FOURTH 4
 });
 
 // event bubbling
