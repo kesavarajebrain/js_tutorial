@@ -1001,6 +1001,23 @@ const sortByAge = namesArray.sort((a, b) => {
 })
 
 console.log(sortByAge)
+// sort numbers with unique values
+console.warn("Sort Numbers with Unique Values");
+var numbersArray = [1,1,3,5,4,1,9,8, 2, 3, 4, 5, 6, 7, 8, 9, 10,10];
+
+const sortNumbers = numbersArray.sort((a,b)=>{
+    return a - b; // low to high
+})
+
+console.log(sortNumbers)
+
+const uniqueNumbers = [...new Set(sortNumbers)] // here we use set to remove duplicate values
+console.log(uniqueNumbers) // [1,2,3...20]
+// shorthand for unique and sort
+console.warn("Shorthand for Unique and Sort");
+let uniqueSorted = [...new Set(numbersArray)].sort((a, b) => a - b);
+
+console.log(uniqueSorted) // [1,2,3...20]
 
 // closure
 console.warn("Closure");
