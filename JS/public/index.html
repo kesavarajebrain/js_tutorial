@@ -7,55 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./js/index.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/lodash.min.js"></script>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <style>
-        html,
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            box-sizing: border-box;
-        }
-
-        table {
-            width: 100%;
-            max-width: 100%;
-            overflow-x: auto;
-            display: block;
-        }
-
-        pre,
-        xmp {
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        .heading {
-            font-weight: bold;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                font-size: 0.95rem;
-            }
-
-            table,
-            pre {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
     <title>JavaScript Zero to Hero</title>
 </head>
 
 <body>
+     <button id="scrollTopBtn" title="Go to top">⬆</button>
     <h1 class="center">JAVASCRIPT Tutorial</h1>
     <h2 class="center">JS Basics</h2>
     <h3 class="center">JavaScript is a lightweight, single threaded programming language</h3>
+    <div class="container bg-body-tertiary border rounded-3 mb-5">
+        <div class="row">
+        <div class="col-6 mt-2">
+            <h3 class="center">rxjs</h3>
+            <p class="heading">RXJS - is a library for reactive programming using Observables, to make it easier to
+                compose
+                asynchronous or callback-based code.</p>
+            <p>Install Guide </p>
+            <p>Install via NPM - so add npm init</p>
+            <p> npm install rxjs </p>
+            <a href="https://rxjs-app-a57c9.web.app/" target="_blank" rel="noopener noreferrer">
+                <button class="btn btn-primary">
+                    RXJS Tutorial &#8594;
+                </button>
+            </a>
+            <br>
+            <br>
+        </div>
+        <div class="col-6  mt-2">
+            <h3 class="center">Lodash</h3>
+            <p class="heading">Lodash - is a JavaScript library that provides utility functions for common programming
+                tasks,
+                making it easier to work with arrays, objects, and other data types.</p>
+            <br>
+            <a href="./lodash.html" target="_blank" rel="noopener noreferrer">
+                <button class="btn btn-primary">Lodash Tutorial &#8594;</button>
+            </a>
+        </div>
+    </div>
+    </div>
     <h4>KEYWORDS - Var, Let, Const</h4>
     <h4>VAR - keyword (storing a value purpose) we can store all the data like integer, float, string.
         its popular one we used in older js , but in the es6 we have some other options like Const and let.
@@ -1317,7 +1309,7 @@ displyUserwithParams('Am kesav',26); // Its argument
     <hr>
     <h3 class="center">String Reverse </h3>
     <br>
-    <p class="heading">Asked in interview - with inbuilt method</p>
+    <p class="heading badge text-bg-warning">Asked in interview - with inbuilt method</p>
     <pre>
 
         var string ='javascript'; // here the string value 
@@ -1331,7 +1323,7 @@ displyUserwithParams('Am kesav',26); // Its argument
 
     </pre>
     <br>
-    <p class="heading">Asked in interview - without inbuilt method</p>
+    <p class="heading badge text-bg-warning">Asked in interview - without inbuilt method</p>
     <pre>
 
         function reverseString(str) {
@@ -1348,7 +1340,7 @@ displyUserwithParams('Am kesav',26); // Its argument
     <hr>
     <h3 class="center">Sort Names</h3>
     <br>
-    <p class="heading">Asked in interview</p>
+    <p class="heading badge text-bg-warning">Asked in interview</p>
     <pre>
                 var namesArray = [
         {
@@ -1384,7 +1376,7 @@ displyUserwithParams('Am kesav',26); // Its argument
     </pre>
     <h3 class="center">Sort Numbers with unique</h3>
     <br>
-    <p class="heading">Asked in interview</p>
+    <p class="heading badge text-bg-warning">Asked in interview</p>
     <p><b>Set</b> is a built-in object in JavaScript introduced in ES6.</p>
     <pre>
         var numbersArray = [1,1,3,5,4,1,9,8, 2, 3, 4, 5, 6, 7, 8, 9, 10,10];
@@ -1409,7 +1401,7 @@ displyUserwithParams('Am kesav',26); // Its argument
     <hr>
     <h3 class="center">Closure</h3>
     <br>
-    <p class="heading">Asked in interview</p>
+    <p class="heading badge text-bg-warning">Asked in interview</p>
     <pre>
         // closure
 
@@ -1619,7 +1611,7 @@ displyUserwithParams('Am kesav',26); // Its argument
     <hr><br>
     <h3 class="center"> Shallow and deep copy </h3>
     <br>
-    <p class="heading">Asked in interview</p>
+    <p class="heading badge text-bg-warning">Asked in interview</p>
     <br>
     <p class="heading">
         Scanario here like one array is there , then create another array , then copy the data from first arr to second
@@ -1756,7 +1748,7 @@ displyUserwithParams('Am kesav',26); // Its argument
     <hr><br>
     <h3 class="center"> SQL and NOSQL </h3>
     <br>
-    <p class="heading">Asked in interview</p>
+    <p class="heading badge text-bg-warning">Asked in interview</p>
     <br>
     <table style="width:100%">
         <tr>
@@ -1858,20 +1850,20 @@ displyUserwithParams('Am kesav',26); // Its argument
     <br>
     <div id="parent">
         <button class="btn btn-primary">
-            <h2>Parent</h2>
+            <p>Parent Div</p>
         </button>
         <button id="child" class="btn btn-secondary">
-            <p>Child</p>
+            <p>Child Div</p>
         </button>
     </div><br>
     <pre>
     <xmp>
         <div id="parent"> 
             <button> 
-                <h2>Parent</h2> 
+                <p>Parent Div</p> 
             </button> 
             <button id="child"> 
-                <p>Child</p> 
+                <p>Child Div</p> 
             </button> 
         </div>
     </xmp>
@@ -1894,19 +1886,24 @@ displyUserwithParams('Am kesav',26); // Its argument
     </script>
     <br>
     <hr>
-    <h3 class="center">rxjs</h3>
-    <p class="heading">RXJS - is a library for reactive programming using Observables, to make it easier to compose
-        asynchronous or callback-based code.</p>
-    <br>
-    <p class="heading">Install Guide </p>
-    <br>
-    <p class="heading">Install via NPM - so add npm init</p><br>
-    <p class="heading"> npm install rxjs </p>
-    <a href="https://rxjs-app-a57c9.web.app/" target="_blank" rel="noopener noreferrer">
-        <button class="btn btn-primary">RXJS Tutorial</button>
-    </a>
     <br>
     <br>
     <br>
 </body>
+ <script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.onscroll = function () {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollBtn.style.display = "flex";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    };
+    scrollBtn.onclick = function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
+  </script>
 </html>
