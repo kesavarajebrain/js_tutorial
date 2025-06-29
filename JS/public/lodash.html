@@ -22,10 +22,17 @@
     </a>
     <div class="container">
         <p>Lodash is a modern JavaScript utility library delivering modularity, performance, and extras.</p>
-        <div class="row">
-            <h4>_.chunk(array, size)</h4>
-            <p>Creates an array of elements split into groups the length of size.</p>
-            <pre>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text txt-bold">Search any lodash methods</span>
+            <input type="text" class="form-control" id="searchBox" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div id="noResults" style="display: none;text-align: center;color: red;">No results found </div>
+        <div class="method-block" data-name="chunk" id="chunk">
+            <div class="row">
+                <h4>_.chunk(array, size)</h4>
+                <p>Creates an array of elements split into groups the length of size.</p>
+                <pre>
                     <code>_.chunk(['a', 'b', 'c', 'd'], 2); // => [['a', 'b'], ['c', 'd']]
                     </code>
                     const items = [1, 2, 3, 4, 5, 6, 7];
@@ -33,90 +40,106 @@
                     console.log(chunked);
                     <span class="badge text-bg-success">Output</span> : [ [1, 2, 3] , [4, 5, 6] , [7]]
                 </pre>
-            <p><span class="badge text-bg-warning">Note</span> : If size is 0 or less, you'll get an empty array</p>
-            <pre>
+                <p><span class="badge text-bg-warning">Note</span> : If size is 0 or less, you'll get an empty array</p>
+                <pre>
                     _.chunk([1, 2, 3], 0); // => []
                 </pre>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.compact(array)</h4>
-            <p>Removes all falsy values from an array.</p>
-            <p>Falsy Values in js: <b>false</b> , <b>0</b> , <b>'' (empty string)</b> , <b>null</b> , <b>undefined</b> ,
-                <b>NaN</b>
-            </p>
-            <pre>
+        <div class="method-block" data-name="compact" id="compact">
+            <div class="row">
+                <h4>_.compact(array)</h4>
+                <p>Removes all falsy values from an array.</p>
+                <p>Falsy Values in js: <b>false</b> , <b>0</b> , <b>'' (empty string)</b> , <b>null</b> ,
+                    <b>undefined</b> ,
+                    <b>NaN</b>
+                </p>
+                <pre>
 
                     const messyArray = [0, 1,,3,2,1, false, 2, '', 3, null, undefined, NaN,'hi'];
                     const cleanArray = _.compact(messyArray);
                     console.log(cleanArray); 
                     <span class="badge text-bg-success">Output</span> : [1,3,2,1,2,3, 'hi']
                 </pre>
-            <p><span class="badge text-bg-warning">Note</span> : It only removes falsy values, not other "empty-like"
-                values like [] or {}.</p>
-            <pre>
+                <p><span class="badge text-bg-warning">Note</span> : It only removes falsy values, not other
+                    "empty-like"
+                    values like [] or {}.</p>
+                <pre>
                 _.compact([{}, [], 0, false]);  // Output: [{}, []] — only 0 and false are removed
             </pre>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4> _.concat(array, values...)</h4>
-            <p>Creates a new array by concatenating the given arrays and/or values.</p>
-            <pre>
+
+        <div class="method-block" data-name="concat" id="concat">
+            <div class="row">
+                <h4> _.concat(array, values...)</h4>
+                <p>Creates a new array by concatenating the given arrays and/or values.</p>
+                <pre>
                 const selected = ['Apple'];
                 const newItems = ['Banana', 'Mango'];
                 const updatedList = _.concat(selected, newItems, 'Orange');
                 console.log(updatedList); 
                 <span class="badge text-bg-success">Output</span> : ['Apple', 'Banana', 'Mango', 'Orange']
             </pre>
-            <p><span class="badge text-bg-warning">Note</span> : If you pass nested arrays, only the first level is
-                added directly./p>
-            <pre>
+                <p><span class="badge text-bg-warning">Note</span> : If you pass nested arrays, only the first level is
+                    added directly./p>
+                <pre>
                     _.concat([1], [[2, 3]]); // Output: [1, [2, 3]] — not [1, 2, 3]
                 </pre>
+            </div>
+
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.difference(array, values)</h4>
-            <p>Returns a new array with the values from the first array that are not present in the second (or more)
-                arrays.</p>
-            <pre>
+        <div class="method-block" data-name="difference" id="difference">
+            <div class="row">
+                <h4>_.difference(array, values)</h4>
+                <p>Returns a new array with the values from the first array that are not present in the second (or more)
+                    arrays.</p>
+                <pre>
                 const allTags = ['React', 'Angular', 'Vue', 'Svelte','Node.js'];
                 const selectedTags = ['React', 'Vue'];
                 const unselected = _.difference(allTags, selectedTags);
                 console.log(unselected);
                 <span class="badge text-bg-success">Output</span> : ['Angular', 'Svelte', 'Node.js']
             </pre>
-            <p><span class="badge text-bg-warning">Note</span> : It compares values using strict equality (===). It only
-                works well for primitive values like strings, numbers, etc.</p>
+                <p><span class="badge text-bg-warning">Note</span> : It compares values using strict equality (===). It
+                    only
+                    works well for primitive values like strings, numbers, etc.</p>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.differenceBy(array, values, iteratee)</h4>
-            <p>Returns a new array with the values from the first array that are not present in the second (or more)
-                arrays.</p>
-            <pre>
+        <div class="method-block" data-name="differenceBy" id="differenceBy">
+
+            <div class="row">
+                <h4>_.differenceBy(array, values, iteratee)</h4>
+                <p>Returns a new array with the values from the first array that are not present in the second (or more)
+                    arrays.</p>
+                <pre>
                 const setA = [{ id: 1 }, { id: 2 }, { id: 3 }];
                 const setB = [{ id: 2 }];
                 const resultSet = _.differenceBy(setA, setB, 'id');
                 console.log(resultSet);
                 <span class="badge text-bg-success">Output</span> : [ { id: 1 }, { id: 3 } ]
             </pre>
-            <p><span class="badge text-bg-warning">Note</span> : It only does shallow comparison, not deep.</p>
-            <pre>
+                <p><span class="badge text-bg-warning">Note</span> : It only does shallow comparison, not deep.</p>
+                <pre>
                 const setA = [{ id: 1 }, { id: 2 }, { id: 3 },{ id: 3 }];
                 const setB = [{ id: 2 }];
                 const resultSet = _.differenceBy(setA, setB, 'id');
                 console.log(resultSet);
                 <span class="badge text-bg-success">Output</span> : [ { id: 1 }, { id: 3 }, { id: 3 } ]
             </pre>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.differenceWith(array, values, comparator)</h4>
-            <p>Returns a new array with the values from the first array that are not present in the second (or more)
-                arrays.</p>
-            <pre>
+        <div class="method-block" data-name="differenceWith" id="differenceWith">
+            <div class="row">
+                <h4>_.differenceWith(array, values, comparator)</h4>
+                <p>Returns a new array with the values from the first array that are not present in the second (or more)
+                    arrays.</p>
+                <pre>
                 const aSet = [
                         { id: 1,name:'Alice' }, 
                         { id: 2,name:'Bob' }, 
@@ -140,16 +163,19 @@
                     { id: 6, name: 'Ravi' }
                 ];
             </pre>
-            <p>
-                <span class="badge text-bg-warning">Note</span> : Remove from aSet if both id and name match any object
-                in bSet
-            </p>
+                <p>
+                    <span class="badge text-bg-warning">Note</span> : Remove from aSet if both id and name match any
+                    object
+                    in bSet
+                </p>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.drop(array, n=1)</h4>
-            <p>Creates a new array with the first n elements removed from the original array.</p>
-            <pre>
+        <div class="method-block" data-name="drop" id="drop">
+            <div class="row">
+                <h4>_.drop(array, n=1)</h4>
+                <p>Creates a new array with the first n elements removed from the original array.</p>
+                <pre>
                 <p>E.g : 1</p>
                 const numbers = [1, 2, 3, 4, 5];
                 const dropped = _.drop(numbers, 2);
@@ -172,12 +198,14 @@
                             { id: 5, name: 'Eve' } 
                         ]
             </pre>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4> _.fill(array, fill value, start, end)</h4>
-            <p>Fills elements of an array with a specific value from start index to end index (not inclusive).</p>
-            <pre>
+        <div class="method-block" data-name="fill" id="fill">
+            <div class="row">
+                <h4> _.fill(array, fill value, start, end)</h4>
+                <p>Fills elements of an array with a specific value from start index to end index (not inclusive).</p>
+                <pre>
                 <p>E.g : 1</p>
                 const arr = [1, 2, 3];
                 _.fill(arr, '*');
@@ -189,13 +217,15 @@
                 console.log(arr2);
                 <span class="badge text-bg-success">Output</span> : [1, 0, 0, 0, 5] - fills elements from index 1 to 4 with 0, 4 is not included
              </pre>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.findIndex(array, condition)</h4>
-            <p>Returns the index of the first element in the array that matches the condition you define. If nothing
-                matches, it returns -1.</p>
-            <pre>
+        <div class="method-block" data-name="findIndex" id="findIndex">
+            <div class="row">
+                <h4>_.findIndex(array, condition)</h4>
+                <p>Returns the index of the first element in the array that matches the condition you define. If nothing
+                    matches, it returns -1.</p>
+                <pre>
                 <p>E.g : 1</p>
                const users = [
                     { id: 1, name: 'Anbu' },
@@ -210,13 +240,15 @@
                 console.log(index2);
                 <span class="badge text-bg-success">Output</span> : -1 - David is not found in the array
             </pre>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.findLastIndex(array, condition)</h4>
-            <p>Returns the index of the last element in the array that matches the condition you define. If nothing
-                matches, it returns -1.</p>
-            <pre>
+        <div class="method-block" data-name="findLastIndex" id="findLastIndex">
+            <div class="row">
+                <h4>_.findLastIndex(array, condition)</h4>
+                <p>Returns the index of the last element in the array that matches the condition you define. If nothing
+                    matches, it returns -1.</p>
+                <pre>
                 <p>E.g : 1</p>
                const usersList = [
                     { id: 1, name: 'Raj' },
@@ -227,16 +259,18 @@
                     console.log(indexVal);
                 <span class="badge text-bg-success">Output</span> : 2
             </pre>
-            <p>
-                <span class="badge text-bg-warning">Note</span> : findLastIndex starts searching from the end of the
-                array (right to left)
-            </p>
+                <p>
+                    <span class="badge text-bg-warning">Note</span> : findLastIndex starts searching from the end of the
+                    array (right to left)
+                </p>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.flatten(array)</h4>
-            <p>Flattens a nested array into a single-level array.</p>
-            <pre>
+        <div class="method-block" data-name="flatten" id="flatten">
+            <div class="row">
+                <h4>_.flatten(array)</h4>
+                <p>Flattens a nested array into a single-level array.</p>
+                <pre>
                 E.g : 1
                 // If you have a simple nested array, it flattens it to one level
                 const nestedArray = [1, [2, 3], [4]];
@@ -250,13 +284,15 @@
                 console.log(flatArray1);
                 <span class="badge text-bg-success">Output</span> : [1, 2, [3, 4], 5]
             </pre>
-            <p><span class="badge text-bg-warning">Note</span> : flatten only goes one level deep</p>
+                <p><span class="badge text-bg-warning">Note</span> : flatten only goes one level deep</p>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.flattenDeep(array)</h4>
-            <p>Flattens a nested array recursively.</p>
-            <pre>
+        <div class="method-block" data-name="flattenDeep" id="flattenDeep">
+            <div class="row">
+                <h4>_.flattenDeep(array)</h4>
+                <p>Flattens a nested array recursively.</p>
+                <pre>
                 E.g : 1
                 const mixArr = [1, [2, [3, [4, [5]]]]];
                 const resultArr = _.flattenDeep(mixArr);
@@ -280,12 +316,14 @@
                                     'diving'
                                 ]
             </pre>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.flattenDepth(array, depth)</h4>
-            <p>Flattens a nested array up to the specified depth.</p>
-            <pre>
+        <div class="method-block" data-name="flattenDepth" id="flattenDepth">
+            <div class="row">
+                <h4>_.flattenDepth(array, depth)</h4>
+                <p>Flattens a nested array up to the specified depth.</p>
+                <pre>
                 const food = [
                         ['idly', 'dosa'],['briyani', ['samosa']],
                         ['sambar', [['briyani', ['samosa']]]],
@@ -304,17 +342,19 @@
                         'burger', 'fries', 'pizza', 'burger', 'fries'
                     ]
             </pre>
-            <p><span class="badge text-bg-warning">Note</span> : 'briyani', 'samosa', 'pizza', 'burger', and 'fries'
-                appear multiple times because they are repeated in different levels and combinations.
-                <b>_.flattenDepth does NOT remove duplicates</b>
-            </p>
+                <p><span class="badge text-bg-warning">Note</span> : 'briyani', 'samosa', 'pizza', 'burger', and 'fries'
+                    appear multiple times because they are repeated in different levels and combinations.
+                    <b>_.flattenDepth does NOT remove duplicates</b>
+                </p>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.indexOf(array, value, [fromIndex=0])</h4>
-            <p>Returns the index of the first occurrence of value in the array.
-                Returns -1 if the value is not found.</p>
-            <pre>
+        <div class="method-block" data-name="indexOf" id="indexOf">
+            <div class="row">
+                <h4>_.indexOf(array, value, [fromIndex=0])</h4>
+                <p>Returns the index of the first occurrence of value in the array.
+                    Returns -1 if the value is not found.</p>
+                <pre>
                     E.g : 1
                     const identity = _.indexOf([10, 20, 30, 20], 20);
                     console.log(identity);
@@ -331,34 +371,38 @@
                     console.log('Not Available!'); // green is not in chooseColors
                     }
                 </pre>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <h4>_.initial(array)</h4>
-            <p>Returns a new array with all elements except the last one.</p>
-            <pre>
+        <div class="method-block" data-name="initial" id="initial">
+            <div class="row">
+                <h4>_.initial(array)</h4>
+                <p>Returns a new array with all elements except the last one.</p>
+                <pre>
                 const numbers = [1, 2, 3, 4, 5];
                 const initialNumbers = _.initial(numbers);
                 console.log(initialNumbers);
                 <span class="badge text-bg-success">Output</span> : [1, 2, 3, 4] - removes the last element (5)
             </pre>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col">
-                <h4>_.intersection([arrays])</h4>
-                <p>Returns a new array of values that are included in all given arrays.</p>
-                <pre>
+        <div class="method-block" data-name="intersection" id="intersection">
+            <div class="row">
+                <div class="col">
+                    <h4>_.intersection([arrays])</h4>
+                    <p>Returns a new array of values that are included in all given arrays.</p>
+                    <pre>
             const fromSearch = ['spa', 'facial', 'massage'];
             const fromFavorites = ['massage', 'haircut', 'spa'];
             const common = _.intersection(fromSearch, fromFavorites);
             <span class="badge text-bg-success">Output</span> : ['spa', 'massage']
                 </pre>
-            </div>
-            <div class="col">
-                 <h4>_.intersectionBy(arr1, arr2, iteratee)</h4>
-                <p>compares values based on a given key or function (called an iteratee).</p>
-                <pre>
+                </div>
+                <div class="col">
+                    <h4>_.intersectionBy(arr1, arr2, iteratee)</h4>
+                    <p>compares values based on a given key or function (called an iteratee).</p>
+                    <pre>
             const userCart = [
                  { productId: 101 },
                  { productId: 202 }
@@ -373,26 +417,703 @@
             console.log(eligibleDiscounts);
             <span class="badge text-bg-success">Output</span> : [{ productId: 202 }]
                 </pre>
-                <p><span class="badge text-bg-warning">Note</span> : It finds common items by comparing their id.</p>
+                    <p><span class="badge text-bg-warning">Note</span> : It finds common items by comparing their id.
+                    </p>
+                </div>
             </div>
+            <hr>
         </div>
-    </div>
-    <script>
-        const scrollBtn = document.getElementById('scrollTopBtn');
-        window.onscroll = function () {
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                scrollBtn.style.display = "flex";
-            } else {
-                scrollBtn.style.display = "none";
-            }
-        };
-        scrollBtn.onclick = function () {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        };
-    </script>
+        <div class="method-block" data-name="intersectionWith" id="intersectionWith">
+            <div class="row">
+                <div class="col">
+                    <h4>_.intersectionWith(arr1, arr2, comparator)</h4>
+                    <p>compares values using a custom function (called a comparator).</p>
+                    <pre>
+                        const activeOrders = [
+                            { id: 101, status: 'pending' },
+                            { id: 102, status: 'shipped' }
+                        ];
+
+                        const archived = [
+                            { id: 101, status: 'pending' },
+                            { id: 102, status: 'cancelled' }
+                        ];
+
+                const result = _.intersectionWith(activeOrders, archived, (a, b) => a.id === b.id && a.status === b.status);
+            <span class="badge text-bg-success">Output</span> : [{ id: 101, status: 'pending' }]
+                </pre>
+                </div>
+            </div>
+            <div class="col">
+                <h4>_.join(array, separator)</h4>
+                <p>Joins all elements of an array into a string with a specified separator.</p>
+                <pre>
+                const elements = ['Fire', 'Air', 'Water'];
+                const joined = _.join(elements, ' - ');
+                console.log(joined);
+                <span class="badge text-bg-success">Output</span> : 'Fire - Air - Water'
+                
+                const breadCrumbs = ['home', 'products', 'mobile'];
+                const path = _.join(breadCrumbs, '/');
+                <span class="badge text-bg-success">Output</span> : 'home/products/mobile'
+                </pre>
+                <p><span class="badge text-bg-warning">Note</span> : It only works on flat arrays — doesn't flatten
+                    nested arrays. // [1, [2, 3]]</p>
+            </div>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="method-block" data-name="head" id="head">
+
+                <div class="col">
+                    <h4> _.head(array)</h4>
+                    <p>Gets the first element of an array.</p>
+                    <pre>
+                const initialNotifications = [
+                        'New message', 
+                        'Friend request', 
+                        'Update available'
+                ];
+                console.log(_.head(initialNotifications));
+                <span class="badge text-bg-success">Output</span> : 'New message'
+                </pre>
+                </div>
+            </div>
+            <div class="method-block" data-name="last" id="last">
+                <div class="col">
+                    <h4>_.last(array)</h4>
+                    <p>Gets the last element of an array.</p>
+                    <pre>
+                const finalNotifications = [
+                        'New message', 
+                        'Friend request', 
+                        'Update available'
+                ];
+                console.log(_.last(finalNotifications));
+                <span class="badge text-bg-success">Output</span> : 'Update available'
+                </pre>
+                </div>
+
+            </div>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="method-block" data-name="initial" id="initial">
+                <div class="col">
+                    <h4>_.initial(array)</h4>
+                    <p>Gets all elements of an array except the last one.</p>
+                    <pre>
+        const paths = [
+            'Home', 
+            'Products', 
+            'Electronics', 'Laptops'
+        ];
+        const breadcrumb = _.initial(paths);
+        console.log(breadcrumb);
+                <span class="badge text-bg-success">Output</span> : [
+                        'Home', 
+                        'Products', 
+                        'Electronics'
+                ]
+                </pre>
+                </div>
+            </div>
+            <div class="method-block" data-name="tail" id="tail">
+                <div class="col">
+                    <h4>_.tail(array)</h4>
+                    <p>Gets all elements of an array except the first one.</p>
+                    <pre>
+        const allReplies = ['Post content', 'Comment 1', 'Comment 2'];
+        const commentsOnly = _.tail(allReplies);
+        console.log(commentsOnly);
+                <span class="badge text-bg-success">Output</span> : ['Comment 1', 'Comment 2']
+                </pre>
+                </div>
+                <hr>
+            </div>
+            <div class="method-block" data-name="pull" id="pull">
+                <div class="col">
+                    <h4>_.pull(array, values...)</h4>
+                    <p>Removes all occurrences of the specified values from the array.</p>
+                    <pre>
+                const scores = [90, 80, 90, 90, 70, 70, 71, 80];
+                _.pull(scores, 80, 90);
+                console.log(scores);
+                <span class="badge text-bg-success">Output</span> : [70,70, 71]
+                </pre>
+                    <p><span class="badge text-bg-warning">Note</span> : It uses strict equality (===), so all values
+                        must
+                        match exactly.</p>
+                </div>
+                <div class="col">
+                    <h4>_.pullAll(array, [values])</h4>
+                    <p>Removes all occurrences of the specified values from the array.</p>
+                    <pre>
+                let cart = [
+                        { productId: 101, name: 'Shampoo' },
+                        { productId: 102, name: 'Oil' },
+                        { productId: 103, name: 'Soap' }
+                    ];
+                const toRemove = [{ productId: 102 }];
+                _.pullAllBy(cart, toRemove, 'productId');
+                console.log(cart);
+                <span class="badge text-bg-success">Output</span> : [ 
+                    { productId: 101, name: 'Shampoo' }, 
+                    { productId: 103, name: 'Soap' }
+                 ]
+                </pre>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="method-block" data-name="pullAllWith" id="pullAllWith">
+                    <div class="col">
+                        <h4>_.pullAllWith</h4>
+                        <p>Removes all occurrences of the specified values from the array using a comparator function.
+                        </p>
+                        <pre>
+        let cartItems = [
+            { id: 1, name: 'Milk' },
+            { id: 2, name: 'Bread' },
+            { id: 3, name: 'Milk' }
+        ];
+
+        let toDelete = [
+            { id: 3, name: 'Milk' }
+        ];
+        _.pullAllWith(cartItems, toDelete, (a, b) => a.id === b.id && a.name === b.name);
+        console.log(cartItems);
+        <span class="badge text-bg-success">Output</span> : [ 
+            { id: 1, name: 'Milk' }, 
+            { id: 2, name: 'Bread' } 
+        ]
+                </pre>
+                    </div>
+                    <div class="col">
+                        <h4>_.pullAt(array, [indexes])</h4>
+                        <p>Removes elements from an array by their indexes.</p>
+                        <pre>
+                let fruits = [
+                    'Apple', 
+                    'Banana', 
+                    'Cherry', 
+                    'Date', 
+                    'Berry'
+                ];
+                _.pullAt(fruits, [1, 3]);
+                console.log(fruits);
+                <span class="badge text-bg-success">Output</span> : [ 
+                    'Apple', 
+                    'Cherry', 
+                    'Berry'
+                ]
+                </pre>
+                    </div>
+                    <hr>
+                </div>
+                <div class="method-block" data-name="remove" id="remove">
+                    <div class="row">
+                        <div class="col">
+                            <h4>_.remove(array, predicate)</h4>
+                            <p>Removes all elements from an array that the predicate returns truthy for.</p>
+                            <pre>
+               let todos = [
+                    { task: 'Do laundry', done: true },
+                    { task: 'Buy groceries', done: false },
+                    { task: 'Clean room', done: true },
+                    { task: 'Prepare dinner', done: true }
+                ];
+                const completed = _.remove(todos, todo => todo.done);
+                console.log(completed);
+                <span class="badge text-bg-success">Output</span> : 
+                [ 
+                    { task: 'Do laundry', done: true }, 
+                    { task: 'Clean room', done: true },
+                    { task: 'Prepare dinner', done: true }
+                ]
+                </pre>
+                        </div>
+                        <div class="col">
+                            <h4>_.reverse</h4>
+                            <p>Reverses the elements of an array in place.</p>
+                            <pre>
+                let messages = [
+                    'Hi', 
+                    'How are you?',  
+                    'Bye'
+                ];
+                _.reverse(messages);
+                console.log(messages);
+                <span class="badge text-bg-success">Output</span> : [
+                    'Bye', 
+                    'How are you?', 
+                    'Hi'
+                ]
+                </pre>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="method-block" data-name="sortBy" id="sortBy">
+                    <div class="row">
+                        <div class="col">
+                            <h4> _.sortedUniq(array)</h4>
+                            <p>Creates a duplicate-free version of an array sorted in ascending order. (small to big)
+                            </p>
+                            <pre>
+                let ages = [1,2,3,4,5,6,7,7,8,9,9,10];
+                let unique = _.sortedUniq(ages);
+                console.log(unique);
+                <span class="badge text-bg-success">Output</span> : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                </pre>
+                            <p><span class="badge text-bg-warning">Note</span> : its does not work with nested arrays or
+                                objects.
+                                its only works correctly if the array is already sorted in ascending order.</p>
+                        </div>
+                        <div class="col">
+                            <h4>_.sortBy(array, [iteratee=_.identity])</h4>
+                            <p>Creates a duplicate-free version of an array sorted in ascending order, based on the
+                                results of
+                                the
+                                iteratee.</p>
+                            <pre>
+                const data = [
+                    { id: 1, age: 20 },
+                    { id: 2, age: 89 },
+                    { id: 1, age: 9 },
+                    { id: 2, age: 34 },
+                    { id: 1, age: 24 },
+                    { id: 2, age: 22 }
+                ];
+                let sortedByAge = _.sortBy(data, 'age');
+                console.log(sortedByAge);
+                <span class="badge text-bg-success">Output</span> : [ 
+                        { id: 1, age: 9 }, 
+                        { id: 1, age: 20 }, 
+                        { id: 1, age: 24 }, 
+                        { id: 2, age: 22 }, 
+                        { id: 2, age: 34 },
+                        { id: 2, age: 89 } 
+                 ]
+                </pre>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="method-block" data-name="orderBy" id="orderBy">
+                    <div class="row">
+                        <div class="col">
+                            <h4>_.orderBy</h4>
+                            <p>Creates a new array with elements sorted in defined order.</p>
+                            <pre>
+
+                E.g : 1
+                const persons = [
+                    { id: 1, age: 20 },
+                    { id: 2, age: 89 },
+                    { id: 1, age: 9 },
+                    { id: 2, age: 34 },
+                    { id: 1, age: 24 },
+                    { id: 2, age: 22 }
+            ];
+                const sortedDesc = _.orderBy(persons, ['age'], ['desc']);
+                console.log(sortedDesc);
+                <span class="badge text-bg-success">Output</span> : [
+                    { id: 2, age: 89 },
+                    { id: 2, age: 34 },
+                    { id: 1, age: 24 },
+                    { id: 2, age: 22 },
+                    { id: 1, age: 20 },
+                    { id: 1, age: 9 }
+                ]
+
+                E.g : 2
+                const vegetables = [
+                    { name: 'Carrot', kg: 5 },
+                    { name: 'Broccoli', kg: 2 },
+                    { name: 'Cauliflower', kg: 8 },
+                    { name: 'Spinach', kg: 3 }
+                ];
+                let sortedVegetables = _.orderBy(vegetables, ['kg'], ['asc']);
+                console.log(sortedVegetables);
+                <span class="badge text-bg-success">Output</span> : [
+                    { name: 'Broccoli', kg: 2 },
+                    { name: 'Spinach', kg: 3 },
+                    { name: 'Carrot', kg: 5 },
+                    { name: 'Cauliflower', kg: 8 }
+                ]
+                </pre>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <h4>_.Uniq</h4>
+                                <p>Creates a duplicate-free version of an array.</p>
+                                <pre>
+                const countries = ['India', 'USA', 'India', 'UK', 'USA'];
+                const uniqueCountries = _.uniq(countries);
+                console.log(uniqueCountries);
+                <span class="badge text-bg-success">Output</span> : ['India', 'USA', 'UK']
+                </pre>
+                            </div>
+                            <div>
+                                <h4>_.UniqBy</h4>
+                                <p>Creates a duplicate-free version of an array based on a specified iteratee.</p>
+                                <pre>
+                const namesArr = [
+                    { id: 1, name: 'Anbu' },
+                    { id: 1, name: 'Anbu' },
+                    { id: 1, name: 'Villan' },
+                    { id: 2, name: 'Chandra' },
+                    { id: 1, name: 'Bhuvana' },
+                    { id: 1, name: 'Bhuvana' },
+                    { id: 2, name: 'Josh' },
+                    { id: 2, name: 'Loki' },
+                    { id: 2, name: 'Loki' },
+                ];
+                const uniqueUsers = _.uniqBy(namesArr, 'name');
+                console.log(uniqueUsers);
+                <span class="badge text-bg-success">Output</span> : [
+                    { id: 1, name: 'Anbu' },
+                    { id: 2, name: 'Chandra' },
+                    { id: 1, name: 'Bhuvana' },
+                    { id: 2, name: 'Josh' },
+                    { id: 2, name: 'Loki' },
+                    { id: 1, name: 'Villan' }
+                ]
+                </pre>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="method-block" data-name="countBy" id="countBy">
+                    <div class="row">
+                        <div class="col">
+                            <h4>_.countBy(array, [iteratee=_.identity])</h4>
+                            <p>Returns an object where keys are the group names, and values are the counts.</p>
+                            <pre>
+                    const numbers = [1, 2, 3, 4, 5, 6];
+                    const result = _.countBy(numbers, n => n % 2 === 0 ? 'even' : 'odd');
+                    console.log(result);
+                    <span class="badge text-bg-success">Output</span>: { odd: 3, even: 3 }
+
+                    const usersArr = [
+                        { name: 'A', type: 'admin' },
+                        { name: 'B', type: 'user' },
+                        { name: 'C', type: 'admin' },
+                        { name: 'D', type: 'guest' }
+                    ];
+                    const res = _.countBy(usersArr, 'type');
+                    console.log(res);
+                    <span class="badge text-bg-success">Output</span> : { admin: 2, user: 1, guest: 1 }
+                            </pre>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="forEach" id="forEach">
+                            <h4>_.forEach(collection, iteratee)</h4>
+                            <p>Iterates over elements in a collection (array or object) and runs the iteratee function
+                                for
+                                each item.</p>
+                            <pre>
+                    const fruitsItems = ['apple', 'banana', 'orange'];
+                    _.forEach(fruitsItems, (fruit, index) => {
+                    console.log(`${index}: ${fruit}`);
+                    });
+                            <span class="badge text-bg-success">Output</span>:
+                            // 0: apple
+                            // 1: banana
+                            // 2: orange
+
+                                        E.g : 2
+                    const userObj = { name: 'Alice', age: 25, role: 'admin' };
+                    _.forEach(userObj, (value, key) => {
+                    console.log(`${key}: ${value}`);
+                    });
+                                        <span class="badge text-bg-success">
+                    Output  
+                                        </span>:
+                                        // name: Alice
+                                        // age: 25
+                                        // role: admin
+                        </pre>
+                            <p><span class="badge text-bg-warning">Note</span> : Works for both arrays and objects.</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" data-name="every" id="every">
+                            <h4>_.every</h4>
+                            <p>Checks if all elements in a collection pass the condition defined by the iteratee.</p>
+                            <pre>
+                    const integers = [1, 2, 3, 4,-2];
+                    const allPositive = _.every(integers, n => n > 0);
+                    console.log(allPositive); 
+                    <span class="badge text-bg-success">Output:</span> false - because -2 is not positive
+
+                    E.g : 2
+                    const dataList = [
+                    { name: 'A', age: 25 },
+                    { name: 'B', age: 30 },
+                    { name: 'C', age: 22 }
+                    ];
+                    const listRes = _.every(dataList, user => user.age > 20);
+                    console.log(listRes); 
+                    <span class="badge text-bg-success">Output </span> : true
+                        </pre>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="method-block" data-name="filter" id="filter">
+                    <div class="row">
+                        <div class="col">
+                            <h4>_.filter(collection, predicate)</h4>
+                            <p>Creates a new array with all elements that pass the condition defined by the predicate.
+                            </p>
+                            <pre>
+const Allusers = [
+        { name: 'A', active: true },
+        { name: 'B', active: false },
+        { name: 'C', active: true }
+];
+
+const activeUsers = _.filter(Allusers, 'active');
+console.log(activeUsers);
+<span class="badge text-bg-success">Output</span> :
+// [
+//   { name: 'A', active: true },
+//   { name: 'C', active: true }
+// ]
+
+<p><span class="badge text-bg-warning">Note :</span>Similar to JavaScript’s native .filter(), but works with arrays and objects.</p>
+E.g : 2
+const runs = {
+  John: 45,
+  Alice: 90,
+  Bob: 32
+};
+
+const passed = _.filter(runs, score => score >= 40);
+console.log(passed); 
+<span class="badge text-bg-success">Output</span>: 
+// [45, 90]
+                        </pre>
+                            <p> <span class="badge text-bg-warning">Note :</span>It returns values only (not keys) when
+                                filtering objects.</p>
+                        </div>
+                        <div class="col">
+                            <h4>_.find(collection, predicate, [fromIndex=0])</h4>
+                            <p>Returns the first element in the collection that satisfies the predicate function.</p>
+                            <pre>
+const mixedNumbers = [1, 3, 5, 6, 8, 10];
+const firstEven = _.find(mixedNumbers, n => n % 2 === 0);
+console.log(firstEven); 
+<span class="badge text-bg-success">Output :</span> 6
+                        </pre>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="flatMap" id="flatMap">
+                            <div>
+                                <h4>_.flatMap(collection, iteratee)</h4>
+                                <p>Applies a function (iteratee) to each element of the collection.
+                                    Flattens the result one level deep.</p>
+                                <pre>
+const nameStr = ['Kesava', 'Raj'];
+const resultStr = _.flatMap(nameStr, name => [name, name.length]);
+console.log(resultStr);
+        <span class="badge text-bg-success">Output :</span>
+       ['Kesava', 6, 'Raj', 3]
+
+       E.g : 2
+const listeners = [
+        { name: 'Alice', tags: ['admin', 'editor'] },
+        { name: 'Bob', tags: ['user'] }
+];
+const tags = _.flatMap(listeners, user => user.tags);
+console.log(allTags);
+<span class="badge text-bg-success">Output :</span>
+// ['admin', 'editor', 'user']
+</pre>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" data-name="flatMapDeep" id="flatMapDeep">
+                            <h4>_.flatMapDeep</h4>
+                            <p> Runs iteratee for each element in the collection.
+                                Flattens the result completely (deeply).</p>
+                            <pre>
+const subjects = [
+            { name: 'tech', subs: ['mobile', ['ai', ['cloud']]] },
+            { name: 'food', subs: ['fruits', ['veg']] }
+];
+const allSubs = _.flatMapDeep(subjects, cat => cat.subs);
+console.log(allSubs);
+<span class="badge text-bg-success">Output</span> :
+// ['mobile', 'ai', 'cloud', 'fruits', 'veg']
+                        </pre>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="method-block" data-name="groupBy" id="groupBy">
+                        <div class="col">
+                            <h4> _.groupBy(collection, iteratee)</h4>
+                            <p>Splits a collection into groups based on the result of running each element through the
+                                iteratee (function or property name).</p>
+                            <pre>
+                        const nums = [1, 2, 3, 4, 5, 6];
+const grouped = _.groupBy(nums, n => n % 2 === 0 ? 'even' : 'odd');
+console.log(grouped);
+<span class="badge text-bg-success">Output :</span>
+// {
+//   odd: [1, 3, 5],
+//   even: [2, 4, 6]
+// }
+
+E.g : 2
+const usersAges = [
+  { name: 'A', age: 25 },
+  { name: 'B', age: 30 },
+  { name: 'C', age: 25 }
+];
+const byAge = _.groupBy(usersAges, 'age');
+console.log(byAge);
+<span class="badge text-bg-success">Output : </span>
+// {
+//   25: [{ name: 'A', age: 25 }, { name: 'C', age: 25 }],
+//   30: [{ name: 'B', age: 30 }]
+// }
+                       </pre>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" data-name="includes" id="includes">
+                            <h4>_.includes(collection, value, [fromIndex=0])</h4>
+                            <p>Checks whether a collection (array, object, or string) contains the specified value.</p>
+                            <pre>
+const favs = ['apple', 'banana', 'mango'];
+console.log(_.includes(favs, 'banana')); <span class="badge text-bg-success">Output :</span> true
+console.log(_.includes(favs, 'grape'));  <span class="badge text-bg-success">Output :</span> false
+
+                        </pre>
+                            <hr>
+                        </div>
+                        <div class="method-block" data-name="keyBy" id="keyBy">
+                            <div class="row">
+                                <div class="col">
+                                    <h4>_.keyBy(collection, iteratee)</h4>
+                                    <p>Similar to _.groupBy, but keeps only one item per key, not arrays.</p>
+                                    <pre>
+  const employees = [
+            { id: 101, name: 'Alice' },
+            { id: 102, name: 'Bob' },
+            { id: 103, name: 'Charlie' }
+];
+const empResult = _.keyBy(employees, 'id');
+console.log(empResult);
+<span class="badge text-bg-success">Output :</span>
+// {
+//   101: { id: 101, name: 'Alice' },
+//   102: { id: 102, name: 'Bob' },
+//   103: { id: 103, name: 'Charlie' }
+// }
+                        </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <hr>
+                <div class="col">
+                    <div class="method-block" data-name="map" id="map">
+                        <h4> _.map(collection, iteratee)</h4>
+                        <p>Creates a new array by applying a function (iteratee) to each element in a collection. Works
+                            with arrays, objects, or objects inside arrays.</p>
+                        <pre>
+const nos = [1, 2, 3, 4];
+const doubled = _.map(nos, n => n * 2);
+console.log(doubled); 
+<span class="badge text-bg-success">Output :</span>
+// [2, 4, 6, 8]
+</pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="reduce" id="reduce">
+                    <h4>_.reduce(collection, iteratee, [accumulator])</h4>
+                    <p>Reduces a collection (array or object) to a single accumulated value by repeatedly calling an iteratee function.</p>
+                    <pre>
+const prices = [10, 20, 30, 40];
+const total = _.reduce(prices, (sum, n) => sum + n, 0);
+console.log(total); 
+<span class="badge text-bg-success">Output : </span> 100
+                    </pre>
+                    <p><span class="badge text-bg-warning">Note :</span>
+sum is the accumulator <br>
+n is the current item
+</p>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    
+                </div>
+                <div class="col"></div>
+            </div>
+            <script>
+                // scroll to top functionality
+                const scrollBtn = document.getElementById('scrollTopBtn');
+                window.onscroll = function () {
+                    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                        scrollBtn.style.display = "flex";
+                    } else {
+                        scrollBtn.style.display = "none";
+                    }
+                };
+                scrollBtn.onclick = function () {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                };
+                // search functionality
+                const searchBox = document.getElementById('searchBox');
+                searchBox.addEventListener('input', function () {
+                    const keyword = this.value.toLowerCase();
+                    const methods = document.querySelectorAll('.method-block');
+                    methods.forEach(method => {
+                        const methodName = method.dataset.name.toLowerCase();
+                        const isMatch = methodName.includes(keyword);
+                        method.style.display = isMatch ? 'block' : 'none';
+                        // Hide/show the next hr after the matched method-block
+                        const nextHr = method.nextElementSibling;
+                        if (nextHr && nextHr.tagName === 'HR') {
+                            nextHr.style.display = isMatch ? 'block' : 'none';
+                        }
+                        // If no methods match, show the "No results found" message
+                        const noResults = document.getElementById('noResults');
+                        if (noResults) {
+                            const anyVisible = Array.from(methods).some(m => m.style.display === 'block');
+                            noResults.style.display = anyVisible ? 'none' : 'block';
+                        }
+                    });
+                });
+            </script>
 </body>
 
 </html>
