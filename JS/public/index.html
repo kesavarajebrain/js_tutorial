@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="JS Tutorial - by Kesavaraj" />
+    <meta property="og:description" content="Learn JS - 0 to HERO -By K7" />
+    <meta property="og:image" content="https://ih1.redbubble.net/image.2221781543.2400/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" />
+    <meta property="og:url" content="https://js-zero-to-hero.web.app/" />
+    <meta name="author" content="kesavaraj">
+    <meta property="og:type" content="JS tutorial by Kesavaraj">
+    <meta property="og:type" content="website" />
     <script src="./js/index.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/lodash.min.js"></script>
@@ -14,39 +22,40 @@
 </head>
 
 <body>
-     <button id="scrollTopBtn" title="Go to top">⬆</button>
+    <button id="scrollTopBtn" title="Go to top">⬆</button>
     <h1 class="center">JAVASCRIPT Tutorial</h1>
     <h2 class="center">JS Basics</h2>
     <h3 class="center">JavaScript is a lightweight, single threaded programming language</h3>
     <div class="container bg-body-tertiary border rounded-3 mb-5">
         <div class="row">
-        <div class="col-6 mt-2">
-            <h3 class="center">rxjs</h3>
-            <p class="heading">RXJS - is a library for reactive programming using Observables, to make it easier to
-                compose
-                asynchronous or callback-based code.</p>
-            <p>Install Guide </p>
-            <p>Install via NPM - so add npm init</p>
-            <p> npm install rxjs </p>
-            <a href="https://rxjs-app-a57c9.web.app/" target="_blank" rel="noopener noreferrer">
-                <button class="btn btn-primary">
-                    RXJS Tutorial &#8594;
-                </button>
-            </a>
-            <br>
-            <br>
+            <div class="col-6 mt-2">
+                <h3 class="center">rxjs</h3>
+                <p class="heading">RXJS - is a library for reactive programming using Observables, to make it easier to
+                    compose
+                    asynchronous or callback-based code.</p>
+                <p>Install Guide </p>
+                <p>Install via NPM - so add npm init</p>
+                <p> npm install rxjs </p>
+                <a href="https://rxjs-app-a57c9.web.app/" target="_blank" rel="noopener noreferrer">
+                    <button class="btn btn-primary">
+                        RXJS Tutorial &#8594;
+                    </button>
+                </a>
+                <br>
+                <br>
+            </div>
+            <div class="col-6  mt-2">
+                <h3 class="center">Lodash</h3>
+                <p class="heading">Lodash - is a JavaScript library that provides utility functions for common
+                    programming
+                    tasks,
+                    making it easier to work with arrays, objects, and other data types.</p>
+                <br>
+                <a href="./lodash.html" target="_self" rel="noopener noreferrer">
+                    <button class="btn btn-primary">Lodash Tutorial &#8594;</button>
+                </a>
+            </div>
         </div>
-        <div class="col-6  mt-2">
-            <h3 class="center">Lodash</h3>
-            <p class="heading">Lodash - is a JavaScript library that provides utility functions for common programming
-                tasks,
-                making it easier to work with arrays, objects, and other data types.</p>
-            <br>
-            <a href="./lodash.html" target="_self" rel="noopener noreferrer">
-                <button class="btn btn-primary">Lodash Tutorial &#8594;</button>
-            </a>
-        </div>
-    </div>
     </div>
     <h4>KEYWORDS - Var, Let, Const</h4>
     <h4>VAR - keyword (storing a value purpose) we can store all the data like integer, float, string.
@@ -1890,20 +1899,21 @@ displyUserwithParams('Am kesav',26); // Its argument
     <br>
     <br>
 </body>
- <script>
+<script>
     const scrollBtn = document.getElementById('scrollTopBtn');
     window.onscroll = function () {
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        scrollBtn.style.display = "flex";
-      } else {
-        scrollBtn.style.display = "none";
-      }
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollBtn.style.display = "flex";
+        } else {
+            scrollBtn.style.display = "none";
+        }
     };
     scrollBtn.onclick = function () {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
-  </script>
+</script>
+
 </html>

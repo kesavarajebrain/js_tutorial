@@ -7,20 +7,20 @@ console.log(chunked);
 
 console.warn("_.compact")
 // _.compact(array)
-const messyArray = [0, 1,,3,2,1, false, 2, '', 3, null, undefined, NaN,'hi'];
+const messyArray = [0, 1, , 3, 2, 1, false, 2, '', 3, null, undefined, NaN, 'hi'];
 const cleanArray = _.compact(messyArray);
 console.log(cleanArray); // Output:[1,3,2,1,2,3,'hi']
 
 console.warn("_.concat")
 // _.concat(array, [values])
- const selected = ['Apple'];
- const newItems = ['Banana', 'Mango'];
- const updatedList = _.concat(selected, newItems, 'Orange');
- console.log(updatedList); // Output: ['Apple', 'Banana', 'Mango', 'Orange']
+const selected = ['Apple'];
+const newItems = ['Banana', 'Mango'];
+const updatedList = _.concat(selected, newItems, 'Orange');
+console.log(updatedList); // Output: ['Apple', 'Banana', 'Mango', 'Orange']
 
 console.warn("_.difference")
 // _.difference(array, [values])
-const allTags = ['React', 'Angular', 'Vue', 'Svelte','Node.js'];
+const allTags = ['React', 'Angular', 'Vue', 'Svelte', 'Node.js'];
 const selectedTags = ['React', 'Vue'];
 const unselected = _.difference(allTags, selectedTags);
 console.log(unselected);
@@ -34,8 +34,8 @@ console.log(resultSet);
 // Output: [ { id: 1 }, { id: 3 } ]
 console.warn("_.differenceWith")
 // _.differenceWith(array, [values], [comparator])
-const aSet = [{ id: 1,name:'Alice' }, { id: 2,name:'Bob' }, { id: 3,name:'Charlie' },{ id: 5 ,name:'Logi' }, { id: 6 ,name:'Ravi' }];
-const bSet = [{ id: 2 ,name:'Raja' },{ id: 2 ,name:'Rani' }, { id: 5 ,name:'Logi' }];
+const aSet = [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }, { id: 3, name: 'Charlie' }, { id: 5, name: 'Logi' }, { id: 6, name: 'Ravi' }];
+const bSet = [{ id: 2, name: 'Raja' }, { id: 2, name: 'Rani' }, { id: 5, name: 'Logi' }];
 const setresult = _.differenceWith(aSet, bSet, (a, b) => a.id == b.id && a.name == b.name);
 console.log(setresult);
 // [
@@ -56,9 +56,9 @@ console.log(droppedArr);
 // Output: [ { id: 3, name: 'Charlie' }, { id: 4, name: 'David' }, { id: 5, name: 'Eve' } ]
 console.warn("_.fill")
 // _.fill(array, value, [start=0], [end=array.length])
-  const arr = [1, 2, 3];
+const arr = [1, 2, 3];
 _.fill(arr, '*');
- console.log(arr);
+console.log(arr);
 // Output: [ '*', '*', '*' ]
 const arr2 = [1, 2, 3, 4, 5];
 _.fill(arr2, 0, 1, 4);
@@ -67,10 +67,10 @@ console.log(arr2);
 console.warn("_.findIndex")
 // _.findIndex(array, predicate, [fromIndex=0])
 const users = [
-                    { id: 1, name: 'Anbu' },
-                    { id: 2, name: 'Babu' },
-                    { id: 3, name: 'Charlie' }
-                ];
+  { id: 1, name: 'Anbu' },
+  { id: 2, name: 'Babu' },
+  { id: 3, name: 'Charlie' }
+];
 const index = _.findIndex(users, user => user.name === 'Babu');
 console.log(index);
 // Output: 1 - Babu is at index 1 in the array
@@ -104,12 +104,12 @@ const resultArr = _.flattenDeep(mixArr);
 console.log(resultArr);
 // Output: [1, 2, 3, 4, 5]
 const categories = [
-   ['tech'],
-    ['health', [['yoga', ['meditation']]]],
-    ['sports'],
-    [ ['football']],
-    ['swimming'],
-    ['diving']
+  ['tech'],
+  ['health', [['yoga', ['meditation']]]],
+  ['sports'],
+  [['football']],
+  ['swimming'],
+  ['diving']
 ];
 const allCategories = _.flattenDeep(categories);
 console.log(allCategories);
@@ -117,13 +117,13 @@ console.log(allCategories);
 console.warn("_.flattenDepth")
 // _.flattenDepth(array, [depth=1])
 const food = [
-   ['idly', 'dosa'],['briyani', ['samosa']],
-    ['sambar', [['briyani', ['samosa']]]],
-    ['pasta'],['chicken'],
-    ['pizza', [['burger', ['fries']]]],
-    [ ['pizza']],
-    ['burger'],
-    ['fries']
+  ['idly', 'dosa'], ['briyani', ['samosa']],
+  ['sambar', [['briyani', ['samosa']]]],
+  ['pasta'], ['chicken'],
+  ['pizza', [['burger', ['fries']]]],
+  [['pizza']],
+  ['burger'],
+  ['fries']
 ];
 const allFood = _.flattenDepth(food, 5);
 console.log(allFood);
@@ -151,7 +151,7 @@ console.log(initialNumbers);
 // Output: [1, 2, 3, 4] - removes the last element (5)
 console.warn("_.intersection")
 // _.intersection([arrays])
- const fromSearch = ['spa', 'facial', 'massage'];
+const fromSearch = ['spa', 'facial', 'massage'];
 const fromFavorites = ['massage', 'haircut', 'spa'];
 const common = _.intersection(fromSearch, fromFavorites);
 console.log(common);
@@ -165,15 +165,15 @@ console.log(eligibleDiscounts);
 // Output: [{ productId: 202 }]
 console.warn("_.intersectionWith")
 // _.intersectionWith([arrays], [comparator])
- const activeOrders = [
-       { id: 101, status: 'pending' },
-       { id: 102, status: 'shipped' }
+const activeOrders = [
+  { id: 101, status: 'pending' },
+  { id: 102, status: 'shipped' }
 ];
 const archived = [
-    { id: 101, status: 'pending' },
-    { id: 102, status: 'cancelled' }
+  { id: 101, status: 'pending' },
+  { id: 102, status: 'cancelled' }
 ];
- const finalOrder = _.intersectionWith(activeOrders, archived, (a, b) => a.id === b.id && a.status === b.status);
+const finalOrder = _.intersectionWith(activeOrders, archived, (a, b) => a.id === b.id && a.status === b.status);
 console.log(finalOrder);
 // Output: [{ id: 101, status: 'pending' }]
 console.warn("_.join")
@@ -236,7 +236,7 @@ let toDelete = [
   { id: 3, name: 'Milk' }
 ];
 _.pullAllWith(cartItems, toDelete, (a, b) => a.id === b.id && a.name === b.name);
-console.log(cartItems); 
+console.log(cartItems);
 // Output: [ { id: 1, name: 'Milk' }, { id: 2, name: 'Bread' } ]
 console.warn("_.pullAt")
 // _.pullAt(array, [indexes])
@@ -246,14 +246,14 @@ console.log(fruits);
 // Output: [ 'Apple', 'Cherry', 'Berry' ]
 console.warn("_.remove")
 // _.remove(array, predicate)
- let todos = [
-    { task: 'Do laundry', done: true },
-    { task: 'Buy groceries', done: false },
-    { task: 'Clean room', done: true },
-    { task: 'Prepare dinner', done: true }
-        ];
- const completed = _.remove(todos, todo => todo.done);
-  console.log(completed);
+let todos = [
+  { task: 'Do laundry', done: true },
+  { task: 'Buy groceries', done: false },
+  { task: 'Clean room', done: true },
+  { task: 'Prepare dinner', done: true }
+];
+const completed = _.remove(todos, todo => todo.done);
+console.log(completed);
 // Output: [ { task: 'Do laundry', done: true }, { task: 'Clean room', done: true }, { task: 'Prepare dinner', done: true } ]
 console.warn("_.reverse")
 // _.reverse(array)
@@ -263,19 +263,19 @@ console.log(messages);
 // Output: ['Bye', 'How are you?', 'Hi']
 console.warn("_.sortedUniq")
 // _.sortedUniq(array)
-let ages = [1,2,3,4,5,6,7,7,8,9,9,10];
+let ages = [1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 9, 10];
 let unique = _.sortedUniq(ages);
 console.log(unique);
 // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 console.warn("_.sortBy")
 // _.sortBy(array, [iteratee=_.identity])
- const data = [
-{ id: 1, age: 20 },
-{ id: 2, age: 89 },
-{ id: 1, age: 9 },
-{ id: 2, age: 34 },
-{ id: 1, age: 24 },
-{ id: 2, age: 22 }
+const data = [
+  { id: 1, age: 20 },
+  { id: 2, age: 89 },
+  { id: 1, age: 9 },
+  { id: 2, age: 34 },
+  { id: 1, age: 24 },
+  { id: 2, age: 22 }
 ];
 let sortedByAge = _.sortBy(data, 'age');
 console.log(sortedByAge);
@@ -284,12 +284,12 @@ console.log(sortedByAge);
 console.warn("_.orderBy")
 // _.orderBy(array, [iteratee=_.identity], [orders])
 const persons = [
-    { id: 1, age: 20 },
-    { id: 2, age: 89 },
-    { id: 1, age: 9 },
-    { id: 2, age: 34 },
-    { id: 1, age: 24 },
-    { id: 2, age: 22 }
+  { id: 1, age: 20 },
+  { id: 2, age: 89 },
+  { id: 1, age: 9 },
+  { id: 2, age: 34 },
+  { id: 1, age: 24 },
+  { id: 2, age: 22 }
 ];
 let sortedByAgeDesc = _.orderBy(persons, ['age'], ['desc']);
 console.log(sortedByAgeDesc);
@@ -309,16 +309,16 @@ console.log(uniqueCountries);
 // Output: ['India', 'USA', 'UK']
 console.warn("_.uniqBy")
 // _.uniqBy(array, [iteratee=_.identity])
- const namesArr = [
-{ id: 1, name: 'Anbu' },
-{ id: 1, name: 'Anbu' },
-{ id: 1, name: 'Villan' },
-{ id: 2, name: 'Chandra' },
-{ id: 1, name: 'Bhuvana' },
-{ id: 1, name: 'Bhuvana' },
-{ id: 2, name: 'Josh' },
-{ id: 2, name: 'Loki' },
-{ id: 2, name: 'Loki' }
+const namesArr = [
+  { id: 1, name: 'Anbu' },
+  { id: 1, name: 'Anbu' },
+  { id: 1, name: 'Villan' },
+  { id: 2, name: 'Chandra' },
+  { id: 1, name: 'Bhuvana' },
+  { id: 1, name: 'Bhuvana' },
+  { id: 2, name: 'Josh' },
+  { id: 2, name: 'Loki' },
+  { id: 2, name: 'Loki' }
 ];
 const uniqueUsers = _.uniqBy(namesArr, 'name');
 console.log(uniqueUsers);
@@ -340,25 +340,25 @@ console.log(res);
 // Output: { admin: 2, user: 1, guest: 1 }
 console.warn("_.forEach")
 // _.forEach(collection, [iteratee=_.identity])
- const fruitsItems = ['apple', 'banana', 'orange'];
-  _.forEach(fruitsItems, (fruit, index) => {
+const fruitsItems = ['apple', 'banana', 'orange'];
+_.forEach(fruitsItems, (fruit, index) => {
   console.log(`${index}: ${fruit}`);
-  });
+});
 // Output:
 // 0: apple 
 // 1: banana
 // 2: orange
-  const userObj = { name: 'Alice', age: 25, role: 'admin' };
-  _.forEach(userObj, (value, key) => {
+const userObj = { name: 'Alice', age: 25, role: 'admin' };
+_.forEach(userObj, (value, key) => {
   console.log(`${key}: ${value}`);
-  });
+});
 // Output:
 // name: Alice  
 // age: 25
 // role: admin 
 console.warn("_.every")
 // _.every(collection, [predicate=_.identity])  
-const integers = [1, 2, 3, 4,-2];
+const integers = [1, 2, 3, 4, -2];
 const allPositive = _.every(integers, n => n > 0);
 console.log(allPositive); // Output: false - because -2 is not positive
 const dataList = [
@@ -368,7 +368,7 @@ const dataList = [
 ];
 const listRes = _.every(dataList, user => user.age > 20);
 console.log(listRes); // true
-console.warn("_.filter")  
+console.warn("_.filter")
 // _.filter(collection, predicate)
 const Allusers = [
   { name: 'A', active: true },
@@ -389,7 +389,7 @@ const runs = {
 };
 
 const passed = _.filter(runs, score => score >= 40);
-console.log(passed); 
+console.log(passed);
 // [45, 90]
 console.warn("_.find")
 // _.find(collection, predicate, [fromIndex=0])
@@ -398,7 +398,7 @@ const firstEven = _.find(mixedNumbers, n => n % 2 === 0);
 console.log(firstEven); // Output: 6
 console.warn("_.flatMap")
 // _.flatMap(collection, [iteratee=_.identity])
-   const nameStr = ['Kesava', 'Raj'];
+const nameStr = ['Kesava', 'Raj'];
 const resultStr = _.flatMap(nameStr, name => [name, name.length]);
 console.log(resultStr);
 // Output: ['Kesava', 6, 'Raj', 3]
@@ -460,10 +460,373 @@ console.log(empResult);
 console.warn("_.map")
 const nos = [1, 2, 3, 4];
 const doubled = _.map(nos, n => n * 2);
-console.log(doubled); 
+console.log(doubled);
 // [2, 4, 6, 8]
 console.warn("_.reduce")
 const prices = [10, 20, 30, 40];
 const total = _.reduce(prices, (sum, n) => sum + n, 0);
 console.log(total); // 100
+console.warn("_sample")
+const fruitsNames = ['apple', 'banana', 'cherry', 'mango'];
+console.log(_.sample(fruitsNames));
+console.warn("_sampleSize")
+const setColors = ['red', 'green', 'blue', 'yellow', 'purple'];
+const randomColors = _.sampleSize(setColors, 3);
+console.log(randomColors);
+console.warn("_.values")
+const objectData = { name: 'Raj', age: 25, city: 'Chennai' };
+console.log(_.values(objectData));
+console.warn("_.keys")
+const objectKeys = { name: 'Raj', age: 25, city: 'Chennai' };
+console.log(_.keys(objectKeys));
+console.warn("_.entries")
+const ornamentsData = ['chain', 'ring', 'stud', 'neckles'];
+console.log(_.entries(ornamentsData));
+const userDetails = { name: 'Raj', age: 25, city: 'Chennai' };
+console.log(_.entries(userDetails));
+console.warn("_.shuffle")
+const participants = { a: 'Raj', b: 'Kesava', c: 'Anbu' };
+const shuffledParticipants = _.shuffle(_.values(participants));
+console.log(shuffledParticipants);
+console.warn("_.some")
+const winnersList = [
+  { name: 'Raj', active: false },
+  { name: 'Anbu', active: true },
+  { name: 'Kesava', active: false },
+  { name: 'Chandra', active: false },
+  { name: 'Josh', active: true }
+];
+const isActive = _.some(winnersList, { active: true });
+console.log(isActive); // Output: true - because Anbu and Josh are active
+console.warn("_.debounce")
+const sayHello = _.debounce((name) => {
+  console.warn(`Hello, ${name}!`);
+}, 1000);
+sayHello('Raj');
+sayHello('Anbu');
+sayHello('Kesava');
+console.warn('_.throttle')
+const throttledFunc = _.throttle(() => {
+  console.warn("Thorttle Function called at", new Date().toLocaleTimeString());
+}, 2000); // 1000ms = 1 second
 
+// simulate calling it many times
+setInterval(() => {
+  throttledFunc();
+}, 300); // tries to run every 300ms
+console.warn("_clone")
+const originalObj = { name: 'Kesava', age: 30 };
+const copy = _.clone(originalObj);
+console.log(copy); // { name: 'Kesava', age: 30 }
+copy.name = 'Raj';
+console.log(originalObj.name); // 'Kesava' ✅ (not affected)
+console.warn("Example with nested objects:")
+const usr = {
+  name: 'Kesava',
+  address: { city: 'Chennai', zip: 600001 }
+};
+const clonedUser = _.clone(usr);
+clonedUser.address.city = 'Coimbatore';
+console.log(usr.address.city); // 'Coimbatore' ❗ (original object is affected!)
+console.warn("_cloneDeep")
+const originalDeepObj = {
+  user: 'Kesava',
+  details: {
+    city: 'Chennai',
+    skills: ['JS', 'React']
+  }
+};
+const deepCopyObj = _.cloneDeep(originalDeepObj);
+deepCopyObj.details.city = 'Coimbatore';
+deepCopyObj.details.skills.push('Lodash');
+console.warn("Deep Copy Example:");
+console.log(deepCopyObj.details.city); // 'Coimbatore' ✅ changed in deep copy
+console.log(deepCopyObj.details.skills); // ['JS', 'React', 'Lodash'] ✅ changed in deep copy
+// Original object remains unchanged
+console.warn("Original Object :");
+console.log(originalDeepObj.details.city);    // 'Chennai' ✅ not changed
+console.log(originalDeepObj.details.skills);  // ['JS', 'React'] ✅ not changed
+console.warn("_cloneDeepWith")
+const userProfile = {
+  name: 'Kesava',
+  age: 28,
+  profileImage: new Blob(['...'], { type: 'image/png' }),
+  preferences: {
+    theme: 'dark',
+    notifications: true
+  }
+};
+// Use cloneDeepWith to skip cloning the blob
+const clonedUsr = _.cloneDeepWith(userProfile, (value) => {
+  if (value instanceof Blob) {
+    return value; // Don't clone, return as-is
+  }
+});
+console.warn("Cloned User Profile:");
+console.log(clonedUsr);
+console.warn("userProfile:");
+console.log(userProfile);
+console.log(clonedUsr === userProfile); // false (new object)
+console.log(clonedUsr.profileImage === userProfile.profileImage); // true (blob is reused)
+console.log(clonedUsr.preferences === userProfile.preferences); // false (deep cloned)
+console.warn("_isArray");
+const valuesCollection = [
+  [1, 2, 3],
+  "hello",
+  { name: "Kesava" },
+  123,
+  null,
+  undefined,
+  true
+];
+
+valuesCollection.forEach((val, index) => {
+  console.log(`Value ${index + 1}:`, val, '| Is Array:', _.isArray(val));
+});
+console.warn("_isBoolean");
+ const valuesCollectionTwo = [
+    true,
+    false,
+    new Boolean(false), // object wrapper, not primitive
+    0,
+    1,
+    "true",
+    null,
+    undefined
+  ];
+
+  valuesCollectionTwo.forEach((val, index) => {
+    console.log(`Value ${index + 1}:`, val, "| isBoolean:", _.isBoolean(val));
+  });
+  console.warn("_isDate");
+const d1 = new Date();        // ✅ Date object
+const d2 = Date.now();        // ❌ Just a number (timestamp)
+const d3 = "2024-08-01";      // ❌ Just a string
+console.log(_.isDate(d1)); // true
+console.log( _.isDate(d2)); // false
+console.log(_.isDate(d3)); // false
+console.warn("_isEmpty");
+const emptyObj = {};
+const nonEmptyObj = { name: 'Kesava' };
+const emptyArr = [];
+const nonEmptyArr = [1, 2, 3];
+const emptyStr = '';
+const nonEmptyStr = 'Hello';
+const nullValue = null;
+const undefinedValue = undefined;
+const numValue = 42;
+const boolValue = true;
+
+console.log('emptyObj ->',_.isEmpty(emptyObj)); // true
+console.log('nonEmptyObj ->',_.isEmpty(nonEmptyObj)); // false   
+console.log('emptyArr ->',_.isEmpty(emptyArr)); // true
+console.log('nonEmptyArr->',_.isEmpty(nonEmptyArr)); // false
+console.log('emptyStr ->',_.isEmpty(emptyStr)); // true
+console.log('nonEmptyStr ->',_.isEmpty(nonEmptyStr)); // false
+console.log('nullValue ->',_.isEmpty(nullValue)); // true
+console.log('undefinedValue',_.isEmpty(undefinedValue)); // true
+console.log('numValue-> ',_.isEmpty(numValue)); // true (numbers are considered empty)
+console.log('boolValue ->',_.isEmpty(boolValue)); // true (booleans are considered empty)
+console.warn("_isEqual");
+const order1 = {
+  id: 101,
+  customer: { name: "Kesava", city: "Chennai" },
+  items: [
+    { product: "Laptop", qty: 1, price: 50000 },
+    { product: "Mouse", qty: 1, price: 500 }
+  ]
+};
+
+const order2 = {
+  id: 101,
+  customer: { name: "Kesava", city: "Chennai" },
+  items: [
+    { product: "Laptop", qty: 1, price: 50000 },
+    { product: "Mouse", qty: 1, price: 500 }
+  ]
+};
+// Normal equality check
+console.log(order1 === order2); // false ❌ (different references)
+// Deep equality check
+console.log(_.isEqual(order1, order2)); // true ✅
+console.log(_.isEqual(5, 5)); // true
+console.log(_.isEqual(5, '5')); // false
+console.log(_.isEqual([1, 2, 3], [1, 2, 3])); // true
+console.log(_.isEqual({ a: 1 }, { a: 1 })); // true
+console.log(_.isEqual({ a: 1 }, { a: 2 })); // false
+console.log(_.isEqual(null, undefined)); // false
+console.log(_.isEqual(null, null)); // true
+console.log(_.isEqual(undefined, undefined)); // true
+console.warn("_.isInteger");
+console.log(_.isInteger(4));         // true   → 4 is an integer
+console.log(_.isInteger(4.0));       // true   → 4.0 is still an integer
+console.log(_.isInteger(-4));        // true   → Negative integers are still integers   
+console.log(_.isInteger(0));         // true   → 0 is also an integer
+console.log(_.isInteger(4.5));       // false  → Has decimal part
+console.log(_.isInteger(Math.PI));  // false  → Decimal value
+console.log(_.isInteger('4'));       // false  → String, not a number
+console.log(_.isInteger(NaN));       // false  → NaN is not an integer
+console.log(_.isInteger(undefined)); // false  → Not a number at all
+console.log(_.isInteger(null));      // false  → null is not a number
+console.log(_.isInteger(true));      // false  → Boolean true is not an integer
+console.log(_.isInteger(false));     // false  → Boolean false is not an integer
+function canBookSeats(seats) {
+  if (_.isInteger(seats) && seats > 0) {
+    return "Booking confirmed!";
+  } else {
+    return "Please enter a valid whole number of seats.";
+  }
+}
+console.log(canBookSeats(3));     // "Booking confirmed!"
+console.log(canBookSeats(3.0));   // "Booking confirmed!"
+console.log(canBookSeats(0.5));   // "Please enter a valid whole number of seats."
+console.log(canBookSeats(3.5));   // "Please enter a valid whole number of seats."
+console.log(canBookSeats('3'));   // "Please enter a valid whole number of seats."
+console.log(canBookSeats(-2));    // "Please enter a valid whole number of seats."
+console.log(canBookSeats(0));     // "Please enter a valid whole number of seats
+console.warn("_.isNumber");
+console.log('_.isNumber(42) ->',_.isNumber(42));          // true   → 42 is a number
+console.log('_.isNumber(3.14)',_.isNumber(3.14));        // true   → 3.14 is a number
+console.log('_.isNumber(NaN)',_.isNumber(NaN));         // true   → NaN is considered a number
+console.log('_.isNumber(Infinity)',_.isNumber(Infinity));    // true   → Infinity is a number
+console.log('_.isNumber(-Infinity)',_.isNumber(-Infinity));   // true   → -Infinity is a number
+console.log('_.isNumber(0)',_.isNumber(0));           // true   → 0 is a number
+console.log('_.isNumber(4.0)',_.isNumber(4.0));         // true   → 4.0 is still a number
+console.log('_.isNumber(4.5)',_.isNumber(4.5));         // true   → 4.5 is a number
+console.log('_.isNumber(Number(42)',_.isNumber(Number('42'))); // true   → Number('42') is a number
+console.log('_.isNumber(Number(3.14)',_.isNumber(Number('3.14'))); // true   → Number('3.14') is a number
+console.log('_.isNumber(Number(NaN)',_.isNumber(Number('NaN'))); // true   → Number('NaN') is a number (NaN)
+console.log('_.isNumber(Number()',_.isNumber(Number('')));  // true   → Number('') is 0, which is a number
+console.log('_.isNumber(Number(abc)',_.isNumber(Number('abc'))); // true  → Number('abc') is NaN, which is a number but not a valid numeric value
+
+console.log('_.isNumber(42)',_.isNumber('42'));        // false  → '42' is a string      
+console.log('_.isNumber(undefined)',_.isNumber(undefined));   // false  → undefined is not a number
+console.log('_.isNumber(null)',_.isNumber(null));        // false  → null is not a number
+console.log('_.isNumber(true)',_.isNumber(true));        // false  → true is a boolean, not a number
+console.log('_.isNumber(false)',_.isNumber(false));       // false  → false is a boolean, not a number
+console.log('_.isNumber({})',_.isNumber({}));          // false  → {} is an object, not a number
+console.log('_.isNumber([])',_.isNumber([]));          // false  → [] is an array, not a number
+console.log('_.isNumber(3.14)',_.isNumber('3.14'));      // false  → '3.14' is a string, not a number
+console.log('_.isNumber(NaN)',_.isNumber('NaN'));       // false  → 'NaN' is a string, not a number
+console.warn("_.isMatch");
+const userr = { name: 'John', age: 30, role: 'Admin' };
+console.log(_.isMatch(userr, { age: 30 }));        // true ✅
+console.log(_.isMatch(userr, { role: 'Admin' }));  // true ✅
+console.log(_.isMatch(userr, { age: 25 }));        // false ❌
+console.log(_.isMatch(userr, { name: 'John', age: 30 })); // true ✅
+console.log(_.isMatch(userr, { name: 'John', age: 25 })); // false ❌
+console.log(_.isMatch(userr, { name: 'John', role: 'User' })); // false ❌
+const order = {
+  id: 101,
+  customer: { name: 'Alice', city: 'Chennai' },
+  total: 500
+};
+console.log(_.isMatch(order, { customer: { city: 'Chennai' } })); // true ✅
+console.log(_.isMatch(order, { customer: { city: 'Delhi' } }));   // false ❌
+const home = {
+  owner: 'Kesava',
+  rooms: { bedroom: 2, kitchen: 1 },
+  location: 'India'
+};
+// Check if the home has at least 2 bedrooms
+console.log(_.isMatch(home, { rooms: { bedroom: 2 } })); // true ✅
+// Check if the home has 3 bedrooms
+console.log(_.isMatch(home, { rooms: { bedroom: 3 } })); // false ❌
+console.warn("._isNaN");
+console.log('typeof NaN --> ',typeof NaN); // "number"
+const setOfValues = [NaN, 42, 'hello', undefined, null, true, false, {}, []];
+setOfValues.forEach((val, index) => {
+    console.log(`Value ${index + 1}:`, val, '| Is NaN:', _.isNaN(val));
+})
+console.warn("_.isNil");
+ const userData = {
+    name: 'Kesava',   
+    age: 30,
+}
+
+if (!_.isNil(userData)) {
+  console.log("User exists:", userData);
+} else {
+  console.log("User is missing!");
+}
+const valuesToCheck = [
+  null,
+  undefined,
+  0,
+  '',
+  false,
+  NaN,
+  'Hello',
+  [],
+  {},
+  [1, 2, 3],
+  { a: 1 }
+]
+valuesToCheck.forEach((data,slNo)=>{
+  console.log(`Sl.No: ${slNo +1 } - Value: ${data} - Is Nil: ${_.isNil(data)}`);
+})
+console.warn('_isNull')
+const valuesToCheckNull = [
+  null,
+  undefined,
+  0,
+  '',
+  false,
+  NaN,
+  'Hello',
+  [],
+  {},
+  [1, 2, 3],
+  { a: 1 }
+]
+valuesToCheckNull.forEach((data, slNo) => {
+  console.log(`Sl.No: ${slNo + 1} - Value: ${data} - Is Null: ${_.isNull(data)}`);
+})
+console.warn("._isObject");
+const mixedValues = [
+  { name: 'Kesava' }, // Object
+  [1, 2, 3],         // Array
+  'Hello',           // String
+  42,                // Number
+  null,              // Null
+  undefined,         // Undefined
+  true,              // Boolean
+  new Date()        // Date object
+];
+for(const [i,val] of mixedValues.entries()){
+  console.log(`Sl.no: ${i + 1}:`, val, '| Is Object:', _.isObject(val));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.warn("<<<<<<--------------END OF LODASH--------------->>>>>>>");

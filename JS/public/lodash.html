@@ -84,7 +84,7 @@
                 <span class="badge text-bg-success">Output</span> : ['Apple', 'Banana', 'Mango', 'Orange']
             </pre>
                 <p><span class="badge text-bg-warning">Note</span> : If you pass nested arrays, only the first level is
-                    added directly./p>
+                    added directly.</p>
                 <pre>
                     _.concat([1], [[2, 3]]); // Output: [1, [2, 3]] — not [1, 2, 3]
                 </pre>
@@ -1054,26 +1054,697 @@ console.log(doubled);
                 </div>
                 <div class="col">
                     <div class="method-block" data-name="reduce" id="reduce">
-                    <h4>_.reduce(collection, iteratee, [accumulator])</h4>
-                    <p>Reduces a collection (array or object) to a single accumulated value by repeatedly calling an iteratee function.</p>
-                    <pre>
-const prices = [10, 20, 30, 40];
-const total = _.reduce(prices, (sum, n) => sum + n, 0);
-console.log(total); 
-<span class="badge text-bg-success">Output : </span> 100
+                        <h4>_.reduce(collection, iteratee, [accumulator])</h4>
+                        <p>Reduces a collection (array or object) to a single accumulated value by repeatedly calling an
+                            iteratee function.</p>
+                        <pre>
+            const prices = [10, 20, 30, 40];
+            const total = _.reduce(prices, (sum, n) => sum + n, 0);
+            console.log(total); 
+                            <span class="badge text-bg-success">Output : </span> 100
                     </pre>
-                    <p><span class="badge text-bg-warning">Note :</span>
-sum is the accumulator <br>
-n is the current item
-</p>
+                        <p><span class="badge text-bg-warning">Note :</span>
+                            sum is the accumulator <br>
+                            n is the current item
+                        </p>
+                    </div>
                 </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="sample" id="sample">
+                        <h4>_.sample(collection)</h4>
+                        <p>Returns a random element from a collection (array or object).</p>
+                        <pre>
+        const fruitsNames = ['apple', 'banana', 'cherry', 'mango'];
+        console.log(_.sample(fruitsNames));  
+<span class="badge text-bg-success">Output : </span> "banana" // randomly changes each time
+                        </pre>
+                        <p><span class="badge text-bg-warning">Note :</span>
+                            Does not modify the original collection. random result each time
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="samplesize" id="samplesize">
+                        <h4>_.sampleSize(collection, [n=1])</h4>
+                        <p>Returns an array of n random elements from a collection (array or object).</p>
+                        <pre>
+        const colors = ['red', 'green', 'blue', 'yellow', 'purple'];
+        const randomColors = _.sampleSize(colors, 3);           
+        console.log(randomColors);
+<span class="badge text-bg-success">Output : </span> ['blue', 'red', 'yellow'] // randomly changes each time
+                        </pre>
+                    </div>
                 </div>
             </div>
             <div class="row">
+                <hr>
+                <div class="col">
+                    <div class="method-block" data-name="values" id="values">
+                        <h4>_.values(object)</h4>
+                        <p>Extract all the values from an object and return them as an array.</p>
+                        <pre>
+const objectData = { name: 'Raj', age: 25, city: 'Chennai' };
+console.log(_.values(objectData));
+<span class="badge text-bg-success">Output : </span> ['Raj', 25, 'Chennai']
+                        </pre>
+                        <p><span class="badge text-bg-warning">Note :</span>
+                            Keys: ['name', 'age', 'city'] <br>
+                            Values: ['Raj', 25, 'Chennai'] ← what _.values returns.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="keys" id="keys">
+                        <h4>_.keys(object)</h4>
+                        <p>Extract all the keys from an object and return them as an array.</p>
+                        <pre>
+const objectKeys = { name: 'Raj', age: 25, city: 'Chennai' };
+console.log(_.keys(objectKeys));
+<span class="badge text-bg-success">Output : </span> ['name', 'age', 'city']
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="entries" id="entries">
+                        <h4>_.entries(object)</h4>
+                        <p>Converts an object into an array of key-value pairs.</p>
+                        <pre>
+const ornamentsData = ['chain', 'ring', 'stud', 'neckles'];
+console.log(_.entries(ornamentsData)); 
+<span class="badge text-bg-success">Output : </span>
+[
+    ['0', 'chain'], 
+    ['1', 'ring'],
+    ['2', 'stud'],
+    ['3', 'neckles']    
+]
+             
+E.g : 2
+const userDetails = { name: 'Raj', age: 25, city: 'Chennai' };
+console.log(_.entries(userDetails));
+<span class="badge text-bg-success">Output : </span>
+[
+    ['name', 'Raj'],
+    ['age', 25],
+    ['city', 'Chennai']
+]    
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="suffle" id="shuffle">
+                        <h4>_.shuffle(collection)</h4>
+                        <p>Randomly shuffles the elements of a collection (array or object).</p>
+                        <pre>
+const participants = { a: 'Raj', b: 'Kesava', c: 'Anbu' };
+const shuffledParticipants= _.shuffle(_.values(user));
+console.log(shuffledParticipants);
+<span class="badge text-bg-success">Output:</span>  ['Kesava', 'Anbu', 'Raj'] // randomly changes each time
+                        </pre>
+                    </div>
+                    <div class="method-block" data-name="some" id="some">
+                        <h4>_.some(collection, predicate)</h4>
+                        <p>Checks if at least one element in a collection matches the given condition (predicate).</p>
+                        <pre>
+        const winnersList = [
+            { name: 'Raj', active: false },
+            { name: 'Anbu', active: true },
+            { name: 'Kesava', active: false },
+            { name: 'Chandra', active: false },
+            { name: 'Josh', active: true }
+    ];
+const isActive = _.some(winnersList, { active: true });
+console.log(isActive);  
+<span class="badge text-bg-success">Output:</span> true // because Anbu and Josh are active
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="debounce" id="debounce">
+                        <h4>_.debounce(func, wait, [options])</h4>
+                        <p>Creates a debounced function that delays invoking func until after wait milliseconds have
+                            elapsed since the last time the debounced function was invoked.</p>
+                        <pre>
+const sayHello = _.debounce((name) => {
+         console.log(`Hello, ${name}!`);
+    }, 1000);
+sayHello('Raj');
+sayHello('Anbu');
+sayHello('Kesava');
+
+// Only "Hello, Kesava!" will print after 1 second,
+// because the last call overrides the earlier ones.
+
+<p><span class="badge text-bg-warning">Note :</span> “I’ll wait X ms to run. If I’m called again during that time, I’ll restart my timer and wait again.”</p>
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="throttle" id="throttle">
+                        <h4>_.throttle(func, wait, [options])</h4>
+                        <p>Allow the function to run only once every X milliseconds, even if it's triggered in between
+                            its ignored.</p>
+                        <p>Real time example :</p>
+                        <p>Imagine you're pressing a button very fast — like 10 times per second.
+                            But you want the function to run only once per second no matter how many times you press the
+                            button.</p>
+                        <pre>
+const throttledFunc = _.throttle(() => {
+  console.log("Function called at", new Date().toLocaleTimeString());
+}, 2000); // 1000ms = 1 second ( it runs only every 2000ms (2 secs).)
+
+// simulate calling it many times
+setInterval(() => {
+  throttledFunc();
+}, 300); // tries to run every 300ms
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="clone" id="clone">
+                        <h4>_.clone(value)</h4>
+                        <p>Creates a shallow copy (மேலோட்ட நகல்) of the value.</p>
+                        <p>ஒரு object-ஐ நகலெடுக்கும் போது,
+                            அதில் உள்ள முதன்மை நிலை (first-level) property-களை மட்டும் முழுமையாக நகலெடுக்கும் ஒரு முறை.
+                        </p>
+                        <p>📦 ஆனால் அந்த object-ல் உள்ள மற்றொரு object (nested object) இருந்தால்,
+                            அது அதே memory reference-ஐ பயன்படுத்தும்.
+                            அதாவது, அந்த உள்ளமைவான object மாற்றப்படும் போது, original object-யும் பாதிக்கப்படும்.</p>
+                        <p>It copies the first level only. If the object has nested objects, the inner objects will
+                            still be referenced, not deeply copied.</p>
+                        <pre>
+const original = { name: 'Kesava', age: 30 };
+const copy = _.clone(original);
+console.log(copy); // { name: 'Kesava', age: 30 }
+copy.name = 'Raj';
+console.log(original.name); // 'Kesava' ✅ (not affected)
+
+<span class="badge text-bg-warning">Example with nested objects:</span>
+
+const user = {
+  name: 'Kesava',
+  address: { city: 'Chennai', zip: 600001 }
+};
+const clonedUser = _.clone(user);
+clonedUser.address.city = 'Coimbatore';
+console.log(user.address.city); // 'Coimbatore' ❗ (original object is affected!)
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="clonedeep" id="clonedeep">
+                        <h4>_.cloneDeep(value)</h4>
+                        <p>Creates a deep copy (முழுமையான நகல்) of the value.</p>
+                        <p>ஒரு object-ஐ நகலெடுக்கும் போது,
+                            அதில் உள்ள அனைத்து நிலை (all levels) property-களையும் முழுமையாக நகலெடுக்கும் ஒரு முறை.
+                        </p>
+                        <p>📦 இது ஒரு object-இன் அனைத்து உள்ளமைவுகளையும் (nested objects) தனித்தனியாக நகலெடுக்கிறது.
+                            அதாவது, original object-யின் எந்த மாற்றமும் இந்த நகலெடுக்கப்பட்ட object-ஐ பாதிக்காது.</p>
+                        <p>Deep copy means copying everything, including nested objects or arrays.
+                            The copied object is completely separate from the original. Changes to the copy will not
+                            affect the original.</p>
+                        <pre>
+const originalDeepObj = {
+    user: 'Kesava',
+    details: {
+        city: 'Chennai',
+        skills: ['JS', 'React']
+    }
+};
+
+const deepCopyObj = _.cloneDeep(originalDeepObj);
+deepCopyObj.details.city = 'Coimbatore';
+deepCopyObj.details.skills.push('Lodash');
+
+console.warn("Deep Copy Example:");
+console.log(deepCopyObj.details.city); // 'Coimbatore' ✅ changed in deep copy
+console.log(deepCopyObj.details.skills); // ['JS', 'React', 'Lodash'] ✅ changed in deep copy
+
+<span class="badge text-bg-warning">Note : </span>Original object remains unchanged
+console.warn("Original Object :");
+console.log(originalDeepObj.details.city); // 'Chennai' ✅ not changed
+console.log(originalDeepObj.details.skills);// ['JS', 'React'] ✅ not changed
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="clonedeepwith" id="clonedeepwith">
+                        <h4>_.cloneDeepWith(value, [customizer])</h4>
+                        <p>Let’s say we have a user profile object that contains a large image file. We don’t want to
+                            clone the image (it’s heavy and unnecessary), so we’ll leave it untouched using a
+                            customizer.</p>
+                        <pre>
+// Simulating an object with a large image blob
+const userProfile = {
+  name: 'Kesava',
+  age: 28,
+  profileImage: new Blob(['...'], { type: 'image/png' }),
+  preferences: {
+    theme: 'dark',
+    notifications: true
+  }
+};
+// Use cloneDeepWith to skip cloning the blob
+const clonedUsr = _.cloneDeepWith(userProfile, (value) => {
+  if (value instanceof Blob) {
+    return value; // Don't clone, return as-is
+  }
+});
+console.warn("Cloned User Profile:");
+console.log(clonedUsr);
+console.warn("userProfile:");
+console.log(userProfile);
+// Check if the cloned object is a new object
+console.log(clonedUsr === userProfile); // false (new object)
+console.log(clonedUsr.profileImage === userProfile.profileImage); // true (blob is reused)
+console.log(clonedUsr.preferences === userProfile.preferences); // false (deep cloned)
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="cloneMethods" id="cloneMethods">
+                        <table class="table table-bordered table-hover table-condensed table-striped">
+                            <tr>
+                                <th> Method</th>
+                                <th>Level Copied</th>
+                                <th>Use When...</th>
+                            </tr>
+                            <tr>
+                                <td>_.clone </td>
+                                <td>Top-level only</td>
+                                <td>You just need a copy and there are no nested objects</td>
+                            </tr>
+                            <tr>
+                                <td>_.cloneDeep </td>
+                                <td>Everything, deeply</td>
+                                <td>You want full duplication, even nested stuff</td>
+                            </tr>
+                            <tr>
+                                <td>_.cloneDeepWith </td>
+                                <td>Deep + custom </td>
+                                <td> rules You want control over how values are cloned</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="isArray" id="isArray">
+                        <h4>_.isArray(value)</h4>
+                        <p>Checks if the value is an array.</p>
+                        <pre>
+  const valuesCollection = [
+            [1, 2, 3],
+            "hello",
+            { name: "Kesava" },
+            123,
+            null,
+            undefined,
+            true
+    ];
+
+  valuesCollection.forEach((val, index) => {
+    console.log(`Value ${index + 1}:`, val, '| Is Array:', _.isArray(val));
+  });
+
+<span class="badge text-bg-success">Output :</span>
+Value 1: Array(3) | Is Array: true
+Value 2: hello | Is Array: false
+Value 3: Object | Is Array: false
+Value 4: 123 | Is Array: false
+Value 5: null | Is Array: false
+Value 6: undefined | Is Array: false
+Value 7: true | Is Array: false
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="isboolean" id="isboolean">
+                        <h4>_.isBoolean(value)</h4>
+                        <p>Checks if the value is a boolean (true or false).</p>
+                        <pre>
+ const valuesCollectionTwo = [
+    true,
+    false,
+    new Boolean(false), // object wrapper, not primitive
+    0,
+    1,
+    "true",
+    null,
+    undefined
+  ];
+
+  valuesCollectionTwo.forEach((val, index) => {
+    console.log(`Value ${index + 1}:`, val, "| isBoolean:", _.isBoolean(val));
+  });
+
+  <span class="badge text-bg-success">Output :</span>
+Value 1: true | isBoolean: true
+Value 2: false | isBoolean: true
+Value 3: Boolean | isBoolean: true
+Value 4: 0 | isBoolean: false
+Value 5: 1 | isBoolean: false
+Value 6: true | isBoolean: false
+Value 7: null | isBoolean: false
+Value 8: undefined | isBoolean: false
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="isdate" id="isdate">
+                        <h4>_.isDate(value)</h4>
+                        <p>Checks if the value is a Date object.</p>
+                        <pre>
+const d1 = new Date();        // ✅ Date object
+const d2 = Date.now();        // ❌ Just a number (timestamp)
+const d3 = "2024-08-01";      // ❌ Just a string
+
+console.log(_.isDate(d1)); // true
+console.log( _.isDate(d2)); // false
+console.log(_.isDate(d3)); // false
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="isempty" id="isempty">
+                        <h4>_.isEmpty(value)</h4>
+                        <p>Checks if the value is empty. An empty object, array, or string is considered empty.</p>
+                        <pre>
+const emptyObj = {};
+const nonEmptyObj = { name: 'Kesava' };
+const emptyArr = [];
+const nonEmptyArr = [1, 2, 3];
+const emptyStr = '';
+const nonEmptyStr = 'Hello';
+const nullValue = null;
+const undefinedValue = undefined;
+const numValue = 42;
+const boolValue = true;
+<span class="badge text-bg-success"> Output :</span>
+console.log('emptyObj ->',_.isEmpty(emptyObj)); // true
+console.log('nonEmptyObj ->',_.isEmpty(nonEmptyObj)); // false   
+console.log('emptyArr ->',_.isEmpty(emptyArr)); // true
+console.log('nonEmptyArr->',_.isEmpty(nonEmptyArr)); // false
+console.log('emptyStr ->',_.isEmpty(emptyStr)); // true
+console.log('nonEmptyStr ->',_.isEmpty(nonEmptyStr)); // false
+console.log('nullValue ->',_.isEmpty(nullValue)); // true
+console.log('undefinedValue',_.isEmpty(undefinedValue)); // true
+console.log('numValue-> ',_.isEmpty(numValue)); // true (numbers are considered empty)
+console.log('boolValue ->',_.isEmpty(boolValue)); // true (booleans are considered empty)
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="isEqual" id="isEqual">
+                        <h4>_.isEqual(value, other)</h4>
+                        <p>Checks if two values are deeply equal — meaning it
+                            compares not just the top-level values, but also nested structures inside them.</p>
+                        <pre>
+ const order1 = {
+  id: 101,
+  customer: { name: "Kesava", city: "Chennai" },
+  items: [
+    { product: "Laptop", qty: 1, price: 50000 },
+    { product: "Mouse", qty: 1, price: 500 }
+  ]
+};
+
+const order2 = {
+  id: 101,
+  customer: { name: "Kesava", city: "Chennai" },
+  items: [
+    { product: "Laptop", qty: 1, price: 50000 },
+    { product: "Mouse", qty: 1, price: 500 }
+  ]
+};
+
+// Normal equality check
+console.log(order1 === order2); // false ❌ (different references)
+
+// Deep equality check
+console.log(_.isEqual(order1, order2)); // true ✅
+<p> <span class="badge text-bg-warning">Note: </span>
+    If all properties match, returns true
+    If even one property’s value is different, returns false.</p>
+console.log(_.isEqual(5, 5)); // true
+console.log(_.isEqual(5, '5')); // false
+console.log(_.isEqual([1, 2, 3], [1, 2, 3])); // true
+console.log(_.isEqual({ a: 1 }, { a: 1 })); // true
+console.log(_.isEqual({ a: 1 }, { a: 2 })); // false
+console.log(_.isEqual(null, undefined)); // false
+console.log(_.isEqual(null, null)); // true
+console.log(_.isEqual(undefined, undefined)); // true
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="isInteger" id="isInteger">
+                        <h4>_.isInteger(value)</h4>
+                        <p>Checks if the value is an integer (whole number). (a number without any decimal part).</p>
+                        <pre>
+console.log(_.isInteger(4));         // true   → 4 is an integer
+console.log(_.isInteger(4.0));       // true   → 4.0 is still an integer
+console.log(_.isInteger(-4));        // true   → Negative integers are still integers   
+console.log(_.isInteger(0));         // true   → 0 is also an integer
+
+console.log(_.isInteger(4.5));       // false  → Has decimal part
+console.log(_.isInteger(Math.PI));  // false   → Decimal value
+console.log(_.isInteger('4'));       // false  → String, not a number
+console.log(_.isInteger(NaN));       // false  → NaN is not an integer
+console.log(_.isInteger(undefined)); // false  → Not a number at all
+console.log(_.isInteger(null));      // false  → null is not a number
+console.log(_.isInteger(true));      // false  → Boolean true is not an integer
+console.log(_.isInteger(false));     // false  → Boolean false is not an integer
+                
+function canBookSeats(seats) {
+  if (_.isInteger(seats) && seats > 0) {
+    return "Booking confirmed!";
+  } else {
+    return "Please enter a valid whole number of seats.";
+  }
+}
+
+console.log(canBookSeats(3));     // "Booking confirmed!"
+console.log(canBookSeats(3.0));   // "Booking confirmed!"
+console.log(canBookSeats(0.5));   // "Please enter a valid whole number of seats."
+console.log(canBookSeats(3.5));   // "Please enter a valid whole number of seats."
+console.log(canBookSeats('3'));   // "Please enter a valid whole number of seats."
+console.log(canBookSeats(-2));    // "Please enter a valid whole number of seats."
+console.log(canBookSeats(0));     // "Please enter a valid whole number of seats
+                        </pre>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="isnumber" id="isnumber">
+                        <h4>_.isNumber(value)</h4>
+                        <p>Checks if the value is a number (including integers, floats, and NaN).</p>
+                        <pre>
+console.log(_.isNumber(42));          // true   → 42 is a number
+console.log(_.isNumber(3.14));        // true   → 3.14 is a number
+console.log(_.isNumber(NaN));         // true   → NaN is considered a number
+console.log(_.isNumber(Infinity));    // true   → Infinity is a number
+console.log(_.isNumber(-Infinity));   // true   → -Infinity is a number
+console.log(_.isNumber(0));           // true   → 0 is a number
+console.log(_.isNumber(4.0));         // true   → 4.0 is still a number
+console.log(_.isNumber(4.5));         // true   → 4.5 is a number
+console.log(_.isNumber(Number('42'))); // true   → Number('42') is a number
+console.log(_.isNumber(Number('3.14'))); // true   → Number('3.14') is a number
+console.log(_.isNumber(Number('NaN'))); // true   → Number('NaN') is a number (NaN)
+console.log(_.isNumber(Number('')));  // true   → Number('') is 0, which is a number
+console.log(_.isNumber(Number('abc'))); // true → Number('abc') is NaN, which is a number
+
+console.log(_.isNumber('42'));        // false  → '42' is a string      
+console.log(_.isNumber(undefined));   // false  → undefined is not a number
+console.log(_.isNumber(null));        // false  → null is not a number
+console.log(_.isNumber(true));        // false  → true is a boolean, not a number
+console.log(_.isNumber(false));       // false  → false is a boolean, not a number
+console.log(_.isNumber({}));          // false  → {} is an object, not a number
+console.log(_.isNumber([]));          // false  → [] is an array, not a number
+console.log(_.isNumber('3.14'));      // false  → '3.14' is a string, not a number
+console.log(_.isNumber('NaN'));       // false  → 'NaN' is a string, not a number
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="ismatch" id="ismatch">
+                        <h4>_.isMatch(object, source)</h4>
+                        <p>Checks if an object contains all key-value pairs from a source object.</p>
+                        <p><span class="badge text-bg-warning">Note : </span>It’s like asking: "Does this object have at least these key-value pairs?" <br>
+                        If the source object has properties that match the object, it returns true. <br>
+Partial deep comparison is allowed.</p>
+                        <pre>
+const userr = { name: 'John', age: 30, role: 'Admin' };
+console.log(_.isMatch(userr, { age: 30 }));        // true ✅
+console.log(_.isMatch(userr, { role: 'Admin' }));  // true ✅
+console.log(_.isMatch(userr, { age: 25 }));        // false ❌
+console.log(_.isMatch(userr, { name: 'John', age: 30 })); // true ✅
+console.log(_.isMatch(userr, { name: 'John', age: 25 })); // false ❌
+console.log(_.isMatch(userr, { name: 'John', role: 'User' })); // false ❌
+
+const order = {
+  id: 101,
+  customer: { name: 'Alice', city: 'Chennai' },
+  total: 500
+};
+console.log(_.isMatch(order, { customer: { city: 'Chennai' } })); // true ✅
+console.log(_.isMatch(order, { customer: { city: 'Delhi' } }));   // false ❌
+
+const home = {
+  owner: 'Kesava',
+  rooms: { bedroom: 2, kitchen: 1 },
+  location: 'India'
+};
+
+// Check if the home has at least 2 bedrooms
+console.log(_.isMatch(home, { rooms: { bedroom: 2 } })); // true ✅
+
+// Check if the home has 3 bedrooms
+console.log(_.isMatch(home, { rooms: { bedroom: 3 } })); // false ❌
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="" id="">
+                        <h4>_.isNaN(value)</h4>
+                        <p>Checks if the value is NaN (Not a Number).</p><br>
+                        <p>NaN literally means “Not a Number” <br>
+But ironically, in JavaScript, NaN itself is of type number.</p>
+                        <pre>
+console.log('typeof NaN -->',typeof NaN); // "number"
+
+const setOfValues = [NaN, 42, 'hello', undefined, null, true, false, {}, []];
+setOfValues.forEach((val, index) => {
+    console.log(`Value ${index + 1}:`, val, '| Is NaN:', _.isNaN(val));
+})
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="isnil" id="isnil">
+                        <h4>_.isNil(value)</h4>
+                        <p>Checks if the value is null or undefined.</p>
+                        <p>It’s basically a shortcut for: <br>
+value === null || value === undefined // true</p>
+                        <pre>
+ const userData = {
+    name: 'Kesava',   
+    age: 30,
+}
+
+if (<b>!_.isNil(userData)</b>) {
+  console.log("User exists:", user);
+} else {
+  console.log("User is missing!");
+}
+
+const valuesToCheck = [
+  null,
+  undefined,
+  0,
+  '',
+  false,
+  NaN,
+  'Hello',
+  [],
+  {},
+  [1, 2, 3],
+  { a: 1 }
+]
+valuesToCheck.forEach((data,slNo)=>{
+  console.log(`Sl.No :${slNo +1 } - Value: ${data} - Is Nil: ${_.isNil(data)}`);
+})
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <hr>
+             <div class="row">
+                <div class="col">
+                    <div class="method-block" data-name="isnull" id="isnull">
+                        <h4>_.isNull(value)</h4>
+                        <p>Checks if the value is exactly null. <br>
+It will not return true for undefined.</p>
+                        <pre>
+const valuesToCheckNull = [
+    null,
+    undefined,
+    0,
+    '',
+    false,
+    NaN,
+    'Hello',
+    [],
+    {},
+    [1, 2, 3],
+    { a: 1 }
+]
+valuesToCheckNull.forEach((data, slNo) => {
+  console.log(`Sl.No: ${slNo + 1} - Value: ${data} - Is Null: ${_.isNull(data)}`);
+})
+                        </pre>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="method-block" data-name="isobject" id="isobject">
+                        <h4>_.isObject(value)</h4>
+                        <p>Checks if the given value is an object. <br>
+(It includes arrays, functions, objects, regex, dates, wrapper objects, etc., because in JavaScript they’re all technically “objects”.)</p>
+                        <pre>
+const mixedValues = [
+    { name: 'Kesava' }, // Object
+    [1, 2, 3],         // Array
+    'Hello',           // String
+    42,                // Number
+    null,              // Null
+    undefined,         // Undefined
+    true,              // Boolean
+    new Date()        // Date object
+];
+
+<span class="badge text-bg-warning"><b>Modern method of foreach</b></span>
+for(const [i,val] of mixedValues.entries()){
+  console.log(`Sl.no: ${i + 1}:`, val, '| Is Object:', _.isObject(val));
+}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <hr>
+             <div class="row">
+                <div class="col">
+
+                </div>
                 <div class="col">
                     
                 </div>
-                <div class="col"></div>
             </div>
             <script>
                 // scroll to top functionality
@@ -1091,28 +1762,28 @@ n is the current item
                         behavior: 'smooth'
                     });
                 };
-                // search functionality
                 const searchBox = document.getElementById('searchBox');
                 searchBox.addEventListener('input', function () {
                     const keyword = this.value.toLowerCase();
                     const methods = document.querySelectorAll('.method-block');
+                    const hrs = document.querySelectorAll('hr');
+                    const noResults = document.getElementById('noResults');
+                    let anyVisible = false;
+                    // Show/hide methods based on match
                     methods.forEach(method => {
                         const methodName = method.dataset.name.toLowerCase();
                         const isMatch = methodName.includes(keyword);
                         method.style.display = isMatch ? 'block' : 'none';
-                        // Hide/show the next hr after the matched method-block
-                        const nextHr = method.nextElementSibling;
-                        if (nextHr && nextHr.tagName === 'HR') {
-                            nextHr.style.display = isMatch ? 'block' : 'none';
-                        }
-                        // If no methods match, show the "No results found" message
-                        const noResults = document.getElementById('noResults');
-                        if (noResults) {
-                            const anyVisible = Array.from(methods).some(m => m.style.display === 'block');
-                            noResults.style.display = anyVisible ? 'none' : 'block';
+                        if (isMatch) {
+                            // Hide all hr tags
+                            hrs.forEach(hr => hr.style.display = 'none');
+                            anyVisible = true;
                         }
                     });
+                    // Show or hide "No results found" message
+                    noResults.style.display = anyVisible ? 'none' : 'block';
                 });
+
             </script>
 </body>
 
