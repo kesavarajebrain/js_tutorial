@@ -1,4 +1,5 @@
 console.warn('Lodash');
+console.log("Lodash version:", _.VERSION);
 console.warn("_.chunk")
 // _.chunk(array, size)
 const items = [1, 2, 3, 4, 5, 6, 7];
@@ -885,13 +886,57 @@ const valuesToCheckNumber = [
         'abc',             // Non-numeric string
         '123abc'           // Mixed string
 ];
-
 valuesToCheckNumber.forEach((val, index) => {
     console.log(`Sl.no ${index + 1}:`, val, '| Converted to Number:', _.toNumber(val));
 });
-
-
-
+console.warn("._toString");
+const valuesToCheckString = [
+    42,                // Integer
+    3.14,              // Float
+    -7,                // Negative Integer
+    0,                 // Zero
+    '100',             // String
+    null,              // Null
+    undefined,         // Undefined
+    true,              // Boolean
+    false,             // Boolean
+    {},                // Object
+    [],                // Array
+    new Date(),       // Date object
+    '20.67',           // String with decimal
+    'abc',             // Non-numeric string
+    '123abc'           // Mixed string
+];
+for (const [i,val] of valuesToCheckString.entries()){
+  console.log(`Sl.no : ${i + 1} -Value: ${val} - Converted to String:`, _.toString(val));
+}
+console.warn("._add")
+console.log(_.add(5, 3)); // Output: 8
+console.log(_.add(10, 20)); // Output: 30
+console.log(_.add("10", 26)); // Output: 36 (string "10" is converted to number)
+console.log(_.add(10, "26")); // Output: 36 (string "26" is converted to number)
+console.log(_.add("10", "26")); // Output: 36 (both strings are converted to numbers)
+console.warn("_.sum")
+const numberss = [1, 2, 3, 4, 5];
+console.log(_.sum(numberss)); // Output: 15
+const mixedArray = [1, '2', 3, '4', 5];
+console.log(_.sum(mixedArray)); // Output: 15 (strings are converted to numbers)
+const emptyArray = [];  
+console.log(_.sum(emptyArray)); // Output: 0 (no elements to sum)
+const arrayWithNaN = [1, 2, NaN, 4];
+console.log(_.sum(arrayWithNaN)); // Output: 7 (NaN is ignored in the sum)
+const productCart = [
+  { price: 10, quantity: 2 },
+  { price: 20, quantity: 1 },
+  { price: 5, quantity: 2 },
+  { price: 10, quantity: 3 },
+];
+const totalAmount = _.sum(productCart.map(item=>item.price))
+console.log('sum item.price ->',totalAmount); // Output: 35 (summing prices of products)
+const totalQuantity = _.sum(productCart.map(item=>item.quantity))
+console.log('sum item.quantity ->',totalQuantity); // Output: 8 (summing quantities of products)
+const totalPrice = _.sumBy(productCart, item => item.price * item.quantity);
+console.log('sum item.price * item.quantity ->',totalPrice); // Output: 80 (summing total price of products)
 
 
 

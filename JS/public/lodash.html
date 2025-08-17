@@ -1879,6 +1879,85 @@ valuesToCheckNumber.forEach((val, index) => {
                 </div>
                 <hr>
                 <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="tostring" id="tostring">
+                            <h4>_.toString(value)</h4>
+                            <p>Converts a value to a string. If the value is already a string, it returns that value.
+                                If the value is not a string, it converts it to a string representation.</p>
+                            <pre>
+const valuesToCheckString = [
+        42,                // Integer
+        3.14,              // Float
+        -7,                // Negative Integer
+        0,                 // Zero
+        '100',             // String
+        null,              // Null
+        undefined,         // Undefined
+        true,              // Boolean
+        false,             // Boolean
+        {},                // Object
+        [],                // Array
+        new Date(),       // Date object
+        '20.67',           // String with decimal
+        'abc',             // Non-numeric string
+        '123abc'           // Mixed string
+];
+
+for (const [i,val] of valuesToCheckString.entries()){
+  console.log(`Sl.no : ${i + 1} -Value: ${val} - Converted to String:`, _.toString(val));
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" data-name="add" id="add">
+                            <h4>_.add(augend, addend)</h4>
+                            <p>Adds two numbers together and returns the result.</p>
+                            <pre>
+console.log(_.add(5, 3)); // Output: 8
+console.log(_.add(10, 20)); // Output: 30
+console.log(_.add("10", 26)); // Output: 36 (string "10" is converted to number)
+console.log(_.add(10, "26")); // Output: 36 (string "26" is converted to number)
+console.log(_.add("10", "26")); // Output: 36 (both strings are converted to numbers)
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="sum" id="sum">
+                            <h4>_.sum(array)</h4>
+                            <p>Calculates the sum of all elements in an array.</p>
+                            <pre>
+const numberss = [1, 2, 3, 4, 5];
+console.log(_.sum(numberss)); // Output: 15
+const mixedArray = [1, '2', 3, '4', 5];
+console.log(_.sum(mixedArray)); // Output: 15 (strings are converted to numbers)
+const emptyArray = [];  
+console.log(_.sum(emptyArray)); // Output: 0 (no elements to sum)
+const arrayWithNaN = [1, 2, NaN, 4];
+console.log(_.sum(arrayWithNaN)); // Output: 7 (NaN is ignored in the sum)
+
+const productCart = [
+  { price: 10, quantity: 2 },
+  { price: 20, quantity: 1 },
+  { price: 5, quantity: 2 },
+  { price: 10, quantity: 3 },
+];
+
+const totalAmount = _.sum(productCart.map(item=>item.price))
+console.log('sum item.price ->',totalAmount); // Output: 35 (summing prices of products)
+const totalQuantity = _.sum(productCart.map(item=>item.quantity))
+console.log('sum item.quantity ->',totalQuantity); // Output: 8 (summing quantities of products)
+const totalPrice = _.sumBy(productCart, item => item.price * item.quantity);
+console.log('sum item.price * item.quantity ->',totalPrice); // Output: 80 (summing total price of products)
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                 <div class="row">
                     <div class="col"></div>
                     <div class="col"></div>
                 </div>
