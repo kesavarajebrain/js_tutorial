@@ -796,10 +796,99 @@ const mixedValues = [
 for(const [i,val] of mixedValues.entries()){
   console.log(`Sl.no: ${i + 1}:`, val, '| Is Object:', _.isObject(val));
 }
+console.warn("._isstring");
+  function validateName(name) {                            
+        if (_.isString(name) && !_.isEmpty(name)) {
+            console.log("Valid name:", name);
+            } else {
+            console.log("Invalid name!");
+        }
+    }
+validateName("Raj"); // Valid name: Raj
+validateName(123); // Invalid name!
+validateName(""); // Invalid name!
+validateName(null); // Invalid name!
+validateName(undefined); // Invalid name!
+validateName(""); // Invalid name!
+validateName("Anbu"); // Valid name: Anbu
+validateName(456); // Invalid name!
+const stringValues = [
+  'Hello',
+  '123',
+  '',
+  null,
+  undefined,
+  true,
+  false,
+  {},
+  [],
+  new Date()
+];
+stringValues.forEach((val, index) => {
+  console.log(`Sl.no ${index + 1}:`, val, '| Is String:', _.isString(val));
+});
+console.warn("._toArray");
+const toArrayValues = [
+    { name: 'Kesava' }, // Object   
+    [1, 2, 3],         // Array
+    'Hello',           // String
+    42,                // Number
+    null,              // Null
+    undefined,         // Undefined
+    true,              // Boolean   
+    new Date()        // Date object
+];
+toArrayValues.forEach((val, index) => {
+    const arrayValue = _.toArray(val);
+    console.log(`Sl.no ${index + 1}:`, val, '| Converted to Array:', arrayValue);
+});
 
+const objectToArray = { tamil: 70, english: 72, maths: 35, science: 60, social: 50 };
+const arrayFromObject = _.toArray(objectToArray);
+console.log('Object to Array:', arrayFromObject);
+const highMarks = arrayFromObject.filter((mark)=>mark >50);
+console.log('Marks greater than 50:', highMarks);
+console.warn("._tointeger");
+const valuesToCheckInteger = [
+    42,                // Integer
+    3.14,              // Float     
+    -7,                // Negative Integer
+    0,                 // Zero
+    '100',             // String
+    null,              // Null
+    undefined,         // Undefined     
+    true,              // Boolean
+    false,             // Boolean
+    {},                // Object
+    [],                // Array
+    new Date(),       // Date object
+    20.67
+];
+valuesToCheckInteger.forEach((val, index) => {
+    console.log(`Sl.no ${index + 1}:`, val, '| Is Integer:', _.toInteger(val));
+});
+console.warn("._toNumber");
+const valuesToCheckNumber = [
+        42,                // Integer   
+        3.14,              // Float
+        -7,                // Negative Integer
+        0,                 // Zero
+        '100',             // String
+        null,              // Null
+        undefined,         // Undefined
+        true,              // Boolean
+        false,             // Boolean
+        {},                // Object
+        [],                // Array
+        new Date(),       // Date object
+        '20.67',           // String with decimal
+        'abc',             // Non-numeric string
+        '123abc'           // Mixed string
+];
 
-
-
+valuesToCheckNumber.forEach((val, index) => {
+    console.log(`Sl.no ${index + 1}:`, val, '| Converted to Number:', _.toNumber(val));
+});
 
 
 

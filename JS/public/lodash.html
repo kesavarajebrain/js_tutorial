@@ -1555,15 +1555,15 @@ console.log(canBookSeats('3'));   // "Please enter a valid whole number of seats
 console.log(canBookSeats(-2));    // "Please enter a valid whole number of seats."
 console.log(canBookSeats(0));     // "Please enter a valid whole number of seats
                         </pre>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col">
-                    <div class="method-block" data-name="isnumber" id="isnumber">
-                        <h4>_.isNumber(value)</h4>
-                        <p>Checks if the value is a number (including integers, floats, and NaN).</p>
-                        <pre>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="isnumber" id="isnumber">
+                            <h4>_.isNumber(value)</h4>
+                            <p>Checks if the value is a number (including integers, floats, and NaN).</p>
+                            <pre>
 console.log(_.isNumber(42));          // true   → 42 is a number
 console.log(_.isNumber(3.14));        // true   → 3.14 is a number
 console.log(_.isNumber(NaN));         // true   → NaN is considered a number
@@ -1588,16 +1588,17 @@ console.log(_.isNumber([]));          // false  → [] is an array, not a number
 console.log(_.isNumber('3.14'));      // false  → '3.14' is a string, not a number
 console.log(_.isNumber('NaN'));       // false  → 'NaN' is a string, not a number
                         </pre>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="method-block" data-name="ismatch" id="ismatch">
-                        <h4>_.isMatch(object, source)</h4>
-                        <p>Checks if an object contains all key-value pairs from a source object.</p>
-                        <p><span class="badge text-bg-warning">Note : </span>It’s like asking: "Does this object have at least these key-value pairs?" <br>
-                        If the source object has properties that match the object, it returns true. <br>
-Partial deep comparison is allowed.</p>
-                        <pre>
+                    <div class="col">
+                        <div class="method-block" data-name="ismatch" id="ismatch">
+                            <h4>_.isMatch(object, source)</h4>
+                            <p>Checks if an object contains all key-value pairs from a source object.</p>
+                            <p><span class="badge text-bg-warning">Note : </span>It’s like asking: "Does this object
+                                have at least these key-value pairs?" <br>
+                                If the source object has properties that match the object, it returns true. <br>
+                                Partial deep comparison is allowed.</p>
+                            <pre>
 const userr = { name: 'John', age: 30, role: 'Admin' };
 console.log(_.isMatch(userr, { age: 30 }));        // true ✅
 console.log(_.isMatch(userr, { role: 'Admin' }));  // true ✅
@@ -1626,18 +1627,18 @@ console.log(_.isMatch(home, { rooms: { bedroom: 2 } })); // true ✅
 // Check if the home has 3 bedrooms
 console.log(_.isMatch(home, { rooms: { bedroom: 3 } })); // false ❌
                         </pre>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col">
-                    <div class="method-block" data-name="" id="">
-                        <h4>_.isNaN(value)</h4>
-                        <p>Checks if the value is NaN (Not a Number).</p><br>
-                        <p>NaN literally means “Not a Number” <br>
-But ironically, in JavaScript, NaN itself is of type number.</p>
-                        <pre>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="" id="">
+                            <h4>_.isNaN(value)</h4>
+                            <p>Checks if the value is NaN (Not a Number).</p><br>
+                            <p>NaN literally means “Not a Number” <br>
+                                But ironically, in JavaScript, NaN itself is of type number.</p>
+                            <pre>
 console.log('typeof NaN -->',typeof NaN); // "number"
 
 const setOfValues = [NaN, 42, 'hello', undefined, null, true, false, {}, []];
@@ -1645,15 +1646,15 @@ setOfValues.forEach((val, index) => {
     console.log(`Value ${index + 1}:`, val, '| Is NaN:', _.isNaN(val));
 })
                         </pre>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="method-block" data-name="isnil" id="isnil">
-                        <h4>_.isNil(value)</h4>
-                        <p>Checks if the value is null or undefined.</p>
-                        <p>It’s basically a shortcut for: <br>
-value === null || value === undefined // true</p>
-                        <pre>
+                    <div class="col">
+                        <div class="method-block" data-name="isnil" id="isnil">
+                            <h4>_.isNil(value)</h4>
+                            <p>Checks if the value is null or undefined.</p>
+                            <p>It’s basically a shortcut for: <br>
+                                value === null || value === undefined // true</p>
+                            <pre>
  const userData = {
     name: 'Kesava',   
     age: 30,
@@ -1682,17 +1683,17 @@ valuesToCheck.forEach((data,slNo)=>{
   console.log(`Sl.No :${slNo +1 } - Value: ${data} - Is Nil: ${_.isNil(data)}`);
 })
                         </pre>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-             <div class="row">
-                <div class="col">
-                    <div class="method-block" data-name="isnull" id="isnull">
-                        <h4>_.isNull(value)</h4>
-                        <p>Checks if the value is exactly null. <br>
-It will not return true for undefined.</p>
-                        <pre>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="isnull" id="isnull">
+                            <h4>_.isNull(value)</h4>
+                            <p>Checks if the value is exactly null. <br>
+                                It will not return true for undefined.</p>
+                            <pre>
 const valuesToCheckNull = [
     null,
     undefined,
@@ -1710,14 +1711,15 @@ valuesToCheckNull.forEach((data, slNo) => {
   console.log(`Sl.No: ${slNo + 1} - Value: ${data} - Is Null: ${_.isNull(data)}`);
 })
                         </pre>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="method-block" data-name="isobject" id="isobject">
-                        <h4>_.isObject(value)</h4>
-                        <p>Checks if the given value is an object. <br>
-(It includes arrays, functions, objects, regex, dates, wrapper objects, etc., because in JavaScript they’re all technically “objects”.)</p>
-                        <pre>
+                    <div class="col">
+                        <div class="method-block" data-name="isobject" id="isobject">
+                            <h4>_.isObject(value)</h4>
+                            <p>Checks if the given value is an object. <br>
+                                (It includes arrays, functions, objects, regex, dates, wrapper objects, etc., because in
+                                JavaScript they’re all technically “objects”.)</p>
+                            <pre>
 const mixedValues = [
     { name: 'Kesava' }, // Object
     [1, 2, 3],         // Array
@@ -1734,57 +1736,191 @@ for(const [i,val] of mixedValues.entries()){
   console.log(`Sl.no: ${i + 1}:`, val, '| Is Object:', _.isObject(val));
 }
                         </pre>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-             <div class="row">
-                <div class="col">
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="isstring" id="isstring">
+                            <h4>_.isString(value)</h4>
+                            <p>Checks if the given value is a string primitive ('hello') or a String object (new
+                                String('hello')).</p>
+                            <pre>
+    function validateName(name) {                            
+        if (_.isString(name) && !_.isEmpty(name)) {
+            console.log("Valid name:", name);
+            } else {
+            console.log("Invalid name!");
+        }
+    }
 
+validateName("Raj"); // Valid name: Raj
+validateName(123); // Invalid name!
+validateName(""); // Invalid name!
+validateName(null); // Invalid name!
+validateName(undefined); // Invalid name!
+validateName(""); // Invalid name!
+validateName("Anbu"); // Valid name: Anbu
+validateName(456); // Invalid name!
+
+    const stringValues = [
+        'Hello',
+        '123',
+        '',
+        null,
+        undefined,
+        true,
+        false,
+        {},
+        [],
+        new Date()
+    ];
+
+stringValues.forEach((val, index) => {
+  console.log(`Sl.no ${index + 1}:`, val, '| Is String:', _.isString(val));
+});
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" data-name="toarray" id="toarray">
+                            <h4>_.toArray(value)</h4>
+                            <p>Converts a value to an array. If the value is already an array, it returns a shallow copy
+                                of that array.</p>
+                            <p>_.toArray = normalize anything into an array → safe for iteration.</p>
+                            <pre>
+const mixedValues = [
+    { name: 'Kesava' }, // Object   
+    [1, 2, 3],         // Array
+    'Hello',           // String
+    42,                // Number
+    null,              // Null
+    undefined,         // Undefined
+    true,              // Boolean   
+    new Date()        // Date object
+];
+
+mixedValues.forEach((val, index) => {
+    const arrayValue = _.toArray(val);
+    console.log(`Sl.no ${index + 1}:`, val, '| Converted to Array:', arrayValue);
+});
+
+<p><span class="badge text-bg-warning">Note: </span> <b>filter objcts using toArray</b></p>
+const objectToArray = { tamil: 70, english: 72, maths: 35, science: 60, social: 50 };
+const arrayFromObject = _.toArray(objectToArray);
+console.log('Object to Array:', arrayFromObject);
+const highMarks = arrayFromObject.filter((mark)=>mark >50);
+console.log('Marks greater than 50:', highMarks);
+                            </pre>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="tointeger" id="tointeger">
+                            <h4>_.toInteger(value)</h4>
+                            <p>Converts a value to an integer. If the value is already an integer, it returns that
+                                value.
+                                If the value is a float, it rounds it down to the nearest integer.</p>
+                            <pre>
+const valuesToCheckInteger = [
+    42,                // Integer
+    3.14,              // Float     
+    -7,                // Negative Integer
+    0,                 // Zero
+    '100',             // String
+    null,              // Null
+    undefined,         // Undefined     
+    true,              // Boolean
+    false,             // Boolean
+    {},                // Object
+    [],                // Array
+    new Date() ,       // Date object
+    20.67
+];
+valuesToCheckInteger.forEach((val, index) => {
+    console.log(`Sl.no ${index + 1}:`, val, '| Is Integer:', _.toInteger(val));
+});
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" data-name="tonumber" id="tonumber">
+                            <h4>_.toNumber(value)</h4>
+                            <p>Converts a value to a number. If the value is already a number, it returns that value.
+                                If the value is a string that can be converted to a number, it converts it.</p>
+                            <pre>
+const valuesToCheckNumber = [
+        42,                // Integer   
+        3.14,              // Float
+        -7,                // Negative Integer
+        0,                 // Zero
+        '100',             // String
+        null,              // Null
+        undefined,         // Undefined
+        true,              // Boolean
+        false,             // Boolean
+        {},                // Object
+        [],                // Array
+        new Date(),       // Date object
+        '20.67',           // String with decimal
+        'abc',             // Non-numeric string
+        '123abc'           // Mixed string
+];
+
+valuesToCheckNumber.forEach((val, index) => {
+    console.log(`Sl.no ${index + 1}:`, val, '| Converted to Number:', _.toNumber(val));
+});
+                            </pre>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <script>
-                // scroll to top functionality
-                const scrollBtn = document.getElementById('scrollTopBtn');
-                window.onscroll = function () {
-                    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                        scrollBtn.style.display = "flex";
-                    } else {
-                        scrollBtn.style.display = "none";
-                    }
-                };
-                scrollBtn.onclick = function () {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                };
-                const searchBox = document.getElementById('searchBox');
-                searchBox.addEventListener('input', function () {
-                    const keyword = this.value.toLowerCase();
-                    const methods = document.querySelectorAll('.method-block');
-                    const hrs = document.querySelectorAll('hr');
-                    const noResults = document.getElementById('noResults');
-                    let anyVisible = false;
-                    // Show/hide methods based on match
-                    methods.forEach(method => {
-                        const methodName = method.dataset.name.toLowerCase();
-                        const isMatch = methodName.includes(keyword);
-                        method.style.display = isMatch ? 'block' : 'none';
-                        if (isMatch) {
-                            // Hide all hr tags
-                            hrs.forEach(hr => hr.style.display = 'none');
-                            anyVisible = true;
+                <hr>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <script>
+                    // scroll to top functionality
+                    const scrollBtn = document.getElementById('scrollTopBtn');
+                    window.onscroll = function () {
+                        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                            scrollBtn.style.display = "flex";
+                        } else {
+                            scrollBtn.style.display = "none";
                         }
+                    };
+                    scrollBtn.onclick = function () {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    };
+                    const searchBox = document.getElementById('searchBox');
+                    searchBox.addEventListener('input', function () {
+                        const keyword = this.value.toLowerCase();
+                        const methods = document.querySelectorAll('.method-block');
+                        const hrs = document.querySelectorAll('hr');
+                        const noResults = document.getElementById('noResults');
+                        let anyVisible = false;
+                        // Show/hide methods based on match
+                        methods.forEach(method => {
+                            const methodName = method.dataset.name.toLowerCase();
+                            const isMatch = methodName.includes(keyword);
+                            method.style.display = isMatch ? 'block' : 'none';
+                            if (isMatch) {
+                                // Hide all hr tags
+                                hrs.forEach(hr => hr.style.display = 'none');
+                                anyVisible = true;
+                            }
+                        });
+                        // Show or hide "No results found" message
+                        noResults.style.display = anyVisible ? 'none' : 'block';
                     });
-                    // Show or hide "No results found" message
-                    noResults.style.display = anyVisible ? 'none' : 'block';
-                });
 
-            </script>
+                </script>
 </body>
 
 </html>
