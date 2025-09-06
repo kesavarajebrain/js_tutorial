@@ -1933,7 +1933,7 @@ console.log(_.add("10", "26")); // Output: 36 (both strings are converted to num
 const numberss = [1, 2, 3, 4, 5];
 console.log(_.sum(numberss)); // Output: 15
 const mixedArray = [1, '2', 3, '4', 5];
-console.log(_.sum(mixedArray)); // Output: 15 (strings are converted to numbers)
+console.log(_.sum(mixedArray)); // Output: 12345 (strings are appended, not added)
 const emptyArray = [];  
 console.log(_.sum(emptyArray)); // Output: 0 (no elements to sum)
 const arrayWithNaN = [1, 2, NaN, 4];
@@ -1946,12 +1946,146 @@ const productCart = [
   { price: 10, quantity: 3 },
 ];
 
+//summing prices of products
 const totalAmount = _.sum(productCart.map(item=>item.price))
-console.log('sum item.price ->',totalAmount); // Output: 35 (summing prices of products)
+console.log('sum item.price ->',totalAmount); // Output: 45 
+
+//summing quantities of products
 const totalQuantity = _.sum(productCart.map(item=>item.quantity))
-console.log('sum item.quantity ->',totalQuantity); // Output: 8 (summing quantities of products)
+console.log('sum item.quantity ->',totalQuantity); // Output: 8
+
+//summing total price of products
 const totalPrice = _.sumBy(productCart, item => item.price * item.quantity);
-console.log('sum item.price * item.quantity ->',totalPrice); // Output: 80 (summing total price of products)
+console.log('sum item.price * item.quantity ->',totalPrice); // Output: 80 
+
+<p><span class="badge text-bg-warning">Note :</span> _.sum → works directly on an array of numbers.</p>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" data-name="sumby" id="sumby">
+                            <h4>_.sumBy(array, [iteratee=_.identity])</h4>
+                            <p>Calculates the sum of a specific property or the result of a function applied to each
+                                element in an array of objects.</p>
+                            <pre>
+const products = [
+  { name: 'Laptop', price: 1000, quantity: 2 }, 
+  { name: 'Phone', price: 500, quantity: 3 },
+  { name: 'Tablet', price: 300, quantity: 4 }
+];
+
+// Sum of all prices
+const totalPrice = _.sumBy(products, 'price');
+console.log('Total Price:', totalPrice); // Output: 1800
+
+// Sum of all quantities
+const totalQuantity = _.sumBy(products, 'quantity');
+console.log('Total Quantity:', totalQuantity); // Output: 9
+
+// Sum of total value (price * quantity) for each product
+const totalValue = _.sumBy(products, item => item.price * item.quantity); // Output: 4700
+console.log('Total Value:', totalValue);
+
+<p><span class="badge text-bg-warning">Note :</span> _.sumBy → works on objects/complex arrays where you specify what to sum.</p>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                 <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="assign" id="assign">
+                            <h4>_.assign(object, [sources])</h4>
+                            <p>Copies properties from one or more source objects to a target object. If the same property
+                                exists in multiple sources, the last source's value will overwrite earlier ones.</p>
+                            <pre>
+const object1 = { a: 1, b: 2 };
+const object2 = { c: 3, d: 4 };
+const object3 = { e: 5, f: 6 };
+const mergedObject = _.assign({}, object1, object2, object3); 
+console.log('mergedObject ->',mergedObject); // { a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }
+
+const target1 = { a: 1, b: 2 };
+const source1 = { b: 4, c: 5 };
+const resultOne = _.assign(target, source);
+console.log('result ->',resultOne); // { a: 1, b: 4, c: 5 }
+console.log('target ->',target1); // { a: 1, b: 4, c: 5 } (target1 is mutated) <b>அதாவது "மாற்றப்பட்டு விட்டது" என்ற அர்த்தம்.</b>
+
+const target2 = { a: 1, b: 2 };
+const source2 = { b: 4, c: 5 };
+const result2 = _.assign({}, target2,source2);
+console.log('result2 ->',result2); // { a: 1, b: 4, c: 5 }
+console.log('target2 ->',target2); // { a: 1, b: 2 } (target2 is NOT mutated)
+
+const defaultSettings = { theme: "light", notifications: true };
+const userSettings = { theme: "dark" };
+
+const finalSettings = _.assign({}, defaultSettings, userSettings);
+console.log('finalSettings ->',finalSettings);
+// → { theme: "dark", notifications: true }
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" data-name="at" id="at">
+                            <h4>_.at(object, [paths])</h4>
+                            <p>Retrieves the values at specified paths from an object and returns them as an array.</p>
+                            <pre>
+const domainUser = {
+  name: "Kesava",
+  age: 27,
+  address: {
+    city: "Trichy",
+    pincode: 600001
+  }
+};
+
+const domainUserResult = _.at(domainUser, ['name', 'address.city', 'address.pincode']);
+console.log(domainUserResult);
+// Output: ['Kesava', 'Trichy', 600001]
+
+const domainUsers = [
+  { id: 1, name: "Anbu" },
+  { id: 2, name: "Bala" },
+  { id: 3, name: "Chandra" }
+];
+
+const names = _.at(domainUsers, [0, 2, '[1].name']);
+console.log(names);
+// Output: [ { id: 1, name: 'Anbu' }, { id: 3, name: 'Chandra' }, 'Bala' ]
+
+<p><span class="badge text-bg-warning">Note :</span> Its works in nested objects</p>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                 <div class="row">
+                    <div class="col">
+                        <div class="method-block" data-name="pick" id="pick">
+                            <h4>_.pick(object, [paths])</h4>
+                            <p>Creates a new object by selecting specific properties from an existing object.</p>
+                            <pre>
+const specailUser = {
+  name: "Kesava",
+  age: 27
+};
+
+const specailUserResult = _.pick(specailUser, ['name','age']);
+console.log(specailUserResult);
+// Output: { name: 'Kesava', age: 27 }
+
+const domainUsers1 = [
+  { id: 1, name: "Anbu" },
+  { id: 2, name: "Bala" },
+  { id: 3, name: "Chandra" }
+];
+
+const names1 = _.pick(domainUsers, [0, 2, '[1].name']);
+console.log(names1);
+// Output: { { id: 1, name: 'Anbu' }, { id: 3, name: 'Chandra' }, 'Bala' }
+
+<p><span class="badge text-bg-warning">Note :</span> Its works in top-level</p>
                             </pre>
                         </div>
                     </div>

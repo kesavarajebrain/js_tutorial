@@ -931,16 +931,97 @@ const productCart = [
   { price: 5, quantity: 2 },
   { price: 10, quantity: 3 },
 ];
-const totalAmount = _.sum(productCart.map(item=>item.price))
-console.log('sum item.price ->',totalAmount); // Output: 35 (summing prices of products)
+const totAmount = _.sum(productCart.map(item=>item.price))
+console.log('sum item.price ->',totAmount); // Output: 35 (summing prices of products)
 const totalQuantity = _.sum(productCart.map(item=>item.quantity))
 console.log('sum item.quantity ->',totalQuantity); // Output: 8 (summing quantities of products)
 const totalPrice = _.sumBy(productCart, item => item.price * item.quantity);
 console.log('sum item.price * item.quantity ->',totalPrice); // Output: 80 (summing total price of products)
+console.warn("_sumBy")
+const products = [
+  { name: 'Laptop', price: 1000, quantity: 2 }, 
+  { name: 'Phone', price: 500, quantity: 3 },
+  { name: 'Tablet', price: 300, quantity: 4 }
+];
+
+// Sum of all prices
+const totPrice = _.sumBy(products, 'price');
+console.log('Total Price:', totPrice); // Output: 1800
+
+// Sum of all quantities
+const totQuantity = _.sumBy(products, 'quantity');
+console.log('Total Quantity:', totQuantity); // Output: 9
+
+// Sum of total value (price * quantity) for each product
+const totalValue = _.sumBy(products, item => item.price * item.quantity); // Output: 4700
+console.log('Total Value:', totalValue);
+console.warn("_assign")
+const object1 = { a: 1, b: 2 };
+const object2 = { c: 3, d: 4 };
+const object3 = { e: 5, f: 6 };
+const mergedObject = _.assign({}, object1, object2, object3); 
+console.log('mergedObject ->',mergedObject); // { a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }
+
+const target1 = { a: 1, b: 2 };
+const source1 = { b: 4, c: 5 };
+const resultOne = _.assign(target1, source1);
+console.log('result ->',resultOne); // { a: 1, b: 4, c: 5 }
+console.log('target ->',target1); // { a: 1, b: 4, c: 5 } (target is mutated)
+
+const target2 = { a: 1, b: 2 };
+const source2 = { b: 4, c: 5 };
+const result2 = _.assign({}, target2,source2);
+console.log('result2 ->',result2); // { a: 1, b: 4, c: 5 }
+console.log('target2 ->',target2); // { a: 1, b: 2 } (target is NOT mutated)
 
 
+const defaultSettings = { theme: "light", notifications: true };
+const userSettings = { theme: "dark" };
 
+const finalSettings = _.assign({}, defaultSettings, userSettings);
+console.log('finalSettings ->',finalSettings);
+// → { theme: "dark", notifications: true }
+console.warn("_.at")
+const domainUser = {
+  name: "Kesava",
+  age: 27,
+  address: {
+    city: "Trichy",
+    pincode: 600001
+  }
+};
 
+const domainUserResult = _.at(domainUser, ['name', 'address.city', 'address.pincode']);
+console.log(domainUserResult);
+// Output: ['Kesava', 'Trichy', 600001]
+
+const domainUsers = [
+  { id: 1, name: "Anbu" },
+  { id: 2, name: "Bala" },
+  { id: 3, name: "Chandra" }
+];
+
+const names = _.at(domainUsers, [0, 2, '[1].name']);
+console.log(names);
+// Output: [ { id: 1, name: 'Anbu' }, { id: 3, name: 'Chandra' }, 'Bala' ]
+console.warn("_.pick")
+const specailUser = {
+  name: "Kesava",
+  age: 27
+};
+
+const specailUserResult = _.pick(specailUser, ['name','age']);
+console.log(specailUserResult);
+// Output: { name: 'Kesava', age: 27 }
+const domainUsers1 = [
+  { id: 1, name: "Anbu" },
+  { id: 2, name: "Bala" },
+  { id: 3, name: "Chandra" }
+];
+
+const names1 = _.pick(domainUsers, [0, 2, '[1].name']);
+console.log(names1);
+// Output: { { id: 1, name: 'Anbu' }, { id: 3, name: 'Chandra' }, 'Bala' }
 
 
 
