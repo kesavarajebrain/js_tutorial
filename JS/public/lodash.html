@@ -21,7 +21,8 @@
         <button class="btn btn-primary">← Back</button>
     </a>
     <div class="container">
-        <p>Lodash is a modern JavaScript utility library delivering modularity, performance, and extras.</p>
+        <p class="text-center">Lodash is a modern JavaScript utility library delivering modularity, performance, and
+            extras.</p>
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text txt-bold">Search any lodash methods</span>
             <input type="text" class="form-control" id="searchBox" aria-label="Sizing example input"
@@ -1992,11 +1993,12 @@ console.log('Total Value:', totalValue);
                     </div>
                 </div>
                 <hr>
-                 <div class="row">
+                <div class="row">
                     <div class="col">
                         <div class="method-block" data-name="assign" id="assign">
                             <h4>_.assign(object, [sources])</h4>
-                            <p>Copies properties from one or more source objects to a target object. If the same property
+                            <p>Copies properties from one or more source objects to a target object. If the same
+                                property
                                 exists in multiple sources, the last source's value will overwrite earlier ones.</p>
                             <pre>
 const object1 = { a: 1, b: 2 };
@@ -2060,7 +2062,7 @@ console.log(names);
                     </div>
                 </div>
                 <hr>
-                 <div class="row">
+                <div class="row">
                     <div class="col">
                         <div class="method-block" data-name="pick" id="pick">
                             <h4>_.pick(object, [paths])</h4>
@@ -2089,9 +2091,200 @@ console.log(names1);
                             </pre>
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="method-block" id="entries" data-name="entries">
+                            <h4>_.entries(object)</h4>
+                            <p>Converts an object into an array of key-value pairs.</p>
+                            <pre>
+    const objDetails = {
+            name: "Kesava",   
+            age: 27,
+            age: 28,
+            age: 20,
+            city: "Trichy"
+        };
+    const entriesArray = _.entries(objDetails);
+    console.log(entriesArray);
+
+// Output: [ ['name', 'Kesava'], ['age', 20], ['city', 'Trichy'] ]
+
+<p><span class="text-bg-danger">Note :</span> In JavaScript objects, keys must be unique.
+If you repeat a key (age in your example), the last value wins.</p>
+    const settings = { theme: "dark", notifications: true };
+    _.entries(settings).forEach(([key, value]) => {
+    console.log(`${key}: ${value}`);
+    });
+
+// Output: theme: dark notifications: true
+
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" id="set" data-name="set">
+                            <h4>_.set(object, path, value)</h4>
+                            <p>Sets the value at a specified path within an object. If the path does not exist,
+                                it creates the necessary nested structure.</p>
+                            <pre>
+const setUser = { name: "Kesava" };
+    _.set(setUser, 'age', 27);
+    _.set(setUser, 'address.city', 'Trichy');
+    _.set(setUser, 'address.pincode', 600001);
+console.log(setUser);
+
+// {
+//   name: 'Kesava',  
+//   age: 27,
+//   address: { city: 'Trichy', pincode: 600001 }
+// }  
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" id="get" data-name="get">
+                            <h4>_.get(object, path, [defaultValue])</h4>
+                            <p>Retrieves the value at a specified path within an object. If the path does not exist,
+                                it returns undefined or a default value if provided.</p>
+                            <pre>
+const getUser = {
+    name: "Kesava",
+    address: {
+        city: "Trichy",
+        pincode: 600001
+    }
+};
+console.log(_.get(getUser, 'address.city'));  // "Trichy"
+console.log(_.get(getUser, 'address.state', 'Tamil Nadu')); // "Tamil Nadu" (default)
+
+const apiResponse = {
+  user: {
+    profile: { name: "Raj" }
+  }
+};
+console.log(_.get(apiResponse, 'user.profile.name', 'Guest')); // "Raj"
+console.log(_.get(apiResponse, 'user.profile.age', 25));       // 25 (default)
+console.log(_.get(apiResponse, 'user.settings.theme', 'light')); // "light" (default)
+
+<p><span class="text-bg-warning"> Note :</span> When consuming API responses, not all keys are guaranteed, This avoids errors like Cannot read property 'age' of undefined.</p>
+
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" id="has" data-name="has">
+                            <h4>_.has(object, path)</h4>
+                            <p>Checks if a specified path exists within an object. It returns true if the path exists,
+                                and false otherwise.</p>
+                            <pre>
+const hasUser = {
+    name: "Kesava",
+    address: {  
+        city: "Trichy",
+        pincode: 600001
+    }
+};
+console.log(_.has(hasUser, 'name')); // true
+console.log(_.has(hasUser, 'address.city')); // true
+console.log(_.has(hasUser, 'address.state')); // false
+console.log(_.has(hasUser, 'age')); // false
+
+const config = {        
+    server: {
+        host: 'localhost',
+        port: 8080
+    },
+    database: {
+        user: 'admin',
+        password: 'password'
+    }
+};
+console.log(_.has(config, 'server.host')); // true
+console.log(_.has(config, 'database.password')); // true
+console.log(_.has(config, 'server.protocol')); // false
+console.log(_.has(config, 'api.key')); // false
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="method-block" id="merge" data-name="merge">
+                            <h4>_.merge(object, [sources])</h4>
+                            <p>Recursively merges properties of source objects into a target object. If the same
+                                property
+                                exists in multiple sources, the last source's value will overwrite earlier ones.
+                                Unlike _.assign, it performs a deep merge for nested objects.</p>
+                            <pre>
+const obj1 = { user: { name: "Kesava" } };
+const obj2 = { user: { age: 27 } };
+const result = _.merge({}, obj1, obj2);
+console.log(result); // { user: { name: 'Kesava', age: 27 } }
+<span class="text-bg-warning">Note :</span> Here, nested user is merged (not overwritten).
+
+const obj3 = { fruits: ["apple"] };
+const obj4 = { fruits: ["banana"] };
+const result3 = _.merge({}, obj3, obj4);
+console.log(result3); // { fruits: ['banana'] }
+<span class="text-bg-warning">Note :</span> Arrays are not concatenated — the last array overwrites the previous.
+
+const defaultConfig = { theme: "light", language: "en", options: { autosave: false } };
+const userConfig = { language: "ta", options: { autosave: true } };
+const systemConfig = { theme: "dark" };
+const additionalConfig = { options: { backup: true } };
+const finalConfig = _.merge({}, defaultConfig, userConfig, systemConfig, additionalConfig);
+console.log(finalConfig);
+{
+    "theme": "dark",
+    "language": "ta",
+    "options": {
+        "autosave": true,
+        "backup": true
+    }
+}
+<span class="text-bg-warning">Note : above latest one overwrite existing, so latest will print, if both keys common it will merge</span>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="method-block" id="omit" data-name="omit">
+                            <h4>_.omit(object, [paths])</h4>
+                            <p>Creates a new object by excluding specific properties from an existing object.</p>
+                            <pre>
+const omitUser = {
+    name: "Kesava",
+    age: 27,
+    password:'123456'
+};
+const safeUser = _.omit(omitUser, ['password']);
+console.log(safeUser);
+// { name: 'Kesava', age: 27 }
+
+const product = { id: 101, name: "Laptop", price: 1000, cost: 800, supplier: "ABC Corp" };
+const publicProduct = _.omit(product, ['cost', 'supplier']);
+console.log(publicProduct);
+// { id: 101, name: 'Laptop', price: 1000 }
+
+<span class="text-bg-warning">Note :</span> Remove sensitive data like password, token, ssn before sending response.
+
+                            </pre>
+                        </div>
+                    </div>
                     <div class="col"></div>
                 </div>
-                 <div class="row">
+                <hr>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <hr>
+                <div class="row">
                     <div class="col"></div>
                     <div class="col"></div>
                 </div>

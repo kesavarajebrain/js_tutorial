@@ -1022,7 +1022,117 @@ const domainUsers1 = [
 const names1 = _.pick(domainUsers, [0, 2, '[1].name']);
 console.log(names1);
 // Output: { { id: 1, name: 'Anbu' }, { id: 3, name: 'Chandra' }, 'Bala' }
+console.warn("_.entries")
+const objDetails = {
+        name: "Kesava",   
+        age: 27,
+        age: 28,
+        age: 20,
+        city: "Trichy"
+    };
+const entriesArray = _.entries(objDetails);
+console.log(entriesArray);
+// Output: [ ['name', 'Kesava'], ['age', 20], ['city', 'Trichy'] ]
+const settings = { theme: "dark", notifications: true };
+_.entries(settings).forEach(([key, value]) => {
+  console.log(`${key}: ${value}`);
+});
+// Output: theme: dark notifications: true
+console.warn("_set");
+const setUser = { name: "Kesava" };
+_.set(setUser, 'age', 27);
+_.set(setUser, 'address.city', 'Trichy');
+_.set(setUser, 'address.pincode', 600001);
+console.log(setUser);
+// {
+//   name: 'Kesava',  
+//   age: 27,
+//   address: { city: 'Trichy', pincode: 600001 }
+// }  
+console.warn("_.get")
+const getUser = {
+  name: "Kesava",
+  address: {
+    city: "Trichy",
+    pincode: 600001
+  }
+};
+console.log(_.get(getUser, 'address.city'));   
+console.log(_.get(getUser, 'address.state', 'Tamil Nadu'));
 
+const apiResponse = {
+  user: {
+    profile: { name: "Raj" }
+  }
+};
+
+console.log(_.get(apiResponse, 'user.profile.name', 'Guest')); // "Raj"
+console.log(_.get(apiResponse, 'user.profile.age', 25));       // 25 (default)
+console.log(_.get(apiResponse, 'user.settings.theme', 'light')); // "light" (default)
+console.warn("_.has")
+const hasUser = {
+  name: "Kesava",
+  address: {  
+    city: "Trichy",
+    pincode: 600001
+  }
+};
+console.log('name ', _.has(hasUser, 'name')); // true
+console.log('address.city ',_.has(hasUser, 'address.city')); // true
+console.log('address.state ',_.has(hasUser, 'address.state')); // false
+console.log('age ',_.has(hasUser, 'age')); // false
+
+const config = {        
+  server: {
+    host: 'localhost',
+    port: 8080
+  },
+  database: {
+    user: 'admin',
+    password: 'password'
+  }
+};
+console.log('server.host ',_.has(config, 'server.host')); // true
+console.log('database.password ',_.has(config, 'database.password')); // true
+console.log('server.protocol ',_.has(config, 'server.protocol')); // false
+console.log('api.key ',_.has(config, 'api.key')); // false
+console.warn("_.merge")
+const obj1 = { user: { name: "Kesava" } };
+const obj2 = { user: { age: 27 } };
+const result = _.merge({}, obj1, obj2);
+console.log(result);
+// { user: { name: 'Kesava', age: 27 } }
+const obj3 = { fruits: ["apple"] };
+const obj4 = { fruits: ["banana"] };
+const result3 = _.merge({}, obj3, obj4);
+console.log(result3);
+// { fruits: ['banana'] }
+const defaultConfig = { theme: "light", language: "en", options: { autosave: false } };
+const userConfig = { language: "ta", options: { autosave: true } };
+const systemConfig = { theme: "dark" };
+const additionalConfig = { options: { backup: true } };
+const finalConfig = _.merge({}, defaultConfig, userConfig, systemConfig, additionalConfig);
+console.log(finalConfig);
+/*
+{
+  theme: 'dark',
+  language: 'ta',
+  options: { autosave: true , backup: true },
+}
+*/
+console.warn("_.omit")
+const omitUser = {
+  name: "Kesava",
+  age: 27,
+   password:'123456'  
+};
+const safeUser = _.omit(omitUser, ['password']);
+console.log(safeUser);
+// { name: 'Kesava', age: 27 }
+const product = { id: 101, name: "Laptop", price: 1000, cost: 800, supplier: "ABC Corp" };
+const publicProduct = _.omit(product, ['cost', 'supplier']);
+console.log(publicProduct);
+// { id: 101, name: 'Laptop', price: 1000 }
 
 
 
