@@ -107,37 +107,84 @@
         console.log(word); // here we cant get value again.
     </pre>
     <hr><br>
-    <h3 class="center">DIFERENCE BETWEEN VAR & LET</h3>
+    <h3 class="center">DIFERENCE BETWEEN VAR & LET & CONST</h3>
     <pre>
 
         <b>Let is the block scope</b>
-        <b> Var is the function scope</b>
+        <b>Const is the block scope</b>
+        <b>Var is the function scope</b>
         <b>Note - var is related to the window object , in console window.lorry means will see the value, let is not related
         </b>
+        <b class="text-danger">Global Scope</b>
+        var lorry = "ashok leyland"; // get it by window object // global declaration
+        let auto = "bajaj"; // Not get it by window object // global declaration
+        const car = "skoda"; // Not get it by window object // global declaration
 
-        var lorry = "ashok leyland"; <b>get by window obj like window.lorry</b>
-        let auto = "bajaj";          <b>Not get it by window object</b> 
+        <b class="text-danger">Function Scope</b>
+        (function scope() {
+        console.log(lorry) // ashok leyland - because of its inside the function block since its global declaration
+        console.log(auto) // bajaj - because of its inside the function block since its global declaration
+        console.log(car) // skoda - because of its inside the function block since its global declaration
+        var bike = "honda";
+        
+        <b class="text-danger">block Scope</b>
+        if(true) {
+            console.warn("Block Scope");
+            console.log(lorry) // ashok leyland - because of its inside the function block global declaration
+            console.log(auto) // bajaj - because of its inside the function block global declaration
+            console.log(car) // skoda - because of its inside the function block global declaration
+            //console.log(bike) <b class="text-danger">bike is not defined - because of its inside the block</b> 
+            let bike = "yamaha";
+            console.log(bike) // yamaha - because of its inside the block
+            const bus = "volvo";
+            console.log(bus) // volvo - because of its inside the block
+            var truck = "tata";
+            console.log(truck) // tata - because of its inside the function block - since its function scope
+        }
+        <b class="text-danger">Outside of the block</b>
+        console.log(lorry) // ashok leyland - because of its outside of the function block - since its global declaration
+        console.log(car) // skoda - because of its outside of the function block - since its global declaration
+        console.log(auto) // bajaj - because of its outside of the function block - since its global declaration
+        // console.log(bike) <b class="text-danger">ReferenceError: bike is not defined - because of its outside the block</b> 
+        // console.log(bus)  <b class="text-danger">ReferenceError: bus is not defined - because of its outside the block</b> 
+        console.log(truck) // tata - because of its outside of the function block - since its global declaration
+        console.log(bike) // honda - because of its outside of the function block - since its function scope
+        
+        })(); <b>IIFE (Immediately Invoked Function Expression) here (? The function start running itself not using tradition method for call the function)</b>
 
-            (function scope() {
-                let car = "Honda"; // global declaration
-                console.log(car); // its prints because of its inside the function block
+        <b class="text-danger">Outside of the function block</b>
+        console.log(lorry) // ashok leyland - because of its outside of the function block - since its global declaration
+        console.log(auto) // bajaj - because of its outside of the function block - since its global declaration
+        console.log(car) // skoda - because of its outside of the function block - since its global declaration
+        //console.log(truck)  <b class="text-danger">ReferenceError: truck is not defined - because of its outside the function block</b>
+        //console.log(bike)  <b class="text-danger">ReferenceError: bike is not defined - because of its outside the function block</b>
+
+            E.g - 2
+
+                var aa = 1;
+                function trickyHoist() {
+                console.log(aa);
+                var aa = 2;
 
                 if (true) {
-                  console.log(car); // its prints because of its inside the function block
-                  var bike = "hero";
-                  let bus = "Benz"; 
-                  console.log(bus); // its prints
+                let aa = 3;
+                const b = 4;
+                console.log(aa, b); // ❓
                 }
 
-                console.log(car); //  its prints because of its inside the function block 
-                console.log(bus); // error in console - bus is not defined its not print because its not in the current block {}
-                console.log(bike); // its print 
-                console.log(lorry) // its print
+                console.log(aa); // ❓
 
-            })() <b>IIFE (Immediately Invoked Function Expression) here (? The function start running itself not using tradition method for call the function)</b>
+                function inner() {
+                console.log(aa); // ❓
+                }
 
-    </pre>
-    <br>
+                inner();
+                }
+
+                trickyHoist();
+
+                console.log(aa); // ❓    
+</pre>
     <hr>
     <h3 class="center"> DIFFERENCE BETWEEN Null & Undefined</h3><br>
     <p>Basically null value means a variable has been explicitly set as <b>(no value = null) </b>or has been initialized

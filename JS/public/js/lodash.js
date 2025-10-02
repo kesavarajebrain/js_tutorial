@@ -1395,12 +1395,4 @@ const toUpperValues = [
 toUpperValues.forEach((data, i) => {
   console.log('Sl.No : ' + `${i + 1}` + ' Value : ' + data + ' After toUpper -> ', _.toUpper(data));
 })
-
-
-
-
-
-
-
-
 console.warn("<<<<<<--------------END OF LODASH--------------->>>>>>>");

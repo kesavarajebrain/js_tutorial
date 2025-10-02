@@ -28,26 +28,79 @@ console.warn("DIFERENCE BETWEEN VAR & LET");
 // DIFERENCE BETWEEN VAR & LET
 
 // Let is the block scope
+// const is the block scope
 // Var is the function scope
 // Note - var is related to the window object , in console window.lorry means will see the value, let is not related
-var lorry = "ashok leyland";
-let auto = "bajaj"; // Not get it by window object
-(function scope() {
-  let car = "Honda"; // global declaration
-  console.log(car);
-  if (true) {
-    console.log(car); // its prints because of its inside the function block
-    var bike = "hero";
-    let bus = "Benz";
-    console.log(bus); // its prints
-  }
-  // console.log(bus); // error in console - bus is not defined its not print
-  console.log(bike); // its print
-  console.log(car); //  its prints because of its inside the function block
-  console.log(lorry) // its print
-})();
+// global scope
+var lorry = "ashok leyland"; // get it by window object // global declaration
+let auto = "bajaj"; // Not get it by window object // global declaration
+const car = "skoda"; // Not get it by window object // global declaration
 
-console.log(lorry) // its print
+//function scope
+(function scope() {
+  console.warn("Function Scope");
+  console.log(lorry) // ashok leyland - because of its inside the function block since its global declaration
+  console.log(auto) // bajaj - because of its inside the function block since its global declaration
+  console.log(car) // skoda - because of its inside the function block since its global declaration
+  var bike = "honda";
+  
+  // block scope
+  if(true) {
+    console.warn("Block Scope");
+    console.log(lorry) // ashok leyland - because of its inside the function block global declaration
+    console.log(auto) // bajaj - because of its inside the function block global declaration
+    console.log(car) // skoda - because of its inside the function block global declaration
+    //console.log(bike) // referenceError: bike is not defined - because of its inside the block
+    let bike = "yamaha";
+    console.log(bike) // yamaha - because of its inside the block
+    const bus = "volvo";
+    console.log(bus) // volvo - because of its inside the block
+    var truck = "tata";
+    console.log(truck) // tata - because of its inside the function block - since its function scope
+  }
+
+  console.warn("Outside of the block");
+  console.log(lorry) // ashok leyland - because of its outside of the function block - since its global declaration
+  console.log(car) // skoda - because of its outside of the function block - since its global declaration
+  console.log(auto) // bajaj - because of its outside of the function block - since its global declaration
+  // console.log(bike) // ReferenceError: bike is not defined - because of its outside the block
+  // console.log(bus) // ReferenceError: bus is not defined - because of its outside the block
+  console.log(truck) // tata - because of its outside of the function block - since its global declaration
+  console.log(bike) // honda - because of its outside of the function block - since its function scope
+  
+})();
+console.warn("Outside of the function block");
+console.log(lorry) // ashok leyland - because of its outside of the function block - since its global declaration
+console.log(auto) // bajaj - because of its outside of the function block - since its global declaration
+console.log(car) // skoda - because of its outside of the function block - since its global declaration
+//console.log(truck) // ReferenceError: truck is not defined - because of its outside the function block
+//console.log(bike) // ReferenceError: bike is not defined - because of its outside the function block
+
+var aa = 1;
+function trickyHoist() {
+console.log(aa);
+var aa = 2;
+
+if (true) {
+let aa = 3;
+const b = 4;
+console.log(aa, b); // ❓
+}
+
+console.log(aa); // ❓
+
+function inner() {
+console.log(aa); // ❓
+}
+
+inner();
+}
+
+trickyHoist();
+
+console.log(aa); // ❓
+// output - undefined, 3 4, 2, 2 'undefined', 1
+
 console.warn("THIS KEYWORD");
 // this keyword
 console.log(this) // this return all the window objects like - Window {window: Window, self: Window, document: document, name: ''}
