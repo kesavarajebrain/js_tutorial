@@ -1127,25 +1127,274 @@ const omitUser = {
    password:'123456'  
 };
 const safeUser = _.omit(omitUser, ['password']);
-console.log(safeUser);
+console.log('safeUser',safeUser);
+console.log('omitUser',omitUser); // original object remains unchanged
 // { name: 'Kesava', age: 27 }
 const product = { id: 101, name: "Laptop", price: 1000, cost: 800, supplier: "ABC Corp" };
 const publicProduct = _.omit(product, ['cost', 'supplier']);
 console.log(publicProduct);
 // { id: 101, name: 'Laptop', price: 1000 }
+console.warn("_.unset")
+const unsetUser = {
+  name: "Kesava",
+  age: 27,
+  salary: 50000,
+  address: {
+    city: "Trichy"
+  }
+};
+console.log(_.unset(unsetUser, 'salary')); 
+console.log('unsetUser after removing salary ->',unsetUser); // salary property is removed from original object
+console.log(_.unset(unsetUser, 'address.city'));
+console.log('unsetUser after removing address.city ->',unsetUser);
+console.log(_.unset(unsetUser, 'address.pincode')); 
+console.log('unsetUser after trying to remove non-existing address.pincode ->',unsetUser);
+console.warn("_.chain");
+const companyStaffs = [
+  { name: 'Alice', age: 30, role: 'Developer', trustable: true },
+  { name: 'Bob', age: 25, role: 'Designer' , trustable: false},
+  { name: 'Charlie', age: 35, role: 'Manager', trustable: true },
+  { name: 'David', age: 28, role: 'Developer', trustable: true },
+  { name: 'Eve', age: 22, role: 'Intern', trustable: false }
+]
+const resultChain = _.chain(companyStaffs)
+  .filter(staff => staff.trustable && staff.age > 25) // Step 1: Filter trustable staff older than 25
+  .map(staff => ({ name: staff.name, role: staff.role , age: staff.age, goodWill: 'GOOD'})) // Step 2: Map to name and role
+  .sortBy('age') // Step 3: Sort by age
+  .value();
 
+console.log(resultChain);
+// Output:
+// [ { name: 'David', role: 'Developer', age: 28, goodWill: 'GOOD' },
+//   { name: 'Alice', role: 'Developer', age: 30, goodWill: 'GOOD' },
+//   { name: 'Charlie', role: 'Manager', age: 35, goodWill: 'GOOD' } ]
 
+const apiData = [
+  { name: "Arun", active: true, lastLogin: 5 },
+  { name: "Kesava", active: false, lastLogin: 10 },
+  { name: "Bala", active: true, lastLogin: 2 }
+];
 
+const currentUsers = _.chain(apiData)
+  .filter('active')              // only active users
+  .sortBy('lastLogin')           // sort by login time
+  .map('name')                   // pick only names
+  .value();  // ⚠️ Important: .value() is mandatory at the end
 
+console.log(currentUsers);
+// 👉 ["Bala", "Arun"]
+// without chain
+const currentUsersWithoutChain = apiData;
+const filteredUsers = _.filter(currentUsersWithoutChain, 'active');
+const sortedUsers = _.sortBy(filteredUsers, 'lastLogin');
+const userNames = _.map(sortedUsers, 'name');
+console.log('without chain', userNames);
+// 👉 ["Bala", "Arun"]
+console.warn("_.tap")
+const tapUser = { name: "Kesava", age: 27 };
+_.tap(tapUser, obj => {
+  obj.age += 1; // Increment age by 1  // here tapUser is mutated directly is beacuse obj is reference to tapUser, this is javascript behaviour 
+});
+console.log('tapUser ->',tapUser); // { name: 'Kesava', age: 28 }
 
+const originalTapUser = { name: "Kesava", age: 27 };
+const newTapUser = _.tap(_.clone(originalTapUser), obj => {
+  obj.age += 1; // Increment age by 1
+});
+console.log('originalTapUser ->',originalTapUser);
+console.log('newTapUser ->',newTapUser);
+// originalTapUser remains unchanged: { name: 'Kesava', age: 27 }
+// newTapUser is the modified clone: { name: 'Kesava', age: 28 }
 
+const tapUsers = [
+  { name: "Kesava", active: true },
+  { name: "Arun", active: false },
+  { name: "Bala", active: true }
+];
 
+const tapResult = _.chain(tapUsers)
+  .filter('active')
+  .tap(activeUsers => {
+    console.log("Active users:", activeUsers);
+  })
+  .map('name')
+  .value();
 
+console.log(tapResult);
+// 👉 ["Kesava", "Bala"]
+console.warn("_.thru")
+const thruUser = { name: "Kesava", age: 27 };
+const thruResult = _.thru(thruUser, obj => {
+  return { ...obj, age: obj.age + 1 }; // Return a new object with incremented age
+});
+console.log('thruUser ->',thruUser); // { name: 'Kesava', age: 27 } (original remains unchanged)
+console.log('thruResult ->',thruResult); // { name: 'Kesava', age: 28 } (new object with updated age)
 
-
-
-
-
+const rawInput = "  Hello World  ";
+const processedInput = _.chain(rawInput)
+.tap(str => {
+  str.trim(); // This won't affect the original string
+    console.log("tap trim input:", str); // not trimmed , keeps original value
+  })
+  .thru(str => str.trim())          // Step 1: Trim whitespace , it returns new string 
+  .thru(str => str.toUpperCase())   // Step 2: Convert to uppercase
+  .tap(str => {
+    console.log("Processed input:", str); // Log the processed input
+  })
+  .value();
+  console.log('processedInput:', processedInput); // "HELLO WORLD"
+console.log('rawInput:', rawInput); // "  Hello World  " (original remains unchanged)
+console.warn("_.camelCase")
+console.log(_.camelCase('hello world')); // 'helloWorld'
+console.log(_.camelCase('Foo Bar')); // 'fooBar'
+console.log(_.camelCase('--foo-bar--')); // 'fooBar'
+console.log(_.camelCase('__FOO_BAR__')); // 'fooBar'
+console.log(_.camelCase('user_name_example')); // 'userNameExample'
+console.log(_.camelCase('This is a test')); // 'thisIsATest'
+console.log(_.camelCase('another-Test_case')); // 'anotherTestCase' 
+console.warn("_.capitalize");
+console.log(_.capitalize('hello world')); // 'Hello world'
+console.log(_.capitalize('FOO BAR')); // 'Foo bar'
+console.log(_.capitalize('--foo-bar--')); // 'Foo-bar--'
+console.log(_.capitalize('__FOO_BAR__')); // 'Foo_bar__'
+console.log(_.capitalize('user_name_example')); // 'User_name_example'
+console.log(_.capitalize('this is a test')); // 'This is a test'
+console.log(_.capitalize('another-Test_case')); // 'Another-test_case'
+console.warn("_.kebabCase");
+console.log(_.kebabCase('hello world')); // 'hello-world'
+console.log(_.kebabCase('Foo Bar')); // 'foo-bar'
+console.log(_.kebabCase('--foo-bar--')); // 'foo-bar'
+console.log(_.kebabCase('__FOO_BAR__')); // 'foo-bar'
+console.log(_.kebabCase('user_name_example')); // 'user-name-example'
+console.log(_.kebabCase('This is a test')); // 'this-is-a-test'
+console.log(_.kebabCase('another-Test_case')); // 'another-test-case' 
+console.warn("_.lowerCase");
+console.log(_.lowerCase('hello world')); // 'hello world'
+console.log(_.lowerCase('Foo Bar'));  // 'foo bar'
+console.log(_.lowerCase('--foo-bar--'));  // 'foo bar'
+console.log(_.lowerCase('__FOO_BAR__'));  // 'foo bar'
+console.log(_.lowerCase('user_name_example'));  // 'user name example'    
+console.log(_.lowerCase('This is a test'));  // 'this is a test'
+console.log(_.lowerCase('another-Test_case'));  // 'another test case'
+console.warn("_.lowerFirst");
+console.log(_.lowerFirst('Hello World')); // 'hello World'
+console.log(_.lowerFirst('Foo Bar')); // 'foo Bar'
+console.log(_.lowerFirst('--Foo-Bar--')); // '-foo-Bar--' 
+console.log(_.lowerFirst('__FOO_BAR__')); // '_fOO_BAR__'
+console.log(_.lowerFirst('User_name_example')); // 'user_name_example'
+console.log(_.lowerFirst('This is a test')); // 'this is a test'
+console.log(_.lowerFirst('Another-Test_case')); // 'another-Test_case'
+console.warn("_.upperFirst");
+console.log(_.upperFirst('hello world')); // 'Hello world'
+console.log(_.upperFirst('foo bar')); // 'Foo bar'    
+console.log(_.upperFirst('--foo-bar--')); // '--foo-bar--'
+console.log(_.upperFirst('__foo_bar__')); // '__foo_bar__'
+console.log(_.upperFirst('user_name_example')); // 'User_name_example'
+console.log(_.upperFirst('this is a test')); // 'This is a test'
+console.log(_.upperFirst('another-test_case')); // 'Another-test_case'
+console.warn("_.upperCase");
+console.log(_.upperCase('hello world')); // 'HELLO WORLD'
+console.log(_.upperCase('Foo Bar')); // 'FOO BAR'   
+console.log(_.upperCase('--foo-bar--')); // 'FOO BAR'
+console.log(_.upperCase('__FOO_BAR__')); // 'FOO BAR'
+console.log(_.upperCase('user_name_example')); // 'USER NAME EXAMPLE'
+console.log(_.upperCase('This is a test')); // 'THIS IS A TEST'
+console.log(_.upperCase('another-Test_case'));  // 'ANOTHER TEST CASE'
+console.warn("_.snakeCase");
+console.log(_.snakeCase('hello world')); // 'hello_world'
+console.log(_.snakeCase('Foo Bar')); // 'foo_bar'
+console.log(_.snakeCase('--foo-bar--')); // 'foo_bar'
+console.log(_.snakeCase('__FOO_BAR__')); // 'foo_bar'
+console.log(_.snakeCase('userNameExample')); // 'user_name_example'
+console.log(_.snakeCase('This is a test')); // 'this_is_a_test'
+console.log(_.snakeCase('another-Test_case')); // 'another_test_case' 
+console.warn("_.split");
+const splitExamples = [
+  { str: 'hello world', separator: ' ' },
+  { str: 'foo,bar,baz', separator: ',' },
+  { str: 'one-two-three', separator: '-' },
+  { str: 'a|b|c|d', separator: '|', limit: 2 },
+  { str: 'no-delimiter-here', separator: 'x' }, 
+  { str: '   spaced   out   ', separator: ' ' },
+  { str: undefined, separator: ' ' },
+  { str: null, separator: ' ' },
+  { str: 12345, separator: '' }
+]
+splitExamples.forEach((example, index) => {
+  const { str, separator, limit } = example; // destructuring assignment
+  const result = _.split(str, separator, limit);
+  console.log(`Example ${index + 1}:`, result);
+});
+console.log(_.split('hello world', ' ')); // ['hello', 'world']
+console.log(_.split('foo,bar,baz', ',')); // ['foo', 'bar', 'baz']
+console.log(_.split('one-two-three', '-')); // ['one', 'two', 'three']
+console.log(_.split('a|b|c|d', '|', 2)); // ['a', 'b']
+console.log(_.split('no-delimiter-here', 'x')); // ['no-delimiter-here']
+console.log(_.split('   spaced   out   ', ' ')); // ['', '', '', 'spaced', '', '', 'out', '', '', '']
+console.log(_.split(undefined)); // [']
+console.log(_.split(null)); // [']
+console.log(_.split(12345)); // [12345]
+console.warn("_.parseInt");
+const parseIntValues =[
+  '42',          // String representing a decimal number  
+  '101',         // String representing a decimal number
+  '0x1A',       // String representing a hexadecimal number
+  '075',        // String representing an octal number (treated as decimal in modern JS)
+  '3.14',       // String representing a floating-point number
+  '   56   ',   // String with leading/trailing whitespace
+  'abc',        // Non-numeric string
+  '',           // Empty string
+  null,         // null value
+  undefined,    // undefined value
+  true,         // boolean true
+  false,        // boolean false
+]
+parseIntValues.map((val,index)=>{
+  console.log('Sl.no :' + _.parseInt(index + 1) + ' value: ' + val + ' After parseInt -> ' ,_.parseInt(val));
+})
+console.warn("_.trim");
+const trimValues= [
+  '   Hello World   ', // Leading and trailing spaces
+  '\tTabbed String\t', // Leading and trailing tabs
+  '\nNewline String\n', // Leading and trailing newlines  
+  '   Mixed \t\n String   ', // Mixed whitespace characters
+  'NoWhitespace',      // No whitespace
+  '   ',               // Only whitespace
+  '',                  // Empty string
+  null,                // null value
+  undefined            // undefined value
+]
+trimValues.forEach((data,i)=>{
+  console.log('Sl.No : ' + `${i + 1}` + ' Value : ' + data + ' After trim -> ', _.trim(data));
+})
+console.warn("_.tolower");
+const toLowerValues = [
+  'HELLO WORLD',      // All uppercase
+  'Foo Bar',         // Mixed case
+  'already lowercase', // Already lowercase
+  '12345',           // Numbers only
+  'MIXED case 123',  // Mixed with numbers
+  '',                // Empty string
+  null,              // null value
+  undefined         // undefined value
+]
+toLowerValues.forEach((data, i) => {
+  console.log('Sl.No : ' + `${i + 1}` + ' Value : ' + data + ' After toLower -> ', _.toLower(data));
+})
+console.warn("_.toupper");
+const toUpperValues = [
+  'HELLO WORLD',      // All uppercase
+  'Foo Bar',         // Mixed case
+  'ALREADY UPPERCASE', // ALREADY UPPERCASE
+  '12345',           // Numbers only
+  'MIXED case 123',  // Mixed with numbers
+  '',                // Empty string
+  null,              // null value
+  undefined         // undefined value
+]
+toUpperValues.forEach((data, i) => {
+  console.log('Sl.No : ' + `${i + 1}` + ' Value : ' + data + ' After toUpper -> ', _.toUpper(data));
+})
 
 
 
