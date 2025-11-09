@@ -27,6 +27,37 @@ console.log(word); // here we cant assign value again.
 console.warn("DIFERENCE BETWEEN VAR & LET");
 // DIFERENCE BETWEEN VAR & LET
 
+// global declaration
+var X = 10;
+let Y = 20;
+const Z = 30;
+
+// here we can able to assign same value for the same variables again
+// var X = 1;
+// let Y = 2; //let X = 2; SyntaxError: Identifier 'X' has already been declared
+// const X = 3; 
+
+function myFunction() {
+  // below console will print the global values
+  console.log(X)
+  console.log(Y)
+  console.log(Z)
+}
+
+myFunction();
+
+function myFunctionTwo() {
+  let X = 1;
+  const Y = 2;
+  var Z = 3;
+  // below console will print inside what we declared its not consider global since we have different values for globally declared also
+  console.log(X);
+  console.log(Y);
+  console.log(Z);
+}
+
+myFunctionTwo();
+
 // Let is the block scope
 // const is the block scope
 // Var is the function scope
@@ -43,9 +74,9 @@ const car = "skoda"; // Not get it by window object // global declaration
   console.log(auto) // bajaj - because of its inside the function block since its global declaration
   console.log(car) // skoda - because of its inside the function block since its global declaration
   var bike = "honda";
-  
+
   // block scope
-  if(true) {
+  if (true) {
     console.warn("Block Scope");
     console.log(lorry) // ashok leyland - because of its inside the function block global declaration
     console.log(auto) // bajaj - because of its inside the function block global declaration
@@ -67,7 +98,7 @@ const car = "skoda"; // Not get it by window object // global declaration
   // console.log(bus) // ReferenceError: bus is not defined - because of its outside the block
   console.log(truck) // tata - because of its outside of the function block - since its global declaration
   console.log(bike) // honda - because of its outside of the function block - since its function scope
-  
+
 })();
 console.warn("Outside of the function block");
 console.log(lorry) // ashok leyland - because of its outside of the function block - since its global declaration
@@ -78,22 +109,22 @@ console.log(car) // skoda - because of its outside of the function block - since
 
 var aa = 1;
 function trickyHoist() {
-console.log(aa);
-var aa = 2;
+  console.log(aa);
+  var aa = 2;
 
-if (true) {
-let aa = 3;
-const b = 4;
-console.log(aa, b); // ❓
-}
+  if (true) {
+    let aa = 3;
+    const b = 4;
+    console.log(aa, b); // ❓
+  }
 
-console.log(aa); // ❓
+  console.log(aa); // ❓
 
-function inner() {
-console.log(aa); // ❓
-}
+  function inner() {
+    console.log(aa); // ❓
+  }
 
-inner();
+  inner();
 }
 
 trickyHoist();
@@ -224,7 +255,7 @@ console.warn("FindIndex Method");
 console.log(findIndx);
 
 // Remove elements in array
-console.warn( "Remove elements in array");
+console.warn("Remove elements in array");
 let removeArray = ["Tamil", "english", "malayalam", "telugu"];
 // pop
 console.warn("Pop - Removes last element from array");
@@ -235,7 +266,7 @@ console.warn("Shift - Removes first element from array");
 removeArray.shift();
 console.log(removeArray); // ['english', 'malayalam'] - removes first element
 //splice
-console.warn ("Splice - Removes element from array based on position");
+console.warn("Splice - Removes element from array based on position");
 removeArray.splice(0, 1);
 console.log(removeArray); // ['malayalam'] - in the parameter 0 is array start value 1 is number element we want to remove so 0 postion is english remove that so 1
 
@@ -1056,10 +1087,10 @@ const sortByAge = namesArray.sort((a, b) => {
 console.log(sortByAge)
 // sort numbers with unique values
 console.warn("Sort Numbers with Unique Values");
-var numbersArray = [1,1,3,5,4,1,9,8, 2, 3, 4, 5, 6, 7, 8, 9, 10,10];
+var numbersArray = [1, 1, 3, 5, 4, 1, 9, 8, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10];
 
-const sortNumbers = numbersArray.sort((a,b)=>{
-    return a - b; // low to high
+const sortNumbers = numbersArray.sort((a, b) => {
+  return a - b; // low to high
 })
 
 console.log(sortNumbers)
@@ -1283,8 +1314,8 @@ console.warn("Object.assign()");
 const user = { name: "Sara" };
 const details = { age: 30, city: "Delhi" };
 
-const fullProfileArr = Object.assign([],user, details);
-const fullProfileObj = Object.assign({},user, details);
+const fullProfileArr = Object.assign([], user, details);
+const fullProfileObj = Object.assign({}, user, details);
 console.log(fullProfileArr); // [ name: "Sara", age: 30, city: "Delhi" ]
 console.log(fullProfileObj); // { name: "Sara", age: 30, city: "Delhi" }
 

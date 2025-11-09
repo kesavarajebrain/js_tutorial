@@ -126,6 +126,56 @@
     <h3 class="center">DIFERENCE BETWEEN VAR & LET & CONST</h3>
     <pre>
 
+    | Variable Type |   Access Before Declaration  | Access After Declaration |
+    | ------------- |   -------------------------  | ------------------------ |
+    | `var`         | ✅ undefined                | ✅ value                 |
+    | `let`         | ❌ ReferenceError           | ✅ value                 |
+    | `const`       | ❌ ReferenceError           | ✅ value                 |
+  
+       <b class="text-danger">Global declaration</b>
+        var X = 10;
+        let Y = 20;
+        const Z = 30;
+
+        <b class="text-danger">here we cannot able to assign same value for the same variables again</b> 
+        var X = 1;
+        let Y = 2; //let X = 2; <b class="text-danger"> SyntaxError: Identifier 'X' has already been declared</b>
+        const X = 3; 
+
+        function myFunction() {
+            <b class="text-success">below console will print the global values</b>
+        console.log(X) // 10
+        console.log(Y) // 20
+        console.log(Z) // 30
+        }
+        myFunction();
+
+        function myFunctionTwo() {
+        let X = 1;
+        const Y = 2;
+        var Z = 3;
+        <b class="text-success">below console will print inside what we declared its not consider global since we have different values for globally declared also</b>
+        console.log(X); // 1
+        console.log(Y); // 2
+        console.log(Z); // 3
+        }
+        myFunctionTwo();
+  
+        // can be redeclared with var only
+        var a =100;
+        var a = 9;
+        console.log(a)
+
+        // cannot be redeclared with let and const
+        let b = 200;
+        // let b = 20; <b class="text-danger"> SyntaxError: Identifier 'b' has already been declared</b>
+        console.log(b)
+        
+        const c = 300;
+        // const c = 30; <b class="text-danger"> SyntaxError: Identifier 'c' has already been declared</b>
+        console.log(c)
+
+
         <b>Let is the block scope</b>
         <b>Const is the block scope</b>
         <b>Var is the function scope</b>
