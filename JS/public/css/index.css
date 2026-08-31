@@ -1,15 +1,16 @@
 * {
     margin: 0;
-    padding-left: 5px;
-}
-
-html,
-body {
-    max-width: 100vw;
-    overflow-x: hidden;
+    padding: 0;
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding: 0 8px;
+}
+
+/* ── Scroll-to-top button ── */
 #scrollTopBtn {
     position: fixed;
     bottom: 20px;
@@ -26,76 +27,150 @@ body {
     align-items: center;
     cursor: pointer;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     transition: background-color 0.3s ease;
 }
-
-#scrollTopBtn:hover {
-    background-color: #333;
-}
-
-/* Mobile-specific adjustments */
+#scrollTopBtn:hover { background-color: #333; }
 @media screen and (max-width: 600px) {
-    #scrollTopBtn {
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
-        bottom: 15px;
-        right: 15px;
-    }
+    #scrollTopBtn { width: 45px; height: 45px; font-size: 20px; bottom: 15px; right: 15px; }
 }
 
+/* ── Base elements ── */
 table {
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
-    display: block;
+    display: table;
 }
-
-pre,
-xmp {
+pre, xmp {
     white-space: pre-wrap;
     word-break: break-word;
+    margin: 0 !important;
 }
+p  { margin: 0 0 5px 0 !important; }
+ul, ol { margin: 0 0 5px 0 !important; padding-left: 18px !important; }
 
-.center {
-    text-align: center;
-}
+/* ── Typography ── */
 
-.heading {
-    font-weight: bold;
-}
-
-@media (max-width: 600px) {
-    body {
-        font-size: 0.95rem;
-    }
-
-    table,
-    pre {
-        font-size: 0.9rem;
-    }
-}
-
-.center {
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.heading {
-    font-weight: bold;
-    font-size: 18px;
-}
-h5{
-    color: rgb(237, 10, 237);
-    font-weight: bold;
-    font-size: 23px;
-    font-style: italic;
-}
-
-h3{
+h3 {
     color: rgb(27, 27, 244);
     font-weight: bold;
     font-size: 20px;
     font-style: italic;
 }
+h5 {
+    color: rgb(237, 10, 237);
+    font-weight: bold;
+    font-size: 23px;
+    font-style: italic;
+}
+.heading {
+    font-weight: bold !important;
+    font-size: 18px !important;
+    color: #000 !important;
+    font-style: normal !important;
+}
+.center { text-align: center; text-transform: uppercase; }
+
+
+
+/* ── Utility ── */
+.tamil       { color: #6c757d; font-style: italic;  }
+.arrow-note  { color: #dc3545; font-weight: bold; font-family: monospace; }
+.highlight   { background-color: #ffe066; border-radius: 3px; }
+.step-label  { font-weight: bold; display: block; }
+.note        { color: #6c757d; font-size: 0.9em; }
+.memory-diagram {
+    background-color: #f8f9fa;
+    border: 2px dashed #6c757d;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
+    text-align: center;
+    margin: 6px 0 !important;
+}
+
+/* ── Code blocks ── */
+.code-block {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-family: monospace;
+    display: block;
+}
+.code-block code {
+    background: none !important;
+    padding: 0 !important;
+    font-size: inherit !important;
+    color: #333 !important;
+    font-family: monospace !important;
+    border-radius: 0 !important;
+}
+
+/* ── Alert-style boxes ── */
+.error-box {
+    background-color: #f8d7da;
+    border: 2px solid #dc3545;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 5px 0 !important;
+    line-height: 1.5;
+}
+.error-box p, .error-box .tamil { margin-bottom: 0 !important; }
+.success-box {
+    background-color: #d4edda;
+    border: 2px solid #28a745;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 5px 0 !important;
+        line-height: 1.5;
+
+}
+.success-box p, .success-box .tamil { margin-bottom: 0 !important; }
+
+/* ── Scope nested boxes ── */
+.scope-box   { border: 3px solid; border-radius: 8px; padding: 12px; margin: 8px 0 !important; }
+.global-box  { background-color: #fff3cd; border-color: #ffc107; }
+.one-box     { background-color: #d1ecf1; border-color: #17a2b8; margin-left: 20px !important; }
+.two-box     { background-color: #d4edda; border-color: #28a745; margin-left: 40px !important; }
+.func-box    { background-color: #d1ecf1; border-color: #17a2b8; margin-left: 20px !important; }
+.block-box   { background-color: #d4edda; border-color: #28a745; margin-left: 40px !important; }
+.closure-box { background-color: #ede7f6; border-color: #6f42c1; margin-left: 20px !important; }
+
+/* ── GEC / FEC ── */
+.gec-box        { background-color: #fff3cd; border: 2px solid #ffc107; }
+.gec-header     { background-color: #ffc107; color: #000; padding: 6px 10px; }
+.fec-box        { background-color: #d1ecf1; border: 2px solid #17a2b8; }
+.fec-header     { background-color: #17a2b8; color: #fff; padding: 6px 10px; }
+.memory-cell    { background-color: #f8d7da; }
+.execution-cell { background-color: #d4edda; }
+
+/* ── Call stack frames ── */
+.stack-frame     { border: 2px solid; border-radius: 6px; padding: 8px 10px; margin: 3px 0 !important; font-family: monospace; text-align: center; }
+.stack-container { border: 3px dashed #6c757d; padding: 12px; border-radius: 8px; background-color: #f8f9fa; max-width: 280px; }
+.gec-frame   { background-color: #fff3cd; border-color: #ffc107; }
+.fec-frame   { background-color: #d1ecf1; border-color: #17a2b8; }
+.fec-frame-a { background-color: #d1ecf1; border-color: #17a2b8; }
+.fec-frame-b { background-color: #d4edda; border-color: #28a745; }
+.fec-frame-c { background-color: #f8d7da; border-color: #dc3545; }
+
+/* ── Table headers ── */
+.var-header { background-color: #17a2b8; color: white; }
+.let-header { background-color: #28a745; color: white; }
+
+/* ── Closure decision tree ── */
+.decision-node   { border: 3px solid #6f42c1; background-color: #ede7f6; border-radius: 8px; padding: 10px; margin: 6px auto !important; max-width: 420px; text-align: center; font-weight: bold; }
+.decision-arrow  { text-align: center; font-size: 1.4em; color: #6f42c1; margin: 1px 0 !important; }
+.final-yes       { border: 3px solid #28a745; background-color: #d4edda; border-radius: 8px; padding: 12px; text-align: center; font-weight: bold; font-size: 1.1em; margin: 6px auto !important; max-width: 420px; }
+.example-box     { border: 2px solid #17a2b8; background-color: #d1ecf1; border-radius: 8px; padding: 10px; margin: 6px 0 !important; }
+.not-closure-box { border: 2px solid #dc3545; background-color: #f8d7da; border-radius: 8px; padding: 10px; margin: 6px 0 !important; }
+
+/* ── Function reference vs execution ── */
+.ref-box     { border: 3px solid; border-radius: 8px; padding: 12px; }
+.exec-box    { border: 3px solid; border-radius: 8px; padding: 12px; }
+.ref-header  { background-color: #6f42c1; color: white; padding: 6px 12px; border-radius: 6px; }
+.exec-header { background-color: #fd7e14; color: white; padding: 6px 12px; border-radius: 6px; }
+.ref-side    { background-color: #ede7f6; border-color: #6f42c1; }
+.exec-side   { background-color: #fff3e0; border-color: #fd7e14; }
+.side-by-side { display: flex; gap: 12px; line-height: 1; }
+.side-by-side > div { flex: 1; }

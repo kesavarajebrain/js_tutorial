@@ -1,0 +1,156 @@
+CURRYING
+function expression
+difference between arguments & parameters
+arrow functions
+async and sync 
+event loop
+map , filter, reduce 
+
+🗺️ JavaScript Master Roadmap
+✅ Phase 1 — JavaScript Foundation (Completed)
+✅ Global Scope
+✅ Function Scope
+✅ Block Scope
+✅ Lexical Scope
+✅ Execution Context (Memory Phase & Code Phase)
+✅ Hoisting
+✅ Temporal Dead Zone (TDZ)
+✅ var vs let vs const
+✅ Variable Shadowing
+✅ Function Hoisting
+✅ Implicit Globals -- *
+✅ "use strict" -- *
+✅ Closures
+
+✅ Phase 2 — Functions - Completed
+✅ Function Declaration
+✅ Function Expression
+✅ Named Function Expression
+✅ Anonymous Function Expression
+✅ Function References
+✅ First-Class Functions
+✅ Callback Functions
+✅ Higher-Order Functions
+Next (Deep Dive)
+
+📌 Loop Fundamentals — Completed
+Basic for ✅
+✅ Initialization
+✅ Condition
+✅ Increment / decrement
+✅ Execution order
+✅ i++, i--, i +=, i -=
+✅ Array indexes
+✅ numbers[i]
+✅ numbers.length
+✅ Dry runs
+var vs let in loops ✅
+✅ Function vs block scope
+✅ Per-iteration let binding
+✅ setTimeout()
+✅ Callback + closure connection
+✅ var → 3 3 3
+✅ let → 0 1 2
+Nested loops ✅
+✅ Outer loop
+✅ Inner loop
+✅ One i → all js
+✅ Iteration counting
+✅ Dependent inner loops
+Pattern problems ✅
+✅ Increasing patterns
+✅ Decreasing patterns
+✅ Number patterns
+✅ Repeated-number patterns
+✅ Pattern design
+for...of ✅
+for...in ✅
+forEach() ✅
+
+📌 Arrow Functions
+✅ Why ES6 introduced Arrow Functions
+✅ Syntax comparison
+✅ Converting regular function → arrow function
+✅ Zero parameters
+✅ One parameter
+✅ Multiple parameters
+✅ Implicit Return
+✅ Explicit Return
+✅ Returning Objects
+✅ Arrow functions inside map()
+✅ Arrow functions inside filter()
+⏳ Arrow functions inside reduce()
+⏳ Common interview questions
+⏳ Real-world Angular/React usage
+⏳ Differences from regular functions (except this, which we'll cover after learning this)
+
+📌 this Keyword (Deep Dive)
+⏳ What is this?
+⏳ How this is decided
+⏳ Global context
+⏳ Function context
+⏳ Object methods
+⏳ Nested functions
+⏳ Arrow function vs regular function (this)
+⏳ Browser vs Node.js behavior
+⏳ Interview scenarios
+
+📌 call(), apply(), bind()
+⏳ Why they exist
+⏳ How they change this
+⏳ Differences
+⏳ Real interview examples
+⏳ Angular/JavaScript use cases
+
+📌 Objects
+⏳ Object creation
+⏳ Property access
+⏳ Methods
+⏳ Destructuring
+⏳ Object references
+⏳ Shallow vs Deep Copy
+⏳ Seal vs freeze Copy
+⏳ Spread operator with objects
+
+📌 Arrays
+⏳ forEach()
+⏳ map()
+⏳ filter()
+⏳ find()
+⏳ findIndex()
+⏳ some()
+⏳ every()
+⏳ reduce()
+⏳ sort()
+⏳ slice()
+⏳ splice()
+⏳ Interview questions
+
+📌 Asynchronous JavaScript
+⏳ Synchronous vs Asynchronous
+⏳ Web APIs
+⏳ Callback Queue
+⏳ Event Loop (Deep Dive)
+⏳ Callback Hell
+⏳ Promises
+⏳ Promise Chaining
+⏳ async/await
+⏳ fetch()
+⏳ Error handling
+
+📌 Prototype & Advanced JavaScript
+⏳ Prototype
+⏳ Prototype Chain
+⏳ Inheritance
+⏳ Constructor Functions
+⏳ Classes
+
+📌 ES6+ Features
+⏳ Rest Operator
+⏳ Spread Operator
+⏳ Destructuring
+⏳ Optional Chaining
+⏳ Nullish Coalescing (??)
+⏳ Template Literals
+⏳ Default Parameters
+⏳ Modules (import/export)
