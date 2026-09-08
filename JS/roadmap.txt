@@ -63,9 +63,9 @@ Pattern problems ✅
 ✅ Number patterns
 ✅ Repeated-number patterns
 ✅ Pattern design
-for...of ✅
-for...in ✅
-forEach() ✅
+✅ for...of 
+✅ for...in 
+✅ forEach() 
 
 📌 Arrow Functions
 ✅ Why ES6 introduced Arrow Functions
@@ -79,9 +79,10 @@ forEach() ✅
 ✅ Returning Objects
 ✅ Arrow functions inside map()
 ✅ Arrow functions inside filter()
-⏳ Arrow functions inside reduce()
-⏳ Common interview questions
-⏳ Real-world Angular/React usage
+✅ Arrow functions inside reduce()
+✅ Common interview questions
+✅ Real-world style usage
+✅ Differences from regular functions
 ⏳ Differences from regular functions (except this, which we'll cover after learning this)
 
 📌 this Keyword (Deep Dive)
@@ -154,3 +155,38 @@ forEach() ✅
 ⏳ Template Literals
 ⏳ Default Parameters
 ⏳ Modules (import/export)
+
+
+this
+ ↓
+call()
+ ↓
+apply()
+ ↓
+bind()
+ ↓
+Objects
+ ↓
+Arrays / advanced array concepts
+ ↓
+Async JavaScript
+ ↓
+Event Loop
+ ↓
+Promises
+ ↓
+async / await
+ ↓
+APIs / Fetch
+ ↓
+Prototype
+ ↓
+Classes
+ ↓
+ES6+ / modern JS
+ ↓
+Advanced patterns
+ ↓
+AI-enabled engineering
+ ↓
+POC 🚀

@@ -1516,6 +1516,1764 @@ console.log(msg); // "global message" — untouched</code></pre>
     <hr>
     <br>
     <h3 class="center">This keyword</h3>
+<h4>What is <span class="highlight">this</span>?</h4>
+
+<div class="success-box">
+
+    <p>
+        <span class="highlight">this</span>
+        is a special JavaScript value whose value depends on
+        <strong>how a regular function is invoked</strong>.
+    </p>
+
+    <p class="tamil">
+        இந்த Function இப்போது எந்த Object-ஐ represent பண்ணிக்கிட்டு
+        வேலை செய்கிறதோ, அந்த Object-ஐ refer பண்ணுவதற்கான வழி.
+    </p>
+
+</div>
+
+<hr>
+
+<h4>1. Start With an Object</h4>
+
+<div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+    age: 30
+};
+</code></pre>
+</div>
+
+<div class="success-box">
+
+    <p>
+        An object can also contain a function.
+    </p>
+
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const person = {
+
+    name: "Kesava",
+
+    greet: function() {
+
+        console.log("Hello");
+
+    }
+
+};
+</code></pre>
+</div>
+
+<hr>
+
+<h4>2. The First Approach</h4>
+
+<div class="success-box">
+
+    <p>
+        Suppose we want:
+        <strong>"Hello " + person's name</strong>
+    </p>
+
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const person = {
+
+    name: "Kesava",
+
+    greet: function() {
+
+        console.log("Hello " + person.name);
+
+    }
+
+};
+</code></pre>
+</div>
+
+<div class="success-box">
+
+    <p>
+        This works.
+    </p>
+
+</div>
+
+<div class="error-box">
+
+    <p class="step-label">
+        But there is a Problem
+    </p>
+
+    <p>
+        The function is directly depending on the variable name
+        <span class="highlight">person</span>.
+    </p>
+
+    <div class="memory-diagram">
+
+        <p>greet</p>
+
+        <p>↓</p>
+
+        <p>depends on</p>
+
+        <p>↓</p>
+
+        <p>person</p>
+
+    </div>
+
+</div>
+
+<hr>
+
+<h4>3. What If We Have Another Object?</h4>
+
+<div class="code-block p-3">
+<pre><code>
+const person1 = {
+    name: "Kesava"
+};
+
+const person2 = {
+    name: "Arun"
+};
+</code></pre>
+</div>
+
+<div class="success-box">
+
+    <p>
+        We want the same kind of function to work with
+        <strong>either object</strong>.
+    </p>
+
+</div>
+
+<div class="row g-3">
+
+    <div class="col-lg-6">
+
+        <div class="error-box h-100">
+
+            <p class="step-label">
+                We don't want this
+            </p>
+
+            <div class="code-block p-2">
+<pre><code>
+console.log(person1.name);
+</code></pre>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="error-box h-100">
+
+            <p class="step-label">
+                Or another copy
+            </p>
+
+            <div class="code-block p-2">
+<pre><code>
+console.log(person2.name);
+</code></pre>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="success-box mt-3">
+
+    <p>
+        Instead, we want the function to say:
+    </p>
+
+    <p class="highlight">
+        "Give me the object that I am currently working with."
+    </p>
+
+</div>
+
+<div class="memory-diagram">
+
+    <p>Current Object</p>
+
+    <p>↓</p>
+
+    <p>this</p>
+
+    <p>↓</p>
+
+    <p>Its Properties</p>
+
+</div>
+
+<hr>
+
+<h4>4. That's Where <span class="highlight">this</span> Comes In</h4>
+
+<div class="code-block p-3">
+<pre><code>
+const person = {
+
+    name: "Kesava",
+
+    greet: function() {
+
+        console.log("Hello " + this.name);
+
+    }
+
+};
+</code></pre>
+</div>
+
+<div class="success-box">
+
+    <p>
+        Look carefully at:
+    </p>
+
+    <div class="memory-diagram">
+
+        <p>this.name</p>
+
+    </div>
+
+    <p>
+        We are saying:
+        <strong>
+            "Take the name from the object that this refers to."
+        </strong>
+    </p>
+
+</div>
+
+<div class="memory-diagram">
+
+    <p>this</p>
+
+    <p>↓</p>
+
+    <p>Some Object</p>
+
+    <p>↓</p>
+
+    <p>.name</p>
+
+</div>
+
+<hr>
+
+<h4>5. If <span class="highlight">this</span> Refers to person</h4>
+
+<div class="memory-diagram">
+
+    <p>this</p>
+
+    <p>↓</p>
+
+    <p>person</p>
+
+    <p>↓</p>
+
+    <p>name</p>
+
+    <p>↓</p>
+
+    <p>"Kesava"</p>
+
+</div>
+
+<div class="success-box">
+
+    <p>
+        So conceptually:
+    </p>
+
+    <div class="memory-diagram">
+
+        <p>this.name</p>
+
+        <p>↓</p>
+
+        <p>person.name</p>
+
+        <p>↓</p>
+
+        <p>"Kesava"</p>
+
+    </div>
+
+</div>
+
+<hr>
+
+<h4>6. The Same Function Can Work With Different Objects</h4>
+
+<div class="code-block p-3">
+<pre><code>
+function greet() {
+
+    console.log(this.name);
+
+}
+
+const personA = {
+
+    name: "hi",
+
+    fn1: greet
+
+};
+
+const personB = {
+
+    name: "hellooo",
+
+    fn2: greet
+
+};
+
+personA.fn1();
+
+personB.fn2();
+</code></pre>
+</div>
+
+<div class="row g-3">
+
+    <div class="col-lg-6">
+
+        <div class="scope-box one-box h-100">
+
+            <h5>personA</h5>
+
+            <div class="memory-diagram">
+
+                <p>fn1 → greet</p>
+
+                <p>↓</p>
+
+                <p>personA.fn1()</p>
+
+                <p>↓</p>
+
+                <p>this → personA</p>
+
+                <p>↓</p>
+
+                <p>this.name → "hi"</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="scope-box func-box h-100">
+
+            <h5>personB</h5>
+
+            <div class="memory-diagram">
+
+                <p>fn2 → greet</p>
+
+                <p>↓</p>
+
+                <p>personB.fn2()</p>
+
+                <p>↓</p>
+
+                <p>this → personB</p>
+
+                <p>↓</p>
+
+                <p>this.name → "hellooo"</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="success-box mt-3">
+
+    <p>
+        Both objects use the
+        <strong>same function reference</strong>.
+    </p>
+
+    <div class="memory-diagram">
+
+        <p>fn1 → greet</p>
+
+        <p>fn2 → greet</p>
+
+        <p>↓</p>
+
+        <p>Same Function</p>
+
+    </div>
+
+</div>
+
+<div class="memory-diagram">
+
+    <p>personA.fn1()</p>
+
+    <p>→ this = personA</p>
+
+    <p class="mt-2">personB.fn2()</p>
+
+    <p>→ this = personB</p>
+
+</div>
+
+<hr>
+
+<h4>7. Function Reference vs Property Name</h4>
+
+<div class="row g-3">
+
+    <div class="col-lg-6">
+
+        <div class="ref-box ref-side h-100">
+
+            <div class="ref-header">
+                personA
+            </div>
+
+            <div class="memory-diagram">
+
+                <p>fn1</p>
+
+                <p>↓</p>
+
+                <p>Property Name</p>
+
+            </div>
+
+            <p>
+                <span class="highlight">greet</span>
+                is the function reference.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="exec-box exec-side h-100">
+
+            <div class="exec-header">
+                personB
+            </div>
+
+            <div class="memory-diagram">
+
+                <p>fn2</p>
+
+                <p>↓</p>
+
+                <p>Property Name</p>
+
+            </div>
+
+            <p>
+                <span class="highlight">greet</span>
+                is still the same function reference.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="success-box mt-3">
+
+    <p class="tamil">
+        fn1 என்பது Object-ன் Property Name.
+        greet என்பது ஏற்கனவே உருவாக்கப்பட்ட Function-ன் Reference.
+    </p>
+
+    <p class="tamil">
+        அதேபோல fn2-வும் Property Name.
+        அதுவும் அதே greet Function-ஐ Reference பண்ணுகிறது.
+    </p>
+
+</div>
+
+<hr>
+
+<h4>8. The Core Rule</h4>
+
+<div class="success-box">
+
+    <p>
+        <span class="highlight">this</span>
+        is a special JavaScript value whose value depends on
+        <strong>how a regular function is invoked</strong>.
+    </p>
+
+</div>
+
+<div class="memory-diagram">
+
+    <p>Regular Function</p>
+
+    <p>↓</p>
+
+    <p>How is it called?</p>
+
+    <p>↓</p>
+
+    <p>Determine this</p>
+
+</div>
+
+<div class="closure-box">
+
+    <p class="tamil">
+        Regular Function-க்கு,
+        அந்த Function எப்படி Call செய்யப்படுகிறது
+        என்பதன் அடிப்படையில்
+        <strong>this</strong>-ன் Value தீர்மானிக்கப்படும்.
+    </p>
+
+    <p class="tamil">
+        ஒரே Function-ஐ பல Objects-ல் Reference ஆக வைத்திருந்தாலும்,
+        எந்த Object மூலம் Call செய்கிறோமோ,
+        அதைப் பொறுத்து this அந்த Object-ஐ Refer செய்யும்.
+    </p>
+
+</div>
+
+<hr>
+
+<h4>9. Non-Strict Mode</h4>
+
+<div class="code-block p-3">
+<pre><code>
+function greet() {
+
+    console.log(this);
+
+}
+
+greet();
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+
+    <p>greet()</p>
+
+    <p>↓</p>
+
+    <p>Plain Function Call</p>
+
+    <p>↓</p>
+
+    <p>this → Global Object</p>
+
+</div>
+
+<div class="success-box">
+
+    <p>
+        In non-strict mode, a plain function call can make
+        <span class="highlight">this</span>
+        refer to the global object.
+    </p>
+
+</div>
+
+<hr>
+
+<h4>10. Strict Mode Changes <span class="highlight">this</span></h4>
+
+<div class="code-block p-3">
+<pre><code>
+"use strict";
+
+function greet() {
+
+    console.log(this);
+
+}
+
+greet();
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+
+    <p>greet()</p>
+
+    <p>↓</p>
+
+    <p>Plain Function Call</p>
+
+    <p>↓</p>
+
+    <p>this → undefined</p>
+
+</div>
+
+<div class="row g-3">
+
+    <div class="col-lg-6">
+
+        <div class="scope-box one-box h-100">
+
+            <h5>Non-Strict</h5>
+
+            <div class="memory-diagram">
+
+                <p>greet()</p>
+
+                <p>↓</p>
+
+                <p>this</p>
+
+                <p>↓</p>
+
+                <p>Global Object</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="scope-box func-box h-100">
+
+            <h5>Strict</h5>
+
+            <div class="memory-diagram">
+
+                <p>greet()</p>
+
+                <p>↓</p>
+
+                <p>this</p>
+
+                <p>↓</p>
+
+                <p>undefined</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr>
+
+<h4>11. Don't Confuse <span class="highlight">this</span> With Lexical Scope</h4>
+
+<div class="code-block p-3">
+<pre><code>
+const name = "Kesava";
+
+function greet() {
+
+    console.log(this);
+
+}
+
+greet();
+</code></pre>
+</div>
+
+<div class="error-box">
+
+    <p>
+        <span class="highlight">this</span>
+        is not the same thing as a normal variable lookup.
+    </p>
+
+    <p>
+        The value of
+        <span class="highlight">this</span>
+        for a regular function depends on
+        <strong>how that function was invoked</strong>.
+    </p>
+
+</div>
+
+<div class="memory-diagram">
+
+    <p>Lexical Scope</p>
+
+    <p>↓</p>
+
+    <p>Where the function is written</p>
+
+    <p class="mt-2">this</p>
+
+    <p>↓</p>
+
+    <p>How the regular function is called</p>
+
+</div>
+
+<hr>
+
+<h4>🧠 The Big Picture</h4>
+
+<div class="row g-3">
+
+    <div class="col-md-4">
+
+        <div class="success-box h-100 text-center">
+
+            <p class="step-label">
+                Method Call
+            </p>
+
+            <div class="memory-diagram">
+
+                <p>person.greet()</p>
+
+                <p>↓</p>
+
+                <p>this → person</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="success-box h-100 text-center">
+
+            <p class="step-label">
+                Same Function
+            </p>
+
+            <div class="memory-diagram">
+
+                <p>personA.fn1()</p>
+
+                <p>↓</p>
+
+                <p>this → personA</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="success-box h-100 text-center">
+
+            <p class="step-label">
+                Another Object
+            </p>
+
+            <div class="memory-diagram">
+
+                <p>personB.fn2()</p>
+
+                <p>↓</p>
+
+                <p>this → personB</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="closure-box">
+
+    <p class="step-label">
+        🇮🇳 Tamil Summary
+    </p>
+
+    <p class="tamil">
+        <strong>this</strong> என்பது Current Object-ஐ Refer பண்ணுவதற்கான
+        ஒரு Special JavaScript Value.
+    </p>
+
+    <p class="tamil">
+        ஆனால் Regular Function-ல் this-ன் Value,
+        Function எங்கே எழுதப்பட்டது என்பதைக் கொண்டு அல்ல;
+        <strong>எப்படி Call செய்யப்பட்டது</strong>
+        என்பதைக் கொண்டு தீர்மானிக்கப்படும்.
+    </p>
+
+    <div class="memory-diagram">
+
+        <p>person.greet()</p>
+
+        <p>↓</p>
+
+        <p>this → person</p>
+
+        <p class="mt-2">personA.fn1()</p>
+
+        <p>↓</p>
+
+        <p>this → personA</p>
+
+        <p class="mt-2">personB.fn2()</p>
+
+        <p>↓</p>
+
+        <p>this → personB</p>
+
+    </div>
+
+</div>
+
+<div class="success-box">
+
+    <p class="step-label">
+        ⭐ Remember
+    </p>
+
+    <div class="memory-diagram">
+
+        <p>
+            Regular Function + How it is called
+        </p>
+
+        <p>↓</p>
+
+        <p>
+            Determines <strong>this</strong>
+        </p>
+
+    </div>
+
+</div>
+<hr>
+
+<h4><span class="highlight">this</span> Inside a Nested Function</h4>
+
+<p>
+    ஒரு <span class="highlight">regular function</span>-க்குள் இன்னொரு
+    <span class="highlight">regular function</span> இருந்தால்,
+    inner function-ன் <span class="highlight">this</span> automatically
+    outer function-ன் <span class="highlight">this</span>-ஐ follow செய்யாது.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function() {
+
+        function inner() {
+            console.log(this);
+        }
+
+        inner();
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            person.greet()
+            <br>
+            ↓
+            <br>
+            Outer <span class="highlight">this</span> = person
+            <br>
+            ↓
+            <br>
+            inner()
+            <br>
+            ↓
+            <br>
+            Inner <span class="highlight">this</span>
+            = separate invocation
+        </div>
+
+        <div class="success-box mt-2">
+            <strong>Important:</strong>
+            <span class="highlight">inner()</span> என்பது
+            <span class="highlight">obj.method()</span> போல call செய்யப்படவில்லை.
+            அதனால் inner function-ன் <span class="highlight">this</span>,
+            outer function-ன் <span class="highlight">this</span>-ஐ பெறாது.
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function() {
+
+        console.log("Outer:", this.name);
+
+        function inner() {
+            console.log("Inner:", this);
+        }
+
+        inner();
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <h5>Output</h5>
+
+        <div class="memory-diagram">
+            Outer: Kesava
+            <br>
+            Inner: global object
+        </div>
+
+        <p class="tamil">
+            <span class="highlight">greet()</span> → method call,
+            அதனால் <span class="highlight">this = person</span>.
+        </p>
+
+        <p class="tamil">
+            <span class="highlight">inner()</span> → plain function call,
+            அதனால் அது தனியாக <span class="highlight">this</span>-ஐ தீர்மானிக்கும்.
+        </p>
+    </div>
+</div>
+
+<div class="error-box">
+    <strong>Common Mistake:</strong>
+    Nested function என்பதால் outer <span class="highlight">this</span> automatically
+    inner function-க்கு கிடைக்கும் என்று நினைக்கக்கூடாது.
+</div>
+
+<h5><span class="highlight">this</span> ≠ Lexical Scope</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="scope-box closure-box">
+            <span class="step-label">Lexical Scope</span>
+            Variable-களை அருகிலுள்ள outer scope-ல் இருந்து
+            தேடும்.
+        </div>
+
+        <div class="scope-box closure-box">
+            <span class="step-label"><span class="highlight">this</span></span>
+            Regular function-ல்
+            <span class="highlight">எப்படி call செய்யப்படுகிறது</span>
+            என்பதன் அடிப்படையில் தீர்மானிக்கப்படுகிறது.
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box">
+            <strong>Remember:</strong>
+            ஒரு nested regular function outer function-க்குள்
+            எழுதப்பட்டிருக்கிறது என்பதற்காக மட்டும்,
+            outer <span class="highlight">this</span>-ஐ inherit(மரபுவழி பெறுவது) செய்யாது.
+        </div>
+    </div>
+</div>
+
+<h5>Regular Function — <span class="highlight">this</span> எப்படி தீர்மானிக்கப்படுகிறது?</h5>
+
+<div class="memory-diagram">
+    Regular Function
+    <br>
+    ↓
+    <br>
+    <strong>How is it called?</strong>
+    <br><br>
+
+    obj.method()
+    → <span class="highlight">this = obj</span>
+    <br><br>
+
+    function()
+    → strict mode: <span class="highlight">undefined</span>
+    <br>
+    → non-strict mode: <span class="highlight">global object</span>
+</div>
+
+<div class="row g-3 mt-2">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side">
+            <div class="ref-header">Outer Function</div>
+
+            <div class="memory-diagram mt-2">
+                person.greet()
+                <br>
+                ↓
+                <br>
+                <span class="highlight">this = person</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side">
+            <div class="exec-header">Nested Function</div>
+
+            <div class="memory-diagram mt-2">
+                inner()
+                <br>
+                ↓
+                <br>
+                Separate invocation
+                <br>
+                ↓
+                <br>
+                Separate <span class="highlight">this</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <span class="highlight">Nested regular function → separate invocation → separate this</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">scope nested ஆகலாம்</span>;
+    ஆனால் regular function-ன் <span class="highlight">this</span>
+    call செய்யப்படும் முறையைப் பொறுத்தது.
+</p>
+<hr>
+
+<h4>Arrow Function + <span class="highlight">this</span> — From Zero to Mastery</h4>
+
+<h5>1. First: Regular Function</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function() {
+
+        console.log("Outer:", this.name);
+
+        function inner() {
+            console.log("Inner:", this);      // global object
+            console.log("Inner:", this.name); // undefined
+        }
+
+        inner();
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            person.greet()
+            <br>
+            ↓
+            <br>
+            greet → <span class="highlight">this = person</span>
+            <br><br>
+            inner()
+            <br>
+            ↓
+            <br>
+            regular function
+            <br>
+            ↓
+            <br>
+            own <span class="highlight">this</span>
+        </div>
+
+        <p class="tamil">
+            <span class="highlight">greet</span> method-ஆக call செய்யப்படுகிறது.
+            ஆனால் <span class="highlight">inner()</span> plain function-ஆக call செய்யப்படுகிறது.
+        </p>
+    </div>
+</div>
+
+<div class="error-box">
+    <strong>Important:</strong>
+    Nested function என்பதால் outer <span class="highlight">this</span>
+    automatically inner function-க்கு கிடைக்காது.
+</div>
+
+<h5>2. அதே Example-ல் Arrow Function</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function() {
+
+        console.log("Outer:", this.name); // Kesava
+
+        const inner = () => {
+            console.log("Inner:", this.name); // Kesava
+        }
+
+        inner();
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            greet
+            <br>
+            ↓
+            <br>
+            <span class="highlight">this = person</span>
+            <br>
+            ↓
+            <br>
+            arrow function
+            <br>
+            ↓
+            <br>
+            <span class="highlight">no own this</span>
+            <br>
+            ↓
+            <br>
+            uses surrounding <span class="highlight">this</span>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why?</strong>
+    Arrow function-க்கு தனியாக <span class="highlight">this</span> உருவாகாது.
+    அது இருக்கும் surrounding scope-ல் கிடைக்கும் <span class="highlight">this</span>-ஐ பயன்படுத்தும்.
+</div>
+
+<h5>3. Regular vs Arrow — Same Nested Function</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function() {
+
+        function regular() {
+            console.log("Regular:", this.name);
+        }
+
+        const arrow = () => {
+            console.log("Arrow:", this.name);
+        };
+
+        regular();
+        arrow();
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <h5>Output</h5>
+
+        <div class="memory-diagram">
+            Regular: undefined
+            <br>
+            Arrow: Kesava
+        </div>
+
+        <div class="row g-2">
+            <div class="col-md-6">
+                <div class="ref-box ref-side">
+                    <div class="ref-header">Regular</div>
+                    <p>
+                        Own <span class="highlight">this</span>
+                    </p>
+                    <p class="tamil">
+                        தனக்கென this behavior.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="exec-box exec-side">
+                    <div class="exec-header">Arrow</div>
+                    <p>
+                        No own <span class="highlight">this</span>
+                    </p>
+                    <p class="tamil">
+                        வெளியிலுள்ள this-ஐ பயன்படுத்தும்.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>4. <span class="highlight">setTimeout()</span> Example</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function() {
+        setTimeout(() => {
+            console.log(this.name); // Kesava
+        }, 1000);
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+
+        <div class="success-box">
+            Arrow callback → own <span class="highlight">this</span> இல்லை
+            → surrounding <span class="highlight">greet</span>-ன்
+            <span class="highlight">this</span> பயன்படுத்தப்படுகிறது.
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function() {
+        setTimeout(function() {
+            console.log(this.name); // undefined
+        }, 1000);
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+
+        <div class="error-box">
+            Regular callback → தனக்கென <span class="highlight">this</span>
+            இருக்கும் → <span class="highlight">person</span>-ஐ automatically refer செய்யாது.
+        </div>
+    </div>
+</div>
+
+<h5>5. Nested Function-ன் Fundamental Difference</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side">
+            <div class="ref-header">Regular Nested Function</div>
+
+            <div class="memory-diagram mt-2">
+                greet
+                <br>
+                ↓
+                <br>
+                own <span class="highlight">this</span>
+                <br><br>
+                inner
+                <br>
+                ↓
+                <br>
+                own <span class="highlight">this</span>
+            </div>
+
+            <p class="tamil">
+                <span class="highlight">Outer this</span>
+                மற்றும்
+                <span class="highlight">Inner this</span>
+                automatically same ஆகாது.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side">
+            <div class="exec-header">Arrow Nested Function</div>
+
+            <div class="memory-diagram mt-2">
+                greet
+                <br>
+                ↓
+                <br>
+                <span class="highlight">this = person</span>
+                <br>
+                ↓
+                <br>
+                arrow
+                <br>
+                ↓
+                <br>
+                no own <span class="highlight">this</span>
+                <br>
+                ↓
+                <br>
+                uses surrounding <span class="highlight">this</span>
+                <br>
+                ↓
+                <br>
+                <span class="highlight">this = person</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>6. One Very Important Warning</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: () => {
+        console.log(this.name); // undefined
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="error-box">
+            <strong>Arrow function எப்போதும் object method-க்கு சரியான choice அல்ல.</strong>
+        </div>
+
+        <p class="tamil">
+            இங்கே <span class="highlight">greet</span> ஒரு arrow function.
+            அதற்கு own <span class="highlight">this</span> இல்லை.
+            அதனால் <span class="highlight">person</span>-ஐ
+            <span class="highlight">this</span> மூலம் refer செய்யாது.
+        </p>
+    </div>
+</div>
+
+<h5>7. Final Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side">
+            <div class="ref-header">REGULAR FUNCTION</div>
+
+            <div class="memory-diagram mt-2">
+                "I am a separate function."
+                <br>
+                ↓
+                <br>
+                "I have my own <span class="highlight">this</span> behavior."
+                <br>
+                ↓
+                <br>
+                "Look at how I am called."
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side">
+            <div class="exec-header">ARROW FUNCTION</div>
+
+            <div class="memory-diagram mt-2">
+                "I am a special kind of function."
+                <br>
+                ↓
+                <br>
+                "I don't create my own <span class="highlight">this</span>."
+                <br>
+                ↓
+                <br>
+                "I'll use the surrounding <span class="highlight">this</span>."
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    Regular function → <span class="highlight">own this</span>
+    <br>
+    Arrow function → <span class="highlight">no own this</span> → surrounding <span class="highlight">this</span>
+</div>
+
+<div class="memory-diagram">
+    <strong>Regular:</strong>
+    "How was I called?"
+    <span class="arrow-note">→</span>
+    own <span class="highlight">this</span>
+    <br><br>
+    <strong>Arrow:</strong>
+    "What is my surrounding scope?"
+    <span class="arrow-note">→</span>
+    surrounding <span class="highlight">this</span>
+</div>
+
+<p class="tamil">
+    இதை மட்டும் strong-ஆ நினைவில் வைத்துக்கொள்ளுங்கள்:
+    <span class="highlight">Arrow function-ன் this = lexical this</span>.
+    அதாவது arrow function தான் <span class="highlight">this</span>-ஐ உருவாக்காது;
+    surrounding context-ல் இருக்கும் <span class="highlight">this</span>-ஐ பயன்படுத்தும்.
+</p>
+<h5>Lexical <span class="highlight">this</span> — The Real Connection</h5>
+
+<p>
+    இங்கே ஒரு very important concept வருகிறது:
+    <span class="highlight">Arrow function</span> என்பது அருகில் இருக்கும்
+    object-ஐ தேடி <span class="highlight">this</span>-ஐ பெறாது.
+    அது இருக்கும் <span class="highlight">lexical scope</span>-ல் இருக்கும்
+    <span class="highlight">this</span>-ஐ பயன்படுத்தும்.
+</p>
+
+<h5>Example 1 — Regular Function + Nested Arrow</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function () {
+        const outer = () => {
+            console.log(this.name); // Kesava
+        }
+
+        console.log(this.name); // Kesava
+        outer();
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            person.greet()
+            <br>
+            ↓
+            <br>
+            greet = regular function
+            <br>
+            ↓
+            <br>
+            <span class="highlight">this = person</span>
+            <br>
+            ↓
+            <br>
+            outer = arrow function
+            <br>
+            ↓
+            <br>
+            no own <span class="highlight">this</span>
+            <br>
+            ↓
+            <br>
+            inherits surrounding <span class="highlight">this</span>
+            <br>
+            ↓
+            <br>
+            <span class="highlight">this = person</span>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why does this work?</strong>
+    <p>
+        <span class="highlight">greet</span> regular function என்பதால்,
+        <span class="highlight">person.greet()</span> call-ல்
+        <span class="highlight">this = person</span>.
+    </p>
+    <p>
+        <span class="highlight">outer</span> arrow function-க்கு own
+        <span class="highlight">this</span> இல்லை.
+        அதனால் அது <span class="highlight">greet</span>-ன்
+        surrounding <span class="highlight">this</span>-ஐ பயன்படுத்துகிறது.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    <strong>Regular function</strong>
+    <span class="arrow-note">→</span>
+    gets its own <span class="highlight">this</span>
+    <br>
+    <strong>Arrow function</strong>
+    <span class="arrow-note">→</span>
+    uses surrounding <span class="highlight">this</span>
+</div>
+
+<h5>Example 2 — Arrow Function as the Object Method</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: () => {
+        const outer = () => {
+            console.log(this.name); // undefined
+        }
+
+        console.log(this.name); // undefined
+        outer();
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            person.greet()
+            <br>
+            ↓
+            <br>
+            greet = arrow function
+            <br>
+            ↓
+            <br>
+            arrow has no own <span class="highlight">this</span>
+            <br>
+            ↓
+            <br>
+            object <span class="highlight">person</span> is NOT used
+            <br>
+            ↓
+            <br>
+            takes surrounding lexical <span class="highlight">this</span>
+        </div>
+
+        <div class="error-box mt-2">
+            <strong>Important:</strong>
+            <span class="highlight">person.greet()</span> என்று method syntax-ல்
+            call செய்தாலும், arrow function-க்கு regular method போல
+            <span class="highlight">this = person</span> கிடைக்காது.
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Key Difference</strong>
+    <p class="mb-1">
+        Example 1:
+        <span class="highlight">greet</span> regular → own
+        <span class="highlight">this = person</span> →
+        nested arrow inherits it.
+    </p>
+    <p class="mb-0">
+        Example 2:
+        <span class="highlight">greet</span> itself is arrow →
+        no own <span class="highlight">this</span> →
+        it does not get <span class="highlight">person</span>.
+    </p>
+</div>
+
+<h5>Why is this called <span class="highlight">Lexical this</span>?</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side">
+            <div class="ref-header">Regular Function</div>
+
+            <div class="memory-diagram mt-2">
+                <span class="highlight">this</span>
+                <br>
+                ↓
+                <br>
+                determined by
+                <br>
+                <strong>how the function is called</strong>
+            </div>
+
+            <p class="tamil">
+                call-site முக்கியம்.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side">
+            <div class="exec-header">Arrow Function</div>
+
+            <div class="memory-diagram mt-2">
+                <span class="highlight">this</span>
+                <br>
+                ↓
+                <br>
+                taken from
+                <br>
+                <strong>surrounding lexical scope</strong>
+            </div>
+
+            <p class="tamil">
+                function எங்கே எழுதப்பட்டுள்ளது என்பதன்
+                surrounding context முக்கியம்.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>Very Important Warning</h5>
+
+<div class="error-box">
+    <strong>Lexical does NOT mean "nearest object".</strong>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: () => {
+        console.log(this.name);
+    }
+};
+
+person.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            Arrow function
+            <br>
+            ↓
+            <br>
+            Does NOT ask:
+            <br>
+            "Which object called me?"
+            <br><br>
+            Instead asks:
+            <br>
+            "What is my surrounding lexical this?"
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <span class="highlight">Arrow function → no own this → lexical this</span>
+    <p class="tamil mt-2 mb-0">
+        அதாவது arrow function அருகிலுள்ள object-ஐ பார்த்து
+        <span class="highlight">this</span>-ஐ தேர்வு செய்யாது.
+        அது எழுதப்பட்டிருக்கும் surrounding context-ல் இருக்கும்
+        <span class="highlight">this</span>-ஐ பயன்படுத்தும்.
+    </p>
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="memory-diagram">
+    Regular method
+    <br>
+    <span class="arrow-note">↓</span>
+    <br>
+    <span class="highlight">this = object</span>
+    <br>
+    <span class="arrow-note">↓</span>
+    <br>
+    Nested arrow
+    <br>
+    <span class="arrow-note">↓</span>
+    <br>
+    no own <span class="highlight">this</span>
+    <br>
+    <span class="arrow-note">↓</span>
+    <br>
+    inherits surrounding <span class="highlight">this</span>
+</div>
+
+<div class="memory-diagram">
+    Arrow as object method
+    <br>
+    <span class="arrow-note">↓</span>
+    <br>
+    no own <span class="highlight">this</span>
+    <br>
+    <span class="arrow-note">↓</span>
+    <br>
+    does NOT become <span class="highlight">person</span>
+    just because it was called as <span class="highlight">person.greet()</span>
+</div>
     <pre>
 
         console.log(this) <b> this return all the window objects like - Window {window: Window, self: Window, document: document, name: ''</b>
