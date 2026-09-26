@@ -3274,6 +3274,125 @@ person.greet();
     does NOT become <span class="highlight">person</span>
     just because it was called as <span class="highlight">person.greet()</span>
 </div>
+<div class="success-box">
+    <strong>Why is the output <span class="highlight">Kesava</span>?</strong>
+
+    <p>
+        <span class="highlight">greet</span> is a regular function and it is
+        invoked as <span class="highlight">person.greet()</span>.
+        Therefore:
+        <span class="highlight">this = person</span>.
+    </p>
+
+    <p class="mb-0">
+        <span class="highlight">inner</span> is an arrow function.
+        Arrow functions do not create their own <span class="highlight">this</span>,
+        so it uses the surrounding lexical <span class="highlight">this</span>
+        from <span class="highlight">greet</span>.
+    </p>
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function () {
+        const inner = () => {
+            console.log(this.name);
+        };
+
+        inner();
+    }
+};
+
+person.greet();
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    person.greet()
+    <br>
+    ↓
+    <br>
+    greet = regular function
+    <br>
+    ↓
+    <br>
+    <span class="highlight">this = person</span>
+    <br>
+    ↓
+    <br>
+    inner = arrow function
+    <br>
+    ↓
+    <br>
+    no own <span class="highlight">this</span>
+    <br>
+    ↓
+    <br>
+    uses surrounding lexical <span class="highlight">this</span>
+    <br>
+    ↓
+    <br>
+    <span class="highlight">this = person</span>
+    <br>
+    ↓
+    <br>
+    <span class="highlight">this.name = "Kesava"</span>
+</div>
+
+<h5>4 Rules to Remember</h5>
+
+<div class="row g-3">
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>1. Regular function</strong>
+            <p class="mb-0 mt-2">
+                <span class="highlight">this</span> is determined by
+                <strong>how it is called</strong>.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>2. obj.method()</strong>
+            <p class="mb-0 mt-2">
+                <span class="highlight">this = obj</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>3. Nested regular function</strong>
+            <p class="mb-0 mt-2">
+                Does <strong>not</strong> automatically inherit
+                outer <span class="highlight">this</span>.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>4. Arrow function</strong>
+            <p class="mb-0 mt-2">
+                No own <span class="highlight">this</span>;
+                uses surrounding lexical <span class="highlight">this</span>.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box mt-3">
+    <strong>Master Rule:</strong>
+    Regular function asks:
+    <span class="highlight">"How was I called?"</span>
+    <br>
+    Arrow function asks:
+    <span class="highlight">"What is my surrounding this?"</span>
+</div>
     <pre>
 
         console.log(this) <b> this return all the window objects like - Window {window: Window, self: Window, document: document, name: ''</b>
@@ -3344,85 +3463,10 @@ person.greet();
     </table><br>
     <hr>
     <h3 class="center">Object</h3>
-    <pre>
-        let person = {
-            name:'xyz',
-            age:25,
-            gender:"male",
-            address:"chennai",
-            info:{
-                isGood:'yes',
-                isTaxpayer:false
-            }
-        }
-        console.log(person);
-    </pre><br>
-    <p class="heading">If get value from object - 2 methods</p>
-    <br>
-    <h3>.Dot Notation</h3>
-    <p>console.log(person.name) // xyz</p> <br>
-    <h3>Bracket Notation</h3>
-    <p>console.log(person['name']) // xyz</p><br>
-    <p class="heading">Deleting object item
-    </p>
-    <pre>
-        delete person.gender;
-        delete person.name;
-        console.log(person)
-    </pre>
-    <p class="heading">
-        Convert Obj to a Array
-    </p>
-    <pre>
-
-        let convertObj = Object.keys(person);
-        console.log(convertObj)
-
-        (output): 
-                  0: "age"
-                  1: "address"       <b>we deleted name and gender previously so this three are there!</b> 
-                  2: "info"
-    </pre>
-    <p class="heading"> Object Entries</p>
-    <pre>
-
-        let objEntries = Object.entries(person);
-        console.log(objEntries)
-
-        Output :
-        0:  ['age', 25]
-        1:  ['address', 'chennai']      <b>Each entry or row will separated by an array!</b>
-        2:  ['info', {…}]
-
-    </pre>
-    <p class="heading"> Check the key exist or not in the object</p>
-    <pre>
-
-        // check key is in the obj or not 
-
-            'name' in person ? console.log('YES') : console.log('NO');  (output: NO) // name already deleted.
-            'age' in person ? console.log('YES') : console.log('NO');   (output: YES)
-    </pre>
-    <p class="heading">Clone a Object</p>
-    <pre>
-
-        let cloneObj ={
-            state :'Tamilnadu'
-          }
-
-          cloneObj = person;
-          console.log(cloneObj) // here just assign object to another variable 
-          
-          output :
-            address: "chennai"
-            age : 25                 <b>Here only old object is cloning but new object values not there</b>
-            info: {isGood: 'yes', isTaxpayer: false}
-
-            <b>ES6 with spread operator</b>
-
-            cloneObj = { ... person };  <b>Spread Operator</b>
-            console.log(cloneObj);
-    </pre>
+          <a href="./object.html" style="text-decoration: none;">
+            <button type="button" class="btn btn-success" >
+  Objects - Deep Dive
+    </button></a>
     <hr>
     <h3 class="center">Array</h3><br>
     <pre>
@@ -12258,6 +12302,7 @@ greet();</code></pre>
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
+                     <h5 class="modal-title" id="staticBackdropLabel">ARROW FUNCTIONS DEEP DIVE</h5>
                     <buton type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -18855,10 +18900,7 @@ console.log(activePrdPrice);
         3. Immeadiate invoked functions <br>
         4 . Arrow functions</p>
     <br>
-    <p class="heading">Bind, This, Apply, Call These methods are usable in Arrow Function<br>
-
     <pre>
-
                 //1. Anonymous Functions
 
                 var anonymousFunc = function () {
@@ -18934,12 +18976,610 @@ console.log(activePrdPrice);
 </pre>
     <hr>
     <h3 class="center"> Keywords</h3>
-    <h3 class="center">Bind - Call - apply </h3>
+<h4><span class="highlight">call() — apply() — bind()</span></h4>
+<p>
+    இதுவரை நாம் பார்த்த முக்கியமான rule:
+    <span class="highlight">Regular function → எப்படி call செய்யப்படுகிறது என்பதுதான் this-ஐ தீர்மானிக்கும்.</span>
+</p>
+
+<div class="memory-diagram">
+    Regular Function
     <br>
-    <p class="heading">BIND</p>
+    ↓
+    <br>
+    How is it called?
+    <br>
+    ↓
+    <br>
+    determines <span class="highlight">this</span>
+</div>
+
+<div class="success-box">
+    <strong>இப்போது ஒரு புதிய கேள்வி:</strong>
+    <p class="mb-0">
+        "Function-ஐ எப்படி call பண்ண வேண்டும் என்பதை JavaScript-க்கு
+        விட்டுவைக்காமல், நாமே <span class="highlight">this</span>-ஐ சொல்ல முடியுமா?"
+        <br>
+        <strong>ஆம்.</strong>
+    </p>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>call()</strong>
+            <p class="mb-0 mt-2">
+                Execute now
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>apply()</strong>
+            <p class="mb-0 mt-2">
+                Execute now
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>bind()</strong>
+            <p class="mb-0 mt-2">
+                Execute later
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>1. <span class="highlight">call()</span></h5>
+
+<p>
+    முதலில் ஒரு regular function:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+function greet() {
+    console.log(this.name);
+}
+</code></pre>
+</div>
+
+<p>
+    இப்போது இரண்டு objects:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const personA = {
+    name: "Kesava",
+    fn: greet
+};
+
+const personB = {
+    name: "Arun",
+    fn: greet
+};
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side">
+            <div class="ref-header">Normal Method Call</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+personA.fn();
+personB.fn();
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                personA.fn()
+                <br>
+                ↓
+                <br>
+                <span class="highlight">this = personA</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side">
+            <div class="exec-header">Using call()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+greet.call(personA);
+greet.call(personB);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                greet.call(personA)
+                <br>
+                ↓
+                <br>
+                <span class="highlight">this = personA</span>
+                <br><br>
+                greet.call(personB)
+                <br>
+                ↓
+                <br>
+                <span class="highlight">this = personB</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>call() என்ன செய்கிறது?</strong>
+    <p class="mb-0">
+        Function-ஐ <strong>உடனடியாக execute</strong> செய்து,
+        <span class="highlight">this</span> எந்த object-ஐ refer செய்ய வேண்டும்
+        என்பதை நாமே கொடுக்கிறது.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    <span class="highlight">function.call(thisValue)</span>
+    <br>
+    ↓
+    <br>
+    Execute immediately
+    <br>
+    +
+    <br>
+    <span class="highlight">this = thisValue</span>
+</div>
+
+<h5><span class="highlight">call()</span> with Arguments</h5>
+
+<p>
+    Syntax:
+</p>
+
+<div class="memory-diagram">
+    <span class="highlight">function.call(thisValue, arg1, arg2, ...)</span>
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+function greet(data) {
+    console.log(this.name, data ? data : '');
+}
+
+const personA = {
+    name: "Kesava"
+};
+
+const personB = {
+    name: "Arun"
+};
+
+greet.call(personA, "content");
+greet.call(personB, "different data");
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    greet.call(personA, "content")
+    <br>
+    ↓
+    <br>
+    <span class="highlight">this = personA</span>
+    <br>
+    +
+    <br>
+    data = "content"
+    <br><br>
+
+    greet.call(personB, "different data")
+    <br>
+    ↓
+    <br>
+    <span class="highlight">this = personB</span>
+    <br>
+    +
+    <br>
+    data = "different data"
+</div>
+
+<h5>2. <span class="highlight">apply()</span></h5>
+
+<p>
+    <span class="highlight">apply()</span> almost behaves like
+    <span class="highlight">call()</span>.
+    இரண்டுமே function-ஐ <strong>immediately execute</strong> செய்யும்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+function greet(data) {
+    console.log(this.name, data ? data : '');
+}
+
+const personA = {
+    name: "Kesava"
+};
+
+const personB = {
+    name: "Arun"
+};
+
+greet.apply(personA, ["content"]);
+greet.apply(personB, ["different data"]);
+</code></pre>
+</div>
+
+<p>
+    Syntax:
+</p>
+
+<div class="memory-diagram">
+    <span class="highlight">function.apply(thisValue, [arg1, arg2, ...])</span>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side">
+            <div class="ref-header">call()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+greet.call(
+    personA,
+    "Hello",
+    "Good Morning"
+);
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                Arguments → <span class="highlight">separately</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side">
+            <div class="exec-header">apply()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+greet.apply(
+    personA,
+    ["Hello", "Good Morning"]
+);
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                Arguments → <span class="highlight">array</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Difference:</strong>
+    <br>
+    <span class="highlight">call → this + comma-separated arguments</span>
+    <br>
+    <span class="highlight">apply → this + array of arguments</span>
+</div>
+
+<div class="error-box">
+    <strong>Important:</strong>
+    <span class="highlight">call()</span>-க்கு array கொடுத்தால்,
+    அது automatically arguments-ஆக spread ஆகாது.
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+greet.call(personB, ["different data"]);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    call()
+    <br>
+    ↓
+    <br>
+    data = ["different data"]
+    <br><br>
+    So the array itself becomes the argument.
+</div>
+
+<h5>3. <span class="highlight">bind()</span></h5>
+
+<p>
+    <span class="highlight">bind()</span>-ன் main difference:
+    இது function-ஐ உடனடியாக execute செய்யாது.
+</p>
+
+<div class="memory-diagram">
+    bind()
+    <br>
+    ↓
+    <br>
+    Remember this value + arguments
+    <br>
+    ↓
+    <br>
+    Create a <span class="highlight">new function</span>
+    <br>
+    ↓
+    <br>
+    Execute later
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+function greet(data, data1) {
+    console.log(this.name, data ? data : '', data1);
+}
+
+const personA = {
+    name: "Kesava"
+};
+
+const personB = {
+    name: "Arun"
+};
+
+const a = greet.bind(personA, "content", "hello");
+
+a();
+// Kesava content hello
+
+const b = greet.bind(personB, ["different data"]);
+
+b();
+// Arun [ 'different data' ] undefined
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>call()</strong>
+            <div class="memory-diagram mt-2">
+                Set this
+                <br>
+                +
+                <br>
+                arguments
+                <br>
+                ↓
+                <br>
+                Execute now
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>apply()</strong>
+            <div class="memory-diagram mt-2">
+                Set this
+                <br>
+                +
+                <br>
+                argument array
+                <br>
+                ↓
+                <br>
+                Execute now
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>bind()</strong>
+            <div class="memory-diagram mt-2">
+                Set this
+                <br>
+                +
+                <br>
+                optional arguments
+                <br>
+                ↓
+                <br>
+                Return new function
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>One Function — Different Objects</h5>
+
+<div class="code-block p-3">
+<pre><code>
+function greet() {
+    console.log(this.name);
+}
+
+const personA = {
+    name: "Kesava"
+};
+
+const personB = {
+    name: "Arun"
+};
+
+greet.call(personA); // Kesava
+greet.call(personB); // Arun
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Same function
+    <br>
+    <span class="highlight">greet</span>
+    <br><br>
+    ┌───────────────────────┐
+    <br>
+    greet.call(personA)
+    <br>
+    → this = personA
+    <br>
+    → Kesava
+    <br>
+    └───────────────────────┘
+    <br><br>
+    ┌───────────────────────┐
+    <br>
+    greet.call(personB)
+    <br>
+    → this = personB
+    <br>
+    → Arun
+    <br>
+    └───────────────────────┘
+</div>
+
+<h5>Very Important: What about Arrow Functions?</h5>
+
+<p>
+    <span class="highlight">call()</span>,
+    <span class="highlight">apply()</span> மற்றும்
+    <span class="highlight">bind()</span> methods-ஐ arrow functions மீதும்
+    technically call செய்யலாம். ஆனால் arrow function-க்கு own
+    <span class="highlight">this</span> இல்லாததால்,
+    அவை <span class="highlight">this</span>-ஐ rebind செய்ய முடியாது.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const greet = (data, data1) => {
+    console.log(this.name, data ? data : '', data1);
+};
+
+const personA = {
+    name: "Kesava"
+};
+
+const personB = {
+    name: "Arun"
+};
+
+greet.call(personA, "content", "hello");
+// this is not changed to personA
+
+greet.apply(personB, ["different data"]);
+// this is not changed to personB
+
+const a = greet.bind(personA, "content", "contentone");
+
+a();
+// this is still not changed to personA
+</code></pre>
+</div>
+
+<div class="error-box">
+    <strong>Key Point:</strong>
+    <span class="highlight">call()</span>,
+    <span class="highlight">apply()</span> மற்றும்
+    <span class="highlight">bind()</span>
+    regular functions-ன் <span class="highlight">this</span>-ஐ
+    explicitly control செய்ய மிகவும் useful.
+    ஆனால் arrow function-ன் lexical <span class="highlight">this</span>-ஐ
+    இவை மாற்ற முடியாது.
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">call()</div>
+            <p class="mt-2">
+                <span class="highlight">this</span> கொடு
+            </p>
+            <p>
+                arguments individually கொடு
+            </p>
+            <strong>Execute now</strong>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">apply()</div>
+            <p class="mt-2">
+                <span class="highlight">this</span> கொடு
+            </p>
+            <p>
+                arguments array-ஆக கொடு
+            </p>
+            <strong>Execute now</strong>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>bind()</strong>
+            <p class="mt-2">
+                <span class="highlight">this</span> மற்றும் arguments remember செய்
+            </p>
+            <strong>New function return → execute later</strong>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Easy Memory Trick:</strong>
+    <br>
+    <span class="highlight">CALL → Call now</span>
+    <br>
+    <span class="highlight">APPLY → Call now with Array</span>
+    <br>
+    <span class="highlight">BIND → Bind now, Call later</span>
+</div>
+
+<p class="tamil">
+    ஒரு வரியில்:
+    <span class="highlight">call/apply → உடனே execute</span>,
+    <span class="highlight">bind → புதிய function உருவாகும், பின்னர் execute செய்யலாம்</span>.
+</p>
+    <br>
+    <p class="heading">CALL</p>
     <br>
     <pre>
 
+    employeeOne.getEmpName.call(employeeTwo); 
+
+    // here we get output without covert as function this is call ()
+
+    // Employee Name is Ravi
+</pre>
+    <br>
+    <p class="heading">Passing arguments with call </p>
+    <pre>
+
+        employeeThree.getEmpName.call(employeeFour , ' MERN STACK');
+        // Employee Name is Ravi MERN STACK
+</pre>
+    <br>
+    <p class="heading">APPLY</p>
+    <pre>
+
+    // Apply 
+
+        employeeThree.getEmpName.apply(employeeFour , [' LAMP STACK']); 
+        // Here we give an array for agrs this is called Apply
+        // Employee Name is Ravi LAMP STACK
+
+</pre>
+<br>
+   <p class="heading">BIND</p>
+    <br>
+    <pre>
     // Bind 
 
         let employeeOne = {
@@ -18987,34 +19627,6 @@ console.log(activePrdPrice);
 
         var bindValueWithArgs = employeeThree.getEmpName.bind(employeeFour, ' MEAN Stack');
         bindValueWithArgs();
-
-</pre><br>
-    <p class="heading">CALL</p>
-    <br>
-    <pre>
-
-    employeeOne.getEmpName.call(employeeTwo); 
-
-    // here we get output without covert as function this is call ()
-
-    // Employee Name is Ravi
-</pre>
-    <br>
-    <p class="heading">Passing arguments with call </p>
-    <pre>
-
-        employeeThree.getEmpName.call(employeeFour , ' MERN STACK');
-        // Employee Name is Ravi MERN STACK
-</pre>
-    <br>
-    <p class="heading">APPLY</p>
-    <pre>
-
-    // Apply 
-
-        employeeThree.getEmpName.apply(employeeFour , [' LAMP STACK']); 
-        // Here we give an array for agrs this is called Apply
-        // Employee Name is Ravi LAMP STACK
 
 </pre>
     <hr><br>

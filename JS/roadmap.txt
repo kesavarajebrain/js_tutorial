@@ -83,35 +83,71 @@ Pattern problems ✅
 ✅ Common interview questions
 ✅ Real-world style usage
 ✅ Differences from regular functions
-⏳ Differences from regular functions (except this, which we'll cover after learning this)
+✅ Differences from regular functions (except this, which we'll cover after learning this)
 
 📌 this Keyword (Deep Dive)
-⏳ What is this?
-⏳ How this is decided
-⏳ Global context
-⏳ Function context
-⏳ Object methods
-⏳ Nested functions
-⏳ Arrow function vs regular function (this)
-⏳ Browser vs Node.js behavior
-⏳ Interview scenarios
+✅ What is this?
+✅ How this is decided
+✅ Global context
+✅ Function context
+✅ Object methods
+✅ Nested functions
+✅ Arrow function vs regular function (this)
+✅ Browser vs Node.js behavior
+✅ Interview scenarios
 
 📌 call(), apply(), bind()
-⏳ Why they exist
-⏳ How they change this
-⏳ Differences
-⏳ Real interview examples
-⏳ Angular/JavaScript use cases
+✅ Why they exist
+✅ How they change this
+✅ Differences
+✅ Real interview examples
+✅ Angular/JavaScript use cases
 
-📌 Objects
-⏳ Object creation
-⏳ Property access
-⏳ Methods
-⏳ Destructuring
-⏳ Object references
-⏳ Shallow vs Deep Copy
-⏳ Seal vs freeze Copy
-⏳ Spread operator with objects
+📌 OBJECTS — COMPLETE MASTER ROADMAP
+01 ⏳ What is an Object?
+02 ⏳ Why do we need Objects?
+03 ⏳ Object structure
+04 ⏳ Properties
+05 ⏳ Values
+06 ⏳ Methods
+07 ⏳ Creating Objects
+08 ⏳ Reading properties
+09 ⏳ Dot notation
+10 ⏳ Bracket notation
+11 ⏳ Adding properties
+12 ⏳ Updating properties
+13 ⏳ Deleting properties
+14 ⏳ Dynamic properties
+15 ⏳ Computed property names
+16 ⏳ Nested objects
+17 ⏳ Functions as object properties
+18 ⏳ Objects containing arrays
+19 ⏳ Arrays containing objects
+
+20 ⏳ Object references
+21 ⏳ Primitive vs reference values
+22 ⏳ Assignment behavior
+
+23 ⏳ What is Object Cloning?
+24 ⏳ Why do we clone objects?
+25 ⏳ Shallow Copy / Shallow Clone
+26 ⏳ Deep Copy / Deep Clone
+27 ⏳ Spread operator with objects
+28 ⏳ Object.assign()
+29 ⏳ structuredClone()
+30 ⏳ Object cloning limitations / edge cases
+
+31 ⏳ Object.freeze()
+32 ⏳ Object.seal()
+
+33 ⏳ Object destructuring
+34 ⏳ Nested destructuring
+35 ⏳ Optional chaining
+36 ⏳ Object utility methods
+37 ⏳ Immutability
+38 ⏳ Real API data
+39 ⏳ Angular / React state examples
+40 ⏳ Interview questions
 
 📌 Arrays
 ⏳ forEach()
@@ -190,3 +226,34 @@ Advanced patterns
 AI-enabled engineering
  ↓
 POC 🚀
+
+
+Existing software engineering skills
+              +
+AI/LLM engineering
+              +
+AI application architecture
+              +
+Agent/RAG/tool integration
+              +
+Evaluation/security/production
+
+
+Date	Target
+Sep 20	Start accelerated sprint
+Oct 15	Core JS substantially complete
+Nov 5	TypeScript + app foundations
+Dec 5	AI/LLM foundations
+Dec 6–31	Build + polish AI POC
+Dec 31	🚀 AI-enabled engineering milestone
+
+Area	Status	Target
+JavaScript fundamentals	🟡 In progress	Oct 2026
+Async JS	⏳	Oct 2026
+TypeScript	⏳	Nov 2026
+AI/LLM fundamentals	⏳	Nov 2026
+RAG	⏳	Nov/Dec 2026
+Agents/tool calling	⏳	Dec 2026
+AI POC	⏳	Dec 2026
+GitHub documentation	⏳	Dec 2026
+Resume-ready project	⏳	Dec 2026

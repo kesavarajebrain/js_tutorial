@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <title>Objects | Js Zero to Hero</title>
+</head>
+<body>
+     <a href="./index.html" rel="noopener noreferrer" class="mt-3">
+        <button class="btn btn-primary">← Back</button>
+    </a>
+    <h4 class="center mt-3">Objects</h4>
+<h5>01. What is an Object?</h5>
+<div class="row g-3">
+    <div class="col-lg-7">
+        <p>
+            JavaScript-ல் <span class="highlight">Object</span> என்பது
+            related information-ஐ ஒரே இடத்தில் organize பண்ணும் ஒரு
+            <span class="highlight">data structure</span>.
+        </p>
+
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+    age: 30,
+    city: "Chennai"
+};
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            person
+            <br>
+            │
+            <br>
+            ├── name → "Kesava"
+            <br>
+            ├── age → 30
+            <br>
+            └── city → "Chennai"
+        </div>
+
+        <div class="success-box">
+            <strong>Tamil Mental Model:</strong>
+            <p class="mb-0">
+                Object = related data-வுக்கான ஒரு
+                <span class="highlight">container</span>.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>02. Why do we need Objects?</h5>
+
+<div class="row g-3">
+    <div class="col-lg-5">
+        <div class="code-block p-3">
+<pre><code>
+const name = "Kesava";
+const age = 30;
+const city = "Chennai";
+</code></pre>
+        </div>
+
+        <p class="tamil">
+            Data குறைவாக இருந்தால் இது okay.
+        </p>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="error-box">
+            Application-ல் 100 users இருந்தால்:
+            <strong>100 names, 100 emails, 100 ages, 100 cities...</strong>
+            என்று separate variables manage செய்வது difficult.
+        </div>
+
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30,
+    city: "Chennai",
+    email: "kesava@example.com"
+};
+</code></pre>
+        </div>
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>Simple Rule:</strong>
+    <span class="highlight">One entity → one object</span>
+</div>
+
+<h5>03. Object Structure</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+    age: 30
+};
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            name: "Kesava"
+            <br>
+            ↑       ↑
+            <br>
+            key    value
+            <br><br>
+            <span class="highlight">Property : Value</span>
+        </div>
+    </div>
+</div>
+
+<h5>04. Properties</h5>
+
+<p>
+    Object-க்குள் இருக்கும்
+    <span class="highlight">named fields</span> தான்
+    <span class="highlight">properties</span>.
+</p>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box text-center">
+            <strong>name</strong>
+            <p class="mb-0 mt-2">property</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box text-center">
+            <strong>age</strong>
+            <p class="mb-0 mt-2">property</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box text-center">
+            <strong>city</strong>
+            <p class="mb-0 mt-2">property</p>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    name → property
+    <br>
+    "Kesava" → value
+    <br><br>
+    age → property
+    <br>
+    30 → value
+</div>
+
+<h5>05. Values</h5>
+
+<p>
+    Propertyக்கு assign பண்ணப்பட்ட actual data தான்
+    <span class="highlight">value</span>.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+    age: 30,
+    active: true
+};
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box text-center">
+            <strong>name</strong>
+            <p class="mb-0 mt-2">→ "Kesava"</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box text-center">
+            <strong>age</strong>
+            <p class="mb-0 mt-2">→ 30</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box text-center">
+            <strong>active</strong>
+            <p class="mb-0 mt-2">→ true</p>
+        </div>
+    </div>
+</div>
+
+<p class="mt-3">
+    Values பல different data types ஆக இருக்கலாம்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",              // string
+    age: 30,                     // number
+    active: true,                // boolean
+    skills: ["Angular", "React"] // array
+};
+</code></pre>
+</div>
+
+<h5>06. Methods</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <p>
+            Object-க்குள் function வைத்தால்,
+            அந்த function-ஐ பொதுவாக
+            <span class="highlight">method</span> என்று சொல்வோம்.
+        </p>
+
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+
+    greet: function () {
+        console.log("Hello");
+    }
+};
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <p>
+            Modern JavaScript-ல் shorthand syntax:
+        </p>
+
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    greet() {
+        console.log("Hello");
+    }
+};
+</code></pre>
+        </div>
+
+        <div class="success-box">
+            <strong>Remember:</strong>
+            Object property-ன் value ஒரு function ஆக இருந்தால்,
+            அதை commonly <span class="highlight">method</span> என்று சொல்வோம்.
+        </div>
+    </div>
+</div>
+
+<h5>07. Creating Objects</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+    age: 30
+};
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            { ... }
+            <br>
+            ↓
+            <br>
+            <span class="highlight">Object Literal</span>
+            <br>
+            ↓
+            <br>
+            Creates the object structure
+        </div>
+
+        <p class="tamil">
+            இந்த curly braces-க்குள்
+            properties மற்றும் values define செய்யப்படுகின்றன.
+        </p>
+    </div>
+</div>
+
+<h5>08. Reading Properties</h5>
+
+<p>
+    Object உருவாக்கிய பிறகு, அதிலிருந்து value-ஐ
+    read செய்யலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const person = {
+    name: "Kesava",
+    age: 30
+};
+
+person.name;
+person.age;
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="memory-diagram">
+            person.name
+            <br>
+            ↓
+            <br>
+            "Kesava"
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="memory-diagram">
+            person.age
+            <br>
+            ↓
+            <br>
+            30
+        </div>
+    </div>
+</div>
+
+<h5>09. Dot Notation</h5>
+
+<p>
+    இந்த syntax:
+    <span class="highlight">person.name</span>
+    → <span class="highlight">dot notation</span>.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+console.log(person.name);
+console.log(person.age);
+</code></pre>
+        </div>
+
+        <div class="memory-diagram">
+            Output:
+            <br>
+            Kesava
+            <br>
+            30
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            person . name
+            <br>
+            ↑       ↑
+            <br>
+            object  property
+            <br><br>
+            <span class="highlight">object.property</span>
+        </div>
+    </div>
+</div>
+
+<h5>10. Bracket Notation</h5>
+
+<p>
+    Same property-ஐ bracket notation மூலமும் access செய்யலாம்.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+console.log(person["name"]);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            person["name"]
+            <br>
+            ↓
+            <br>
+            "Kesava"
+        </div>
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>So:</strong>
+    <span class="highlight">person.name</span>
+    =
+    <span class="highlight">person["name"]</span>
+    <br>
+    Both access the same property.
+</div>
+ 
+</body>
+</html>
+
+ <pre>
+        let person = {
+            name:'xyz',
+            age:25,
+            gender:"male",
+            address:"chennai",
+            info:{
+                isGood:'yes',
+                isTaxpayer:false
+            }
+        }
+        console.log(person);
+    </pre><br>
+    <p class="heading">If get value from object - 2 methods</p>
+    <br>
+    <h3>.Dot Notation</h3>
+    <p>console.log(person.name) // xyz</p> <br>
+    <h3>Bracket Notation</h3>
+    <p>console.log(person['name']) // xyz</p><br>
+    <p class="heading">Deleting object item
+    </p>
+    <pre>
+        delete person.gender;
+        delete person.name;
+        console.log(person)
+    </pre>
+    <p class="heading">
+        Convert Obj to a Array
+    </p>
+    <pre>
+
+        let convertObj = Object.keys(person);
+        console.log(convertObj)
+
+        (output): 
+                  0: "age"
+                  1: "address"       <b>we deleted name and gender previously so this three are there!</b> 
+                  2: "info"
+    </pre>
+    <p class="heading"> Object Entries</p>
+    <pre>
+
+        let objEntries = Object.entries(person);
+        console.log(objEntries)
+
+        Output :
+        0:  ['age', 25]
+        1:  ['address', 'chennai']      <b>Each entry or row will separated by an array!</b>
+        2:  ['info', {…}]
+
+    </pre>
+    <p class="heading"> Check the key exist or not in the object</p>
+    <pre>
+
+        // check key is in the obj or not 
+
+            'name' in person ? console.log('YES') : console.log('NO');  (output: NO) // name already deleted.
+            'age' in person ? console.log('YES') : console.log('NO');   (output: YES)
+    </pre>
+    <p class="heading">Clone a Object</p>
+    <pre>
+
+        let cloneObj ={
+            state :'Tamilnadu'
+          }
+
+          cloneObj = person;
+          console.log(cloneObj) // here just assign object to another variable 
+          
+          output :
+            address: "chennai"
+            age : 25                 <b>Here only old object is cloning but new object values not there</b>
+            info: {isGood: 'yes', isTaxpayer: false}
+
+            <b>ES6 with spread operator</b>
+
+            cloneObj = { ... person };  <b>Spread Operator</b>
+            console.log(cloneObj);
+    </pre>
