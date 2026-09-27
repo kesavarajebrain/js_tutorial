@@ -414,7 +414,1631 @@ console.log(person["name"]);
     <br>
     Both access the same property.
 </div>
- 
+ <h5>11. Adding Properties</h5>
+
+<p>
+    Existing object-க்கு புதிய property-ஐ
+    <span class="highlight">dot notation</span> அல்லது
+    <span class="highlight">bracket notation</span> மூலம் add செய்யலாம்.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+user.city = "Chennai";
+user["country"] = "India";
+
+console.log(user);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            user
+            <br>
+            ↓
+            <br>
+            name → "Kesava"
+            <br>
+            age → 30
+            <br>
+            city → "Chennai"
+            <br>
+            country → "India"
+        </div>
+
+        <div class="success-box mt-2">
+            <strong>Output:</strong>
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "Kesava",
+    age: 30,
+    city: "Chennai",
+    country: "India"
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="example-box text-center">
+            <strong>Dot notation</strong>
+            <p class="mb-0 mt-2">
+                <span class="highlight">user.city = "Chennai"</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box text-center">
+            <strong>Bracket notation</strong>
+            <p class="mb-0 mt-2">
+                <span class="highlight">user["country"] = "India"</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>12. Updating Properties</h5>
+
+<p>
+    ஏற்கனவே இருக்கும் property's value-ஐ புதிய value-ஆக மாற்றலாம்.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+user.age = 31;
+
+console.log(user.age);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            Before
+            <br>
+            age → 30
+            <br><br>
+            user.age = 31
+            <br>
+            ↓
+            <br>
+            After
+            <br>
+            age → <span class="highlight">31</span>
+        </div>
+
+        <div class="success-box mt-2">
+            Output: <span class="highlight">31</span>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Property already exists என்றால் புதிய property உருவாகாது;
+    அதற்குப் பதிலாக அதன் <span class="highlight">value update</span> ஆகும்.
+</div>
+
+<h5>13. Deleting Properties</h5>
+
+<p>
+    Property-ஐ object-லிருந்து remove செய்ய
+    <span class="highlight">delete</span> operator-ஐ பயன்படுத்தலாம்.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+user.city = "Chennai";
+user["country"] = "India";
+user.age = 56;
+user.language = "Tamil";
+
+delete user.city;
+
+console.log(user);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            Before delete
+            <br>
+            city → "Chennai"
+            <br>
+            ↓
+            <br>
+            delete user.city
+            <br>
+            ↓
+            <br>
+            city property removed
+        </div>
+
+        <div class="success-box mt-2">
+            <strong>Output:</strong>
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "Kesava",
+    age: 56,
+    country: "India",
+    language: "Tamil"
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    Bracket notation-ஐயும் பயன்படுத்தலாம்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+delete user["city"];
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Remember:</strong>
+    <span class="highlight">delete user.city</span>
+    மற்றும்
+    <span class="highlight">delete user["city"]</span>
+    இரண்டும் அந்த property-ஐ remove செய்யும்.
+</div>
+
+<h5>14. Dynamic Properties</h5>
+
+<p>
+    Property name ஒரு variable-லிருந்து வரும்போது,
+    அதை <span class="highlight">dynamic property</span> என்று சொல்லலாம்.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const key = "city";
+
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+user[key] = "Chennai";
+
+console.log(user);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            key
+            <br>
+            ↓
+            <br>
+            "city"
+            <br>
+            ↓
+            <br>
+            user[key]
+            <br>
+            ↓
+            <br>
+            user["city"]
+            <br>
+            ↓
+            <br>
+            city → "Chennai"
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why is this called Dynamic?</strong>
+    <p class="mb-0">
+        Property name-ஐ code-ல் நேரடியாக எழுதாமல்,
+        ஒரு variable மூலம் <span class="highlight">runtime-ல்</span>
+        தீர்மானிக்கிறோம்.
+    </p>
+</div>
+
+<h5>15. Computed Property Names</h5>
+
+<p>
+    Object உருவாக்கும் நேரத்திலேயே property name ஒரு variable-லிருந்து
+    வர வேண்டுமென்றால் <span class="highlight">computed property name</span>
+    பயன்படுத்தலாம்.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const key = "city";
+
+const user = {
+    name: "Kesava",
+    [key]: "Chennai"
+};
+
+console.log(user);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            [key]
+            <br>
+            ↓
+            <br>
+            Evaluate expression
+            <br>
+            ↓
+            <br>
+            key → "city"
+            <br>
+            ↓
+            <br>
+            property name = "city"
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>What does <span class="highlight">[]</span> mean here?</strong>
+    <p class="mb-0">
+        "Brackets-க்குள் இருக்கும் expression-ஐ முதலில் evaluate பண்ணி,
+        கிடைத்த result-ஐ property name-ஆக பயன்படுத்து."
+    </p>
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const key = "city";
+
+const user = {
+    name: "Kesava",
+    [key]: "Chennai"
+};
+
+console.log(user);
+
+// {
+//     name: "Kesava",
+//     city: "Chennai"
+// }
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box">
+            <strong>Dynamic property after object creation</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const key = "city";
+
+user[key] = "Chennai";
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box">
+            <strong>Computed property while creating object</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const key = "city";
+
+const user = {
+    [key]: "Chennai"
+};
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    <strong>Dynamic</strong>
+    <br>
+    object already exists
+    <br>
+    ↓
+    <br>
+    user[key] = value
+    <br><br>
+
+    <strong>Computed</strong>
+    <br>
+    object creation time
+    <br>
+    ↓
+    <br>
+    [key]: value
+</div>
+
+<div class="success-box">
+    <strong>Final Memory Rule:</strong>
+    <br>
+    <span class="highlight">Add → object.property = value</span>
+    <br>
+    <span class="highlight">Update → change existing property's value</span>
+    <br>
+    <span class="highlight">Delete → delete object.property</span>
+    <br>
+    <span class="highlight">Dynamic → object[key]</span>
+    <br>
+    <span class="highlight">Computed → [key] inside object literal</span>
+</div>
+<h5>16. Nested Objects</h5>
+
+<p>
+    <span class="highlight">Nested Object</span> என்றால்
+    <strong>object inside another object</strong>.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30,
+
+    address: {
+        city: "Chennai",
+        state: "Tamil Nadu",
+        pincode: 600001
+    }
+};
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            user
+            <br>
+            ├── name → "Kesava"
+            <br>
+            ├── age → 30
+            <br>
+            └── address → object
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;├── city → "Chennai"
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;├── state → "Tamil Nadu"
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;└── pincode → 600001
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="example-box">
+            <strong>Get nested object</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.address
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box">
+            <strong>Get nested property</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.address.city
+</code></pre>
+            </div>
+
+            <div class="memory-diagram mt-2">
+                user
+                <span class="arrow-note">→</span>
+                address
+                <span class="arrow-note">→</span>
+                city
+                <span class="arrow-note">→</span>
+                "Chennai"
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Memory:</strong>
+    <span class="highlight">object.property.property</span>
+    மூலம் nested object-க்குள் deeper-ஆக செல்லலாம்.
+</div>
+
+<h5>17. Functions as Object Properties</h5>
+
+<p>
+    ஒரு function-ஐ object-ன் property value-ஆக store செய்யலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+
+    greet: function () {
+        console.log("Hello");
+    }
+};
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box text-center h-100">
+            <strong>user</strong>
+            <p class="mb-0 mt-2">object</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box text-center h-100">
+            <strong>name</strong>
+            <p class="mb-0 mt-2">property → string</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box text-center h-100">
+            <strong>greet</strong>
+            <p class="mb-0 mt-2">property → function</p>
+        </div>
+    </div>
+</div>
+
+<p class="mt-3">
+    Function-ஐ object property-ஆக store செய்த பிறகு அதை call செய்யலாம்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+user.greet();
+</code></pre>
+</div>
+
+<h5>Method + <span class="highlight">this</span></h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+
+    greet() {
+        console.log("Hello " + this.name);
+    }
+};
+
+user.greet();
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            user.greet()
+            <br>
+            ↓
+            <br>
+            greet is called as a method
+            <br>
+            ↓
+            <br>
+            <span class="highlight">this = user</span>
+            <br>
+            ↓
+            <br>
+            this.name
+            <br>
+            ↓
+            <br>
+            "Kesava"
+        </div>
+
+        <div class="success-box mt-2">
+            Output:
+            <strong>Hello Kesava</strong>
+        </div>
+    </div>
+</div>
+
+<h5>18. Objects Containing Arrays</h5>
+
+<p>
+    ஒரு object-ன் property value-ஆக
+    <span class="highlight">array</span> இருக்கலாம்.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    skills: ["Angular", "React", "JavaScript"]
+};
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            user
+            <br>
+            ├── name → "Kesava"
+            <br>
+            └── skills → array
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;├── 0 → "Angular"
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;├── 1 → "React"
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;└── 2 → "JavaScript"
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="example-box">
+            <strong>Get the array</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.skills
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box">
+            <strong>Get one item</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.skills[0]
+</code></pre>
+            </div>
+
+            <div class="memory-diagram mt-2">
+                → "Angular"
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>19. Arrays Containing Objects</h5>
+
+<p>
+    ஒரு array-க்குள் ஒவ்வொரு element-மும்
+    <span class="highlight">object</span> ஆக இருக்கலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    {
+        name: "Kesava",
+        age: 30
+    },
+    {
+        name: "Arun",
+        age: 28
+    },
+    {
+        name: "Rahul",
+        age: 32
+    }
+];
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    users
+    <br>
+    │
+    <br>
+    ├── index 0 → { name: "Kesava", age: 30 }
+    <br>
+    ├── index 1 → { name: "Arun", age: 28 }
+    <br>
+    └── index 2 → { name: "Rahul", age: 32 }
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="example-box">
+            <strong>Access first object</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+users[0]
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box">
+            <strong>Access first user's name</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+users[0].name
+</code></pre>
+            </div>
+
+            <div class="memory-diagram mt-2">
+                users
+                <span class="arrow-note">→</span>
+                [0]
+                <span class="arrow-note">→</span>
+                .name
+                <span class="arrow-note">→</span>
+                "Kesava"
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>One Combined Real-World Example</h5>
+
+<p>
+    இப்போது <span class="highlight">Nested Object + Array + Objects + Nested Array</span>
+    எல்லாவற்றையும் combine பண்ணலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const company = {
+    name: "ABC Tech",
+
+    address: {
+        city: "Chennai",
+        state: "Tamil Nadu"
+    },
+
+    employees: [
+        {
+            name: "Kesava",
+            skills: ["Angular", "JavaScript"]
+        },
+        {
+            name: "Arun",
+            skills: ["React", "Node.js"]
+        }
+    ]
+};
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    company
+    <br>
+    │
+    <br>
+    ├── name → "ABC Tech"
+    <br>
+    │
+    ├── address → object
+    <br>
+    │   ├── city → "Chennai"
+    <br>
+    │   └── state → "Tamil Nadu"
+    <br>
+    │
+    └── employees → array
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── index 0 → object
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│   ├── name → "Kesava"
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│   └── skills → array
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│       ├── "Angular"
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│       └── "JavaScript"
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;└── index 1 → object
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── name → "Arun"
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── skills → array
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── "React"
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── "Node.js"
+</div>
+
+<h5>How to Access Arun + Node.js?</h5>
+
+<div class="row g-3">
+    <div class="col-lg-8">
+        <div class="code-block p-3">
+<pre><code>
+console.log(
+    company.employees[1].name +
+    " " +
+    company.employees[1].skills[1]
+);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="memory-diagram">
+            company
+            <br>
+            ↓
+            <br>
+            employees
+            <br>
+            ↓
+            <br>
+            [1]
+            <br>
+            ↓
+            <br>
+            name
+            <br>
+            ↓
+            <br>
+            "Arun"
+            <br><br>
+            employees[1]
+            <br>
+            ↓
+            <br>
+            skills[1]
+            <br>
+            ↓
+            <br>
+            "Node.js"
+        </div>
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>Output:</strong>
+    <span class="highlight">Arun Node.js</span>
+</div>
+
+<div class="success-box">
+    <strong>Big Mental Model:</strong>
+    <br>
+    <span class="highlight">Object → Property → Object → Property</span>
+    <br>
+    <span class="highlight">Object → Property → Array → Index → Property</span>
+    <br>
+    <span class="highlight">Array → Index → Object → Property</span>
+    <br>
+    <span class="highlight">Array → Index → Object → Property → Array → Index</span>
+</div>
+
+<p class="tamil">
+    Nested data-வை access செய்யும்போது ஒவ்வொரு step-ஐயும்
+    <span class="highlight">left to right</span> ஆக படிக்கவும்.
+    எந்த இடத்தில் <span class="highlight">object</span>, எந்த இடத்தில்
+    <span class="highlight">array</span> இருக்கிறது என்பதை கண்டுபிடித்தால்
+    access path easy ஆகிவிடும்.
+</p>
+<h5>20. Object References</h5>
+
+<p>
+    இப்போது JavaScript Objects-ல் மிகவும் முக்கியமான concept:
+    <span class="highlight">Object Reference</span>.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+const person = user;
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Important Question:</strong>
+    <p class="mb-0">
+        <span class="highlight">user</span>-க்கு <span class="highlight">{}</span>
+        பயன்படுத்தி object create செய்தோம்.
+        ஆனால் <span class="highlight">person</span>-க்கு
+        <span class="highlight">{}</span> பயன்படுத்தவில்லை.
+        அப்படியானால் <span class="highlight">person</span> எப்படி object-ஐ refer செய்கிறது?
+    </p>
+</div>
+
+<div class="memory-diagram">
+    <strong>Answer:</strong>
+    <br><br>
+    person ஒரு புதிய object-ஐ create செய்யவில்லை.
+    <br>
+    அது user தற்போது வைத்திருக்கும்
+    <span class="highlight">same object reference</span>-ஐ பெறுகிறது.
+</div>
+
+<h5>What actually happens?</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+const person = user;
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            user ────────→ ┌────────────────┐
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ name: Kesava │
+            <br>
+            person ──────→ └────────────────┘
+            <br><br>
+            <strong>ONE OBJECT</strong>
+            <br>
+            <strong>TWO REFERENCES</strong>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Tamil Mental Model:</strong>
+    <p class="mb-1">
+        <span class="highlight">const person = user;</span>
+        என்றால் இன்னொரு box create ஆகவில்லை.
+    </p>
+
+    <p class="mb-0">
+        <span class="highlight">user</span> மற்றும்
+        <span class="highlight">person</span>
+        இரண்டும் அதே object-ஐ point செய்கின்றன.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    user &nbsp;&nbsp;──→ 📦
+    <br>
+    person ──→ 📦
+    <br><br>
+    <span class="highlight">ஒரே box</span>
+</div>
+
+<h5>One Object — Two References</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box h-100 text-center">
+            <strong>ONE OBJECT</strong>
+            <div class="memory-diagram mt-2">
+                { name: "Kesava" }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>TWO REFERENCES</strong>
+
+            <div class="memory-diagram mt-2">
+                user ──→ SAME OBJECT
+                <br>
+                person ──→ SAME OBJECT
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Reference Equality — <span class="highlight">===</span></h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+const person = user;
+
+console.log(user === person);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="success-box">
+            <strong>Output:</strong>
+
+            <div class="memory-diagram mt-2">
+                true
+            </div>
+
+            <p class="mb-0">
+                இரண்டும் <span class="highlight">same object reference</span>-ஐ
+                point செய்கின்றன.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>Same Data ≠ Same Object</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+const person = {
+    name: "Kesava"
+};
+
+console.log(user === person);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="error-box">
+            <strong>Output:</strong>
+
+            <div class="memory-diagram mt-2">
+                false
+            </div>
+
+            <p class="mb-0">
+                Data same என்றாலும்,
+                இரண்டு <span class="highlight">separate objects</span>.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    user ──→ OBJECT A
+    <br>
+    person ─→ OBJECT B
+    <br><br>
+    OBJECT A ≠ OBJECT B
+</div>
+
+<div class="success-box">
+    <strong>Key Rule:</strong>
+    Objects-ஐ <span class="highlight">===</span> மூலம் compare செய்யும்போது
+    values மட்டும் பார்க்காது;
+    <span class="highlight">same reference</span>-ஆ என்று பார்க்கும்.
+</div>
+
+<h5>Changing Through One Reference</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+const person = user;
+
+user.name = "k7";
+
+console.log(user);
+
+person.name = "test";
+
+console.log(person);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            Initially
+            <br>
+            user ──┐
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──→ 📦 { name: "Kesava" }
+            <br>
+            person ─┘
+        </div>
+
+        <div class="memory-diagram">
+            user.name = "k7"
+            <br>
+            ↓
+            <br>
+            SAME object changes
+            <br>
+            ↓
+            <br>
+            { name: "k7" }
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            person.name = "test"
+            <br>
+            ↓
+            <br>
+            SAME object changes again
+            <br>
+            ↓
+            <br>
+            { name: "test" }
+        </div>
+
+        <div class="success-box mt-2">
+            <strong>Output:</strong>
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{ name: "k7" }
+
+{ name: "test" }
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Why doesn't the first <span class="highlight">console.log()</span> become "test"?</h5>
+
+<p>
+    இதைப் புரிந்துகொள்ள ஒரு <span class="highlight">whiteboard</span>
+    example மிகவும் useful.
+</p>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>Step 1</strong>
+
+            <div class="memory-diagram mt-2">
+                Whiteboard
+                <br>
+                name = Kesava
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>Step 2</strong>
+
+            <div class="memory-diagram mt-2">
+                Change:
+                <br>
+                name = k7
+                <br><br>
+                📸 Photo 1
+                <br>
+                name = k7
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>Step 3</strong>
+
+            <div class="memory-diagram mt-2">
+                Change again:
+                <br>
+                name = test
+                <br><br>
+                📸 Photo 2
+                <br>
+                name = test
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Same idea with console.log()</strong>
+
+    <p>
+        First <span class="highlight">console.log(user)</span> execute ஆன
+        நேரத்தில் object-ன் state <span class="highlight">k7</span>.
+    </p>
+
+    <p class="mb-0">
+        அதற்குப் பிறகு <span class="highlight">person.name = "test"</span>
+        செய்தாலும், அந்த முதல் output ஏற்கனவே produce ஆகிவிட்டது.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    Object State
+    <br>
+    Kesava
+    <span class="arrow-note">→</span>
+    k7
+    <span class="arrow-note">→</span>
+    test
+    <br><br>
+    console.log(user)
+    <br>
+    ↓
+    <br>
+    அந்த நேரத்தில் இருந்த state
+    <br>
+    ↓
+    <br>
+    <span class="highlight">k7</span>
+</div>
+
+<div class="error-box">
+    <strong>Common Confusion:</strong>
+    <p class="mb-0">
+        "Object later change ஆனதால் previous
+        <span class="highlight">console.log()</span> output-மும்
+        change ஆக வேண்டாமா?"
+    </p>
+    <p class="mb-0 mt-2">
+        இல்லை. Output already produce செய்யப்பட்டுவிட்டது.
+    </p>
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100 text-center">
+            <strong>New Object</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const a = {};
+const b = {};
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                TWO objects
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100 text-center">
+            <strong>Same Reference</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const a = {};
+const b = a;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                ONE object
+                <br>
+                TWO references
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100 text-center">
+            <strong>Equality</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+a === b
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                same reference
+                <br>
+                ↓
+                <br>
+                <span class="highlight">true</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">const person = user;</span>
+    → new object இல்லை.
+    <br>
+    → same object-க்கு இன்னொரு reference மட்டும்.
+    <br><br>
+    <span class="highlight">One Object + Two References</span>
+</div>
+<h5>21. Primitive vs Reference Values</h5>
+
+<p>
+    இப்போது மிகவும் முக்கியமான difference:
+    <span class="highlight">Primitive Value</span> vs
+    <span class="highlight">Reference Value</span>.
+</p>
+
+<h5>Example A — Primitive Value</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+let a = 10;
+let b = a;
+
+b = 20;
+
+console.log(a);
+console.log(b);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            a → 10
+            <br>
+            b → 10
+            <br><br>
+            b = 20
+            <br>
+            ↓
+            <br>
+            a → 10
+            <br>
+            b → 20
+        </div>
+
+        <div class="success-box mt-2">
+            <strong>Output:</strong>
+            <br>
+            10
+            <br>
+            20
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why didn't <span class="highlight">a</span> change?</strong>
+    <p class="mb-0">
+        <span class="highlight">10</span> என்பது ஒரு primitive value.
+        <span class="highlight">b = a</span> என்றபோது,
+        <span class="highlight">b</span> தனக்கென அந்த value-ஐப் பெற்றுக்கொண்டது.
+        பின்னர் <span class="highlight">b = 20</span> செய்தாலும்,
+        <span class="highlight">a</span> மாறாது.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    <strong>Primitive Assignment</strong>
+    <br><br>
+    a = 10
+    <br>
+    ↓
+    <br>
+    b = a
+    <br>
+    ↓
+    <br>
+    a → 10
+    <br>
+    b → 10
+    <br><br>
+    Separate values
+</div>
+
+<h5>Now Compare an Object</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+let a = {
+    value: 10
+};
+
+let b = a;
+
+b.value = 20;
+
+console.log(a.value);
+console.log(b.value);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            a ──────┐
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OBJECT
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: 10
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑
+            <br>
+            b ──────┘
+        </div>
+
+        <div class="success-box mt-2">
+            <strong>Output:</strong>
+            <br>
+            20
+            <br>
+            20
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why did <span class="highlight">a.value</span> also become 20?</strong>
+    <p class="mb-0">
+        <span class="highlight">a</span> மற்றும்
+        <span class="highlight">b</span> இரண்டும்
+        <strong>same object reference</strong>-ஐ வைத்திருக்கின்றன.
+        <br>
+        அதனால் <span class="highlight">b.value = 20</span> என்றால்,
+        அதே object-ன் property மாற்றப்படுகிறது.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    <strong>Reference Assignment</strong>
+    <br><br>
+    a → 📦 OBJECT
+    <br>
+    b → 📦 SAME OBJECT
+    <br><br>
+    b.value = 20
+    <br>
+    ↓
+    <br>
+    SAME object changes
+    <br>
+    ↓
+    <br>
+    a.value → 20
+    <br>
+    b.value → 20
+</div>
+
+<h5>Primitive vs Reference — Side by Side</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Primitive Value</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+let a = 10;
+let b = a;
+
+b = 20;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a → 10
+                <br>
+                b → 20
+            </div>
+
+            <p class="mb-0">
+                Values are independent.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Reference Value</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+let a = { value: 10 };
+let b = a;
+
+b.value = 20;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a ──┐
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├──→ 📦 OBJECT
+                <br>
+                b ──┘
+            </div>
+
+            <p class="mb-0">
+                Both refer to the same object.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>What is a Primitive Value?</h5>
+
+<div class="success-box">
+    <strong>Primitive = basic value</strong>
+    <p class="mb-0 mt-2">
+        உதாரணமாக:
+        <span class="highlight">10</span>,
+        <span class="highlight">"Kesava"</span>,
+        <span class="highlight">true</span>
+        போன்ற values.
+    </p>
+</div>
+
+<h5>What is a Non-Primitive / Reference Value?</h5>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="example-box h-100">
+            <strong>Objects</strong>
+
+            <div class="memory-diagram mt-2">
+                {}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box h-100">
+            <strong>Arrays</strong>
+
+            <div class="memory-diagram mt-2">
+                []
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box h-100">
+            <strong>Functions</strong>
+
+            <div class="memory-diagram mt-2">
+                function () {}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box h-100">
+            <strong>Other Objects</strong>
+
+            <div class="memory-diagram mt-2">
+                Date
+                <br>
+                Map
+                <br>
+                Set
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Simple Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side">
+            <div class="ref-header">Primitive</div>
+
+            <div class="memory-diagram mt-2">
+                Variable
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Value</span>
+            </div>
+
+            <p class="tamil mb-0">
+                Assignment செய்யும்போது value தனியாக கிடைக்கும்.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side">
+            <div class="exec-header">Reference</div>
+
+            <div class="memory-diagram mt-2">
+                Variable
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Reference → Object</span>
+            </div>
+
+            <p class="tamil mb-0">
+                Assignment செய்யும்போது அதே object-ஐ
+                refer செய்யலாம்.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">Primitive → value is copied</span>
+    <br>
+    <span class="highlight">Object / Array / Function → reference is copied</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">Primitive = தனி value</span>,
+    <span class="highlight">Reference = same object-ஐ point செய்யும் reference</span>.
+</p>
 </body>
 </html>
 
