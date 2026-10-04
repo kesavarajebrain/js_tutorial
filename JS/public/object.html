@@ -2039,6 +2039,4975 @@ b.value = 20;
     <span class="highlight">Primitive = தனி value</span>,
     <span class="highlight">Reference = same object-ஐ point செய்யும் reference</span>.
 </p>
+<h5>22. Assignment Behavior</h5>
+
+<p>
+    இப்போது <span class="highlight">=</span> என்ற assignment operator
+    உண்மையில் என்ன செய்கிறது என்பதை புரிந்துகொள்வோம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+let a = 10;
+</code></pre>
+</div>
+
+<p>
+    இங்கே <span class="highlight">10</span> என்ற value-ஐ
+    <span class="highlight">a</span> என்ற variable-க்கு assign செய்கிறோம்.
+</p>
+
+<div class="success-box">
+    <strong>Important Question:</strong>
+    <p class="mb-0">
+        Assignment செய்யும்போது
+        <span class="highlight">exactly என்ன assign ஆகிறது?</span>
+        <br>
+        அது right-hand side value-ன் type-ஐ பொறுத்தது.
+    </p>
+</div>
+
+<h5>1. Primitive Assignment</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="code-block p-3">
+<pre><code>
+let a = 10;
+let b = a;
+
+b = 20;
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            a → 10
+            <br>
+            b → 10
+            <br><br>
+            b = 20
+            <br>
+            ↓
+            <br>
+            a → <span class="highlight">10</span>
+            <br>
+            b → <span class="highlight">20</span>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Primitive values are independent.</strong>
+    <p class="mb-0">
+        <span class="highlight">b = a</span> என்றபோது
+        <span class="highlight">a</span>-ன் primitive value
+        <span class="highlight">b</span>-க்கு தனியாக assign செய்யப்படுகிறது.
+        பின்னர் <span class="highlight">b</span>-ஐ மாற்றினாலும்
+        <span class="highlight">a</span> மாறாது.
+    </p>
+</div>
+
+<h5>2. Object Assignment</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const a = {
+    value: 10
+};
+
+const b = a;
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    a ──────┐
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📦 OBJECT
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: 10
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑
+    <br>
+    b ──────┘
+</div>
+
+<div class="success-box">
+    <strong>What happens?</strong>
+    <p class="mb-0">
+        JavaScript இங்கே புதிய object-ஐ create செய்யாது.
+        <span class="highlight">a</span> வைத்திருக்கும் object-ஐ
+        refer செய்யும் reference value-ஐ
+        <span class="highlight">b</span>-க்கு assign செய்கிறது.
+    </p>
+</div>
+
+<h5>3. The Really Important Comparison</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Primitive</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+let a = 10;
+let b = a;
+
+b = 20;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a → 10
+                <br>
+                b → 20
+            </div>
+
+            <p class="mb-0">
+                <strong>Independent values</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Object</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+let a = { value: 10 };
+let b = a;
+
+b.value = 20;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a ──→ { value: 20 } ←── b
+            </div>
+
+            <p class="mb-0">
+                <strong>Same object</strong>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="code-block p-3 mt-3">
+<pre><code>
+console.log(a.value); // 20
+console.log(b.value); // 20
+</code></pre>
+</div>
+
+<h5>4. Assignment Does NOT Mean "Copy Everything"</h5>
+
+<div class="error-box">
+    <strong>Wrong Mental Model:</strong>
+    <br>
+    <span class="highlight">const person = user;</span>
+    <br>
+    "Copy the entire user object."
+</div>
+
+<div class="success-box">
+    <strong>Better Question:</strong>
+    <p class="mb-0">
+        <span class="highlight">What kind of value is on the right side?</span>
+    </p>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>If the value is primitive</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const age = 30;
+const person = age;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                age → 30
+                <br>
+                person → 30
+                <br><br>
+                Separate values
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>If the value is an object</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+const person = user;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                user ──┐
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└→ OBJECT ←┘
+                <br>
+                person ─┘
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>5. Another Important Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+let x = {
+    name: "Kesava"
+};
+
+let y = x;
+
+y.name = "Arun";
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    x ──┐
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├──→ 📦 { name: "Arun" }
+    <br>
+    y ──┘
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="error-box h-100">
+            <strong>Wrong Thinking</strong>
+            <p class="mb-0 mt-2">
+                ❌ x object changed
+                <br>
+                ❌ y object changed
+                <br>
+                as if they were two objects
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>Correct Thinking</strong>
+            <p class="mb-0 mt-2">
+                ✅ ONE object exists
+                <br>
+                ✅ x and y refer to the same object
+                <br>
+                ✅ ONE object was mutated
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>6. Assignment vs Mutation vs Reassignment</h5>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Assignment</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+let a = 10;
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                A value is assigned to a variable.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Mutation</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.name = "Arun";
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                Existing object's contents are changed.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Reassignment</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user = {
+    name: "Arun"
+};
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                Variable now refers to another value/object.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Easy Difference:</strong>
+    <br>
+    <span class="highlight">Assignment → variable gets a value</span>
+    <br>
+    <span class="highlight">Mutation → existing object changes</span>
+    <br>
+    <span class="highlight">Reassignment → variable is made to refer to a different value/object</span>
+</div>
+
+<h5>7. Let's Combine Everything</h5>
+
+<div class="code-block p-3">
+<pre><code>
+let a = {
+    value: 10
+};
+
+let b = a;
+
+b.value = 20;
+
+b = {
+    value: 30
+};
+</code></pre>
+</div>
+
+<h5>Dry Run — Step by Step</h5>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Step 1</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+let a = {
+    value: 10
+};
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a ──→ 📦 Object A
+                <br>
+                value: 10
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Step 2</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+let b = a;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a ──┐
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├──→ 📦 Object A
+                <br>
+                b ──┘
+                <br><br>
+                value: 10
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Step 3</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+b.value = 20;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a ──┐
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├──→ 📦 Object A
+                <br>
+                b ──┘
+                <br><br>
+                <span class="highlight">value: 20</span>
+            </div>
+
+            <p class="tamil mb-0">
+                இது <span class="highlight">mutation</span>.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    <strong>After Step 3</strong>
+    <br><br>
+    a ──┐
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├──→ 📦 Object A { value: 20 }
+    <br>
+    b ──┘
+</div>
+
+<div class="row g-3 mt-2">
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Step 4</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+b = {
+    value: 30
+};
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a ─────→ 📦 Object A
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: 20
+                <br><br>
+                b ─────→ 📦 Object B
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: 30
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>What happened?</strong>
+
+            <p class="mt-2">
+                <span class="highlight">b.value = 20</span>
+                → Object A-ஐ mutate செய்தது.
+            </p>
+
+            <p>
+                <span class="highlight">b = { value: 30 }</span>
+                → b-ஐ புதிய Object B-க்கு
+                <span class="highlight">reassign</span> செய்தது.
+            </p>
+
+            <p class="mb-0">
+                இப்போது <span class="highlight">a</span> மற்றும்
+                <span class="highlight">b</span>
+                ஒரே object-ஐ refer செய்வதில்லை.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>Final State</h5>
+
+<div class="memory-diagram">
+    <strong>a</strong>
+    <br>
+    ↓
+    <br>
+    📦 Object A
+    <br>
+    { value: 20 }
+    <br><br>
+    <strong>b</strong>
+    <br>
+    ↓
+    <br>
+    📦 Object B
+    <br>
+    { value: 30 }
+</div>
+
+<div class="success-box">
+    <strong>Final Mental Model:</strong>
+    <br><br>
+    <span class="highlight">b.value = 20</span>
+    → same object-ஐ மாற்றுகிறது
+    → <strong>Mutation</strong>
+    <br><br>
+    <span class="highlight">b = { value: 30 }</span>
+    → b-ஐ புதிய object-க்கு point செய்ய வைக்கிறது
+    → <strong>Reassignment</strong>
+</div>
+
+<div class="memory-diagram">
+    <strong>Assignment</strong>
+    <span class="arrow-note">→</span>
+    What value is being assigned?
+    <br><br>
+    <strong>Primitive</strong>
+    <span class="arrow-note">→</span>
+    independent value
+    <br>
+    <strong>Object</strong>
+    <span class="arrow-note">→</span>
+    reference value
+    <br><br>
+    <strong>Mutation</strong>
+    <span class="arrow-note">→</span>
+    change existing object
+    <br>
+    <strong>Reassignment</strong>
+    <span class="arrow-note">→</span>
+    variable refers to another value/object
+</div>
+
+<p class="tamil">
+    இந்த three words-ஐ clear-ஆ separate பண்ணி நினைவில் வைத்துக்கொள்ளுங்கள்:
+    <span class="highlight">Assignment ≠ Mutation ≠ Reassignment</span>.
+</p>
+<h5>23. Object Cloning</h5>
+
+<p>
+    நாம் முன்பு பார்த்தது:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const person = user;
+</code></pre>
+</div>
+
+<div class="error-box">
+    <strong>Important:</strong>
+    இது ஒரு புதிய object-ஐ create செய்யாது.
+    <span class="highlight">person</span> மற்றும்
+    <span class="highlight">user</span>
+    அதே object-ஐ refer செய்யும்.
+</div>
+
+<div class="memory-diagram">
+    user ──┐
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├──→ 📦 SAME OBJECT
+    <br>
+    person ─┘
+    <br><br>
+    <span class="highlight">ONE OBJECT + TWO REFERENCES</span>
+</div>
+
+<h5>So, How Do We Create a Separate Object?</h5>
+
+<p>
+    அடுத்த natural question:
+</p>
+
+<div class="success-box">
+    <strong>
+        "Existing object-ஐ வைத்து, அதே data-வுடன்
+        ஒரு completely separate object-ஐ எப்படி உருவாக்குவது?"
+    </strong>
+</div>
+
+<p>
+    இதற்குத்தான் <span class="highlight">Object Cloning</span> பயன்படுத்துகிறோம்.
+</p>
+
+<div class="memory-diagram">
+    Existing Object
+    <br>
+    ↓
+    <br>
+    <span class="highlight">Clone</span>
+    <br>
+    ↓
+    <br>
+    New Separate Object
+</div>
+
+<h5>What is Object Cloning?</h5>
+
+<div class="success-box">
+    <strong>Object Cloning =</strong>
+
+    <p class="mb-0 mt-2">
+        Existing object-ல் இருக்கும் data-வை பயன்படுத்தி,
+        ஒரு <span class="highlight">புதிய object</span>-ஐ உருவாக்குவது.
+    </p>
+
+    <p class="mb-0 mt-2">
+        Goal:
+        Original object மற்றும் cloned object
+        <span class="highlight">separate</span>-ஆ இருக்க வேண்டும்.
+    </p>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Reference Assignment</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const person = user;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                user ──┐
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├──→ 📦 SAME OBJECT
+                <br>
+                person ─┘
+            </div>
+
+            <p class="mb-0">
+                New object இல்லை.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Object Cloning</div>
+
+            <div class="memory-diagram mt-2">
+                user ───→ 📦 ORIGINAL
+                <br><br>
+                person ───→ 📦 NEW CLONE
+            </div>
+
+            <p class="mb-0">
+                Two separate objects.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>Simple Mental Model</h5>
+
+<div class="memory-diagram">
+    <strong>Reference Assignment</strong>
+    <br>
+    "Same box-ஐ இன்னொரு variable-க்கும் கொடு."
+    <br><br>
+
+    <strong>Cloning</strong>
+    <br>
+    "இந்த box-ல் இருக்கும் data-வை வைத்து
+    ஒரு புதிய box உருவாக்கு."
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">const person = user;</span>
+    → same object
+    <br><br>
+    <span class="highlight">Object cloning</span>
+    → new separate object based on existing object
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">Assignment = reference share</span>,
+    <span class="highlight">Cloning = new object</span>.
+</p>
+<h5>24. Shallow Copy / Shallow Clone</h5>
+
+<p>
+    Object cloning-ல் அடுத்த important concept:
+    <span class="highlight">Shallow Copy</span> அல்லது
+    <span class="highlight">Shallow Clone</span>.
+</p>
+
+<h5>First: What Does <span class="highlight">Shallow</span> Mean?</h5>
+
+<p>
+    ஒரு object-க்குள் multiple levels இருக்கலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30,
+
+    address: {
+        city: "Chennai",
+        pincode: 600001
+    }
+};
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    │
+    <br>
+    ├── name → "Kesava"
+    <br>
+    ├── age → 30
+    <br>
+    │
+    <br>
+    └── address → OBJECT
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── city → "Chennai"
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;└── pincode → 600001
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="example-box text-center">
+            <strong>Level 1</strong>
+            <p class="mb-0 mt-2">
+                user
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box text-center">
+            <strong>Level 2</strong>
+            <p class="mb-0 mt-2">
+                address
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>What Does a Shallow Clone Do?</h5>
+
+<p>
+    Shallow clone ஒரு <span class="highlight">new outer object</span>-ஐ
+    உருவாக்குகிறது.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    address: {
+        city: "Chennai"
+    }
+};
+
+const copy = { ...user };
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user ───────→ 📦 Original Object
+    <br>
+    <br>
+    copy ───────→ 📦 New Outer Object
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    <span class="highlight">{ ...user }</span>
+    new outer object-ஐ create செய்கிறது.
+    ஆனால் nested objects-ஐ deep-ஆக clone செய்யாது.
+</div>
+
+<h5>Let's See the Behavior</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const original = {
+    name: "Kesava",
+    address: {
+        city: "Chennai"
+    }
+};
+
+const copy = { ...original };
+
+copy.name = "raja";
+copy.address.city = "trichy";
+
+console.log(copy);
+console.log(original);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>copy</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "raja",
+    address: {
+        city: "trichy"
+    }
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="error-box h-100">
+            <strong>original</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "Kesava",
+    address: {
+        city: "trichy"
+    }
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Why Did <span class="highlight">name</span> Behave Differently?</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Primitive Property</div>
+
+            <div class="memory-diagram mt-2">
+                name
+                <br>
+                ↓
+                <br>
+                "Kesava"
+                <br><br>
+                copy.name = "raja"
+                <br>
+                ↓
+                <br>
+                copy → "raja"
+                <br>
+                original → "Kesava"
+            </div>
+
+            <p class="mb-0">
+                Primitive value is copied independently.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Nested Object</div>
+
+            <div class="memory-diagram mt-2">
+                address
+                <br>
+                ↓
+                <br>
+                📦 SAME NESTED OBJECT
+                <br><br>
+                copy.address
+                <br>
+                ↓
+                <br>
+                same reference
+            </div>
+
+            <p class="mb-0">
+                Nested object reference is copied.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>The Actual Memory Model</h5>
+
+<div class="memory-diagram">
+    original ─────────────→ 📦 Outer Object
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── address ──→ 📦 Nested Object
+    <br><br>
+    copy ─────────────────→ 📦 NEW Outer Object
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── address ──→ 📦 SAME Nested Object
+</div>
+
+<div class="success-box">
+    <strong>What happened with <span class="highlight">copy.address.city = "trichy"</span>?</strong>
+    <p class="mb-0">
+        <span class="highlight">copy.address</span> மற்றும்
+        <span class="highlight">original.address</span>
+        இரண்டும் same nested object-ஐ refer செய்கின்றன.
+        அதனால் city மாற்றம் இரண்டிலும் தெரியும்.
+    </p>
+</div>
+
+<h5>Shallow Clone — Correct Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Primitive Properties</strong>
+
+            <div class="memory-diagram mt-2">
+                value copied
+                <br>
+                ↓
+                <br>
+                independent
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Nested Objects</strong>
+
+            <div class="memory-diagram mt-2">
+                reference copied
+                <br>
+                ↓
+                <br>
+                shared nested object
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="error-box">
+    <strong>Don't remember it like this:</strong>
+    <p class="mb-0">
+        ❌ "Shallow copy works only on the outer object."
+    </p>
+</div>
+
+<div class="success-box">
+    <strong>Remember it like this:</strong>
+    <p class="mb-0">
+        ✅ Shallow copy creates a
+        <span class="highlight">new outer object</span>,
+        but nested object references are copied as
+        <span class="highlight">references</span>.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    <strong>Shallow Copy</strong>
+    <br><br>
+    OUTSIDE → <span class="highlight">NEW</span>
+    <br>
+    INSIDE → <span class="highlight">SHARED</span>
+</div>
+
+<h5>One-Line Mental Model</h5>
+
+<div class="success-box text-center">
+    <strong>
+        Shallow Clone = New Outer Object + Shared Nested Object References
+    </strong>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">மேலே புதிய box</span>,
+    ஆனால் உள்ளே இருக்கும் nested object-க்கு
+    <span class="highlight">same reference</span>.
+</p>
+<h5>More Shallow Copy Examples + Limitations</h5>
+
+<h5>25. Shallow Copy — More Examples</h5>
+
+<p>
+    Shallow copy என்பது outer object-ஐ மட்டும் புதிய object-ஆக உருவாக்கும்.
+    Nested objects மற்றும் arrays இருந்தால் அவற்றின்
+    <span class="highlight">references</span> shared ஆகலாம்.
+</p>
+
+<h5>Example 1 — Simple Object</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+const copy = { ...user };
+
+copy.name = "Arun";
+
+console.log(user);
+console.log(copy);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="success-box">
+            <strong>user</strong>
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "Kesava",
+    age: 30
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box">
+            <strong>copy</strong>
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "Arun",
+    age: 30
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why?</strong>
+    <p class="mb-0">
+        <span class="highlight">name</span> மற்றும்
+        <span class="highlight">age</span> primitive values.
+        Shallow copy-ல் அவற்றின் values independent-ஆக copy ஆகின்றன.
+    </p>
+</div>
+
+<h5>Example 2 — Nested Object</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+
+    address: {
+        city: "Chennai"
+    }
+};
+
+const copy = { ...user };
+
+copy.address.city = "Trichy";
+
+console.log(user.address.city);
+console.log(copy.address.city);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <br>
+    Trichy
+    <br>
+    Trichy
+</div>
+
+<div class="memory-diagram">
+    user ───────→ 📦 Outer Object
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── address ──→ 📦 Nested Object
+    <br><br>
+    copy ───────→ 📦 New Outer Object
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── address ──→ 📦 SAME Nested Object
+</div>
+
+<h5>Example 3 — Nested Array</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    skills: ["Angular", "React"]
+};
+
+const copy = { ...user };
+
+copy.skills[0] = "JavaScript";
+
+console.log(user.skills);
+console.log(copy.skills);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            user.skills
+            <br>
+            ↓
+            <br>
+            ["JavaScript", "React"]
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="memory-diagram">
+            copy.skills
+            <br>
+            ↓
+            <br>
+            ["JavaScript", "React"]
+        </div>
+    </div>
+</div>
+
+<div class="error-box">
+    <strong>Why?</strong>
+    <p class="mb-0">
+        <span class="highlight">skills</span> என்பது array.
+        Shallow copy அந்த array-ஐ புதிய array-ஆக clone செய்யாது;
+        அதன் <span class="highlight">reference</span>-ஐ copy செய்கிறது.
+    </p>
+</div>
+
+<h5>Example 4 — Nested Object Inside Nested Object</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+
+    address: {
+        city: "Chennai",
+
+        location: {
+            pincode: 600001
+        }
+    }
+};
+
+const copy = { ...user };
+
+copy.address.location.pincode = 600002;
+
+console.log(user.address.location.pincode);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    copy
+    <br>
+    ↓
+    <br>
+    NEW outer object
+    <br>
+    ↓
+    <br>
+    address → SAME reference
+    <br>
+    ↓
+    <br>
+    location → SAME reference
+    <br>
+    ↓
+    <br>
+    pincode changes in both
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Shallow copy ஒரு level-க்கு மட்டும் புதிய outer object உருவாக்குகிறது.
+    Nested levels deep-ஆக clone ஆகாது.
+</div>
+
+<h5>Spread vs Object.assign()</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Spread</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const copy = { ...user };
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                ↓
+                <br>
+                Shallow Copy
+                <br>
+                ↓
+                <br>
+                NEW outer object
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Object.assign()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const copy = Object.assign({}, user);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                ↓
+                <br>
+                Shallow Copy
+                <br>
+                ↓
+                <br>
+                NEW outer object
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        Spread → shallow copy
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        Object.assign() → shallow copy
+    </strong>
+</div>
+
+<h5>Object.assign() Syntax</h5>
+
+<div class="memory-diagram">
+    <span class="highlight">
+        Object.assign(target, source1, source2, ...)
+    </span>
+    <br><br>
+    <strong>target</strong> → properties எங்கே போக வேண்டும்?
+    <br>
+    <strong>source</strong> → properties எங்கிருந்து வர வேண்டும்?
+</div>
+
+<h5>1. <span class="highlight">Object.assign({}, user)</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+const copy = Object.assign({}, user);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="example-box">
+            <strong>Target</strong>
+
+            <div class="memory-diagram mt-2">
+                {}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box">
+            <strong>Source</strong>
+
+            <div class="memory-diagram mt-2">
+                {
+                <br>
+                name: "Kesava",
+                <br>
+                age: 30
+                <br>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    Object.assign({}, user)
+    <br>
+    ↓
+    <br>
+    "Take properties from user
+    <br>
+    and put them into this empty object."
+    <br>
+    ↓
+    <br>
+    { name: "Kesava", age: 30 }
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    New outer object created.
+    இது ஒரு shallow clone.
+</div>
+
+<h5>2. Target and Source Can Be Any Objects</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const result = Object.assign({}, {
+    age: 31
+});
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Target
+    <br>
+    {}
+    <br><br>
+    Source
+    <br>
+    { age: 31 }
+    <br><br>
+    ↓
+    <br>
+    Target becomes:
+    <br>
+    { age: 31 }
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <div class="code-block p-3 mt-2">
+<pre><code>
+{ age: 31 }
+</code></pre>
+    </div>
+
+    <p class="mb-0">
+        இங்கே <span class="highlight">user</span> இல்லை.
+        அதனால் இது <span class="highlight">user cloning</span> அல்ல.
+    </p>
+</div>
+
+<h5>3. Multiple Sources</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+const result = Object.assign(
+    {},
+    user,
+    { age: 31 }
+);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Step 1
+    <br>
+    Target = {}
+    <br><br>
+
+    Step 2
+    <br>
+    Copy user
+    <br>
+    ↓
+    <br>
+    {
+    <br>
+    name: "Kesava",
+    <br>
+    age: 30
+    <br>
+    }
+    <br><br>
+
+    Step 3
+    <br>
+    Copy { age: 31 }
+    <br>
+    ↓
+    <br>
+    age: 31 overwrites age: 30
+</div>
+
+<div class="success-box">
+    <strong>Final Result:</strong>
+    <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "Kesava",
+    age: 31
+}
+</code></pre>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important Rule:</strong>
+    Multiple sources-ல் same property இருந்தால்,
+    <span class="highlight">later source overwrites earlier source</span>.
+</div>
+
+<h5>4. <span class="highlight">Object.assign(user, changes)</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+Object.assign(user, {
+    age: 31
+});
+
+console.log(user);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Target
+    <br>
+    ↓
+    <br>
+    <span class="highlight">user</span>
+    <br><br>
+    Source
+    <br>
+    ↓
+    <br>
+    { age: 31 }
+    <br><br>
+    ↓
+    <br>
+    Modify existing user
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "Kesava",
+    age: 31
+}
+</code></pre>
+    </div>
+
+    <p class="mb-0">
+        இங்கே புதிய outer object create செய்யவில்லை.
+        <span class="highlight">user</span> தான் target.
+        அதனால் original object <span class="highlight">mutate</span> ஆகிறது.
+    </p>
+</div>
+
+<h5>Object.assign() — The Easiest Way to Read It</h5>
+
+<div class="memory-diagram">
+    <span class="highlight">Object.assign(A, B)</span>
+    <br><br>
+    Read it as:
+    <br>
+    <strong>"Take B and put its properties into A."</strong>
+</div>
+
+<h5>Spread vs Object.assign() — Important Difference</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Spread</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const copy = {
+    ...user
+};
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                user stays unchanged
+                <br>
+                ↓
+                <br>
+                NEW outer object
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Object.assign()</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const copy = Object.assign(
+    {},
+    user
+);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                {} is target
+                <br>
+                ↓
+                <br>
+                NEW outer object
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="error-box">
+    <strong>But be careful:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+Object.assign(user, changes);
+</code></pre>
+    </div>
+
+    <p class="mb-0">
+        இங்கே <span class="highlight">user</span> தான் target.
+        அதனால் <span class="highlight">user</span> object itself
+        modify ஆகிறது.
+    </p>
+</div>
+
+<h5>Shallow Copy Limitations</h5>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="error-box h-100">
+            <strong>1. Nested Objects</strong>
+            <p class="mb-0 mt-2">
+                Nested object reference shared.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="error-box h-100">
+            <strong>2. Nested Arrays</strong>
+            <p class="mb-0 mt-2">
+                Nested array reference shared.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="error-box h-100">
+            <strong>3. Deep Data</strong>
+            <p class="mb-0 mt-2">
+                Multiple levels-ஐ clone செய்யாது.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    <strong>Shallow Copy</strong>
+    <br><br>
+    Outer → <span class="highlight">NEW</span>
+    <br>
+    Nested object → <span class="highlight">SHARED</span>
+    <br>
+    Nested array → <span class="highlight">SHARED</span>
+</div>
+
+<div class="success-box">
+    <strong>Final Memory Rule:</strong>
+    <br>
+    <span class="highlight">Spread { ...obj }</span>
+    → shallow copy
+    <br>
+    <span class="highlight">Object.assign({}, obj)</span>
+    → shallow copy
+    <br><br>
+    <span class="highlight">Object.assign(target, source)</span>
+    → source properties are copied into target
+    <br><br>
+    <span class="highlight">Object.assign(obj, changes)</span>
+    → modifies the existing object
+</div>
+<h5>25. Deep Copy / Deep Clone</h5>
+
+<p>
+    <span class="highlight">Deep cloning</span> என்றால்
+    ஒரு புதிய outer object மட்டும் உருவாக்குவது அல்ல.
+    அதன் nested objects-க்கும் recursively புதிய copies உருவாக்கப்படும்.
+</p>
+
+<div class="memory-diagram">
+    Original Object
+    <br>
+    ↓
+    <br>
+    New Outer Object
+    <br>
+    ↓
+    <br>
+    New Nested Objects
+    <br>
+    ↓
+    <br>
+    New Nested Arrays / Objects
+</div>
+
+<div class="success-box">
+    <strong>Shallow vs Deep:</strong>
+    <br>
+    Shallow → Outer object புதியது, nested references shared
+    <br>
+    Deep → Outer object + nested objects புதிய copies
+</div>
+
+<h5><span class="highlight">structuredClone()</span></h5>
+
+<p>
+    Modern JavaScript-ல் deep cloning செய்ய
+    <span class="highlight">structuredClone()</span> பயன்படுத்தலாம்.
+    இதை plain <span class="highlight">.js</span> file-லேயே
+    எந்த import-மும் இல்லாமல் பயன்படுத்தலாம்.
+</p>
+
+<h5>1. Basic Example</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    address: {
+        city: "Chennai"
+    }
+};
+
+const copy = structuredClone(user);
+
+copy.name = "jk";
+copy.address.city = "xys";
+
+console.log(copy);
+console.log(user);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="success-box">
+            <strong>copy</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "jk",
+    address: {
+        city: "xys"
+    }
+}
+</code></pre>
+            </div>
+        </div>
+
+        <div class="success-box">
+            <strong>user</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "Kesava",
+    address: {
+        city: "Chennai"
+    }
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    user ─────→ 📦 Original
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── address ──→ 📦 Nested
+    <br><br>
+    copy ─────→ 📦 New Clone
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── address ──→ 📦 New Nested Clone
+</div>
+
+<div class="success-box">
+    <strong>Why didn't <span class="highlight">user</span> change?</strong>
+    <p class="mb-0">
+        <span class="highlight">structuredClone()</span>
+        nested object-க்கும் புதிய copy உருவாக்குகிறது.
+        அதனால் <span class="highlight">copy.address</span> மற்றும்
+        <span class="highlight">user.address</span>
+        same reference அல்ல.
+    </p>
+</div>
+
+<h5>Shallow vs Deep — Visual Difference</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Shallow Clone</div>
+
+            <div class="memory-diagram mt-2">
+                Original
+                <br>
+                ↓
+                <br>
+                📦 Outer
+                <br>
+                └── address → 📦 Nested
+                <br><br>
+
+                Copy
+                <br>
+                ↓
+                <br>
+                📦 New Outer
+                <br>
+                └── address → 📦 Same Nested
+            </div>
+
+            <p class="mb-0">
+                Nested reference shared.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Deep Clone</div>
+
+            <div class="memory-diagram mt-2">
+                Original
+                <br>
+                ↓
+                <br>
+                📦 Outer
+                <br>
+                └── address → 📦 Nested A
+                <br><br>
+
+                Copy
+                <br>
+                ↓
+                <br>
+                📦 New Outer
+                <br>
+                └── address → 📦 Nested B
+            </div>
+
+            <p class="mb-0">
+                Nested references are separate.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>2. Important Limitation of <span class="highlight">structuredClone()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+const obj = {
+    name: "Kesava",
+
+    greet() {
+        console.log("Hello");
+    }
+};
+
+structuredClone(obj);
+</code></pre>
+</div>
+
+<div class="error-box">
+    <strong>This fails.</strong>
+    <p class="mb-0">
+        Functions are not structured-cloneable.
+        அதனால் object-க்குள் function இருந்தால்
+        <span class="highlight">structuredClone()</span>
+        அதை clone செய்ய முடியாது.
+    </p>
+</div>
+
+<div class="error-box">
+    <strong>Don't memorize:</strong>
+    <br>
+    ❌ "structuredClone() can clone any JavaScript object."
+</div>
+
+<div class="success-box">
+    <strong>Better Mental Model:</strong>
+    <br>
+    <span class="highlight">structuredClone()</span>
+    → supported structured-cloneable data-க்கு deep clone.
+    <br>
+    → எல்லா JavaScript values-ஐயும் clone செய்யும் universal solution அல்ல.
+</div>
+
+<h5>3. Old Technique — JSON Trick</h5>
+
+<p>
+    பழைய code-ல் deep copy செய்ய
+    இந்த technique அதிகமாக பயன்படுத்தப்பட்டது:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const copy = JSON.parse(
+    JSON.stringify(user)
+);
+</code></pre>
+</div>
+
+<div class="error-box">
+    <strong>Important:</strong>
+    இதை <span class="highlight">structuredClone()</span>-க்கு
+    exact equivalent என்று நினைக்கக்கூடாது.
+</div>
+
+<h5>JSON Deep Copy Example</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    address: {
+        city: "Chennai"
+    }
+};
+
+const copy = JSON.parse(
+    JSON.stringify(user)
+);
+
+copy.name = "jk";
+copy.address.city = "xyx";
+
+console.log(copy);
+console.log(user);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="success-box">
+            <strong>copy</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "jk",
+    address: {
+        city: "xyx"
+    }
+}
+</code></pre>
+            </div>
+        </div>
+
+        <div class="success-box">
+            <strong>user</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    name: "Kesava",
+    address: {
+        city: "Chennai"
+    }
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    ↓
+    <br>
+    JSON.stringify()
+    <br>
+    ↓
+    <br>
+    JSON string
+    <br>
+    ↓
+    <br>
+    JSON.parse()
+    <br>
+    ↓
+    <br>
+    New object
+</div>
+
+<h5>Why shouldn't JSON Trick be treated as the same as structuredClone()?</h5>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="example-box h-100">
+            <strong>JSON Technique</strong>
+
+            <div class="memory-diagram mt-2">
+                object
+                <br>
+                ↓
+                <br>
+                JSON string
+                <br>
+                ↓
+                <br>
+                object
+            </div>
+
+            <p class="mb-0">
+                Data passes through JSON serialization rules.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box h-100">
+            <strong>structuredClone()</strong>
+
+            <div class="memory-diagram mt-2">
+                object
+                <br>
+                ↓
+                <br>
+                Structured clone
+                <br>
+                ↓
+                <br>
+                new object graph
+            </div>
+
+            <p class="mb-0">
+                Designed specifically for structured cloning.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>Deep Clone — What Are We Really Achieving?</h5>
+
+<div class="success-box">
+    <strong>Goal:</strong>
+
+    <p class="mb-2 mt-2">
+        Original object-ஐ mutate செய்யாமல்,
+        அதிலிருந்து ஒரு completely separate object graph உருவாக்குவது.
+    </p>
+
+    <div class="memory-diagram">
+        ORIGINAL
+        <br>
+        ↓
+        <br>
+        📦 Outer A
+        <br>
+        └── 📦 Nested A
+        <br><br>
+
+        DEEP CLONE
+        <br>
+        ↓
+        <br>
+        📦 Outer B
+        <br>
+        └── 📦 Nested B
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Reference Assignment</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const copy = user;
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                SAME object
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Shallow Clone</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const copy = {
+    ...user
+};
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                NEW outer
+                <br>
+                nested shared
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Deep Clone</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const copy =
+    structuredClone(user);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                NEW outer
+                <br>
+                NEW nested
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Final Memory Rule:</strong>
+    <br>
+    <span class="highlight">Assignment → same reference</span>
+    <br>
+    <span class="highlight">Shallow Clone → new outer + shared nested references</span>
+    <br>
+    <span class="highlight">Deep Clone → new outer + new nested objects</span>
+    <br><br>
+    <span class="highlight">structuredClone()</span>
+    → modern deep-cloning API for supported structured-cloneable values.
+    <br>
+    <span class="highlight">JSON.parse(JSON.stringify(obj))</span>
+    → older JSON-based technique with different limitations.
+</div>
+<h5>26. Object Cloning — Limitations & Edge Cases</h5>
+
+<h5>1. Functions Cannot Be Cloned with <span class="highlight">structuredClone()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+
+    greet() {
+        console.log("Hello");
+    }
+};
+
+const copy = structuredClone(user);
+</code></pre>
+</div>
+
+<div class="error-box">
+    <strong>Result:</strong>
+    <span class="highlight">DataCloneError</span>
+    <p class="mb-0 mt-2">
+        <span class="highlight">structuredClone()</span>
+        function-ஐ clone செய்ய முடியாது.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    │
+    <br>
+    ├── name → "Kesava" <span class="highlight">✅ cloneable</span>
+    <br>
+    └── greet → function <span class="highlight">❌ not cloneable</span>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Object-க்குள் ஒரு unsupported value இருந்தால்,
+    <span class="highlight">structuredClone()</span>
+    முழு cloning operation-மும் fail ஆகலாம்.
+</div>
+
+<h5>2. What About <span class="highlight">Date</span>?</h5>
+
+<p>
+    இது ஒரு interesting case.
+    <span class="highlight">Date</span> என்பது
+    <span class="highlight">structuredClone()</span>
+    support செய்யும் built-in type.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    joinedAt: new Date()
+};
+
+const copy = structuredClone(user);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Original</div>
+
+            <div class="memory-diagram mt-2">
+                user
+                <br>
+                ↓
+                <br>
+                joinedAt → Date object
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Deep Clone</div>
+
+            <div class="memory-diagram mt-2">
+                copy
+                <br>
+                ↓
+                <br>
+                joinedAt → New Date object
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Remember:</strong>
+    <span class="highlight">Function ❌</span>
+    <span class="highlight">Date ✅</span>
+</div>
+
+<h5>3. What About <span class="highlight">Map</span> and <span class="highlight">Set</span>?</h5>
+
+<p>
+    <span class="highlight">structuredClone()</span>
+    பல built-in collection types-ஐயும் support செய்கிறது,
+    including <span class="highlight">Map</span> and
+    <span class="highlight">Set</span>.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const data = {
+    skills: new Set(["Angular", "React"]),
+
+    scores: new Map([
+        ["js", 90]
+    ])
+};
+
+const copy = structuredClone(data);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="example-box h-100">
+            <strong>Set</strong>
+
+            <div class="memory-diagram mt-2">
+                new Set([
+                <br>
+                "Angular",
+                <br>
+                "React"
+                <br>
+                ])
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="example-box h-100">
+            <strong>Map</strong>
+
+            <div class="memory-diagram mt-2">
+                new Map([
+                <br>
+                ["js", 90]
+                <br>
+                ])
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Key Point:</strong>
+    <span class="highlight">structuredClone()</span>
+    என்பது plain objects மட்டும் handle செய்யும் cloning technique அல்ல.
+    Supported built-in types-க்கும் cloning support உள்ளது.
+</div>
+
+<h5>4. JSON Cloning Has Limitations</h5>
+
+<p>
+    பழைய code-ல் நீங்கள் இதைப் பார்க்கலாம்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const copy = JSON.parse(
+    JSON.stringify(user)
+);
+</code></pre>
+</div>
+
+<p>
+    Simple data-க்கு இது work செய்வது போல தெரியும்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+const copy = JSON.parse(
+    JSON.stringify(user)
+);
+</code></pre>
+</div>
+
+<div class="error-box">
+    <strong>But don't memorize this:</strong>
+    <br>
+    ❌ <span class="highlight">JSON.parse(JSON.stringify(obj))</span>
+    = deep clone of any JavaScript object
+</div>
+
+<div class="success-box">
+    <strong>Correct Mental Model:</strong>
+    <p class="mb-0">
+        JSON technique என்பது
+        <span class="highlight">JSON-compatible data</span>-ஐ
+        JSON string-ஆக serialize செய்து,
+        மீண்டும் object-ஆக parse செய்வது.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    JavaScript Object
+    <br>
+    ↓
+    <br>
+    JSON.stringify()
+    <br>
+    ↓
+    <br>
+    JSON String
+    <br>
+    ↓
+    <br>
+    JSON.parse()
+    <br>
+    ↓
+    <br>
+    New Object
+</div>
+
+<div class="error-box">
+    <strong>Why is JSON not a universal deep clone?</strong>
+    <p class="mb-0">
+        JSON format எல்லா JavaScript values-ஐயும் represent செய்ய முடியாது.
+        அதனால் cloning behavior-ல் limitations இருக்கலாம்.
+    </p>
+</div>
+
+<h5>5. Circular Reference</h5>
+
+<p>
+    இப்போது இன்னொரு important edge case:
+    <span class="highlight">Circular Reference</span>.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+user.self = user;
+</code></pre>
+</div>
+
+<p>
+    முதலில் இது normal object போல தெரியும்:
+</p>
+
+<div class="memory-diagram">
+    user
+    <br>
+    │
+    <br>
+    ├── name → "Kesava"
+    <br>
+    └── self → ?
+</div>
+
+<p>
+    ஆனால்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+user.self = user;
+</code></pre>
+</div>
+
+<p>
+    என்றால் <span class="highlight">self</span> property
+    மீண்டும் அதே <span class="highlight">user</span> object-ஐ point செய்கிறது.
+</p>
+
+<div class="memory-diagram">
+    user ───────────────┐
+    <br>
+    │                   │
+    <br>
+    ├── name → "Kesava" │
+    <br>
+    │                   ↓
+    <br>
+    └── self ─────────→ SAME OBJECT
+</div>
+
+<div class="success-box">
+    <strong>Check:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+console.log(user.self === user);
+
+// true
+</code></pre>
+    </div>
+</div>
+
+<h5>What Makes It Circular?</h5>
+
+<div class="memory-diagram">
+    user
+    <br>
+    ↓
+    <br>
+    self
+    <br>
+    ↓
+    <br>
+    user
+    <br>
+    ↓
+    <br>
+    self
+    <br>
+    ↓
+    <br>
+    user
+    <br>
+    ↓
+    <br>
+    ...
+</div>
+
+<div class="success-box">
+    <strong>Tamil Mental Model:</strong>
+    <p class="mb-0">
+        Object-க்குள்ள ஒரு property,
+        அந்த same object-ஐ திரும்ப reference பண்ணினால்
+        அது <span class="highlight">circular reference</span>.
+    </p>
+</div>
+
+<h5>Circular Reference + JSON</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+user.self = user;
+
+JSON.stringify(user);
+</code></pre>
+</div>
+
+<div class="error-box">
+    <strong>Result:</strong>
+    <span class="highlight">JSON.stringify()</span>
+    circular reference-ஐ serialize செய்ய முடியாது.
+    அதனால் operation error-ஆக முடியும்.
+</div>
+
+<h5>Circular Reference + structuredClone()</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+user.self = user;
+
+const copy = structuredClone(user);
+
+console.log(copy.self === copy);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Important Insight:</strong>
+    <span class="highlight">structuredClone()</span>
+    circular references-ஐ handle செய்ய முடியும்.
+    Clone செய்யப்பட்ட object-ன் circular relationship-ம் preserve ஆகும்.
+</div>
+
+<div class="memory-diagram">
+    Original
+    <br>
+    user ──→ 📦 A
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── self
+    <br><br>
+
+    Deep Clone
+    <br>
+    copy ──→ 📦 B
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── self
+</div>
+
+<h5>Final Edge-Case Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>Function</strong>
+
+            <div class="memory-diagram mt-2">
+                structuredClone()
+                <br>
+                ↓
+                <br>
+                <span class="highlight">❌</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>Date / Map / Set</strong>
+
+            <div class="memory-diagram mt-2">
+                structuredClone()
+                <br>
+                ↓
+                <br>
+                <span class="highlight">✅</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>Circular Reference</strong>
+
+            <div class="memory-diagram mt-2">
+                JSON
+                <br>
+                ↓
+                <br>
+                <span class="highlight">❌</span>
+                <br><br>
+                structuredClone
+                <br>
+                ↓
+                <br>
+                <span class="highlight">✅</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">structuredClone()</span>
+    → deep clone for supported structured-cloneable values.
+    <br><br>
+    <span class="highlight">Functions</span>
+    → not cloneable by structuredClone().
+    <br>
+    <span class="highlight">Date / Map / Set</span>
+    → supported.
+    <br>
+    <span class="highlight">Circular references</span>
+    → supported by structuredClone(),
+    but JSON.stringify() cannot serialize them.
+    <br><br>
+    <span class="highlight">JSON.parse(JSON.stringify(obj))</span>
+    → not a universal JavaScript deep-clone solution.
+</div>
+<h5>27. <span class="highlight">Object.freeze()</span></h5>
+
+<p>
+    <span class="highlight">Object.freeze()</span> ஒரு object-ன்
+    <span class="highlight">top-level properties</span>-ஐ மாற்ற முடியாதபடி
+    freeze செய்கிறது.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+Object.freeze(user);
+</code></pre>
+</div>
+
+<h5>What Happens After <span class="highlight">freeze()</span>?</h5>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="error-box h-100">
+            <strong>Add ❌</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.city = "Chennai";
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                New top-level property add செய்ய முடியாது.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="error-box h-100">
+            <strong>Update ❌</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.name = "Arun";
+user.age = 31;
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                Existing top-level values update செய்ய முடியாது.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="error-box h-100">
+            <strong>Delete ❌</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+delete user.name;
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                Top-level property delete செய்ய முடியாது.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Simple Mental Model:</strong>
+
+    <div class="memory-diagram mt-2">
+        Object.freeze(user)
+        <br>
+        ↓
+        <br>
+        Can't add
+        <br>
+        Can't update
+        <br>
+        Can't delete
+    </div>
+</div>
+
+<h5>What Does "Top-Level" Mean?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    │
+    <br>
+    ├── name → "Kesava"
+    <br>
+    └── age → 30
+    <br><br>
+    These are the <span class="highlight">top-level properties</span>.
+</div>
+
+<h5>Important: <span class="highlight">Object.freeze()</span> is Shallow</h5>
+
+<p>
+    <span class="highlight">Object.freeze()</span> automatically
+    nested objects-ஐ freeze செய்யாது.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+
+    address: {
+        city: "Chennai"
+    }
+};
+
+Object.freeze(user);
+
+user.name = "Arun";
+user.address.city = "Madurai";
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="error-box h-100">
+            <strong>Top Level</strong>
+
+            <div class="memory-diagram mt-2">
+                user
+                <br>
+                ↓
+                <br>
+                <span class="highlight">FROZEN ✅</span>
+                <br><br>
+                user.name = "Arun"
+                <br>
+                ↓
+                <br>
+                blocked ❌
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>Nested Object</strong>
+
+            <div class="memory-diagram mt-2">
+                user
+                <br>
+                ↓
+                <br>
+                address → 📦
+                <br><br>
+                address.city = "Madurai"
+                <br>
+                ↓
+                <br>
+                allowed ✅
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Why Can the Nested Object Still Change?</h5>
+
+<div class="memory-diagram">
+    user → 📦 Frozen Object
+    <br>
+    │
+    <br>
+    └── address ──→ 📦 Separate Nested Object
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not frozen ⚠️
+</div>
+
+<div class="success-box">
+    <strong>So what exactly is frozen?</strong>
+    <p class="mb-0">
+        <span class="highlight">user</span> object itself is frozen.
+        ஆனால் அதன் <span class="highlight">address</span> property ஒரு
+        separate object-ஐ point செய்கிறது.
+        அந்த nested object-ஐ தனியாக freeze செய்யவில்லை.
+    </p>
+</div>
+
+<h5>Shallow Freeze — Correct Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Frozen Outer Object</div>
+
+            <div class="memory-diagram mt-2">
+                user
+                <br>
+                ↓
+                <br>
+                📦 FROZEN ✅
+                <br>
+                ├── name
+                <br>
+                └── address ─────────┐
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Nested Object</div>
+
+            <div class="memory-diagram mt-2">
+                address
+                <br>
+                ↓
+                <br>
+                📦 NOT FROZEN ⚠️
+                <br>
+                └── city
+                <br><br>
+                city can still change
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="error-box">
+    <strong>Don't remember:</strong>
+    <br>
+    ❌ "Object.freeze() freezes the entire object tree."
+</div>
+
+<div class="success-box">
+    <strong>Remember:</strong>
+    <br>
+    ✅ <span class="highlight">Object.freeze()</span> freezes the
+    <span class="highlight">object itself</span>,
+    not automatically all nested objects.
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="memory-diagram">
+    Object.freeze(user)
+    <br>
+    ↓
+    <br>
+    Top-level properties
+    <br>
+    ↓
+    <span class="highlight">Cannot add</span>
+    <br>
+    <span class="highlight">Cannot update</span>
+    <br>
+    <span class="highlight">Cannot delete</span>
+    <br><br>
+    Nested objects
+    <br>
+    ↓
+    <span class="highlight">Still mutable unless separately frozen</span>
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        Object.freeze() = Shallow Freeze
+    </strong>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">Outer object frozen</span>;
+    ஆனால் உள்ளே இருக்கும் nested object
+    <span class="highlight">automatically frozen ஆகாது</span>.
+</p>
+<h5>28. <span class="highlight">Object.seal()</span></h5>
+
+<p>
+    <span class="highlight">Object.seal()</span> என்பது
+    <span class="highlight">Object.freeze()</span>-ஐ விட
+    கொஞ்சம் less strict.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+Object.seal(user);
+</code></pre>
+</div>
+
+<h5>What Happens After <span class="highlight">seal()</span>?</h5>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="error-box h-100">
+            <strong>Add ❌</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.city = "Chennai";
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                New top-level property add செய்ய முடியாது.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="success-box h-100">
+            <strong>Update ✅</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.age = 31;
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                Existing property's value update செய்யலாம்.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="error-box h-100">
+            <strong>Delete ❌</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+delete user.age;
+</code></pre>
+            </div>
+
+            <p class="mb-0">
+                Existing property delete செய்ய முடியாது.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    Object.seal(user)
+    <br>
+    ↓
+    <br>
+    Can't add
+    <br>
+    Can update
+    <br>
+    Can't delete
+</div>
+
+<h5>Freeze vs Seal</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Object.freeze()</div>
+
+            <div class="memory-diagram mt-2">
+                🔒 <strong>Freeze</strong>
+                <br><br>
+                Add ❌
+                <br>
+                Update ❌
+                <br>
+                Delete ❌
+            </div>
+
+            <p class="mb-0">
+                Existing values-ஐ கூட மாற்ற முடியாது.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Object.seal()</div>
+
+            <div class="memory-diagram mt-2">
+                🔐 <strong>Seal</strong>
+                <br><br>
+                Add ❌
+                <br>
+                Update ✅
+                <br>
+                Delete ❌
+            </div>
+
+            <p class="mb-0">
+                Structure locked, values editable.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>Why Is Seal Less Strict?</h5>
+
+<div class="success-box">
+    <strong>Seal = Structure Locked, Values Editable</strong>
+
+    <p class="mb-2 mt-2">
+        Object-ன் existing properties-ஐ வைத்துக்கொள்ளலாம்,
+        ஆனால் புதிய property add அல்லது existing property delete செய்ய முடியாது.
+    </p>
+
+    <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+Object.seal(user);
+
+user.age = 31;          // ✅ allowed
+user.city = "Chennai";  // ❌ blocked
+delete user.name;       // ❌ blocked
+</code></pre>
+    </div>
+</div>
+
+<h5>Both Are Shallow</h5>
+
+<p>
+    <span class="highlight">Object.freeze()</span> மற்றும்
+    <span class="highlight">Object.seal()</span>
+    இரண்டும் <span class="highlight">shallow</span>.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Outer Object</strong>
+
+            <div class="memory-diagram mt-2">
+                user
+                <br>
+                ↓
+                <br>
+                Frozen / Sealed
+                <br>
+                ✅
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Nested Object</strong>
+
+            <div class="memory-diagram mt-2">
+                address → 📦
+                <br><br>
+                Not automatically
+                <br>
+                frozen / sealed
+                <br>
+                ⚠️
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    <strong>Freeze</strong>
+    <br>
+    ↓
+    <br>
+    Add ❌ &nbsp; Update ❌ &nbsp; Delete ❌
+    <br><br>
+
+    <strong>Seal</strong>
+    <br>
+    ↓
+    <br>
+    Add ❌ &nbsp; Update ✅ &nbsp; Delete ❌
+</div>
+
+<div class="success-box">
+    <strong>Easy Memory Trick:</strong>
+    <br>
+    🔒 <span class="highlight">Freeze = Completely Locked</span>
+    <br>
+    🔐 <span class="highlight">Seal = Structure Locked, Values Editable</span>
+</div>
+
+<div class="success-box text-center">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">freeze → no add + no update + no delete</span>
+    <br>
+    <span class="highlight">seal → no add + update allowed + no delete</span>
+    <br><br>
+    <span class="highlight">Both are shallow.</span>
+</div>
+<h5> How Do We Freeze Nested Objects Too?</h5>
+
+<p>
+    <span class="highlight">Object.freeze()</span> shallow-ஆக மட்டும்
+    freeze செய்வதால், nested objects automatically freeze ஆகாது.
+</p>
+
+<div class="error-box">
+    <strong>Important:</strong>
+    JavaScript-ல்
+    <span class="highlight">Object.deepFreeze()</span>
+    என்ற built-in method இல்லை.
+</div>
+
+<div class="memory-diagram">
+    Object.freeze(user)
+    <br>
+    ↓
+    <br>
+    Outer object → frozen ✅
+    <br>
+    Nested object → not frozen ⚠️
+</div>
+
+<h5>So, How Do We Deep Freeze?</h5>
+
+<p>
+    Nested objects அனைத்தையும் recursively
+    <span class="highlight">Object.freeze()</span> செய்ய வேண்டும்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+function deepFreeze(obj) {
+
+    Object.freeze(obj);
+
+    for (const value of Object.values(obj)) {
+
+        if (value !== null && typeof value === "object") {
+            deepFreeze(value);
+        }
+
+    }
+
+    return obj;
+}
+</code></pre>
+</div>
+
+<h5>How Does <span class="highlight">deepFreeze()</span> Work?</h5>
+
+<div class="memory-diagram">
+    deepFreeze(user)
+    <br>
+    ↓
+    <br>
+    Object.freeze(user)
+    <br>
+    ↓
+    <br>
+    Check every property value
+    <br>
+    ↓
+    <br>
+    Is the value an object?
+    <br>
+    ↓
+    <br>
+    Yes
+    <br>
+    ↓
+    <br>
+    deepFreeze(value)
+    <br>
+    ↓
+    <br>
+    Continue recursively
+</div>
+
+<h5>Step-by-Step Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+
+    address: {
+        city: "Chennai"
+    }
+};
+
+const copy = deepFreeze(user);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    │
+    <br>
+    ├── name → "Kesava"
+    <br>
+    │
+    └── address → OBJECT
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;└── city → "Chennai"
+</div>
+
+<div class="memory-diagram">
+    deepFreeze(user)
+    <br>
+    ↓
+    <br>
+    freeze user ✅
+    <br>
+    ↓
+    <br>
+    find address object
+    <br>
+    ↓
+    <br>
+    deepFreeze(address)
+    <br>
+    ↓
+    <br>
+    freeze address ✅
+</div>
+
+<h5>Testing the Deep Freeze</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+
+    address: {
+        city: "Chennai"
+    }
+};
+
+const copy = deepFreeze(user);
+
+user.name = "Arun";
+
+copy.name = "lol";
+
+user.address.city = "Trichy";
+
+copy.address.city = "Madurai";
+
+console.log(user);
+console.log(copy);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>Top-Level Changes</strong>
+
+            <div class="memory-diagram mt-2">
+                user.name = "Arun"
+                <br>
+                ↓
+                <br>
+                blocked ❌
+                <br><br>
+                copy.name = "lol"
+                <br>
+                ↓
+                <br>
+                blocked ❌
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>Nested Changes</strong>
+
+            <div class="memory-diagram mt-2">
+                user.address.city = "Trichy"
+                <br>
+                ↓
+                <br>
+                blocked ❌
+                <br><br>
+                copy.address.city = "Madurai"
+                <br>
+                ↓
+                <br>
+                blocked ❌
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why are both blocked?</strong>
+    <p class="mb-0">
+        <span class="highlight">user</span> மட்டும் அல்ல,
+        அதற்குள் இருக்கும் <span class="highlight">address</span>
+        object-மும் recursively freeze செய்யப்பட்டுள்ளது.
+    </p>
+</div>
+
+<h5>Shallow Freeze vs Deep Freeze</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Shallow Freeze</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+Object.freeze(user);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                user → 🔒 Frozen
+                <br>
+                └── address → 📦 Not frozen
+            </div>
+
+            <p class="mb-0">
+                Nested object can still change.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Deep Freeze</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+deepFreeze(user);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                user → 🔒 Frozen
+                <br>
+                └── address → 🔒 Frozen
+            </div>
+
+            <p class="mb-0">
+                Nested objects are also frozen.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>One Important Detail</h5>
+
+<div class="success-box">
+    <strong>Why this condition?</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+if (value !== null && typeof value === "object")
+</code></pre>
+    </div>
+
+    <p class="mb-1">
+        <span class="highlight">typeof null</span> is
+        <span class="highlight">"object"</span>.
+    </p>
+
+    <p class="mb-0">
+        அதனால் <span class="highlight">value !== null</span>
+        check முக்கியம்.
+    </p>
+</div>
+
+<div class="error-box">
+    <strong>One Practical Limitation:</strong>
+    <p class="mb-0">
+        இந்த simple recursive version-ல்
+        <span class="highlight">circular references</span> இருந்தால்
+        recursion தொடர்ந்து செல்லலாம்.
+        அதனால் real-world robust deep-freeze implementation-ல்
+        already-visited objects track செய்ய
+        <span class="highlight">WeakSet</span> பயன்படுத்துவது safer.
+    </p>
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="memory-diagram">
+    <strong>Object.freeze()</strong>
+    <br>
+    ↓
+    <br>
+    Current object மட்டும் freeze
+    <br><br>
+
+    <strong>deepFreeze()</strong>
+    <br>
+    ↓
+    <br>
+    Current object freeze
+    <br>
+    ↓
+    Nested object கண்டுபிடி
+    <br>
+    ↓
+    Nested object-ஐ freeze செய்
+    <br>
+    ↓
+    Continue recursively
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        Shallow Freeze → Outer only
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        Deep Freeze → Outer + Nested Objects
+    </strong>
+</div>
+<h5>29. Object Destructuring</h5>
+
+<p>
+    <span class="highlight">Object Destructuring</span> என்பது
+    object-ல் இருக்கும் properties-ஐ எடுத்துக் கொண்டு,
+    அவற்றை variables-ல் assign செய்வதற்கான concise syntax.
+</p>
+
+<div class="success-box">
+    <strong>Simple Mental Model:</strong>
+    <p class="mb-0">
+        "Object-ல் இருக்கும் properties-ஐ எடுத்துக் கொண்டு
+        variables-ல் unpack பண்ணு."
+    </p>
+</div>
+
+<h5>Without Destructuring</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+const name = user.name;
+const age = user.age;
+
+console.log(name);
+console.log(age);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    ├── name → "Kesava"
+    <br>
+    └── age → 30
+    <br><br>
+    user.name
+    <span class="arrow-note">→</span>
+    name
+    <br>
+    user.age
+    <span class="arrow-note">→</span>
+    age
+</div>
+
+<h5>With Destructuring</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+const { name, age } = user;
+
+console.log(name); // Kesava
+console.log(age);  // 30
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="memory-diagram">
+            const { name, age } = user;
+            <br><br>
+            name
+            <span class="arrow-note">←</span>
+            user.name
+            <br>
+            age
+            <span class="arrow-note">←</span>
+            user.age
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    <span class="highlight">name</span> மற்றும்
+    <span class="highlight">age</span> variables,
+    object-ல் இருக்கும் அதே property names-ஐ பயன்படுத்தி values-ஐ பெறுகின்றன.
+</div>
+
+<h5>1. Rename While Destructuring</h5>
+
+<p>
+    Property name-ஐ வேறு variable name-ஆக rename செய்யலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava"
+};
+
+const { name: userName } = user;
+
+console.log(userName);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user.name
+    <br>
+    ↓
+    <br>
+    "Kesava"
+    <br><br>
+    store in
+    <br>
+    ↓
+    <br>
+    <span class="highlight">userName</span>
+</div>
+
+<div class="success-box">
+    <strong>Meaning:</strong>
+    <p class="mb-0">
+        <span class="highlight">name: userName</span>
+        என்றால்:
+        <br>
+        "Object-ல் இருக்கும் <span class="highlight">name</span>
+        property-ஐ எடுத்து,
+        <span class="highlight">userName</span> என்ற variable-ல் store செய்."
+    </p>
+</div>
+
+<div class="error-box">
+    <strong>Don't confuse:</strong>
+    <br>
+    <span class="highlight">name</span> = object property name
+    <br>
+    <span class="highlight">userName</span> = new variable name
+</div>
+
+<h5>2. Nested Destructuring</h5>
+
+<p>
+    Object-க்குள் nested object இருந்தாலும்,
+    அதிலிருந்து values-ஐ நேரடியாக destructure செய்யலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+
+    address: {
+        city: "Chennai",
+        pincode: 600001
+    }
+};
+
+const {
+    name,
+    address: {
+        city,
+        pincode
+    }
+} = user;
+
+console.log(name);    // Kesava
+console.log(city);    // Chennai
+console.log(pincode); // 600001
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    ├── name → "Kesava"
+    <br>
+    │
+    <br>
+    └── address
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── city → "Chennai"
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;└── pincode → 600001
+    <br><br>
+
+    name
+    <span class="arrow-note">←</span>
+    user.name
+    <br>
+    city
+    <span class="arrow-note">←</span>
+    user.address.city
+    <br>
+    pincode
+    <span class="arrow-note">←</span>
+    user.address.pincode
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Nested destructuring-ல்
+    <span class="highlight">address</span> object-ஐ
+    தனியாக variable-ஆக உருவாக்காமல்,
+    அதன் உள்ளே இருக்கும் properties-ஐ நேரடியாக extract செய்யலாம்.
+</div>
+
+<h5>Nested Destructuring + Rename</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30,
+
+    address: {
+        city: "Trichy",
+        pincode: 620010
+    }
+};
+
+const {
+    name: userName,
+    age,
+    address: {
+        city: userCity,
+        pincode: userPin
+    }
+} = user;
+
+console.log(userName);
+console.log(userCity);
+console.log(userPin);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>name</strong>
+
+            <div class="memory-diagram mt-2">
+                name
+                <br>
+                ↓
+                <br>
+                userName
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>city</strong>
+
+            <div class="memory-diagram mt-2">
+                city
+                <br>
+                ↓
+                <br>
+                userCity
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>pincode</strong>
+
+            <div class="memory-diagram mt-2">
+                pincode
+                <br>
+                ↓
+                <br>
+                userPin
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    <span class="highlight">const { name: userName } = user;</span>
+    <br><br>
+    property name → variable name
+    <br>
+    <strong>name → userName</strong>
+</div>
+
+<h5>Destructuring Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Normal</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const name = user.name;
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Destructure</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const { name } = user;
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Rename</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const { name: userName } = user;
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">{ property }</span>
+    → same property name-ஆக variable உருவாகும்
+    <br>
+    <span class="highlight">{ property: newName }</span>
+    → property-ஐ வேறு variable name-ஆக rename செய்யும்
+    <br>
+    <span class="highlight">{ nested: { property } }</span>
+    → nested object-லிருந்து property எடுத்துக் கொள்ளும்
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">Destructuring = object-ஐ unpack பண்ணி variables-ஆக எடுத்துக்கொள்வது.</span>
+</p>
+<h5>30. Optional Chaining <span class="highlight">?.</span></h5>
+
+<p>
+    <span class="highlight">Optional chaining</span> என்பது
+    ஒரு property அல்லது nested property
+    <span class="highlight">null</span> அல்லது
+    <span class="highlight">undefined</span> ஆக இருக்கக்கூடிய
+    சூழ்நிலையில் safely access செய்ய உதவும்.
+</p>
+
+<h5>Without Optional Chaining</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+console.log(user.address.city);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="error-box">
+            <strong>Error ❌</strong>
+
+            <div class="memory-diagram mt-2">
+                user.address
+                <br>
+                ↓
+                <br>
+                undefined
+                <br><br>
+                undefined.city
+                <br>
+                ↓
+                <br>
+                ❌ Error
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why?</strong>
+
+    <p class="mb-0 mt-2">
+        <span class="highlight">user.address</span> property இல்லை.
+        அதனால் அதன் value <span class="highlight">undefined</span>.
+        பின்னர் JavaScript
+        <span class="highlight">undefined.city</span> access செய்ய முயற்சிக்கிறது.
+    </p>
+</div>
+
+<h5>With Optional Chaining</h5>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+console.log(user.address?.city);
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="success-box">
+            <strong>Result:</strong>
+
+            <div class="memory-diagram mt-2">
+                undefined
+            </div>
+
+            <p class="mb-0">
+                No error.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>Compare Both</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Normal Access</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.address.city
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                address = undefined
+                <br>
+                ↓
+                <br>
+                undefined.city
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Error ❌</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Optional Chaining</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+user.address?.city
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                address = undefined
+                <br>
+                ↓
+                <br>
+                stop safely
+                <br>
+                ↓
+                <br>
+                <span class="highlight">undefined ✅</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Nested Optional Chaining</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    address: {
+        city: "Chennai"
+    }
+};
+
+console.log(user.address?.city);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    <span class="highlight">"Chennai"</span>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    ↓
+    <br>
+    address exists
+    <br>
+    ↓
+    <br>
+    ?.city
+    <br>
+    ↓
+    <br>
+    "Chennai"
+</div>
+
+<h5>When the Property Does Not Exist</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {};
+
+console.log(user.address?.city);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    <span class="highlight">undefined</span>
+</div>
+
+<div class="memory-diagram">
+    user.address
+    <br>
+    ↓
+    <br>
+    undefined
+    <br>
+    ↓
+    <br>
+    ?.city
+    <br>
+    ↓
+    <br>
+    <span class="highlight">undefined</span>
+</div>
+
+<h5>Simple Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+console.log(user.address?.city); // undefined
+console.log(user.address.city);  // Error
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>Optional Chaining ✅</strong>
+
+            <div class="memory-diagram mt-2">
+                user.address?.city
+                <br>
+                ↓
+                <br>
+                address doesn't exist
+                <br>
+                ↓
+                <br>
+                <span class="highlight">undefined</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="error-box h-100">
+            <strong>Normal Access ❌</strong>
+
+            <div class="memory-diagram mt-2">
+                user.address.city
+                <br>
+                ↓
+                <br>
+                address = undefined
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Error</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Mental Model</h5>
+
+<div class="memory-diagram">
+    <span class="highlight">?.</span>
+    <br>
+    ↓
+    <br>
+    "If this exists, continue."
+    <br><br>
+    "If it is null or undefined,
+    stop safely and return undefined."
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br><br>
+    <span class="highlight">user.address?.city</span>
+    <br>
+    → address exists
+    <span class="arrow-note">→</span>
+    continue to city
+    <br>
+    → address is null/undefined
+    <span class="arrow-note">→</span>
+    return undefined
+</div>
+
+<div class="error-box">
+    <strong>Important:</strong>
+    <span class="highlight">?.</span> என்பது
+    எல்லா errors-ஐயும் ignore செய்யாது.
+    It specifically short-circuits when the value immediately before
+    <span class="highlight">?.</span> is
+    <span class="highlight">null</span> or <span class="highlight">undefined</span>.
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">?. = "இது இருந்தால் தொடர்ந்து போ; இல்லையென்றால் undefined கொடு."</span>
+</p>
+<h5>31. Object Utility Methods</h5>
+
+<p>
+    JavaScript Objects-ஐ work செய்யும்போது மிகவும் useful ஆக இருக்கும்
+    four utility methods:
+</p>
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="example-box text-center h-100">
+            <strong>Object.keys()</strong>
+            <p class="mb-0 mt-2">Property names</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box text-center h-100">
+            <strong>Object.values()</strong>
+            <p class="mb-0 mt-2">Property values</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box text-center h-100">
+            <strong>Object.entries()</strong>
+            <p class="mb-0 mt-2">Key + value pairs</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box text-center h-100">
+            <strong>Object.hasOwn()</strong>
+            <p class="mb-0 mt-2">Direct property check</p>
+        </div>
+    </div>
+</div>
+
+<div class="code-block p-3 mt-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30,
+    city: "Chennai"
+};
+</code></pre>
+</div>
+
+<h5>1. <span class="highlight">Object.keys()</span></h5>
+
+<p>
+    Object-ல் இருக்கும் <span class="highlight">property names</span>-ஐ
+    மட்டும் array-ஆக return செய்கிறது.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+console.log(Object.keys(user));
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="success-box">
+            <strong>Output:</strong>
+
+            <div class="memory-diagram mt-2">
+                ["name", "age", "city"]
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    Object.keys(user)
+    <br>
+    ↓
+    <br>
+    <span class="highlight">keys / property names</span>
+    <br>
+    ↓
+    <br>
+    ["name", "age", "city"]
+</div>
+
+<p class="tamil">
+    Object-ல இருக்கிற <span class="highlight">property names மட்டும்</span>
+    எடுத்து array-ஆக கொடுக்கும்.
+</p>
+
+<h5>2. <span class="highlight">Object.values()</span></h5>
+
+<p>
+    Object-ல் இருக்கும் <span class="highlight">property values</span>-ஐ
+    array-ஆக return செய்கிறது.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="code-block p-3">
+<pre><code>
+console.log(Object.values(user));
+</code></pre>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="success-box">
+            <strong>Output:</strong>
+
+            <div class="memory-diagram mt-2">
+                ["Kesava", 30, "Chennai"]
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    Object.values(user)
+    <br>
+    ↓
+    <br>
+    <span class="highlight">values</span>
+    <br>
+    ↓
+    <br>
+    ["Kesava", 30, "Chennai"]
+</div>
+
+<h5>3. <span class="highlight">Object.entries()</span></h5>
+
+<p>
+    <span class="highlight">Object.entries()</span> ஒவ்வொரு property-யையும்
+    <span class="highlight">[key, value]</span> pair-ஆக return செய்கிறது.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+console.log(Object.entries(user));
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+[
+    ["name", "Kesava"],
+    ["age", 30],
+    ["city", "Chennai"]
+]
+</code></pre>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    Object.entries(user)
+    <br>
+    ↓
+    <br>
+    [
+    <br>
+    &nbsp;&nbsp;["name", "Kesava"],
+    <br>
+    &nbsp;&nbsp;["age", 30],
+    <br>
+    &nbsp;&nbsp;["city", "Chennai"]
+    <br>
+    ]
+</div>
+
+<h5>Entries + Destructuring Connection</h5>
+
+<p>
+    ஒவ்வொரு entry-யும் ஒரு இரண்டு-item array.
+    அதனால் array destructuring பயன்படுத்தலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const [key, value] = ["name", "Kesava"];
+
+console.log(key);   // name
+console.log(value); // Kesava
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    ["name", "Kesava"]
+    <br>
+    ↓
+    <br>
+    key → "name"
+    <br>
+    value → "Kesava"
+</div>
+
+<h5>4. <span class="highlight">Object.hasOwn()</span></h5>
+
+<p>
+    ஒரு property அந்த object-க்கு
+    <span class="highlight">directly சொந்தமானதா</span> என்பதை check செய்யும்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+console.log(
+    Object.hasOwn(user, "name")
+);
+
+console.log(
+    Object.hasOwn(user, "city")
+);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="success-box text-center">
+            <strong>"name"</strong>
+            <div class="memory-diagram mt-2">
+                true ✅
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="error-box text-center">
+            <strong>"city"</strong>
+            <div class="memory-diagram mt-2">
+                false ❌
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    Object.hasOwn(user, "name")
+    <br>
+    ↓
+    <br>
+    "Does this object directly contain
+    this property?"
+</div>
+
+<h5>Simple Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="example-box text-center h-100">
+            <strong>keys</strong>
+            <p class="mb-0 mt-2">
+                பெயர்கள்
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box text-center h-100">
+            <strong>values</strong>
+            <p class="mb-0 mt-2">
+                Values
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box text-center h-100">
+            <strong>entries</strong>
+            <p class="mb-0 mt-2">
+                இரண்டும்
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box text-center h-100">
+            <strong>hasOwn</strong>
+            <p class="mb-0 mt-2">
+                Property இருக்கா?
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>Complete Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30,
+
+    greet: function () {
+
+    }
+};
+
+const keys = Object.keys(user);
+console.log(keys);
+
+const values = Object.values(user);
+console.log(values);
+
+const entries = Object.entries(user);
+console.log(entries);
+
+const hasOwn = Object.hasOwn(user, "city");
+console.log(hasOwn);
+
+const hasOwnAge = Object.hasOwn(user, "greet");
+console.log(hasOwnAge);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="memory-diagram h-100">
+            <strong>keys</strong>
+            <br><br>
+            ["name", "age", "greet"]
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="memory-diagram h-100">
+            <strong>values</strong>
+            <br><br>
+            ["Kesava", 30, function]
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="memory-diagram h-100">
+            <strong>city</strong>
+            <br><br>
+            false
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="memory-diagram h-100">
+            <strong>greet</strong>
+            <br><br>
+            true
+        </div>
+    </div>
+</div>
+
+<h5>Loop Through <span class="highlight">Object.entries()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+for (const [key, value] of Object.entries(user)) {
+    console.log(key, value);
+}
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Object.entries(user)
+    <br>
+    ↓
+    <br>
+    ["name", "Kesava"]
+    <span class="arrow-note">→</span>
+    key + value
+    <br>
+    ["age", 30]
+    <span class="arrow-note">→</span>
+    key + value
+    <br>
+    ["greet", function]
+    <span class="arrow-note">→</span>
+    key + value
+</div>
+
+<p class="tamil">
+    இங்கே <span class="highlight">[key, value]</span> என்பது
+    array destructuring.
+</p>
+
+<h5>Loop Through <span class="highlight">Object.values()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+for (const value of Object.values(user)) {
+    console.log(value);
+}
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Object.values(user)
+    <br>
+    ↓
+    <br>
+    value மட்டும் கிடைக்கும்
+</div>
+
+<h5>Loop Through <span class="highlight">Object.keys()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+for (const key of Object.keys(user)) {
+    console.log(key);
+}
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Object.keys(user)
+    <br>
+    ↓
+    <br>
+    key மட்டும் கிடைக்கும்
+</div>
+
+<h5>Final Comparison</h5>
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Object.keys()</div>
+
+            <div class="memory-diagram mt-2">
+                Object
+                <br>
+                ↓
+                <br>
+                <span class="highlight">keys</span>
+                <br>
+                ↓
+                <br>
+                Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Object.values()</div>
+
+            <div class="memory-diagram mt-2">
+                Object
+                <br>
+                ↓
+                <br>
+                <span class="highlight">values</span>
+                <br>
+                ↓
+                <br>
+                Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>Object.entries()</strong>
+
+            <div class="memory-diagram mt-2">
+                Object
+                <br>
+                ↓
+                <br>
+                <span class="highlight">[key, value]</span>
+                <br>
+                ↓
+                <br>
+                Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>Object.hasOwn()</strong>
+
+            <div class="memory-diagram mt-2">
+                Object
+                <br>
+                +
+                <br>
+                property
+                <br>
+                ↓
+                <br>
+                <span class="highlight">true / false</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">Object.keys(obj)</span> → keys
+    <br>
+    <span class="highlight">Object.values(obj)</span> → values
+    <br>
+    <span class="highlight">Object.entries(obj)</span> → key + value pairs
+    <br>
+    <span class="highlight">Object.hasOwn(obj, key)</span> → direct property exists?
+</div>
+<h5>32. Immutability</h5>
+
+<p>
+    <span class="highlight">Immutability</span> என்றால் existing data-வை
+    direct-ஆக mutate செய்யாமல், தேவையான மாற்றங்களுடன்
+    <span class="highlight">புதிய version</span>-ஐ உருவாக்குவது.
+</p>
+
+<div class="success-box">
+    <strong>Simple Mental Model:</strong>
+    <br>
+    ❌ Existing object-ஐ மாற்றாதே
+    <br>
+    ✅ Modified data-வுடன் new object உருவாக்கு
+</div>
+
+<h5>Basic Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const user = {
+    name: "Kesava",
+    age: 30
+};
+
+const updatedUser = {
+    ...user,
+    age: 31
+};
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    ↓
+    <br>
+    📦 Object A
+    <br>
+    age: 30
+    <br><br>
+
+    updatedUser
+    <br>
+    ↓
+    <br>
+    📦 Object B
+    <br>
+    age: 31
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    <p class="mb-0">
+        <span class="highlight">user</span> object மாற்றப்படவில்லை.
+        <span class="highlight">updatedUser</span> ஒரு புதிய object.
+    </p>
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+console.log(user.age);        // 30
+console.log(updatedUser.age); // 31
+</code></pre>
+</div>
+
+<h5>Nested Data-ல் Immutability</h5>
+
+<p>
+    Nested object இருந்தால் outer object மட்டும் copy செய்தால் போதாது.
+    மாற்ற வேண்டிய nested level-க்கும் புதிய object உருவாக்க வேண்டும்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const updatedUser = {
+    ...user,
+    address: {
+        ...user.address,
+        city: "Madurai"
+    }
+};
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user
+    <br>
+    ↓
+    <br>
+    📦 Original
+    <br>
+    └── address → 📦 Original Address
+    <br><br>
+
+    updatedUser
+    <br>
+    ↓
+    <br>
+    📦 New User
+    <br>
+    └── address → 📦 New Address
+</div>
+
+<div class="success-box">
+    <strong>Why copy <span class="highlight">address</span> too?</strong>
+    <p class="mb-0">
+        <span class="highlight">city</span> மாற்றும்போது original
+        <span class="highlight">address</span> object-ஐ mutate செய்யாமல்,
+        புதிய address object-ல் மாற்றத்தை வைத்திருக்க வேண்டும்.
+    </p>
+</div>
+
+<h5>Shallow Clone vs Immutability</h5>
+
+<p>
+    இங்கே ஒரு முக்கியமான distinction:
+    <span class="highlight">Shallow clone</span> மற்றும்
+    <span class="highlight">Immutability</span> ஒன்றே அல்ல.
+</p>
+
+<h5>Shallow Clone</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const copy = { ...user };
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    user ─────→ 📦 Original
+    <br>
+    copy ─────→ 📦 New Outer Object
+    <br><br>
+    nested object
+    <br>
+    ↓
+    <br>
+    <span class="highlight">reference may be shared</span>
+</div>
+
+<div class="error-box">
+    <strong>Important:</strong>
+    <span class="highlight">{ ...user }</span>
+    new outer object-ஐ உருவாக்கும்.
+    ஆனால் nested objects-ஐ new objects-ஆக clone செய்யாது.
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const copy = { ...user };
+
+copy.address.city = "Trichy";
+</code></pre>
+</div>
+
+<div class="error-box">
+    <strong>Problem:</strong>
+    <span class="highlight">copy.address</span> மற்றும்
+    <span class="highlight">user.address</span>
+    same nested object-ஐ refer செய்தால்,
+    இந்த mutation original data-வையும் மாற்றும்.
+</div>
+
+<h5>Immutability Pattern</h5>
+
+<p>
+    அதனால்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+copy.address.city = "Trichy"; // ❌ mutation
+</code></pre>
+</div>
+
+<p>
+    என்பதற்குப் பதிலாக:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const updatedUser = {
+    ...user,
+    address: {
+        ...user.address,
+        city: "Trichy"
+    }
+};
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>What happened here?</strong>
+
+    <div class="memory-diagram mt-2">
+        Existing user
+        <br>
+        ↓
+        <br>
+        spread
+        <br>
+        ↓
+        <br>
+        New user object
+        <br><br>
+        Existing address
+        <br>
+        ↓
+        <br>
+        spread
+        <br>
+        ↓
+        <br>
+        New address object
+        <br><br>
+        city → "Trichy"
+    </div>
+</div>
+
+<h5>One Important Clarification</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Shallow Clone</div>
+
+            <div class="memory-diagram mt-2">
+                New outer object
+                <br>
+                +
+                <br>
+                nested references may be shared
+            </div>
+
+            <p class="mb-0">
+                Clone-ன் depth பற்றி சொல்கிறது.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Immutability</div>
+
+            <div class="memory-diagram mt-2">
+                Existing data
+                <br>
+                ↓
+                <br>
+                don't mutate
+                <br>
+                ↓
+                <br>
+                create a new version
+            </div>
+
+            <p class="mb-0">
+                Data-வை எப்படி update செய்கிறோம் என்பதைக் குறிக்கிறது.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Shallow clone செய்தாலே automatically
+    <span class="highlight">immutable</span> ஆகிவிடாது.
+    Nested references shared இருந்தால்,
+    அவற்றை direct-ஆக mutate செய்ய முடியும்.
+</div>
+
+<h5>All Four Concepts Together</h5>
+
+<div class="row g-3">
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>Assignment</strong>
+
+            <div class="memory-diagram mt-2">
+                const b = a
+                <br>
+                ↓
+                <br>
+                <span class="highlight">same object</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>Shallow Clone</strong>
+
+            <div class="memory-diagram mt-2">
+                { ...a }
+                <br>
+                ↓
+                <br>
+                <span class="highlight">new outer</span>
+                <br>
+                nested may be shared
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>Deep Clone</strong>
+
+            <div class="memory-diagram mt-2">
+                structuredClone(a)
+                <br>
+                ↓
+                <br>
+                <span class="highlight">new outer</span>
+                <br>
+                +
+                <br>
+                new nested objects
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>Immutability</strong>
+
+            <div class="memory-diagram mt-2">
+                Don't mutate
+                <br>
+                ↓
+                <br>
+                create a
+                <br>
+                <span class="highlight">new version</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="memory-diagram">
+    <strong>Assignment</strong>
+    <span class="arrow-note">→</span>
+    same object reference
+    <br><br>
+
+    <strong>Shallow Clone</strong>
+    <span class="arrow-note">→</span>
+    new outer object
+    <br>
+    nested references may be shared
+    <br><br>
+
+    <strong>Deep Clone</strong>
+    <span class="arrow-note">→</span>
+    new outer object
+    <br>
+    nested objects independently cloned
+    <br><br>
+
+    <strong>Immutability</strong>
+    <span class="arrow-note">→</span>
+    don't mutate existing data
+    <br>
+    create a new version instead
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        Immutability = "Don't change the existing data; create the updated version."
+    </strong>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">Shallow copy</span> என்பது
+    "எப்படி copy செய்கிறோம்?" என்பதைக் கூறுகிறது.
+    <br>
+    <span class="highlight">Immutability</span> என்பது
+    "existing data-வை எப்படி update செய்கிறோம்?" என்பதைக் கூறுகிறது.
+</p>
 </body>
 </html>
 

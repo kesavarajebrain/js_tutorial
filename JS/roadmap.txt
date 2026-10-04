@@ -1,11 +1,3 @@
-CURRYING
-function expression
-difference between arguments & parameters
-arrow functions
-async and sync 
-event loop
-map , filter, reduce 
-
 🗺️ JavaScript Master Roadmap
 ✅ Phase 1 — JavaScript Foundation (Completed)
 ✅ Global Scope
@@ -126,72 +118,134 @@ Pattern problems ✅
 
 20 ✅  Object references
 21 ✅  Primitive vs reference values
-22 ⏳ Assignment behavior
+22 ✅ Assignment behavior
 
-23 ⏳ What is Object Cloning?
-24 ⏳ Why do we clone objects?
-25 ⏳ Shallow Copy / Shallow Clone
-26 ⏳ Deep Copy / Deep Clone
-27 ⏳ Spread operator with objects
-28 ⏳ Object.assign()
-29 ⏳ structuredClone()
-30 ⏳ Object cloning limitations / edge cases
+23 ✅ What is Object Cloning?
+24 ✅ Why do we clone objects?
+25 ✅ Shallow Copy / Shallow Clone
+26 ✅ Deep Copy / Deep Clone
+27 ✅ Spread operator with objects
+28 ✅ Object.assign()
+29 ✅ structuredClone()
+30 ✅  Object cloning limitations / edge cases
 
-31 ⏳ Object.freeze()
-32 ⏳ Object.seal()
-
-33 ⏳ Object destructuring
-34 ⏳ Nested destructuring
-35 ⏳ Optional chaining
-36 ⏳ Object utility methods
-37 ⏳ Immutability
-38 ⏳ Real API data
-39 ⏳ Angular / React state examples
-40 ⏳ Interview questions
+31 ✅ Object.freeze()
+32 ✅ Object.seal()
+33 ✅ Object destructuring
+34 ✅ Nested destructuring
+35 ✅ Optional chaining
+36 ✅ Object utility methods
+37 ✅ Immutability
+38 ✅ Real API data
+39 ✅ Angular / React state examples
+40 ✅ Interview questions
 
 📌 Arrays
-⏳ forEach()
-⏳ map()
-⏳ filter()
-⏳ find()
-⏳ findIndex()
-⏳ some()
-⏳ every()
-⏳ reduce()
+✅ forEach() — array-focused revision
+✅ map()
+✅ filter()
+✅ find()
+✅ findIndex()
+✅ some()
+✅ every()
+✅ reduce()
 ⏳ sort()
 ⏳ slice()
 ⏳ splice()
+⏳ Array method chaining
+⏳ Arrays + objects
 ⏳ Interview questions
+
+📌 Currying & Partial Application
+⏳ Currying
+⏳ Partial Application — basic difference from Currying
+
+📌 new Keyword & Important Built-ins
+⏳ What new means — creating a new object/instance
+⏳ new with constructor functions — basic understanding
+⏳ new with classes — basic understanding
+⏳ new Date()
+⏳ new Map()
+⏳ new Set()
+⏳ new String() / new Number() / new Boolean()
+⏳ Primitive vs wrapper object — why wrapper objects are generally avoided
+
+📌 Dictionary / Map
+⏳ Object as a dictionary / key-value store
+⏳ Map
+⏳ new Map() — practical usage/revision
+⏳ Map.set()
+⏳ Map.get()
+⏳ Map.has()
+⏳ Map.delete()
+⏳ Set
+⏳ new Set() — practical usage/revision
+⏳ Object vs Map — when to use which
 
 📌 Asynchronous JavaScript
 ⏳ Synchronous vs Asynchronous
 ⏳ Web APIs
 ⏳ Callback Queue
-⏳ Event Loop (Deep Dive)
+⏳ Microtask Queue
+⏳ Event Loop — Deep Dive
 ⏳ Callback Hell
 ⏳ Promises
-⏳ Promise Chaining
+⏳ Promise states
+⏳ Promise chaining
+⏳ Promise.all()
+⏳ Promise.allSettled()
+⏳ Promise.race()
+⏳ Promise.any()
 ⏳ async/await
 ⏳ fetch()
 ⏳ Error handling
+⏳ Sequential vs parallel async operations
+
+📌 DOM & Browser Events
+⏳ Event listeners
+⏳ Event object
+⏳ Event propagation
+⏳ Event bubbling
+⏳ Event capturing — basic understanding
+⏳ Event target vs current target
+⏳ stopPropagation()
+⏳ preventDefault()
+⏳ Event delegation
 
 📌 Prototype & Advanced JavaScript
-⏳ Prototype
+⏳ What is Prototype?
 ⏳ Prototype Chain
+⏳ Property lookup through prototype chain
 ⏳ Inheritance
 ⏳ Constructor Functions
+⏳ new + Constructor Functions
 ⏳ Classes
+⏳ new with Classes — deeper understanding
+⏳ extends
+⏳ super
+⏳ Class methods
 
 📌 ES6+ Features
 ⏳ Rest Operator
-⏳ Spread Operator
-⏳ Destructuring
-⏳ Optional Chaining
-⏳ Nullish Coalescing (??)
+✅ Spread Operator — object usage already completed; consolidate here
+✅ Destructuring — object usage already completed; consolidate here
+✅ Optional Chaining — already completed; consolidate here
+⏳ Nullish Coalescing ??
 ⏳ Template Literals
 ⏳ Default Parameters
-⏳ Modules (import/export)
+⏳ Enhanced Object Literals
+⏳ Property Shorthand
+⏳ Method Shorthand
+⏳ Modules — import/export
+⏳ Named vs Default Exports
 
+📌 Final JavaScript Integration
+
+⏳ Full JavaScript revision
+⏳ Mixed dry-run problems
+⏳ Interview scenarios
+⏳ Weak-area assessment
+⏳ Final JavaScript Master Assessment
 
 this
  ↓

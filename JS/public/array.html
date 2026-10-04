@@ -1,0 +1,3310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <title>Array | Js Zero to Hero</title>
+</head>
+<body>
+<h4>Arrays — <span class="highlight">forEach()</span> and <span class="highlight">map()</span></h4>
+
+<h5>What is an Array?</h5>
+
+<p>
+    An <span class="highlight">array</span> is an
+    <span class="highlight">ordered collection of values</span>.
+    Values-ஐ ஒரு sequence-ஆக store செய்ய பயன்படுகிறது.
+</p>
+
+<h4>Quick Table</h4>
+
+
+<div class="code-block p-3">
+<pre><code>
+const skills = ["Angular", "React", "JavaScript"];
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    skills
+    <br>
+    │
+    <br>
+    ├── index 0 → "Angular"
+    <br>
+    ├── index 1 → "React"
+    <br>
+    └── index 2 → "JavaScript"
+</div>
+
+<h5>1. <span class="highlight">forEach()</span></h5>
+
+<p>
+    <span class="highlight">forEach()</span> array-ல் இருக்கும்
+    ஒவ்வொரு element-க்கும் ஒரு callback-ஐ execute செய்கிறது.
+</p>
+
+<h5>forEach() Callback Parameters</h5>
+
+<p>
+    Callback maximum-ஆக மூன்று useful parameters பெறலாம்:
+</p>
+
+<div class="memory-diagram">
+    <span class="highlight">array.forEach((value, index, array) =&gt; { })</span>
+    <br><br>
+    value → current element
+    <br>
+    index → current index
+    <br>
+    array → original array
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+numbers.forEach((value, index, arr) => {
+    console.log(value);
+    console.log(index);
+    console.log(arr);
+});
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>value</strong>
+
+            <div class="memory-diagram mt-2">
+                10
+                <br>
+                20
+                <br>
+                30
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>index</strong>
+
+            <div class="memory-diagram mt-2">
+                0
+                <br>
+                1
+                <br>
+                2
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>array</strong>
+
+            <div class="memory-diagram mt-2">
+                [10, 20, 30]
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>2. Important: <span class="highlight">forEach()</span> Does Not Create a New Array</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const result = numbers.forEach((num) => {
+    return num * 2;
+});
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="memory-diagram">
+            numbers
+            <br>
+            ↓
+            <br>
+            [1, 2, 3]
+            <br><br>
+            forEach()
+            <br>
+            ↓
+            <br>
+            callback runs for every item
+            <br>
+            ↓
+            <br>
+            return values are not collected
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="error-box">
+            <strong>Result:</strong>
+
+            <div class="memory-diagram mt-2">
+                undefined
+            </div>
+
+            <p class="mb-0">
+                <span class="highlight">forEach()</span>
+                callback-ன் return value-ஐ collect செய்யாது.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>3. <span class="highlight">map()</span> — The Next Important Array Method</h5>
+
+<p>
+    <span class="highlight">map()</span> ஒவ்வொரு element-ஐ transform செய்து,
+    அந்த returned values-ஐ வைத்து ஒரு
+    <span class="highlight">new array</span> உருவாக்குகிறது.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const doubled = numbers.map((num) => {
+    return num * 2;
+});
+
+console.log(doubled);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+
+    <div class="memory-diagram mt-2">
+        [2, 4, 6]
+    </div>
+</div>
+
+<div class="memory-diagram">
+    [1, 2, 3]
+    <br>
+    ↓
+    <br>
+    map()
+    <br>
+    ↓
+    <br>
+    1 → 2
+    <br>
+    2 → 4
+    <br>
+    3 → 6
+    <br>
+    ↓
+    <br>
+    [2, 4, 6]
+</div>
+
+<h5>🔥 forEach() vs map()</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">forEach()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+numbers.forEach(num => {
+    console.log(num * 2);
+});
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                Purpose
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Do something</span>
+                <br>
+                for every item
+                <br><br>
+                Return value
+                <br>
+                ↓
+                <br>
+                <span class="highlight">undefined</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">map()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const doubled = numbers.map(num => {
+    return num * 2;
+});
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                Purpose
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Transform</span>
+                <br>
+                every item
+                <br><br>
+                Return value
+                <br>
+                ↓
+                <br>
+                <span class="highlight">New Array</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>Memory Trick:</strong>
+    <br>
+    <span class="highlight">forEach → do something</span>
+    <br>
+    <span class="highlight">map → make a new array</span>
+</div>
+
+<h5>4. <span class="highlight">map()</span> with Objects</h5>
+
+<p>
+    இது Angular / React applications-ல் மிகவும் common.
+    Object array-லிருந்து ஒரு particular property-ஐ extract செய்யலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { name: "Kesava", age: 30 },
+    { name: "Arun", age: 28 }
+];
+
+const names = users.map(user => user.name);
+
+console.log(names);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    users
+    <br>
+    ↓
+    <br>
+    { name: "Kesava", age: 30 }
+    <br>
+    <span class="arrow-note">→</span>
+    "Kesava"
+    <br><br>
+    { name: "Arun", age: 28 }
+    <br>
+    <span class="arrow-note">→</span>
+    "Arun"
+    <br><br>
+    ↓
+    <br>
+    ["Kesava", "Arun"]
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">["Kesava", "Arun"]</span>
+</div>
+
+<h5>5. Creating Updated Objects with <span class="highlight">map()</span></h5>
+
+<p>
+    Existing objects-ஐ mutate செய்யாமல் updated objects உருவாக்கும்
+    <span class="highlight">immutable pattern</span>-க்கும்
+    <span class="highlight">map()</span> மிகவும் useful.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { name: "Kesava", age: 30 },
+    { name: "Arun", age: 28 }
+];
+
+const updatedUsers = users.map(user => {
+
+    if (user.name === "Kesava") {
+        return {
+            ...user,
+            age: 31
+        };
+    }
+
+    return user;
+});
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    users
+    <br>
+    ↓
+    <br>
+    Kesava → new object → age 31
+    <br>
+    Arun → existing object returned
+    <br><br>
+    ↓
+    <br>
+    updatedUsers
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+[
+    { name: "Kesava", age: 31 },
+    { name: "Arun", age: 28 }
+]
+</code></pre>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important connection:</strong>
+    <span class="highlight">map()</span> + spread syntax
+    <span class="highlight">{ ...user }</span>
+    → existing object-ஐ mutate செய்யாமல் updated object உருவாக்கலாம்.
+</div>
+
+<h5>6. <span class="highlight">map()</span> Must Return the Result You Want</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const result = numbers.map(num => {
+    console.log(num);
+});
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+
+    <div class="memory-diagram mt-2">
+        [undefined, undefined, undefined]
+    </div>
+</div>
+
+<div class="memory-diagram">
+    num = 1
+    <span class="arrow-note">→</span>
+    callback returns undefined
+    <br>
+    num = 2
+    <span class="arrow-note">→</span>
+    callback returns undefined
+    <br>
+    num = 3
+    <span class="arrow-note">→</span>
+    callback returns undefined
+    <br><br>
+    ↓
+    <br>
+    [undefined, undefined, undefined]
+</div>
+
+<div class="error-box">
+    <strong>Why?</strong>
+    <p class="mb-0">
+        <span class="highlight">map()</span> callback ஒவ்வொரு element-க்கும்
+        ஒரு value return செய்ய வேண்டும்.
+        Braces <span class="highlight">{ }</span> பயன்படுத்தி
+        <span class="highlight">return</span> எழுதவில்லை என்றால்,
+        callback implicitly <span class="highlight">undefined</span>-ஐ return செய்யும்.
+    </p>
+</div>
+
+<h5>forEach() vs map() — Final Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">forEach()</div>
+
+            <div class="memory-diagram mt-2">
+                Array
+                <br>
+                ↓
+                <br>
+                Run callback
+                <br>
+                ↓
+                <br>
+                Do something
+                <br>
+                ↓
+                <br>
+                <span class="highlight">undefined</span>
+            </div>
+
+            <p class="tamil mb-0">
+                "ஒவ்வொரு item-க்கும் ஒரு action செய்."
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">map()</div>
+
+            <div class="memory-diagram mt-2">
+                Array
+                <br>
+                ↓
+                <br>
+                Transform each item
+                <br>
+                ↓
+                <br>
+                Collect returned values
+                <br>
+                ↓
+                <br>
+                <span class="highlight">New Array</span>
+            </div>
+
+            <p class="tamil mb-0">
+                "ஒவ்வொரு item-ஐ transform செய்து
+                புதிய array உருவாக்கு."
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">forEach → action / side effect → undefined</span>
+    <br>
+    <span class="highlight">map → transformation → new array</span>
+    <br><br>
+    <span class="highlight">map()</span>-ல் callback return value தான்
+    புதிய array-ன் corresponding element ஆகிறது.
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">forEach = "Do"</span>
+    &nbsp;|&nbsp;
+    <span class="highlight">map = "Transform"</span>.
+</p>
+<hr>
+<h5><span class="highlight">filter()</span></h5>
+
+<p>
+    <span class="highlight">filter()</span> என்பது condition-ஐ satisfy செய்யும்
+    elements-ஐ மட்டும் தேர்வு செய்து ஒரு
+    <span class="highlight">new array</span> உருவாக்கும் method.
+</p>
+
+<div class="success-box">
+    <strong>Simple Definition:</strong>
+
+    <div class="memory-diagram mt-2">
+        filter()
+        <br>
+        ↓
+        <br>
+        Check each item
+        <br>
+        ↓
+        <br>
+        Keep / Remove
+        <br>
+        ↓
+        <br>
+        New Array
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">map()</div>
+
+            <div class="memory-diagram mt-2">
+                Transform each item
+                <br>
+                ↓
+                <br>
+                "What should this item become?"
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">filter()</div>
+
+            <div class="memory-diagram mt-2">
+                Select items
+                <br>
+                ↓
+                <br>
+                "Should I keep this item?"
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>1. Basic Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3, 4, 5];
+
+const result = numbers.filter(num => num > 3);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    1 > 3 → false → remove
+    <br>
+    2 > 3 → false → remove
+    <br>
+    3 > 3 → false → remove
+    <br>
+    4 > 3 → true → keep
+    <br>
+    5 > 3 → true → keep
+    <br><br>
+    ↓
+    <br>
+    [4, 5]
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">[4, 5]</span>
+</div>
+
+<h5>2. The Callback Must Return a Condition</h5>
+
+<div class="code-block p-3">
+<pre><code>
+numbers.filter(num => num > 3);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    callback return value
+    <br>
+    ↓
+    <br>
+    <span class="highlight">true</span> → keep the original item
+    <br>
+    <span class="highlight">false</span> → remove the item
+</div>
+
+<div class="success-box">
+    <strong>Key Rule:</strong>
+    <span class="highlight">filter()</span> callback-ன் return value
+    output value-ஐ உருவாக்காது.
+    அது அந்த item-ஐ <span class="highlight">keep செய்யலாமா வேண்டாமா</span>
+    என்பதை decide செய்கிறது.
+</div>
+
+<h5>3. filter() Does Not Modify the Original Array</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3, 4, 5];
+
+const result = numbers.filter(num => num > 3);
+
+console.log(numbers);
+console.log(result);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box">
+            <strong>Original</strong>
+
+            <div class="memory-diagram mt-2">
+                [1, 2, 3, 4, 5]
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box">
+            <strong>New Array</strong>
+
+            <div class="memory-diagram mt-2">
+                [4, 5]
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    <span class="highlight">filter()</span> original array-ஐ
+    modify செய்யாது.
+    ஒரு <span class="highlight">new array</span> உருவாக்கும்.
+</div>
+
+<h5>4. filter() with Objects</h5>
+
+<p>
+    Angular / React applications-ல் இது மிகவும் common.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { name: "Kesava", age: 30 },
+    { name: "Arun", age: 22 },
+    { name: "Rahul", age: 35 }
+];
+
+const adults = users.filter(user => user.age >= 30);
+
+console.log(adults);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+[
+    { name: "Kesava", age: 30 },
+    { name: "Rahul", age: 35 }
+]
+</code></pre>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    Kesava → age >= 30 → true → keep
+    <br>
+    Arun → age >= 30 → false → remove
+    <br>
+    Rahul → age >= 30 → true → keep
+</div>
+
+<h5>5. filter() vs map()</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">map()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const result = numbers.map(
+    num => num * 2
+);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                1 → 2
+                <br>
+                2 → 4
+                <br>
+                3 → 6
+                <br><br>
+                [2, 4, 6]
+            </div>
+
+            <p class="mb-0">
+                Every element produces a transformed output.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">filter()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const result = numbers.filter(
+    num => num > 1
+);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                1 → false → remove
+                <br>
+                2 → true → keep
+                <br>
+                3 → true → keep
+                <br><br>
+                [2, 3]
+            </div>
+
+            <p class="mb-0">
+                Each element gets a keep/remove decision.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        map → "What should this item become?"
+        <br>
+        filter → "Should I keep this item?"
+    </strong>
+</div>
+
+<h5>6. What If Nothing Passes?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const result = numbers.filter(
+    num => num > 10
+);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+
+    <div class="memory-diagram mt-2">
+        []
+    </div>
+
+    <p class="mb-0">
+        <span class="highlight">undefined</span> அல்ல.
+        Empty array தான் return ஆகும்.
+    </p>
+</div>
+
+<h5>7. What If Everything Passes?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const result = numbers.filter(
+    num => num > 0
+);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    <span class="highlight">[1, 2, 3]</span>
+    <p class="mb-0">
+        எல்லா elements-மும் condition satisfy செய்ததால்
+        எல்லாமே keep ஆகின்றன.
+    </p>
+</div>
+
+<h5>8. filter() Callback Parameters</h5>
+
+<p>
+    <span class="highlight">forEach()</span> மற்றும்
+    <span class="highlight">map()</span> போல,
+    <span class="highlight">filter()</span> callback-மும்
+    மூன்று parameters receive செய்யலாம்.
+</p>
+
+<div class="memory-diagram">
+    <span class="highlight">
+        array.filter((value, index, array) =&gt; { })
+    </span>
+    <br><br>
+    value → current element
+    <br>
+    index → current index
+    <br>
+    array → original array
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+const result = numbers.filter(
+    (value, index, arr) => {
+        console.log(value);
+        console.log(index);
+        console.log(arr);
+
+        return value > 10;
+    }
+);
+</code></pre>
+</div>
+
+<h5>9. Very Important with Objects</h5>
+
+<p>
+    <span class="highlight">filter()</span> புதிய array-ஐ உருவாக்கும்.
+    ஆனால் அந்த array-க்குள் இருக்கும் objects-ஐ
+    <span class="highlight">deep clone</span> செய்யாது.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { name: "Kesava", age: 30 },
+    { name: "Arun", age: 28 }
+];
+
+const result = users.filter(
+    user => user.age >= 30
+);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    users
+    <br>
+    ↓
+    <br>
+    📦 User Object A
+    <br>
+    📦 User Object B
+    <br><br>
+
+    result
+    <br>
+    ↓
+    <br>
+    NEW ARRAY
+    <br>
+    └──→ 📦 SAME User Object A
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Array புதியது.
+    ஆனால் selected object references பழைய objects-க்கே இருக்கலாம்.
+</div>
+
+<h5>10. Truthy / Falsy Behavior</h5>
+
+<p>
+    <span class="highlight">filter()</span> strictly
+    <span class="highlight">true</span> அல்லது
+    <span class="highlight">false</span> மட்டும் கேட்பதில்லை.
+    Callback return value
+    <span class="highlight">truthy</span> அல்லது
+    <span class="highlight">falsy</span> என்ற அடிப்படையில் decision எடுக்கிறது.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const result = numbers.filter(
+    num => num * 0
+);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    num = 1
+    <span class="arrow-note">→</span>
+    1 × 0 = 0
+    <span class="arrow-note">→</span>
+    falsy
+    <br>
+    num = 2
+    <span class="arrow-note">→</span>
+    2 × 0 = 0
+    <span class="arrow-note">→</span>
+    falsy
+    <br>
+    num = 3
+    <span class="arrow-note">→</span>
+    3 × 0 = 0
+    <span class="arrow-note">→</span>
+    falsy
+    <br><br>
+    ↓
+    <br>
+    []
+</div>
+
+<div class="success-box">
+    <strong>Why?</strong>
+    <p class="mb-0">
+        Arrow function implicit return மூலம்
+        <span class="highlight">0</span> return செய்கிறது.
+        <span class="highlight">0</span> falsy என்பதால்
+        எந்த element-மும் keep ஆகாது.
+    </p>
+</div>
+
+<h5>11. filter() Returns Objects — It Does Not Clone Them</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { name: "Kesava" },
+    { name: "Arun" }
+];
+
+const result = users.filter(user => true);
+
+result[0].name = "K7";
+
+console.log(users[0].name);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    users
+    <br>
+    ↓
+    <br>
+    [ 📦 User A, 📦 User B ]
+    <br><br>
+
+    filter(user => true)
+    <br>
+    ↓
+    <br>
+    All items kept
+    <br>
+    ↓
+    <br>
+    result → [ 📦 User A, 📦 User B ]
+    <br><br>
+
+    Same object references
+    <br>
+    ↓
+    <br>
+    result[0] === users[0]
+    <br>
+    ↓
+    <span class="highlight">true</span>
+</div>
+
+<div class="success-box">
+    <strong>Now:</strong>
+
+    <div class="memory-diagram mt-2">
+        result[0].name = "K7"
+        <br>
+        ↓
+        <br>
+        Same User A object changes
+        <br>
+        ↓
+        <br>
+        users[0].name
+        <br>
+        ↓
+        <span class="highlight">"K7"</span>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why?</strong>
+    <p class="mb-0">
+        <span class="highlight">filter(user =&gt; true)</span>
+        என்றால் ஒவ்வொரு element-க்கும்
+        <span class="highlight">true</span> return செய்கிறது.
+        அதனால் filtering எதுவும் நடக்கவில்லை;
+        எல்லா elements-உம் புதிய array-க்குள் சேர்க்கப்படுகின்றன.
+    </p>
+</div>
+
+<div class="error-box">
+    <strong>But remember:</strong>
+    <span class="highlight">result</span> மற்றும்
+    <span class="highlight">users</span>
+    same array அல்ல.
+    <br>
+    New array தான்.
+    <br><br>
+    ஆனால் அந்த arrays-க்குள் இருக்கும்
+    object references shared ஆகலாம்.
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">filter()</div>
+
+            <div class="memory-diagram mt-2">
+                Array
+                <br>
+                ↓
+                <br>
+                Test each item
+                <br>
+                ↓
+                <br>
+                truthy → keep
+                <br>
+                falsy → remove
+                <br>
+                ↓
+                <br>
+                New Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">With Objects</div>
+
+            <div class="memory-diagram mt-2">
+                New Array
+                <br>
+                +
+                <br>
+                Same selected object references
+                <br>
+                ↓
+                <br>
+                Not a deep clone
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">filter → select / remove</span>
+    <br>
+    <span class="highlight">true / truthy → keep</span>
+    <br>
+    <span class="highlight">false / falsy → remove</span>
+    <br>
+    <span class="highlight">returns → new array</span>
+    <br>
+    <span class="highlight">objects inside → references may be shared</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">map = transform</span>
+    &nbsp;|&nbsp;
+    <span class="highlight">filter = select</span>.
+</p>
+<hr>
+<h5><span class="highlight">find()</span></h5>
+
+<p>
+    <span class="highlight">find()</span> என்பது condition-ஐ satisfy செய்யும்
+    <span class="highlight">first element</span>-ஐ return செய்யும்.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">filter()</div>
+
+            <div class="memory-diagram mt-2">
+                ALL matching elements
+                <br>
+                ↓
+                <br>
+                [30, 40]
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">find()</div>
+
+            <div class="memory-diagram mt-2">
+                FIRST matching element
+                <br>
+                ↓
+                <br>
+                30
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        filter → "Give me ALL matching elements."
+        <br>
+        find → "Give me the FIRST matching element."
+    </strong>
+</div>
+
+<h5>1. Basic Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40];
+
+const result = numbers.find(num => num > 20);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    10 > 20
+    <span class="arrow-note">→</span>
+    false
+    <br>
+    20 > 20
+    <span class="arrow-note">→</span>
+    false
+    <br>
+    30 > 20
+    <span class="arrow-note">→</span>
+    true ✅
+    <br><br>
+    <span class="highlight">STOP</span>
+    <br><br>
+    40 is not checked
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">30</span>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    <span class="highlight">find()</span> first match கிடைத்தவுடன்
+    search-ஐ stop செய்கிறது.
+</div>
+
+<h5>2. Compare with <span class="highlight">filter()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40];
+
+const filtered = numbers.filter(num => num > 20);
+
+const found = numbers.find(num => num > 20);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box">
+            <strong>filter()</strong>
+
+            <div class="memory-diagram mt-2">
+                [30, 40]
+            </div>
+
+            <p class="mb-0">
+                எல்லா matching elements.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box">
+            <strong>find()</strong>
+
+            <div class="memory-diagram mt-2">
+                30
+            </div>
+
+            <p class="mb-0">
+                First matching element.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>3. <span class="highlight">find()</span> Returns an Element, Not an Array</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40];
+
+const result = numbers.find(num => num > 20);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="success-box text-center">
+            <strong>Result</strong>
+            <div class="memory-diagram mt-2">
+                30
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="error-box text-center">
+            <strong>Not</strong>
+            <div class="memory-diagram mt-2">
+                [30]
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Remember:</strong>
+    <br>
+    <span class="highlight">filter()</span> → always returns an array.
+    <br>
+    <span class="highlight">find()</span> → returns one element,
+    or <span class="highlight">undefined</span> if no match.
+</div>
+
+<h5>4. <span class="highlight">find()</span> with Objects</h5>
+
+<p>
+    இது real-world applications-ல் மிகவும் common.
+    குறிப்பாக user ID மூலம் ஒரு specific user-ஐ கண்டுபிடிக்கலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { id: 1, name: "Kesava", age: 30 },
+    { id: 2, name: "Arun", age: 28 },
+    { id: 3, name: "Rahul", age: 35 }
+];
+
+const user = users.find(user => user.id === 2);
+
+console.log(user);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    id 1 → not match
+    <br>
+    id 2 → match ✅
+    <br>
+    ↓
+    <br>
+    Return this object
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    id: 2,
+    name: "Arun",
+    age: 28
+}
+</code></pre>
+    </div>
+</div>
+
+<h5>5. What Happens If Nothing Matches?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const result = numbers.find(num => num > 10);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">undefined</span>
+</div>
+
+<div class="memory-diagram">
+    1 > 10 → false
+    <br>
+    2 > 10 → false
+    <br>
+    3 > 10 → false
+    <br><br>
+    No match
+    <br>
+    ↓
+    <br>
+    <span class="highlight">undefined</span>
+</div>
+
+<h5>6. Important Reference Connection</h5>
+
+<p>
+    <span class="highlight">filter()</span> புதிய array-ஐ உருவாக்கினாலும்,
+    அதன் உள்ளே இருக்கும் objects-ஐ clone செய்யாது.
+    <span class="highlight">find()</span>-லும் அதே reference behavior தான்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { name: "Kesava", age: 30 },
+    { name: "Arun", age: 28 }
+];
+
+const result = users.find(
+    user => user.name === "Kesava"
+);
+
+result.name = "K7";
+
+console.log(users[0].name);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    users[0] ───────→ 📦 User Object
+    <br>
+    result ─────────→ 📦 SAME User Object
+    <br><br>
+    result.name = "K7"
+    <br>
+    ↓
+    <br>
+    Same object changes
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">K7</span>
+</div>
+
+<div class="success-box">
+    <strong>Why?</strong>
+    <p class="mb-0">
+        <span class="highlight">find()</span> object-ன் copy-ஐ return செய்யவில்லை.
+        Original array-ல் இருக்கும்
+        <span class="highlight">same object reference</span>-ஐ return செய்கிறது.
+    </p>
+</div>
+
+<h5>7. <span class="highlight">find()</span> Stops at the First Match</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 25, 30, 40];
+
+const result = numbers.find(num => {
+    console.log("Checking:", num);
+
+    return num > 20;
+});
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Checking: 10
+    <br>
+    ↓
+    <br>
+    10 > 20 → false
+    <br><br>
+
+    Checking: 25
+    <br>
+    ↓
+    <br>
+    25 > 20 → true ✅
+    <br><br>
+
+    <span class="highlight">STOP</span>
+    <br><br>
+
+    30 → never checked
+    <br>
+    40 → never checked
+</div>
+
+<div class="success-box">
+    <strong>Conceptual Output:</strong>
+    <div class="code-block p-3 mt-2">
+<pre><code>
+Checking: 10
+Checking: 25
+</code></pre>
+    </div>
+</div>
+
+<h5>filter() vs find() — Search Behavior</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">filter()</div>
+
+            <div class="memory-diagram mt-2">
+                Check items
+                <br>
+                ↓
+                <br>
+                Keep all matches
+                <br>
+                ↓
+                <br>
+                Continue through array
+                <br>
+                ↓
+                <br>
+                <span class="highlight">New Array</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">find()</div>
+
+            <div class="memory-diagram mt-2">
+                Check items
+                <br>
+                ↓
+                <br>
+                First match?
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Stop immediately</span>
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Element</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">filter → all matches → array</span>
+    <br>
+    <span class="highlight">find → first match → element</span>
+    <br>
+    <span class="highlight">no match → undefined</span>
+    <br>
+    <span class="highlight">object result → same object reference</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">filter = எல்லாரையும் தேடு</span>
+    &nbsp;|&nbsp;
+    <span class="highlight">find = first one கிடைத்தவுடன் stop</span>.
+</p>
+<hr>
+<h5><span class="highlight">findIndex()</span></h5>
+
+<p>
+    <span class="highlight">find()</span> மற்றும்
+    <span class="highlight">findIndex()</span> இரண்டும்
+    first matching element-ஐ தேடும்.
+    ஆனால் அவை return செய்வது different.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">find()</div>
+
+            <div class="memory-diagram mt-2">
+                Search
+                <br>
+                ↓
+                <br>
+                First match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Element</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">findIndex()</div>
+
+            <div class="memory-diagram mt-2">
+                Search
+                <br>
+                ↓
+                <br>
+                First match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Index</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        find() → gives the element
+        <br>
+        findIndex() → gives the index of the first matching element
+    </strong>
+</div>
+
+<h5>1. Basic Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { id: 1, name: "Kesava" },
+    { id: 2, name: "Arun" },
+    { id: 3, name: "Rahul" }
+];
+
+const index = users.findIndex(
+    user => user.id === 2
+);
+
+console.log(index);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    index 0 → id 1
+    <br>
+    index 1 → id 2 ✅
+    <br>
+    index 2 → id 3
+    <br><br>
+    ↓
+    <br>
+    <span class="highlight">1</span>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">1</span>
+</div>
+
+<h5><span class="highlight">find()</span> vs <span class="highlight">findIndex()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { id: 1, name: "Kesava" },
+    { id: 2, name: "Arun" },
+    { id: 3, name: "Rahul" }
+];
+
+const user = users.find(
+    user => user.id === 2
+);
+
+const index = users.findIndex(
+    user => user.id === 2
+);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>find()</strong>
+
+            <div class="memory-diagram mt-2">
+                {
+                <br>
+                id: 2,
+                <br>
+                name: "Arun"
+                <br>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>findIndex()</strong>
+
+            <div class="memory-diagram mt-2">
+                <span class="highlight">1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>What If Nothing Matches?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const index = users.findIndex(
+    user => user.id === 99
+);
+
+console.log(index);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="error-box text-center h-100">
+            <strong>find()</strong>
+            <div class="memory-diagram mt-2">
+                no match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">undefined</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box text-center h-100">
+            <strong>findIndex()</strong>
+            <div class="memory-diagram mt-2">
+                no match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">-1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Remember:</strong>
+    <br>
+    <span class="highlight">find() → no match = undefined</span>
+    <br>
+    <span class="highlight">findIndex() → no match = -1</span>
+</div>
+
+<h5>2. <span class="highlight">findIndex()</span> with Objects</h5>
+
+<p>
+    Real applications-ல் ID மூலம் object இருக்கும் index-ஐ கண்டுபிடிக்க
+    இது மிகவும் useful.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { id: 101, name: "Kesava" },
+    { id: 102, name: "Arun" },
+    { id: 103, name: "Rahul" }
+];
+
+const index = users.findIndex(
+    user => user.id === 102
+);
+
+console.log(index);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    users[0] → id 101
+    <br>
+    users[1] → id 102 ✅
+    <br>
+    users[2] → id 103
+    <br><br>
+    ↓
+    <br>
+    <span class="highlight">index = 1</span>
+</div>
+
+<h5>3. <span class="highlight">findIndex()</span> + Immutable Update</h5>
+
+<p>
+    முதலில் matching object's index-ஐ கண்டுபிடிக்கலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { id: 1, name: "Kesava" },
+    { id: 2, name: "Arun" }
+];
+
+const index = users.findIndex(
+    user => user.id === 2
+);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    <span class="highlight">index = 1</span>
+</div>
+
+<p>
+    இப்போது:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+users[index]
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    users
+    <br>
+    ↓
+    <br>
+    index = 1
+    <br>
+    ↓
+    <br>
+    users[1]
+    <br>
+    ↓
+    <br>
+    { id: 2, name: "Arun" }
+</div>
+
+<p>
+    அந்த object-ஐ mutate செய்யாமல் immutable update செய்யலாம்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const updatedUsers = users.map((user, i) => {
+    if (i === index) {
+        return {
+            ...user,
+            name: "Arun Kumar"
+        };
+    }
+
+    return user;
+});
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Pattern:</strong>
+    <br>
+    <span class="highlight">findIndex()</span>
+    → find where the item is
+    <br>
+    <span class="highlight">map()</span>
+    → create the updated array immutably
+</div>
+
+<h5>4. <span class="highlight">findIndex()</span> Stops at the First Match</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [5, 10, 15, 20];
+
+const index = numbers.findIndex(num => {
+    console.log(num);
+
+    return num >= 10;
+});
+
+console.log(index);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    5
+    <span class="arrow-note">→</span>
+    false
+    <br>
+    10
+    <span class="arrow-note">→</span>
+    true ✅
+    <br><br>
+    <span class="highlight">STOP</span>
+    <br><br>
+    15 → not checked
+    <br>
+    20 → not checked
+</div>
+
+<div class="success-box">
+    <strong>Console:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+5
+10
+</code></pre>
+    </div>
+
+    <strong>Result:</strong>
+    <span class="highlight">1</span>
+</div>
+
+<h5>5. <span class="highlight">findIndex()</span> Does Not Create a New Array</h5>
+
+<p>
+    இது <span class="highlight">map()</span> அல்லது
+    <span class="highlight">filter()</span> போல new array return செய்யாது.
+</p>
+
+<div class="memory-diagram">
+    Array
+    <br>
+    ↓
+    <br>
+    Search for first match
+    <br>
+    ↓
+    <br>
+    <span class="highlight">number → index</span>
+    <br><br>
+    No match
+    <br>
+    ↓
+    <br>
+    <span class="highlight">-1</span>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>map()</strong>
+
+            <div class="memory-diagram mt-2">
+                Transform
+                <br>
+                ↓
+                <br>
+                New Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>filter()</strong>
+
+            <div class="memory-diagram mt-2">
+                Select
+                <br>
+                ↓
+                <br>
+                New Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>findIndex()</strong>
+
+            <div class="memory-diagram mt-2">
+                Search
+                <br>
+                ↓
+                <br>
+                Index / -1
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>find() vs findIndex() — Final Comparison</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">find()</div>
+
+            <div class="memory-diagram mt-2">
+                First match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Element</span>
+                <br><br>
+                No match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">undefined</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">findIndex()</div>
+
+            <div class="memory-diagram mt-2">
+                First match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">Index</span>
+                <br><br>
+                No match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">-1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">find → first matching element</span>
+    <br>
+    <span class="highlight">findIndex → index of first matching element</span>
+    <br>
+    <span class="highlight">find → no match = undefined</span>
+    <br>
+    <span class="highlight">findIndex → no match = -1</span>
+    <br>
+    <span class="highlight">Both stop at the first match</span>
+    <br>
+    <span class="highlight">findIndex does not create a new array</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">find = "எந்த object?"</span>
+    &nbsp;|&nbsp;
+    <span class="highlight">findIndex = "எந்த position?"</span>.
+</p>
+<hr>
+<h5><span class="highlight">some()</span></h5>
+
+<p>
+    <span class="highlight">some()</span> என்பது
+    array-ல் இருக்கும் elements-ல்
+    <span class="highlight">at least one element</span>
+    ஒரு condition-ஐ satisfy செய்கிறதா என்பதை check செய்யும் method.
+</p>
+
+<div class="success-box text-center">
+    <strong>
+        some() → "Does at least ONE element satisfy this condition?"
+    </strong>
+</div>
+
+<div class="memory-diagram">
+    Array
+    <br>
+    ↓
+    <br>
+    Check each element
+    <br>
+    ↓
+    <br>
+    First match found?
+    <br>
+    ↓
+    <br>
+    <span class="highlight">true</span>
+    <br><br>
+    No match?
+    <br>
+    ↓
+    <br>
+    <span class="highlight">false</span>
+</div>
+
+<h5>Basic Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40];
+
+const result = numbers.some(
+    num => num > 25
+);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    10 > 25
+    <span class="arrow-note">→</span>
+    false
+    <br>
+    20 > 25
+    <span class="arrow-note">→</span>
+    false
+    <br>
+    30 > 25
+    <span class="arrow-note">→</span>
+    true ✅
+    <br><br>
+    <span class="highlight">STOP</span>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">true</span>
+</div>
+
+<div class="success-box">
+    <strong>Why?</strong>
+    <p class="mb-0">
+        <span class="highlight">30</span> மட்டும்
+        <span class="highlight">num &gt; 25</span> condition-ஐ satisfy செய்கிறது.
+        ஒரு match கிடைத்தவுடன் <span class="highlight">some()</span>
+        search-ஐ stop செய்கிறது.
+    </p>
+</div>
+
+<h5>Compare with <span class="highlight">find()</span> and <span class="highlight">findIndex()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40];
+
+numbers.find(num => num > 25);
+// 30
+
+numbers.findIndex(num => num > 25);
+// 2
+
+numbers.some(num => num > 25);
+// true
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>find()</strong>
+
+            <div class="memory-diagram mt-2">
+                First match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">30</span>
+            </div>
+
+            <p class="mb-0">
+                <strong>WHAT?</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>findIndex()</strong>
+
+            <div class="memory-diagram mt-2">
+                First match
+                <br>
+                ↓
+                <br>
+                <span class="highlight">2</span>
+            </div>
+
+            <p class="mb-0">
+                <strong>WHERE?</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>some()</strong>
+
+            <div class="memory-diagram mt-2">
+                Any match?
+                <br>
+                ↓
+                <br>
+                <span class="highlight">true</span>
+            </div>
+
+            <p class="mb-0">
+                <strong>DOES AT LEAST ONE EXIST?</strong>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Easy Memory Trick:</strong>
+    <br>
+    <span class="highlight">find → WHAT?</span>
+    <br>
+    <span class="highlight">findIndex → WHERE?</span>
+    <br>
+    <span class="highlight">some → DOES AT LEAST ONE EXIST?</span>
+</div>
+
+<h5>What If Nothing Matches?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+const result = numbers.some(
+    num => num > 100
+);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    10 > 100 → false
+    <br>
+    20 > 100 → false
+    <br>
+    30 > 100 → false
+    <br><br>
+    No match
+    <br>
+    ↓
+    <br>
+    <span class="highlight">false</span>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">false</span>
+</div>
+
+<h5>What Does <span class="highlight">some()</span> Return?</h5>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box text-center h-100">
+            <strong>Does not transform</strong>
+            <p class="mb-0 mt-2">
+                ❌
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box text-center h-100">
+            <strong>Does not create new array</strong>
+            <p class="mb-0 mt-2">
+                ❌
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box text-center h-100">
+            <strong>Returns boolean</strong>
+            <p class="mb-0 mt-2">
+                ✅ true / false
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5><span class="highlight">some()</span> Stops at the First Match</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [5, 10, 15, 20];
+
+const result = numbers.some(num => {
+    console.log("Checking:", num);
+
+    return num >= 10;
+});
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    5
+    <span class="arrow-note">→</span>
+    false
+    <br>
+    10
+    <span class="arrow-note">→</span>
+    true ✅
+    <br><br>
+    <span class="highlight">STOP</span>
+    <br><br>
+    15 → not checked
+    <br>
+    20 → not checked
+</div>
+
+<div class="success-box">
+    <strong>Console:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+Checking: 5
+Checking: 10
+</code></pre>
+    </div>
+
+    <strong>Result:</strong>
+    <span class="highlight">true</span>
+</div>
+
+<h5>Final Comparison</h5>
+
+<div class="row g-3">
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>map()</strong>
+
+            <div class="memory-diagram mt-2">
+                Transform
+                <br>
+                ↓
+                <br>
+                New Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>filter()</strong>
+
+            <div class="memory-diagram mt-2">
+                Keep matching
+                <br>
+                ↓
+                <br>
+                New Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>find()</strong>
+
+            <div class="memory-diagram mt-2">
+                First match
+                <br>
+                ↓
+                <br>
+                Element
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>some()</strong>
+
+            <div class="memory-diagram mt-2">
+                Any match?
+                <br>
+                ↓
+                <br>
+                true / false
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">some → at least one match?</span>
+    <br>
+    <span class="highlight">true → first match found and stops</span>
+    <br>
+    <span class="highlight">false → no element matched</span>
+    <br>
+    <span class="highlight">returns → boolean only</span>
+    <br>
+    <span class="highlight">does not create a new array</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">some = "யாராவது ஒருத்தர் satisfy செய்கிறார்களா?"</span>
+</p>
+<hr>
+<h5><span class="highlight">every()</span></h5>
+
+<p>
+    <span class="highlight">every()</span> என்பது
+    array-ல் இருக்கும் <span class="highlight">ALL elements</span>
+    ஒரு condition-ஐ satisfy செய்கிறார்களா என்பதை check செய்யும் method.
+</p>
+
+<div class="success-box text-center">
+    <strong>
+        every() → "Do ALL elements satisfy this condition?"
+    </strong>
+</div>
+
+<div class="memory-diagram">
+    Array
+    <br>
+    ↓
+    <br>
+    Check each element
+    <br>
+    ↓
+    <br>
+    Any false?
+    <br>
+    ↓
+    <span class="highlight">Yes → false + STOP</span>
+    <br><br>
+    எல்லாமே true?
+    <br>
+    ↓
+    <span class="highlight">true</span>
+</div>
+
+<h5>1. Basic Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+const result = numbers.every(
+    num => num > 5
+);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    10 > 5
+    <span class="arrow-note">→</span>
+    true ✅
+    <br>
+    20 > 5
+    <span class="arrow-note">→</span>
+    true ✅
+    <br>
+    30 > 5
+    <span class="arrow-note">→</span>
+    true ✅
+    <br><br>
+    All passed
+    <br>
+    ↓
+    <br>
+    <span class="highlight">true</span>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">true</span>
+</div>
+
+<h5>2. What If One Element Fails?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+const result = numbers.every(
+    num => num > 15
+);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    10 > 15
+    <span class="arrow-note">→</span>
+    false ❌
+    <br><br>
+    <span class="highlight">STOP</span>
+    <br>
+    20 → not checked
+    <br>
+    30 → not checked
+</div>
+
+<div class="error-box">
+    <strong>Result:</strong>
+    <span class="highlight">false</span>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    <span class="highlight">every()</span> ஒரு
+    <span class="highlight">false</span> கிடைத்தவுடன்
+    search-ஐ நிறுத்துகிறது.
+</div>
+
+<h5>3. every() Stops at the First False</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40];
+
+const result = numbers.every(num => {
+    console.log("Checking:", num);
+
+    return num > 15;
+});
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Checking: 10
+    <br>
+    10 > 15 → false ❌
+    <br><br>
+    <span class="highlight">STOP</span>
+    <br><br>
+    20 → not checked
+    <br>
+    30 → not checked
+    <br>
+    40 → not checked
+</div>
+
+<div class="success-box">
+    <strong>Conceptual Output:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+Checking: 10
+</code></pre>
+    </div>
+
+    <strong>Result:</strong>
+    <span class="highlight">false</span>
+</div>
+
+<h5>4. Compare with <span class="highlight">some()</span></h5>
+
+<p>
+    <span class="highlight">some()</span> மற்றும்
+    <span class="highlight">every()</span> இரண்டுமே condition-checking
+    methods. ஆனால் கேட்கும் கேள்வி opposite.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">some()</div>
+
+            <div class="memory-diagram mt-2">
+                "At least ONE?"
+                <br>
+                ↓
+                <br>
+                One true is enough
+                <br>
+                ↓
+                <span class="highlight">true</span>
+            </div>
+
+            <p class="mb-0">
+                One match கிடைத்தால் stop.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">every()</div>
+
+            <div class="memory-diagram mt-2">
+                "ALL?"
+                <br>
+                ↓
+                <br>
+                One false is enough
+                <br>
+                ↓
+                <span class="highlight">false</span>
+            </div>
+
+            <p class="mb-0">
+                One failure கிடைத்தால் stop.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>5. Compare with the Same Array</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+numbers.some(num => num > 25);
+// true
+
+numbers.every(num => num > 5);
+// true
+
+numbers.every(num => num > 15);
+// false
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>some()</strong>
+
+            <div class="memory-diagram mt-2">
+                10 > 25 → false
+                <br>
+                20 > 25 → false
+                <br>
+                30 > 25 → true ✅
+                <br><br>
+                <span class="highlight">true</span>
+            </div>
+
+            <p class="mb-0">
+                At least one.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>every() → > 5</strong>
+
+            <div class="memory-diagram mt-2">
+                10 → true
+                <br>
+                20 → true
+                <br>
+                30 → true
+                <br><br>
+                <span class="highlight">true</span>
+            </div>
+
+            <p class="mb-0">
+                All passed.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100">
+            <strong>every() → > 15</strong>
+
+            <div class="memory-diagram mt-2">
+                10 → false ❌
+                <br>
+                <span class="highlight">STOP</span>
+                <br><br>
+                <span class="highlight">false</span>
+            </div>
+
+            <p class="mb-0">
+                One failure is enough.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>6. some() vs every() — Easy Mental Model</h5>
+
+<div class="memory-diagram">
+    <strong>some()</strong>
+    <br>
+    "யாராவது ஒருத்தர் satisfy செய்கிறார்களா?"
+    <br>
+    ↓
+    <br>
+    <span class="highlight">ONE true → true</span>
+    <br><br>
+
+    <strong>every()</strong>
+    <br>
+    "எல்லாரும் satisfy செய்கிறார்களா?"
+    <br>
+    ↓
+    <br>
+    <span class="highlight">ONE false → false</span>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">some → one true is enough</span>
+    <br>
+    <span class="highlight">every → one false is enough to fail</span>
+    <br>
+    <span class="highlight">some() → stops at first true</span>
+    <br>
+    <span class="highlight">every() → stops at first false</span>
+    <br>
+    <span class="highlight">both return → true / false</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">some = யாராவது?</span>
+    &nbsp;|&nbsp;
+    <span class="highlight">every = எல்லாரும்?</span>
+</p>
+<hr>
+<h5><span class="highlight">reduce()</span></h5>
+
+<p>
+    <span class="highlight">reduce()</span> என்பது array-ல் இருக்கும்
+    elements-ஐ ஒன்றன்பின் ஒன்றாக process செய்து,
+    அவற்றை ஒரு <span class="highlight">final result</span>-ஆக
+    combine செய்யும் method.
+</p>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Final result ஒரு number மட்டும் இருக்க வேண்டிய அவசியம் இல்லை.
+    அது <span class="highlight">number, string, object, array, boolean</span>
+    போன்ற எந்த value-ஆகவும் இருக்கலாம்.
+</div>
+
+<div class="memory-diagram">
+    Array
+    <br>
+    ↓
+    <br>
+    Process one item
+    <br>
+    ↓
+    <br>
+    Carry result forward
+    <br>
+    ↓
+    <br>
+    Process next item
+    <br>
+    ↓
+    <br>
+    Continue...
+    <br>
+    ↓
+    <br>
+    <span class="highlight">Final Result</span>
+</div>
+
+<h5>1. Simplest Example — Sum</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40];
+
+const total = numbers.reduce((acc, num) => {
+    return acc + num;
+}, 0);
+
+console.log(total);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">100</span>
+</div>
+
+<p>
+    இங்கே <span class="highlight">acc</span> என்பது
+    <span class="highlight">running result</span>.
+</p>
+
+<div class="memory-diagram">
+    Initial acc = 0
+    <br><br>
+
+    10 → 0 + 10 = 10
+    <br>
+    20 → 10 + 20 = 30
+    <br>
+    30 → 30 + 30 = 60
+    <br>
+    40 → 60 + 40 = 100
+    <br><br>
+
+    Final
+    <br>
+    <span class="highlight">100</span>
+</div>
+
+<h5><span class="highlight">reduce()</span> Syntax</h5>
+
+<div class="memory-diagram">
+    <span class="highlight">
+        array.reduce((accumulator, currentValue) =&gt; {
+            ...
+        }, initialValue)
+    </span>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>accumulator</strong>
+
+            <p class="mt-2 mb-0">
+                Previous iteration-ல் கிடைத்த result.
+                அடுத்த iteration-க்கு carry ஆகும்.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>currentValue</strong>
+
+            <p class="mt-2 mb-0">
+                Current iteration-ல் process செய்யப்படும்
+                array element.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>initialValue</strong>
+
+            <p class="mt-2 mb-0">
+                Accumulator ஆரம்பிக்கும் starting value.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>So:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+numbers.reduce(
+    (acc, num) => acc + num,
+    0
+);
+</code></pre>
+    </div>
+
+    <p class="mb-0">
+        <span class="highlight">acc</span> ஆரம்பத்தில்
+        <span class="highlight">0</span>.
+        அந்த <span class="highlight">0</span> ஒவ்வொரு iteration-லும்
+        மீண்டும் starting value ஆகாது.
+        அது <span class="highlight">first starting value மட்டும்</span>.
+    </p>
+</div>
+
+<h5>2. Dry Run</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+const result = numbers.reduce((acc, num) => {
+    return acc + num;
+}, 0);
+</code></pre>
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+Iteration    acc    num    return
+1            0      10     10
+2            10     20     30
+3            30     30     60
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Initial acc = 0
+    <br><br>
+
+    Iteration 1
+    <br>
+    0 + 10 = 10
+    <br>
+    ↓
+    <br>
+    next acc = 10
+    <br><br>
+
+    Iteration 2
+    <br>
+    10 + 20 = 30
+    <br>
+    ↓
+    <br>
+    next acc = 30
+    <br><br>
+
+    Iteration 3
+    <br>
+    30 + 30 = 60
+    <br>
+    ↓
+    <br>
+    <span class="highlight">Final result = 60</span>
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        callback return
+        <span class="arrow-note">→</span>
+        next accumulator
+        <span class="arrow-note">→</span>
+        next iteration
+    </strong>
+</div>
+
+<div class="success-box">
+    <strong>This is the heart of reduce().</strong>
+
+    <p class="mb-0 mt-2">
+        ஒரு iteration-ல் callback return செய்யும் value,
+        அடுத்த iteration-ன் <span class="highlight">acc</span>-ஆக மாறும்.
+    </p>
+</div>
+
+<h5>Core Mental Model</h5>
+
+<div class="memory-diagram">
+    reduce()
+    <br>
+    ↓
+    <br>
+    "How can I combine/process these elements
+    into one result?"
+</div>
+
+<h5>3. <span class="highlight">reduce()</span> Does NOT Have to Return a Number</h5>
+
+<p>
+    இதுதான் <span class="highlight">reduce()</span>-ன் real power.
+    Accumulator ஒரு <span class="highlight">object</span> ஆகவும் இருக்கலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3];
+
+const result = numbers.reduce((acc, num) => {
+    acc[num] = num * 10;
+    return acc;
+}, {});
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    1: 10,
+    2: 20,
+    3: 30
+}
+</code></pre>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    Initial acc = {}
+    <br><br>
+
+    num = 1
+    <br>
+    acc[1] = 10
+    <br>
+    ↓
+    <br>
+    { 1: 10 }
+    <br><br>
+
+    num = 2
+    <br>
+    acc[2] = 20
+    <br>
+    ↓
+    <br>
+    { 1: 10, 2: 20 }
+    <br><br>
+
+    num = 3
+    <br>
+    acc[3] = 30
+    <br>
+    ↓
+    <br>
+    { 1: 10, 2: 20, 3: 30 }
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    <p class="mb-0">
+        reduce() என்பது
+        <span class="highlight">"sum the array"</span>
+        மட்டும் அல்ல.
+        <br><br>
+        அது:
+        <span class="highlight">
+            "Carry a result forward from one iteration to the next."
+        </span>
+    </p>
+</div>
+
+<h5>4. Interview Example — Counting Occurrences</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [
+    "apple",
+    "apple",
+    "banana",
+    "goa",
+    "banana",
+    "banana"
+];
+
+const result = numbers.reduce((acc, num) => {
+    acc[num] = (acc[num] || 0) + 1;
+
+    return acc;
+}, {});
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+{
+    apple: 2,
+    banana: 3,
+    goa: 1
+}
+</code></pre>
+    </div>
+</div>
+
+<h5>How Does <span class="highlight">acc[num] = (acc[num] || 0) + 1</span> Work?</h5>
+
+<div class="memory-diagram">
+    Initial acc = {}
+    <br><br>
+
+    num = "apple"
+    <br>
+    acc["apple"] does not exist
+    <br>
+    ↓
+    <br>
+    0 + 1 = 1
+    <br>
+    ↓
+    <br>
+    { apple: 1 }
+    <br><br>
+
+    num = "apple"
+    <br>
+    acc["apple"] = 1
+    <br>
+    ↓
+    <br>
+    1 + 1 = 2
+    <br>
+    ↓
+    <br>
+    { apple: 2 }
+</div>
+
+<div class="memory-diagram">
+    num = "banana"
+    <br>
+    ↓
+    <br>
+    banana not found → 0 + 1 = 1
+    <br><br>
+
+    next banana
+    <br>
+    ↓
+    <br>
+    1 + 1 = 2
+    <br><br>
+
+    next banana
+    <br>
+    ↓
+    <br>
+    2 + 1 = 3
+</div>
+
+<div class="success-box">
+    <strong>Pattern:</strong>
+    <br>
+    <span class="highlight">First time → start from 0</span>
+    <br>
+    <span class="highlight">Already exists → take previous count + 1</span>
+</div>
+
+<h5>5. Practical Example — Total Cart Price</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const cart = [
+    { name: "Laptop", price: 50000 },
+    { name: "Mouse", price: 1000 },
+    { name: "Keyboard", price: 2000 }
+];
+
+const total = cart.reduce((acc, item) => {
+    return acc + item.price;
+}, 0);
+
+console.log(total);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Initial acc = 0
+    <br><br>
+
+    Laptop → 0 + 50000 = 50000
+    <br>
+    Mouse → 50000 + 1000 = 51000
+    <br>
+    Keyboard → 51000 + 2000 = 53000
+    <br><br>
+
+    <span class="highlight">Final = 53000</span>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">53000</span>
+</div>
+
+<h5>6. Why Do We Need <span class="highlight">return</span>?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+const result = numbers.reduce((acc, num) => {
+    acc + num;
+}, 0);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="error-box">
+    <strong>Problem:</strong>
+    <p class="mb-0">
+        Callback-ல் <span class="highlight">return</span> இல்லை.
+        அதனால் callback-ன் return value
+        <span class="highlight">undefined</span>.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    Initial acc = 0
+    <br><br>
+
+    Iteration 1
+    <br>
+    0 + 10
+    <br>
+    ↓
+    <br>
+    callback returns <span class="highlight">undefined</span>
+    <br><br>
+
+    Next acc = undefined
+    <br><br>
+
+    Iteration 2
+    <br>
+    undefined + 20
+    <br>
+    ↓
+    <br>
+    <span class="highlight">NaN</span>
+</div>
+
+<div class="success-box">
+    <strong>So the return is essential:</strong>
+    <br>
+    callback result
+    <span class="arrow-note">→</span>
+    next accumulator
+    <span class="arrow-note">→</span>
+    next iteration
+</div>
+
+<h5>7. Initial Value — Best Practice</h5>
+
+<div class="code-block p-3">
+<pre><code>
+numbers.reduce(
+    (acc, num) => acc + num,
+    0
+);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Why prefer an explicit initial value?</strong>
+    <p class="mb-0 mt-2">
+        Accumulator எந்த value-ல் start ஆக வேண்டும் என்பதை
+        தெளிவாக சொல்ல முடியும்.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    initialValue = 0
+    <br>
+    ↓
+    <br>
+    first acc = 0
+    <br>
+    ↓
+    <br>
+    callback return
+    <br>
+    ↓
+    <br>
+    next acc
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>acc</strong>
+
+            <div class="memory-diagram mt-2">
+                Running result
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>num</strong>
+
+            <div class="memory-diagram mt-2">
+                Current item
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>return</strong>
+
+            <div class="memory-diagram mt-2">
+                Next acc
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>initialValue</strong>
+
+            <div class="memory-diagram mt-2">
+                Starting acc
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">
+        reduce → carry a result forward
+    </span>
+    <br>
+    <span class="highlight">
+        initialValue → starting accumulator
+    </span>
+    <br>
+    <span class="highlight">
+        callback return → next accumulator
+    </span>
+    <br>
+    <span class="highlight">
+        final accumulator → final result
+    </span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">acc = "இதுவரை என்ன result கிடைத்திருக்கிறது?"</span>
+    <br>
+    <span class="highlight">reduce = "அந்த result-ஐ அடுத்த element-க்கு carry பண்ணி தொடர்ந்து process செய்."</span>
+</p>
+</body>
+</html>
