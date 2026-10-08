@@ -102,7 +102,7 @@ Pattern problems ✅
 04 ✅  Properties
 05 ✅  Values
 06 ✅  Methods
-07 ✅ Creating Objects
+07 ✅  Creating Objects
 08 ✅  Reading properties
 09 ✅  Dot notation
 10 ✅  Bracket notation
@@ -127,7 +127,7 @@ Pattern problems ✅
 27 ✅ Spread operator with objects
 28 ✅ Object.assign()
 29 ✅ structuredClone()
-30 ✅  Object cloning limitations / edge cases
+30 ✅ Object cloning limitations / edge cases
 
 31 ✅ Object.freeze()
 32 ✅ Object.seal()
@@ -149,12 +149,12 @@ Pattern problems ✅
 ✅ some()
 ✅ every()
 ✅ reduce()
-⏳ sort()
-⏳ slice()
-⏳ splice()
-⏳ Array method chaining
-⏳ Arrays + objects
-⏳ Interview questions
+✅ sort()
+✅ slice()
+✅ splice()
+✅ Array method chaining
+✅ Arrays + objects
+✅ Interview questions
 
 📌 Currying & Partial Application
 ⏳ Currying

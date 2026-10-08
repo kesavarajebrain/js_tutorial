@@ -8,6 +8,9 @@
     <title>Array | Js Zero to Hero</title>
 </head>
 <body>
+     <a href="./index.html" rel="noopener noreferrer" class="mt-3">
+        <button class="btn btn-primary">← Back</button>
+    </a>
 <h4>Arrays — <span class="highlight">forEach()</span> and <span class="highlight">map()</span></h4>
 
 <h5>What is an Array?</h5>
@@ -3305,6 +3308,2194 @@ numbers.reduce(
     <span class="highlight">acc = "இதுவரை என்ன result கிடைத்திருக்கிறது?"</span>
     <br>
     <span class="highlight">reduce = "அந்த result-ஐ அடுத்த element-க்கு carry பண்ணி தொடர்ந்து process செய்."</span>
+</p>
+<hr>
+<h5><span class="highlight">sort()</span></h5>
+
+<p>
+    <span class="highlight">sort()</span> என்பது array elements-ஐ
+    ஒரு குறிப்பிட்ட order-ல் <span class="highlight">reorder</span> செய்யும் method.
+</p>
+
+<div class="success-box">
+    <strong>Two Important Things to Remember:</strong>
+    <br>
+    <span class="highlight">1. Default sort → values as strings</span>
+    <br>
+    <span class="highlight">2. sort() → original array-ஐ mutate செய்கிறது</span>
+</div>
+
+<h5>1. Simple String Sorting</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const names = ["Rahul", "Arun", "Kesava"];
+
+names.sort();
+
+console.log(names);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+
+    <div class="memory-diagram mt-2">
+        ["Arun", "Kesava", "Rahul"]
+    </div>
+</div>
+
+<p class="tamil">
+    Strings alphabetical order-ல் sort ஆகும்.
+</p>
+
+<h5>2. 🚨 The Famous Numeric Sorting Problem</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 2, 30, 4];
+
+numbers.sort();
+
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="error-box h-100">
+            <strong>You may expect:</strong>
+
+            <div class="memory-diagram mt-2">
+                [2, 4, 10, 30]
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>Actual Output:</strong>
+
+            <div class="memory-diagram mt-2">
+                [10, 2, 30, 4]
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Why?</h5>
+
+<p>
+    Default-ஆக <span class="highlight">sort()</span> values-ஐ
+    <span class="highlight">strings</span> போல compare செய்கிறது.
+</p>
+
+<div class="memory-diagram">
+    10 → "10"
+    <br>
+    2 → "2"
+    <br>
+    30 → "30"
+    <br>
+    4 → "4"
+    <br><br>
+    Compare first characters:
+    <br>
+    1 &lt; 2 &lt; 3 &lt; 4
+</div>
+
+<div class="success-box">
+    <strong>Lexicographical Order</strong>
+    <p class="mb-0 mt-2">
+        Dictionary-ல் words எப்படி order செய்யப்படுகிறதோ,
+        அதுபோல character-by-character compare செய்வது.
+    </p>
+</div>
+
+<div class="memory-diagram">
+    Default sort()
+    <br>
+    ↓
+    <br>
+    Compare as strings
+    <br>
+    ↓
+    <br>
+    Lexicographical order
+</div>
+
+<h5>3. Numeric Ascending Sort</h5>
+
+<p>
+    Numbers-ஐ correctly sort செய்ய
+    <span class="highlight">compare function</span> கொடுக்க வேண்டும்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 2, 30, 4];
+
+numbers.sort((a, b) => a - b);
+
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    <div class="memory-diagram mt-2">
+        [2, 4, 10, 30]
+    </div>
+</div>
+
+<h5>What Does <span class="highlight">a - b</span> Mean?</h5>
+
+<div class="memory-diagram">
+    Compare two values
+    <br>
+    ↓
+    <br>
+    a - b
+    <br><br>
+
+    Negative
+    <span class="arrow-note">→</span>
+    a before b
+    <br>
+
+    Positive
+    <span class="arrow-note">→</span>
+    a after b
+    <br>
+
+    Zero
+    <span class="arrow-note">→</span>
+    equal order
+</div>
+
+<div class="success-box">
+    <strong>Practical Pattern:</strong>
+    <br>
+    <span class="highlight">Ascending → a - b</span>
+</div>
+
+<h5>4. Numeric Descending Sort</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 2, 30, 4];
+
+numbers.sort((a, b) => b - a);
+
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    <div class="memory-diagram mt-2">
+        [30, 10, 4, 2]
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        Ascending → <span class="highlight">a - b</span>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        Descending → <span class="highlight">b - a</span>
+    </strong>
+</div>
+
+<h5>5. 🚨 <span class="highlight">sort()</span> Mutates the Original Array</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [30, 10, 20];
+
+const result = numbers.sort((a, b) => a - b);
+
+console.log(numbers);
+console.log(result);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="error-box h-100">
+            <strong>Original array</strong>
+
+            <div class="memory-diagram mt-2">
+                numbers
+                <br>
+                ↓
+                <br>
+                [10, 20, 30]
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>Returned value</strong>
+
+            <div class="memory-diagram mt-2">
+                result
+                <br>
+                ↓
+                <br>
+                [10, 20, 30]
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="memory-diagram">
+    sort()
+    <br>
+    ↓
+    <br>
+    modifies original array
+    <br>
+    +
+    <br>
+    returns the same array
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>map()</strong>
+            <p class="mb-0 mt-2">
+                New array ✅
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="example-box h-100 text-center">
+            <strong>filter()</strong>
+            <p class="mb-0 mt-2">
+                New array ✅
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="error-box h-100 text-center">
+            <strong>sort()</strong>
+            <p class="mb-0 mt-2">
+                Original array modified ⚠️
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>6. Why Does <span class="highlight">numbers === result</span> Become true?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [30, 10, 20];
+
+const result = numbers.sort((a, b) => a - b);
+
+console.log(numbers === result);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">true</span>
+</div>
+
+<div class="memory-diagram">
+    numbers ──────┐
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──→ 📦 SAME ARRAY
+    <br>
+    result ───────┘
+</div>
+
+<div class="success-box">
+    <strong>Why?</strong>
+    <p class="mb-0">
+        Arrays are objects.
+        <span class="highlight">sort()</span> அதே array object-ஐ
+        modify செய்து, அதே array-ஐ return செய்கிறது.
+    </p>
+</div>
+
+<h5>7. Sorting Objects</h5>
+
+<p>
+    Real applications-ல் இது மிகவும் common.
+    உதாரணமாக users-ஐ age அடிப்படையில் sort செய்யலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { name: "Rahul", age: 35 },
+    { name: "Arun", age: 25 },
+    { name: "Kesava", age: 30 }
+];
+
+users.sort((a, b) => a.age - b.age);
+
+console.log(users);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Arun → 25
+    <br>
+    Kesava → 30
+    <br>
+    Rahul → 35
+</div>
+
+<div class="success-box">
+    <strong>Ascending age:</strong>
+    <span class="highlight">a.age - b.age</span>
+</div>
+
+<p>
+    Descending age:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+users.sort((a, b) => b.age - a.age);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Rahul → 35
+    <br>
+    Kesava → 30
+    <br>
+    Arun → 25
+</div>
+
+<h5>8. String Comparison with Objects</h5>
+
+<p>
+    Names போன்ற strings-ஐ compare செய்ய arithmetic பயன்படுத்தாமல்
+    <span class="highlight">localeCompare()</span> பயன்படுத்தலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+users.sort((a, b) => {
+    return a.name.localeCompare(b.name);
+});
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Alphabetical order:</strong>
+
+    <div class="memory-diagram mt-2">
+        Arun
+        <br>
+        Kesava
+        <br>
+        Rahul
+    </div>
+</div>
+
+<div class="memory-diagram">
+    Number comparison
+    <br>
+    ↓
+    <span class="highlight">a - b</span>
+    <br><br>
+
+    String comparison
+    <br>
+    ↓
+    <span class="highlight">a.name.localeCompare(b.name)</span>
+</div>
+
+<h5>sort() — Final Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>Strings</strong>
+
+            <div class="memory-diagram mt-2">
+                Default
+                <br>
+                ↓
+                <br>
+                String comparison
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>Numbers</strong>
+
+            <div class="memory-diagram mt-2">
+                Ascending
+                <br>
+                ↓
+                <br>
+                a - b
+                <br><br>
+                Descending
+                <br>
+                ↓
+                <br>
+                b - a
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="example-box h-100">
+            <strong>Objects</strong>
+
+            <div class="memory-diagram mt-2">
+                Compare property
+                <br>
+                ↓
+                <br>
+                a.age - b.age
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="error-box h-100">
+            <strong>Mutation</strong>
+
+            <div class="memory-diagram mt-2">
+                Original array
+                <br>
+                ↓
+                <br>
+                <span class="highlight">changed</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">sort() → reorder array</span>
+    <br>
+    <span class="highlight">Default → compare as strings</span>
+    <br>
+    <span class="highlight">Numbers ascending → a - b</span>
+    <br>
+    <span class="highlight">Numbers descending → b - a</span>
+    <br>
+    <span class="highlight">sort() mutates the original array</span>
+    <br>
+    <span class="highlight">sort() returns the same array reference</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">sort = reorder</span>
+    &nbsp;|&nbsp;
+    <span class="highlight">a - b = ascending</span>
+    &nbsp;|&nbsp;
+    <span class="highlight">b - a = descending</span>.
+</p>
+<hr>
+<h5><span class="highlight">slice()</span></h5>
+
+<p>
+    <span class="highlight">slice()</span> என்பது array-ல் இருந்து ஒரு
+    <span class="highlight">portion-ஐ copy</span> செய்து புதிய array-ஆக
+    return செய்யும் method.
+</p>
+
+<div class="memory-diagram">
+    Array = row of boxes
+    <br><br>
+    Index:
+    &nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;4
+    <br>
+    Array:
+    &nbsp;[10] [20] [30] [40] [50]
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        slice() = "இந்த array-லிருந்து ஒரு பகுதியை எடுத்துக் கொடு,
+        original-ஐ மாற்றாதே."
+    </strong>
+</div>
+
+<h5>1. Basic Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+const result = numbers.slice(1, 4);
+
+console.log(result);
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Index:
+    &nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;4
+    <br>
+    Value:
+    &nbsp;10&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;40&nbsp;&nbsp;&nbsp;50
+    <br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑────────↑
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start&nbsp;&nbsp;&nbsp;&nbsp;end
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    <div class="memory-diagram mt-2">
+        result → [20, 30, 40]
+        <br>
+        original → [10, 20, 30, 40, 50]
+    </div>
+</div>
+
+<h5>Golden Rule of <span class="highlight">slice()</span></h5>
+
+<div class="memory-diagram">
+    <span class="highlight">slice(start, end)</span>
+    <br><br>
+    start → <span class="highlight">INCLUDED ✅</span>
+    <br>
+    end → <span class="highlight">EXCLUDED ❌</span>
+</div>
+
+<div class="success-box">
+    <strong>So:</strong>
+    <span class="highlight">slice(1, 4)</span>
+    means:
+    <br>
+    Start at index <span class="highlight">1</span>
+    and stop <strong>before</strong> index <span class="highlight">4</span>.
+</div>
+
+<h5>2. <span class="highlight">slice()</span> Does NOT Modify the Original</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+const result = numbers.slice(1, 3);
+
+console.log(result);
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>result</strong>
+
+            <div class="memory-diagram mt-2">
+                [20, 30]
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>numbers</strong>
+
+            <div class="memory-diagram mt-2">
+                [10, 20, 30, 40, 50]
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    <span class="highlight">slice()</span> original array-ஐ mutate செய்யாது.
+    அது ஒரு <span class="highlight">new array</span> return செய்கிறது.
+</div>
+
+<h5>3. <span class="highlight">slice()</span> with One Argument</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+const result = numbers.slice(2);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    index 0 → 10
+    <br>
+    index 1 → 20
+    <br>
+    <span class="highlight">index 2 → 30</span>
+    <br>
+    index 3 → 40
+    <br>
+    index 4 → 50
+    <br><br>
+    ↓
+    <br>
+    [30, 40, 50]
+</div>
+
+<div class="success-box">
+    <strong>Meaning:</strong>
+    <span class="highlight">slice(2)</span>
+    → index 2-ல் இருந்து array-ன் end வரை.
+</div>
+
+<div class="memory-diagram">
+    <span class="highlight">arr.slice(2)</span>
+    <br>
+    ≈
+    <br>
+    <span class="highlight">arr.slice(2, arr.length)</span>
+</div>
+
+<h5>4. Negative Indexes</h5>
+
+<p>
+    Negative index என்றால் array-ன்
+    <span class="highlight">end-ல் இருந்து count</span> செய்வது.
+</p>
+
+<div class="memory-diagram">
+    Positive:
+    <br>
+    0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4
+    <br>
+    10&nbsp;&nbsp;20&nbsp;&nbsp;30&nbsp;&nbsp;40&nbsp;&nbsp;50
+    <br><br>
+
+    Negative:
+    <br>
+    -5&nbsp;&nbsp;-4&nbsp;&nbsp;-3&nbsp;&nbsp;-2&nbsp;&nbsp;-1
+    <br>
+    10&nbsp;&nbsp;20&nbsp;&nbsp;30&nbsp;&nbsp;40&nbsp;&nbsp;50
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+const result = numbers.slice(-2);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Output:</strong>
+    <span class="highlight">[40, 50]</span>
+</div>
+
+<div class="memory-diagram">
+    -2 → 40
+    <br>
+    -1 → 50
+    <br><br>
+    slice(-2)
+    <br>
+    ↓
+    <br>
+    [40, 50]
+</div>
+
+<h5>5. Negative Start + Negative End</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const arr = [10, 20, 30, 40, 50];
+
+const result = arr.slice(-3, -1);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    -5&nbsp;&nbsp;-4&nbsp;&nbsp;-3&nbsp;&nbsp;-2&nbsp;&nbsp;-1
+    <br>
+    10&nbsp;&nbsp;20&nbsp;&nbsp;30&nbsp;&nbsp;40&nbsp;&nbsp;50
+    <br><br>
+    start = -3 → 30
+    <br>
+    end = -1 → 50
+    <br>
+    end excluded
+    <br><br>
+    ↓
+    <br>
+    <span class="highlight">[30, 40]</span>
+</div>
+
+<h5>6. Positive Start + Negative End</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const arr = [10, 20, 30, 40, 50];
+
+const result = arr.slice(1, -1);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    start = 1
+    <br>
+    ↓
+    <br>
+    20
+    <br><br>
+    end = -1
+    <br>
+    ↓
+    <br>
+    50
+    <br>
+    ↓
+    <br>
+    50 is excluded
+    <br><br>
+    <span class="highlight">[20, 30, 40]</span>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Negative indexes <span class="highlight">slice()</span>-ன் rule-ஐ
+    மாற்றாது.
+    அவை position-ஐ identify செய்யும் விதத்தை மட்டும் மாற்றுகின்றன.
+</div>
+
+<h5>All <span class="highlight">slice()</span> Forms Together</h5>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Two arguments</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+slice(start, end)
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                start → included
+                <br>
+                end → excluded
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>One argument</strong>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+slice(start)
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                start → included
+                <br>
+                ↓
+                <br>
+                continue to end
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Negative index</strong>
+
+            <div class="memory-diagram mt-2">
+                Count from
+                <br>
+                <span class="highlight">RIGHT → LEFT</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Positive vs Negative Start</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Positive</div>
+
+            <div class="memory-diagram mt-2">
+                slice(2)
+                <br>
+                ↓
+                <br>
+                Start from index 2
+                <br>
+                ↓
+                <br>
+                [30, 40, 50]
+            </div>
+
+            <p class="mb-0">
+                Position is counted from the <strong>left</strong>.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Negative</div>
+
+            <div class="memory-diagram mt-2">
+                slice(-2)
+                <br>
+                ↓
+                <br>
+                Start from second last
+                <br>
+                ↓
+                <br>
+                [40, 50]
+            </div>
+
+            <p class="mb-0">
+                Position is counted from the <strong>right</strong>.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>7. Very Practical Example — Last 5 Items</h5>
+
+<p>
+    Suppose உங்களிடம் transaction history இருக்கிறது.
+    Latest 5 transactions மட்டும் வேண்டும் என்றால்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const transactions = [
+    // many transactions
+];
+
+const latestTransactions = transactions.slice(-5);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    -1 → last item
+    <br>
+    -2 → second last
+    <br>
+    -3 → third last
+    <br>
+    -4 → fourth last
+    <br>
+    -5 → fifth last
+    <br><br>
+    ↓
+    <br>
+    <span class="highlight">latestTransactions = last 5 items</span>
+</div>
+
+<div class="success-box">
+    <strong>Why is this useful?</strong>
+    <p class="mb-0">
+        Array எவ்வளவு பெரியதாக இருந்தாலும்,
+        <span class="highlight">slice(-5)</span> மூலம்
+        last 5 elements-ஐ easily பெறலாம்.
+    </p>
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="memory-diagram">
+    <span class="highlight">slice(start, end)</span>
+    <br><br>
+    start → <span class="highlight">INCLUDED ✅</span>
+    <br>
+    end → <span class="highlight">EXCLUDED ❌</span>
+    <br><br>
+
+    <span class="highlight">slice(start)</span>
+    <br>
+    → start முதல் end வரை
+    <br><br>
+
+    Positive index
+    <br>
+    → count from LEFT
+    <br><br>
+
+    Negative index
+    <br>
+    → count from RIGHT
+    <br><br>
+
+    <span class="highlight">slice() → original array-ஐ மாற்றாது</span>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">slice = take a portion without changing the original</span>
+    <br>
+    <span class="highlight">start included</span>
+    &nbsp;|&nbsp;
+    <span class="highlight">end excluded</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">slice = "ஒரு பகுதியை எடுத்துக் கொள், original-ஐ touch பண்ணாதே."</span>
+</p>
+<hr>
+<h5><span class="highlight">splice()</span></h5>
+
+<p>
+    <span class="highlight">splice()</span> என்பது original array-ஐ
+    <span class="highlight">modify</span> செய்து elements-ஐ
+    remove, add அல்லது replace செய்யும் method.
+</p>
+
+<div class="success-box">
+    <strong>Core Rule:</strong>
+    <br>
+    <span class="highlight">splice() changes the original array.</span>
+</div>
+
+<h5>1. First Understand the Syntax</h5>
+
+<div class="memory-diagram">
+    <span class="highlight">array.splice(start, deleteCount, item1, item2, ...)</span>
+    <br><br>
+    <strong>START</strong>
+    <br>
+    ↓
+    <br>
+    <strong>HOW MANY TO DELETE</strong>
+    <br>
+    ↓
+    <br>
+    <strong>WHAT TO INSERT</strong>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">slice()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+slice(start, end)
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                end
+                <br>
+                ↓
+                <br>
+                END POSITION
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">splice()</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+splice(start, deleteCount)
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                deleteCount
+                <br>
+                ↓
+                <br>
+                NUMBER OF ITEMS
+                <br>
+                TO DELETE
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box text-center">
+    <strong>
+        slice → END POSITION
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        splice → NUMBER OF ITEMS TO DELETE
+    </strong>
+</div>
+
+<h5>2. Simplest Case — Remove Elements</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+numbers.splice(1, 2);
+
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    start at index 1
+    <br>
+    ↓
+    <br>
+    20
+    <br>
+    30
+    <br><br>
+    deleteCount = 2
+    <br>
+    ↓
+    <br>
+    Delete <span class="highlight">20, 30</span>
+</div>
+
+<div class="success-box">
+    <strong>Original array becomes:</strong>
+
+    <div class="memory-diagram mt-2">
+        [10, 40, 50]
+    </div>
+</div>
+
+<div class="error-box">
+    <strong>Important:</strong>
+    <span class="highlight">splice()</span> original array-ஐ mutate செய்கிறது.
+</div>
+
+<h5>3. What Does <span class="highlight">splice()</span> Return?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+const removed = numbers.splice(1, 2);
+
+console.log(removed);
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Return Value</strong>
+
+            <div class="memory-diagram mt-2">
+                removed
+                <br>
+                ↓
+                <br>
+                [20, 30]
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Modified Original</strong>
+
+            <div class="memory-diagram mt-2">
+                numbers
+                <br>
+                ↓
+                <br>
+                [10, 40, 50]
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Remember:</strong>
+    <br>
+    <span class="highlight">splice() returns the removed elements.</span>
+</div>
+
+<h5>4. <span class="highlight">deleteCount = 0</span> Means "Remove Nothing"</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+numbers.splice(1, 0, 99);
+
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    start = 1
+    <br>
+    ↓
+    <br>
+    delete = 0
+    <br>
+    ↓
+    <br>
+    remove nothing
+    <br>
+    ↓
+    <br>
+    insert 99
+</div>
+
+<div class="success-box">
+    <strong>Result:</strong>
+    <span class="highlight">[10, 99, 20, 30]</span>
+</div>
+
+<h5>5. Insert Multiple Values</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30];
+
+numbers.splice(1, 0, 99, 100, 200);
+
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    start = 1
+    <br>
+    delete = 0
+    <br>
+    insert = 99, 100, 200
+    <br><br>
+    ↓
+    <br>
+    <span class="highlight">[10, 99, 100, 200, 20, 30]</span>
+</div>
+
+<h5>6. Replace Elements</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40];
+
+numbers.splice(1, 2, 99, 100);
+
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    Original
+    <br>
+    [10, 20, 30, 40]
+    <br><br>
+    start = 1
+    <br>
+    ↓
+    <br>
+    delete 2
+    <br>
+    ↓
+    <br>
+    remove 20, 30
+    <br><br>
+    insert 99, 100
+    <br>
+    ↓
+    <br>
+    <span class="highlight">[10, 99, 100, 40]</span>
+</div>
+
+<div class="success-box">
+    <strong>Think:</strong>
+    <br>
+    <span class="highlight">remove + insert = replace</span>
+</div>
+
+<h5>7. Most Important Comparison with <span class="highlight">slice()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+const sliced = numbers.slice(1, 3);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    slice(1, 3)
+    <br>
+    ↓
+    <br>
+    start at 1
+    <br>
+    stop before 3
+    <br>
+    ↓
+    <br>
+    [20, 30]
+    <br><br>
+    Original unchanged
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+const removed = numbers.splice(1, 3);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    splice(1, 3)
+    <br>
+    ↓
+    <br>
+    start at 1
+    <br>
+    delete 3 elements
+    <br>
+    ↓
+    <br>
+    remove 20, 30, 40
+</div>
+
+<div class="success-box">
+    <strong>Final state:</strong>
+
+    <div class="memory-diagram mt-2">
+        removed → [20, 30, 40]
+        <br>
+        numbers → [10, 50]
+    </div>
+</div>
+
+<h5>8. Negative Start</h5>
+
+<p>
+    <span class="highlight">splice()</span>-ல் negative
+    <span class="highlight">start</span> array-ன் end-ல் இருந்து count செய்யும்.
+</p>
+
+<div class="memory-diagram">
+    -5&nbsp;&nbsp;&nbsp;-4&nbsp;&nbsp;&nbsp;-3&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;-1
+    <br>
+    10&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;40&nbsp;&nbsp;&nbsp;50
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+const removed = numbers.splice(-2, 1);
+
+console.log(removed);
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="success-box">
+            <strong>Returned:</strong>
+            <div class="memory-diagram mt-2">
+                [40]
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="success-box">
+            <strong>Modified Array:</strong>
+            <div class="memory-diagram mt-2">
+                [10, 20, 30, 50]
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Negative index என்பது starting position-ஐ மட்டும்
+    identify செய்கிறது.
+    <br>
+    <span class="highlight">deleteCount</span> இன்னும்
+    "எத்தனை elements delete செய்ய வேண்டும்?" என்பதையே குறிக்கிறது.
+</div>
+
+<h5>9. Negative Start with Multiple Deletions</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [10, 20, 30, 40, 50];
+
+const removed = numbers.splice(-3, 2);
+
+console.log(removed);
+console.log(numbers);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    -3 → 30
+    <br>
+    delete 2
+    <br>
+    ↓
+    <br>
+    30, 40
+    <br><br>
+    Final array:
+    <br>
+    <span class="highlight">[10, 20, 50]</span>
+    <br><br>
+    Returned:
+    <br>
+    <span class="highlight">[30, 40]</span>
+</div>
+
+<h5>10. Real-World Example — Shopping Cart</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const cart = [
+    { id: 1, name: "Laptop" },
+    { id: 2, name: "Mouse" },
+    { id: 3, name: "Keyboard" }
+];
+
+cart.splice(1, 1);
+
+console.log(cart);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    index 1
+    <br>
+    ↓
+    <br>
+    { id: 2, name: "Mouse" }
+    <br>
+    ↓
+    <br>
+    delete 1
+    <br>
+    ↓
+    <br>
+    Mouse removed
+</div>
+
+<div class="success-box">
+    <strong>Final Cart:</strong>
+
+    <div class="code-block p-3 mt-2">
+<pre><code>
+[
+    { id: 1, name: "Laptop" },
+    { id: 3, name: "Keyboard" }
+]
+</code></pre>
+    </div>
+</div>
+
+<h5>Permanent Rule</h5>
+
+<div class="memory-diagram">
+    <strong>Original Array</strong>
+    <br>
+    ↓
+    <br>
+    <span class="highlight">Gets modified</span>
+    <br><br>
+
+    <strong>Return Value</strong>
+    <br>
+    ↓
+    <br>
+    <span class="highlight">ONLY removed elements</span>
+    <br><br>
+
+    <strong>Inserted Elements</strong>
+    <br>
+    ↓
+    <br>
+    stay in the modified original array
+    <br>
+    ↓
+    <span class="highlight">NOT returned</span>
+</div>
+
+<h5>11. What Happens with No Arguments?</h5>
+
+<h5><span class="highlight">slice()</span> with No Arguments</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const arr = [10, 20, 30, 40, 50];
+
+const result = arr.slice();
+
+console.log(arr);
+console.log(result);
+
+console.log(arr === result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    arr
+    <br>
+    ↓
+    <br>
+    [10, 20, 30, 40, 50]
+    <br><br>
+    result
+    <br>
+    ↓
+    <br>
+    [10, 20, 30, 40, 50]
+    <br><br>
+    Same contents
+    <br>
+    but different array objects
+    <br>
+    ↓
+    <br>
+    <span class="highlight">false</span>
+</div>
+
+<div class="success-box">
+    <strong>Meaning:</strong>
+    <span class="highlight">arr.slice()</span>
+    → full array-ன் new array copy.
+</div>
+
+<h5><span class="highlight">splice()</span> with No Arguments</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const arr = [10, 20, 30, 40, 50];
+
+const result = arr.splice();
+
+console.log(arr);
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    splice()
+    <br>
+    ↓
+    <br>
+    start = 0
+    <br>
+    deleteCount = 0
+    <br><br>
+    Remove nothing
+    <br>
+    Insert nothing
+    <br>
+    ↓
+    <br>
+    arr → [10, 20, 30, 40, 50]
+    <br>
+    result → []
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    <span class="highlight">splice()</span>
+    arguments இல்லாமல் call செய்தால்
+    array unchanged, return value <span class="highlight">[]</span>.
+</div>
+
+<h5>12. <span class="highlight">splice()</span> with Single Argument</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const arr = [10, 20, 30, 40, 50];
+
+const result = arr.splice(2);
+
+console.log(arr);
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    splice(2)
+    <br>
+    ↓
+    <br>
+    Start at index 2
+    <br>
+    ↓
+    <br>
+    Delete everything from index 2 to the end
+    <br><br>
+    arr → <span class="highlight">[10, 20]</span>
+    <br>
+    result → <span class="highlight">[30, 40, 50]</span>
+</div>
+
+<h5>13. <span class="highlight">slice()</span> vs <span class="highlight">splice()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+              SLICE                          SPLICE
+────────────────────────────────────────────────────────────
+Purpose       Take a portion                Modify array
+
+Syntax        (start, end)                  (start, deleteCount,
+                                             item1, item2, ...)
+
+Original      ❌ unchanged                  ✅ mutated
+
+Return        Selected portion              Removed elements
+
+One argument  Start → end                  Start → delete to end
+
+Negative      Count from right              Count from right
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">slice()</div>
+
+            <div class="memory-diagram mt-2">
+                TAKE
+                <br>
+                ↓
+                <br>
+                New array
+                <br>
+                ↓
+                <br>
+                Original unchanged ✅
+            </div>
+
+            <p class="mb-0">
+                <span class="highlight">slice(start, end)</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">splice()</div>
+
+            <div class="memory-diagram mt-2">
+                MODIFY
+                <br>
+                ↓
+                <br>
+                Remove / Add / Replace
+                <br>
+                ↓
+                <br>
+                Original mutated ⚠️
+            </div>
+
+            <p class="mb-0">
+                <span class="highlight">splice(start, deleteCount, ...items)</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Final Golden Rule:</strong>
+    <br>
+    <span class="highlight">slice → take a portion → original unchanged</span>
+    <br>
+    <span class="highlight">splice → modify original → remove/add/replace</span>
+    <br><br>
+    <span class="highlight">splice return value = removed elements</span>
+    <br>
+    <span class="highlight">splice(start) = delete from start to end</span>
+    <br>
+    <span class="highlight">splice() = no change + returns []</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">slice = "எடுத்துக்கொள்"</span>
+    &nbsp;|&nbsp;
+    <span class="highlight">splice = "மாற்று"</span>.
+</p>
+<hr>
+<h5> Array Method Chaining</h5>
+
+<p>
+    <span class="highlight">Method chaining</span> என்றால்,
+    ஒரு array method-ன் result-ஐ அடுத்த method-க்கு
+    <span class="highlight">input</span>-ஆக பயன்படுத்துவது.
+</p>
+
+<div class="success-box">
+    <strong>Simple Mental Model:</strong>
+
+    <div class="memory-diagram mt-2">
+        Array
+        <br>
+        ↓
+        <br>
+        Method 1
+        <br>
+        ↓
+        <br>
+        Result
+        <br>
+        ↓
+        <br>
+        Method 2
+        <br>
+        ↓
+        <br>
+        Final Result
+    </div>
+</div>
+
+<h5>1. Simple Example</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const result = numbers
+    .filter(num => num % 2 === 0)
+    .map(num => num * 10);
+
+console.log(result);
+</code></pre>
+</div>
+
+<h5>Execute from Top to Bottom</h5>
+
+<div class="memory-diagram">
+    numbers
+    <br>
+    ↓
+    <br>
+    [1, 2, 3, 4, 5, 6]
+    <br><br>
+
+    filter(num =&gt; num % 2 === 0)
+    <br>
+    ↓
+    <br>
+    Keep even numbers
+    <br>
+    ↓
+    <span class="highlight">[2, 4, 6]</span>
+</div>
+
+<div class="memory-diagram">
+    [2, 4, 6]
+    <br>
+    ↓
+    <br>
+    map(num =&gt; num * 10)
+    <br>
+    ↓
+    <br>
+    2 → 20
+    <br>
+    4 → 40
+    <br>
+    6 → 60
+    <br><br>
+    <span class="highlight">[20, 40, 60]</span>
+</div>
+
+<div class="success-box">
+    <strong>Final Output:</strong>
+    <span class="highlight">[20, 40, 60]</span>
+</div>
+
+<h5>2. Common Real-World Example</h5>
+
+<p>
+    Suppose users-ல் age <span class="highlight">30 அல்லது அதற்கு மேல்</span>
+    உள்ளவர்களின் names மட்டும் வேண்டும்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { name: "A", age: 20 },
+    { name: "B", age: 35 },
+    { name: "C", age: 28 },
+    { name: "D", age: 40 }
+];
+
+const result = users
+    .filter(user => user.age >= 30)
+    .map(user => user.name);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    users
+    <br>
+    ↓
+    <br>
+    filter(age >= 30)
+    <br>
+    ↓
+    <br>
+    [
+    <br>
+    { name: "B", age: 35 },
+    <br>
+    { name: "D", age: 40 }
+    <br>
+    ]
+    <br><br>
+    ↓
+    <br>
+    map(user =&gt; user.name)
+    <br>
+    ↓
+    <br>
+    <span class="highlight">["B", "D"]</span>
+</div>
+
+<div class="success-box">
+    <strong>Think in stages:</strong>
+    <br>
+    <span class="highlight">filter → select users</span>
+    <br>
+    <span class="highlight">map → extract names</span>
+</div>
+
+<h5>3. Chaining Is Not Magic</h5>
+
+<p>
+    இந்த chained code:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const result = numbers
+    .filter(num => num > 10)
+    .map(num => num * 2);
+</code></pre>
+</div>
+
+<p>
+    Conceptually இதே code:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const filtered = numbers.filter(
+    num => num > 10
+);
+
+const result = filtered.map(
+    num => num * 2
+);
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>Important:</strong>
+    Chained version என்பது separate steps-ஐ
+    compact-ஆக எழுதும் syntax.
+</div>
+
+<div class="memory-diagram">
+    numbers
+    <br>
+    ↓
+    <br>
+    filter()
+    <br>
+    ↓
+    <span class="highlight">filtered array</span>
+    <br>
+    ↓
+    <br>
+    map()
+    <br>
+    ↓
+    <span class="highlight">final array</span>
+</div>
+
+<h5>4. You Can Chain More Than Two Methods</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const result = numbers
+    .filter(num => num % 2 === 0)
+    .map(num => num * 10)
+    .filter(num => num > 20);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    [1, 2, 3, 4, 5, 6]
+    <br>
+    ↓
+    <br>
+    filter even
+    <br>
+    ↓
+    <span class="highlight">[2, 4, 6]</span>
+    <br><br>
+
+    map × 10
+    <br>
+    ↓
+    <span class="highlight">[20, 40, 60]</span>
+    <br><br>
+
+    filter &gt; 20
+    <br>
+    ↓
+    <span class="highlight">[40, 60]</span>
+</div>
+
+<div class="success-box">
+    <strong>Chain means:</strong>
+    <br>
+    One method's result
+    <span class="arrow-note">→</span>
+    becomes the next method's input.
+</div>
+
+<h5>5. What Can and Cannot Be Chained?</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="success-box h-100">
+            <strong>Returns an Array → Array methods can continue</strong>
+
+            <div class="memory-diagram mt-2">
+                map()
+                <br>
+                → array ✅
+                <br><br>
+
+                filter()
+                <br>
+                → array ✅
+                <br><br>
+
+                slice()
+                <br>
+                → array ✅
+                <br><br>
+
+                splice()
+                <br>
+                → removed-elements array ✅
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="error-box h-100">
+            <strong>Does Not Return an Array → ordinary array chaining stops</strong>
+
+            <div class="memory-diagram mt-2">
+                find()
+                <br>
+                → element
+                <br><br>
+
+                some()
+                <br>
+                → boolean
+                <br><br>
+
+                every()
+                <br>
+                → boolean
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important Nuance:</strong>
+    <span class="highlight">splice()</span> returns an array,
+    so technically அந்த returned array-ல் array methods chain செய்யலாம்.
+    ஆனால் கவனிக்க வேண்டியது:
+    <span class="highlight">splice()</span> original array-ஐ mutate செய்கிறது.
+</div>
+
+<h5><span class="highlight">find()</span> Why Does Normal Array Chaining Stop?</h5>
+
+<div class="code-block p-3">
+<pre><code>
+const users = [
+    { name: "Kesava", age: 30 },
+    { name: "Arun", age: 28 }
+];
+
+const result = users
+    .filter(user => user.age >= 28)
+    .find(user => user.name === "Kesava");
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    filter()
+    <br>
+    ↓
+    <br>
+    array
+    <br>
+    ↓
+    <br>
+    find()
+    <br>
+    ↓
+    <br>
+    one user object
+    <br>
+    ↓
+    <br>
+    Normal array methods no longer available
+</div>
+
+<div class="success-box">
+    <strong>So:</strong>
+    <span class="highlight">find()</span> usually becomes the
+    endpoint when you want one matching element.
+</div>
+
+<h5>6. Method Chaining with <span class="highlight">reduce()</span></h5>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3, 4];
+
+const result = numbers
+    .filter(num => num % 2 === 0)
+    .reduce((acc, num) => acc + num, 0);
+
+console.log(result);
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    [1, 2, 3, 4]
+    <br>
+    ↓
+    <br>
+    filter even
+    <br>
+    ↓
+    <span class="highlight">[2, 4]</span>
+    <br><br>
+
+    reduce()
+    <br>
+    ↓
+    <br>
+    0 + 2 = 2
+    <br>
+    2 + 4 = 6
+    <br><br>
+
+    <span class="highlight">6</span>
+</div>
+
+<div class="success-box">
+    <strong>Why does the chain end here?</strong>
+    <p class="mb-0 mt-2">
+        இந்த particular <span class="highlight">reduce()</span>
+        number-ஐ final result-ஆக return செய்கிறது.
+        அது array அல்ல.
+        அதனால் அடுத்த normal array method-ஐ
+        chain செய்ய முடியாது.
+    </p>
+</div>
+
+<div class="error-box">
+    <strong>But one important nuance:</strong>
+    <span class="highlight">reduce()</span> எப்போதும் chain-ஐ stop செய்யும்
+    என்று நினைக்கக்கூடாது.
+    Accumulator-ஆக ஒரு array-ஐ உருவாக்கி return செய்தால்,
+    <span class="highlight">reduce()</span>-ன் result ஒரு array ஆக இருக்கலாம்;
+    அப்போது array methods-ஐ தொடர்ந்து chain செய்யலாம்.
+</div>
+
+<h5>7. Chain Flow — The Main Idea</h5>
+
+<div class="memory-diagram">
+    <strong>Original Array</strong>
+    <br>
+    ↓
+    <br>
+    filter()
+    <br>
+    ↓
+    <span class="highlight">Array</span>
+    <br>
+    ↓
+    <br>
+    map()
+    <br>
+    ↓
+    <span class="highlight">Array</span>
+    <br>
+    ↓
+    <br>
+    filter()
+    <br>
+    ↓
+    <span class="highlight">Array</span>
+    <br>
+    ↓
+    <br>
+    reduce()
+    <br>
+    ↓
+    <span class="highlight">Final Value</span>
+</div>
+
+<h5>Array Method Return Types</h5>
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>map()</strong>
+            <div class="memory-diagram mt-2">
+                → Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>filter()</strong>
+            <div class="memory-diagram mt-2">
+                → Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>find()</strong>
+            <div class="memory-diagram mt-2">
+                → Element
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>findIndex()</strong>
+            <div class="memory-diagram mt-2">
+                → Number
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>some()</strong>
+            <div class="memory-diagram mt-2">
+                → Boolean
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>every()</strong>
+            <div class="memory-diagram mt-2">
+                → Boolean
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>slice()</strong>
+            <div class="memory-diagram mt-2">
+                → Array
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="example-box h-100">
+            <strong>reduce()</strong>
+            <div class="memory-diagram mt-2">
+                → Depends on return
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">
+        To continue normal array-method chaining,
+        the previous method must return an array.
+    </span>
+    <br><br>
+    <span class="highlight">filter → array → can continue</span>
+    <br>
+    <span class="highlight">map → array → can continue</span>
+    <br>
+    <span class="highlight">slice → array → can continue</span>
+    <br>
+    <span class="highlight">find → element → normal array chain stops</span>
+    <br>
+    <span class="highlight">some/every → boolean → normal array chain stops</span>
+    <br>
+    <span class="highlight">reduce → depends on final accumulator/result</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">Method chaining = "ஒரு method-ன் result-ஐ அடுத்த method-க்கு கொடு."</span>
 </p>
 </body>
 </html>
