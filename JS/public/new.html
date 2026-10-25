@@ -1,0 +1,2081 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <title>New | Js Zero to Hero</title>
+  </head>
+  <body>
+    <a href="./index.html" rel="noopener noreferrer" class="mt-3">
+      <button class="btn btn-primary">← Back</button>
+    </a>
+    <div class="container-fluid">
+      <div class="memory-diagram">
+        <strong>Class</strong> = Blueprint / Object definition
+        <br />
+        <strong>new</strong> = Creates a new instance
+        <br />
+        <strong>constructor()</strong> = Initializes the instance
+        <br />
+        <strong>this.brand = brand</strong> = Assigns the value to the instance
+        property
+      </div>
+      <h4>1. What Exactly Is a Class?</h4>
+
+      <p>
+        A
+        <strong
+          >class is a reusable definition for creating objects with related
+          properties and methods.</strong
+        >
+        Think of it as a blueprint that defines the structure and behavior of a
+        particular kind of object.
+      </p>
+
+      <p>
+        Imagine we are building an application that manages users. Every user
+        has a name and an age, and every user should be able to greet someone.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>class User {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() {
+        console.log(`Hello, ${this.name}`);
+    }
+}
+
+const user1 = new User("k7", 10);
+const user2 = new User("raja", 78);
+
+console.log(user1);
+user1.greet();
+
+user2.greet();
+console.log(user2.age);</code></pre>
+      </div>
+
+      <h5>Output</h5>
+
+      <div class="code-block p-3">
+        <pre><code>User { name: 'k7', age: 10 }
+Hello, k7
+Hello, raja
+78</code></pre>
+      </div>
+
+      <h5>Understand the Structure</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>What It Means</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>class User</code></td>
+              <td>Defines the structure and behavior of User objects.</td>
+            </tr>
+            <tr>
+              <td><code>constructor(name, age)</code></td>
+              <td>
+                Receives the initial values when a new User instance is created.
+              </td>
+            </tr>
+            <tr>
+              <td><code>this.name = name</code></td>
+              <td>Stores the received name on the current instance.</td>
+            </tr>
+            <tr>
+              <td><code>greet()</code></td>
+              <td>Defines an action that User instances can perform.</td>
+            </tr>
+            <tr>
+              <td><code>new User("k7", 10)</code></td>
+              <td>Creates a new User instance and runs its constructor.</td>
+            </tr>
+            <tr>
+              <td><code>user1</code> and <code>user2</code></td>
+              <td>
+                Refer to two different instances, each with its own name and
+                age.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h5>How Does It Work?</h5>
+
+      <div class="memory-diagram">
+        class User
+        <br />
+        (Definition / Blueprint)
+        <br />
+        |
+        <br />
+        +---------------------------+
+        <br />
+        | |
+        <br />
+        new User("k7", 10) new User("raja", 78)
+        <br />
+        | |
+        <br />
+        user1 user2
+        <br />
+        name: "k7" name: "raja"
+        <br />
+        age: 10 age: 78
+      </div>
+
+      <p>
+        The class provides a common definition, but each call to
+        <code>new User(...)</code> creates a separate instance with its own
+        data.
+      </p>
+
+      <div class="success-box p-3">
+        <strong>Your understanding, refined:</strong>
+        <p>
+          <code>class User</code> defines the common structure and behavior for
+          User objects. We use the <code>new</code> keyword with that class to
+          create instances. The constructor initializes each instance with the
+          values we provide.
+        </p>
+      </div>
+
+      <h5>One Important Detail</h5>
+
+      <p>
+        Although both objects can use <code>greet()</code>, their
+        <code>name</code> and <code>age</code> values are separate. With
+        JavaScript classes, ordinary instance methods such as
+        <code>greet()</code> are defined on the class's prototype rather than
+        being recreated as separate own methods on every instance.
+      </p>
+
+      <p class="tamil">
+        தமிழில்: <code>class User</code> என்பது User objects-ஐ உருவாக்குவதற்கான
+        பொதுவான blueprint. <code>new</code> பயன்படுத்தி ஒவ்வொரு instance-ஐயும்
+        உருவாக்குகிறோம். ஒவ்வொரு instance-க்கும் தனித்தனியான data இருக்கும்;
+        class-ல் வரையறுக்கப்பட்ட methods-ஐ அவை பயன்படுத்தலாம்.
+      </p>
+
+      <div class="memory-diagram">
+        Class = Common definition
+        <br />
+        new = Create a new instance
+        <br />
+        constructor() = Initialize the instance
+        <br />
+        this = The current instance in the constructor
+        <br />
+        Properties = Each instance's data
+        <br />
+        Methods = The behavior defined by the class
+      </div>
+    </div>
+    <div class="container-fluid">
+      <h4>2. What Exactly Is <code>constructor()</code>?</h4>
+
+      <p>
+        A
+        <strong
+          >constructor is a special method inside a JavaScript class that
+          initializes a new instance.</strong
+        >
+        It commonly receives initial values through parameters and assigns those
+        values to the new object's properties.
+      </p>
+
+      <p>Look at this part of our <code>User</code> class:</p>
+
+      <div class="code-block p-3">
+        <pre><code>constructor(name, age) {
+    this.name = name;
+    this.age = age;
+}</code></pre>
+      </div>
+
+      <p>There are two important things happening here:</p>
+
+      <ul>
+        <li>
+          <code>name</code> and <code>age</code> are parameters that receive
+          values.
+        </li>
+        <li>
+          <code>this.name = name</code> and <code>this.age = age</code> assign
+          those values to properties of the current instance.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Important:</strong> The constructor does not automatically copy
+        parameter values into properties. The assignments inside the constructor
+        do that.
+      </p>
+
+      <hr />
+
+      <h5>Example: Creating a User</h5>
+
+      <div class="code-block p-3">
+        <pre><code>class User {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+const user1 = new User("Arun", 25);
+
+console.log(user1);</code></pre>
+      </div>
+
+      <h5>Output</h5>
+
+      <div class="code-block p-3">
+        <pre><code>User { name: 'Arun', age: 25 }</code></pre>
+      </div>
+
+      <hr />
+
+      <h5>Step 1: The <code>new</code> Keyword Is Used</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const user1 = new User("Arun", 25);</code></pre>
+      </div>
+
+      <p>
+        When this statement executes, JavaScript creates a new instance and
+        calls the class constructor with the supplied arguments.
+      </p>
+
+      <div class="memory-diagram">
+        new User("Arun", 25)
+        <br />
+        |
+        <br />
+        Create a new instance
+        <br />
+        |
+        <br />
+        Call constructor("Arun", 25)
+      </div>
+
+      <hr />
+
+      <h5>Step 2: The Constructor Receives the Arguments</h5>
+
+      <div class="code-block p-3">
+        <pre><code>constructor(name, age) {
+    this.name = name;
+    this.age = age;
+}</code></pre>
+      </div>
+
+      <p>The arguments are passed to the corresponding parameters:</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Argument</th>
+              <th>Parameter</th>
+              <th>Value Received</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>"Arun"</code></td>
+              <td><code>name</code></td>
+              <td><code>"Arun"</code></td>
+            </tr>
+            <tr>
+              <td><code>25</code></td>
+              <td><code>age</code></td>
+              <td><code>25</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        At this point, <code>name</code> and <code>age</code> are local
+        parameters inside the constructor. The assignments below use them to
+        initialize the instance.
+      </p>
+
+      <hr />
+
+      <h5>Step 3: The Values Are Assigned to the Instance</h5>
+
+      <div class="code-block p-3">
+        <pre><code>this.name = name;
+this.age = age;</code></pre>
+      </div>
+
+      <p>
+        Inside this constructor, <code>this</code> refers to the newly created
+        instance.
+      </p>
+
+      <div class="memory-diagram">
+        this.name = name
+        <br />
+        |
+        <br />
+        this.name = "Arun"
+        <br />
+        <br />
+        this.age = age
+        <br />
+        |
+        <br />
+        this.age = 25
+        <br />
+        <br />
+        Instance properties:
+        <br />
+        name: "Arun"
+        <br />
+        age: 25
+      </div>
+
+      <p>After initialization, <code>user1</code> refers to that instance.</p>
+
+      <div class="code-block p-3">
+        <pre><code>user1.name // "Arun"
+user1.age  // 25</code></pre>
+      </div>
+
+      <hr />
+
+      <h5>Understand the Three Responsibilities</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Part</th>
+              <th>Responsibility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>new</code></td>
+              <td>
+                Creates a new instance and starts the constructor process.
+              </td>
+            </tr>
+            <tr>
+              <td><code>constructor(name, age)</code></td>
+              <td>Receives the arguments and runs the initialization code.</td>
+            </tr>
+            <tr>
+              <td><code>this.name = name</code></td>
+              <td>
+                Stores the parameter's value in the instance's
+                <code>name</code> property.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="success-box p-3">
+        <strong>Remember:</strong> <code>new</code> creates the instance, the
+        constructor initializes it, and the assignments store values in its
+        properties.
+      </div>
+
+      <hr />
+
+      <h5>Does the Constructor Run When the Class Is Declared?</h5>
+
+      <p>
+        <strong>No.</strong> Declaring a class defines it; it does not create an
+        instance or execute its constructor.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>class User {
+    constructor(name) {
+        console.log("Constructor running");
+        this.name = name;
+    }
+}
+
+console.log("Class declared");
+
+const user1 = new User("Arun");</code></pre>
+      </div>
+
+      <h5>Output</h5>
+
+      <div class="code-block p-3">
+        <pre><code>Class declared
+Constructor running</code></pre>
+      </div>
+
+      <p>
+        The constructor runs when <code>new User("Arun")</code> executes, not
+        when JavaScript first encounters the class declaration.
+      </p>
+
+      <hr />
+
+      <h5>What If We Create Multiple Instances?</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const user1 = new User("Arun");
+const user2 = new User("Priya");
+
+console.log(user1.name); // Arun
+console.log(user2.name); // Priya</code></pre>
+      </div>
+
+      <p>
+        Each call to <code>new User(...)</code> creates a separate instance and
+        runs the constructor for that instance. Each instance receives its own
+        property values.
+      </p>
+
+      <p class="tamil">
+        தமிழில்: <code>new</code> ஒரு புதிய object instance-ஐ உருவாக்குகிறது.
+        <code>constructor()</code> கொடுக்கப்பட்ட arguments-ஐப் பெறுகிறது.
+        <code>this.name = name</code> போன்ற assignments அந்த values-ஐ
+        instance-ன் properties-ல் சேமிக்கின்றன. Class-ஐ declare செய்வதால்
+        மட்டும் constructor இயங்காது.
+      </p>
+
+      <div class="memory-diagram">
+        Class declared
+        <br />
+        |
+        <br />
+        Constructor does not run yet
+        <br />
+        |
+        <br />
+        new User("Arun", 25)
+        <br />
+        |
+        <br />
+        Instance created + constructor runs
+        <br />
+        |
+        <br />
+        Properties initialized
+        <br />
+        |
+        <br />
+        user1 refers to the new instance
+      </div>
+    </div>
+    <div class="container-fluid">
+      <h4>3. Is <code>constructor()</code> Mandatory?</h4>
+
+      <p>
+        <strong>No! A constructor is optional in a JavaScript class.</strong>
+        If you don't write one, JavaScript provides a default constructor.
+      </p>
+
+      <h5>Example 1: A Class Without a Constructor</h5>
+
+      <div class="code-block p-3">
+        <pre><code>class User {
+}
+
+const user1 = new User("Arun");
+
+console.log(user1);      // User {}
+console.log(user1.name); // undefined</code></pre>
+      </div>
+
+      <p>
+        The object is created successfully, even though the class has no
+        explicit constructor.
+      </p>
+
+      <p>
+        But notice something important: we passed <code>"Arun"</code>, yet
+        <code>user1</code> does not have a <code>name</code> property.
+      </p>
+
+      <p><strong>Why?</strong></p>
+
+      <p>
+        JavaScript does not automatically store arguments as object properties.
+        The default constructor does not assign
+        <code>"Arun"</code> to <code>user1.name</code>.
+      </p>
+
+      <div class="memory-diagram">
+        new User("Arun")
+        <br />
+        |
+        <br />
+        New instance created
+        <br />
+        |
+        <br />
+        No code assigns a name property
+        <br />
+        |
+        <br />
+        user1.name === undefined
+      </div>
+
+      <hr />
+
+      <h5>Example 2: Assigning a Property After Creating the Object</h5>
+
+      <p>We can create the object first and assign its properties afterward.</p>
+
+      <div class="code-block p-3">
+        <pre><code>class User {
+}
+
+const user1 = new User();
+
+user1.name = "Arun";
+
+console.log(user1.name); // Arun</code></pre>
+      </div>
+
+      <p>
+        This works because we explicitly assign <code>"Arun"</code> to the
+        object's <code>name</code> property.
+      </p>
+
+      <p>
+        We don't need a constructor just to create an object or add properties
+        later.
+      </p>
+
+      <hr />
+
+      <h5>Example 3: Using Class Fields Without a Constructor</h5>
+
+      <p>
+        Sometimes, we want every instance to start with the same default values.
+        We can define those values directly as class fields.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>class User {
+    role = "member";
+
+    greet() {
+        console.log("Hello!");
+    }
+}
+
+const user1 = new User();
+const user2 = new User();
+
+console.log(user1.role); // member
+console.log(user2.role); // member
+
+user1.greet(); // Hello!</code></pre>
+      </div>
+
+      <p>Here, an explicit constructor isn't necessary because:</p>
+
+      <ul>
+        <li>
+          <code>role = "member"</code> initializes the
+          <code>role</code> property on each new instance.
+        </li>
+        <li><code>greet()</code> defines a method that instances can use.</li>
+        <li>
+          No constructor parameters or additional initialization logic are
+          needed.
+        </li>
+      </ul>
+
+      <hr />
+
+      <h5>Example 4: When Do We Need a Constructor?</h5>
+
+      <p>
+        Suppose each user needs a different name and age when created. A
+        constructor is a convenient way to initialize those values.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>class User {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+const user1 = new User("Arun", 25);
+const user2 = new User("Priya", 28);
+
+console.log(user1.name); // Arun
+console.log(user2.name); // Priya</code></pre>
+      </div>
+
+      <p>
+        In this example, the constructor receives different arguments for each
+        instance and assigns them to the appropriate properties.
+      </p>
+
+      <hr />
+
+      <h5>Quick Comparison</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Situation</th>
+              <th>Explicit Constructor Needed?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Create an empty object.</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>Set default values using class fields.</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>Add properties after creating the object.</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>Receive arguments and initialize properties.</td>
+              <td>Usually yes, when using a constructor for that purpose</td>
+            </tr>
+            <tr>
+              <td>
+                Run custom initialization logic when creating an instance.
+              </td>
+              <td>Usually yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="success-box p-3">
+        <strong>Remember:</strong> A constructor is optional, but initializing
+        the object may still be necessary. JavaScript creates the instance
+        without an explicit constructor; class fields or other code can provide
+        its initial data.
+      </div>
+
+      <p class="tamil">
+        தமிழில்: <code>constructor()</code> கட்டாயமில்லை. Constructor இல்லாமலும்
+        object உருவாக்கலாம். Default values-ஐ class fields மூலம் அமைக்கலாம்
+        அல்லது object உருவான பிறகு properties-ஐ assign செய்யலாம்.
+        உருவாக்கும்போதே arguments மூலம் initial values அமைக்க வேண்டுமெனில்
+        constructor பயனுள்ளதாக இருக்கும்.
+      </p>
+
+      <div class="memory-diagram">
+        Constructor optional
+        <br />
+        |
+        <br />
+        +-- Empty object → No explicit constructor needed
+        <br />
+        +-- Default values → Class fields
+        <br />
+        +-- Values supplied during creation → Constructor is useful
+      </div>
+    </div>
+    <div class="container-fluid">
+      <h4>Built-in JavaScript Constructors</h4>
+
+      <p>
+        JavaScript provides built-in constructors that we can use with the
+        <code>new</code> keyword to create objects. One useful example is
+        <code>Date</code>, which represents a date and time.
+      </p>
+
+      <hr />
+
+      <h4>1. <code>new Date()</code></h4>
+
+      <h5>What Is Date?</h5>
+
+      <p>
+        <code>Date</code> is a built-in JavaScript constructor used to create
+        objects that represent a specific point in time.
+      </p>
+
+      <p>Let's start by getting the current date and time.</p>
+
+      <div class="code-block p-3">
+        <pre><code>const now = new Date();
+
+console.log(now);
+console.log(now.getFullYear());
+console.log(now.getMonth());
+console.log(now.getDate());</code></pre>
+      </div>
+
+      <h5>What Happens Here?</h5>
+
+      <ul>
+        <li>
+          <code>new Date()</code> creates a Date object representing the current
+          time.
+        </li>
+        <li>
+          <code>getFullYear()</code> returns the year according to the
+          computer's local time zone.
+        </li>
+        <li>
+          <code>getMonth()</code> returns the month as a number from
+          <code>0</code> to <code>11</code>.
+        </li>
+        <li>
+          <code>getDate()</code> returns the day of the month, from
+          <code>1</code> to <code>31</code>.
+        </li>
+      </ul>
+
+      <div class="memory-diagram">
+        new Date()
+        <br />
+        |
+        <br />
+        Creates a Date object
+        <br />
+        |
+        <br />
+        +-- getFullYear() → Year
+        <br />
+        +-- getMonth() → Month index (0–11)
+        <br />
+        +-- getDate() → Day of the month (1–31)
+      </div>
+
+      <div class="note p-3">
+        <strong>Important: <code>getMonth()</code> starts at 0, not 1.</strong>
+        <div class="table-responsive mt-2">
+          <table class="table table-bordered table-sm align-middle">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Returned Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>January</td>
+                <td><code>0</code></td>
+              </tr>
+              <tr>
+                <td>February</td>
+                <td><code>1</code></td>
+              </tr>
+              <tr>
+                <td>March</td>
+                <td><code>2</code></td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>December</td>
+                <td><code>11</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <hr />
+
+      <h4>2. Create a Specific Date</h4>
+
+      <p>
+        You don't always need the current date. You can create a Date object for
+        a particular date by passing values to the constructor.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const birthday = new Date(2000, 0, 15);
+
+console.log(birthday.getFullYear()); // 2000
+console.log(birthday.getMonth());    // 0
+console.log(birthday.getDate());     // 15</code></pre>
+      </div>
+
+      <p>In this numeric constructor form, the arguments are:</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Argument</th>
+              <th>Meaning</th>
+              <th>Value in This Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>First</td>
+              <td>Year</td>
+              <td><code>2000</code></td>
+            </tr>
+            <tr>
+              <td>Second</td>
+              <td>Month index (0–11)</td>
+              <td><code>0</code> = January</td>
+            </tr>
+            <tr>
+              <td>Third</td>
+              <td>Day of the month</td>
+              <td><code>15</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Therefore, <code>new Date(2000, 0, 15)</code> represents January 15,
+        2000, at midnight in the computer's local time zone.
+      </p>
+
+      <div class="success-box p-3">
+        <strong>Remember:</strong> The month argument in this numeric form is
+        zero-based. Use <code>0</code> for January and <code>11</code> for
+        December.
+      </div>
+
+      <hr />
+
+      <h4>3. Does <code>new Date()</code> Get the Date from the Internet?</h4>
+
+      <p>
+        <strong>No.</strong> Calling <code>new Date()</code> does not search the
+        internet for the current date and time. It uses the system clock
+        available to the JavaScript environment.
+      </p>
+
+      <ul>
+        <li>
+          If the computer's clock is incorrect, the reported current time may
+          also be incorrect.
+        </li>
+        <li>
+          The Date object represents a point in time, while methods such as
+          <code>getHours()</code> and <code>getDate()</code> interpret that time
+          using the computer's local time zone.
+        </li>
+        <li>
+          Two computers in different time zones can show different local dates
+          or clock times for the same instant.
+        </li>
+      </ul>
+
+      <div class="memory-diagram">
+        Computer's System Clock
+        <br />
+        |
+        <br />
+        new Date()
+        <br />
+        |
+        <br />
+        Date object representing the current instant
+        <br />
+        |
+        <br />
+        Local Date Methods → Values in the local time zone
+      </div>
+
+      <hr />
+
+      <h4>4. Local Time vs UTC</h4>
+
+      <p>
+        JavaScript provides both local-time methods and UTC methods. UTC is a
+        common time standard, useful when you need to compare or process dates
+        consistently across time zones.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const now = new Date();
+
+// Values in the computer's local time zone
+console.log(now.getFullYear());
+console.log(now.getMonth());
+console.log(now.getDate());
+
+// Values in UTC
+console.log(now.getUTCFullYear());
+console.log(now.getUTCMonth());
+console.log(now.getUTCDate());</code></pre>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Local-Time Method</th>
+              <th>UTC Method</th>
+              <th>Returns</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>getFullYear()</code></td>
+              <td><code>getUTCFullYear()</code></td>
+              <td>Year</td>
+            </tr>
+            <tr>
+              <td><code>getMonth()</code></td>
+              <td><code>getUTCMonth()</code></td>
+              <td>Month index (0–11)</td>
+            </tr>
+            <tr>
+              <td><code>getDate()</code></td>
+              <td><code>getUTCDate()</code></td>
+              <td>Day of the month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <h4>Quick Revision</h4>
+
+      <div class="memory-diagram">
+        Date = Built-in JavaScript constructor
+        <br />
+        new Date() = Current date and time
+        <br />
+        new Date(2000, 0, 15) = Specific local date
+        <br />
+        getFullYear() = Year
+        <br />
+        getMonth() = Month index (0–11)
+        <br />
+        getDate() = Day of the month (1–31)
+        <br />
+        getUTC...() = Read date parts in UTC
+      </div>
+
+      <p class="tamil">
+        தமிழில்: <code>new Date()</code> தற்போதைய நேரத்தைக் குறிக்கும் Date
+        object-ஐ உருவாக்கும். இது internet-ல் தேடுவதில்லை; கணினியின் system
+        clock-ஐப் பயன்படுத்தும். <code>getFullYear()</code> வருடத்தையும்,
+        <code>getMonth()</code> மாத index-ஐயும்,
+        <code>getDate()</code> மாதத்தின் தேதியையும் தரும்.
+        <code>getMonth()</code>-ல் January என்பது <code>0</code>. உள்ளூர்
+        நேரத்திற்கும் UTC நேரத்திற்கும் இடையே வேறுபாடு இருக்கலாம்.
+      </p>
+    </div>
+    <div class="container-fluid">
+      <h4>Built-in JavaScript Constructor: <code>new Map()</code></h4>
+
+      <h4>1. What Is a Map?</h4>
+
+      <p>
+        A
+        <strong
+          >Map is a JavaScript data structure that stores key-value
+          pairs.</strong
+        >
+        Each key is associated with a value, and we can retrieve that value
+        using its key.
+      </p>
+
+      <p>Imagine maintaining a collection of employee IDs and names.</p>
+
+      <div class="code-block p-3">
+        <pre><code>const employees = new Map();
+
+employees.set(101, "Arun");
+employees.set(102, "Priya");
+employees.set(103, "Kumar");
+
+console.log(employees);
+
+console.log(employees.get(101)); // Arun
+console.log(employees.get(102)); // Priya
+console.log(employees.get(100)); // undefined
+
+console.log(employees.size); // 3</code></pre>
+      </div>
+
+      <h5>Understand the Code</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Purpose</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>new Map()</code></td>
+              <td>Creates an empty Map.</td>
+              <td>An empty collection</td>
+            </tr>
+            <tr>
+              <td><code>set(101, "Arun")</code></td>
+              <td>Adds a key-value pair.</td>
+              <td>101 → Arun</td>
+            </tr>
+            <tr>
+              <td><code>get(101)</code></td>
+              <td>Retrieves the value associated with key 101.</td>
+              <td><code>"Arun"</code></td>
+            </tr>
+            <tr>
+              <td><code>get(100)</code></td>
+              <td>Looks up a key that doesn't exist.</td>
+              <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>size</code></td>
+              <td>Returns the number of entries.</td>
+              <td><code>3</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="memory-diagram">
+        employees (Map)
+        <br />
+        Key → Value
+        <br />
+        101 → Arun
+        <br />
+        102 → Priya
+        <br />
+        103 → Kumar
+        <br />
+        <br />
+        size = 3
+      </div>
+
+      <p class="tamil">
+        தமிழில்: Map என்பது key-value pairs-ஐச் சேமிக்கும் data structure. ஒரு
+        key-க்கு ஒரு value-ஐ இணைத்து வைக்கலாம்; பின்னர் அந்த key மூலம் value-ஐப்
+        பெறலாம்.
+      </p>
+
+      <hr />
+
+      <h4>2. What Happens When the Same Key Is Used Again?</h4>
+
+      <p>
+        A Map cannot contain duplicate keys. If you use an existing key again
+        with <code>set()</code>, its value is updated instead of creating
+        another entry.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const scores = new Map();
+
+scores.set("Arun", 80);
+scores.set("Priya", 90);
+scores.set("Arun", 95);
+
+console.log(scores.get("Arun")); // 95
+console.log(scores.size);        // 2</code></pre>
+      </div>
+
+      <p>
+        The Map contains only two unique keys: <code>"Arun"</code> and
+        <code>"Priya"</code>.
+      </p>
+
+      <p>
+        When <code>scores.set("Arun", 95)</code> executes, Arun's existing value
+        changes from <code>80</code> to <code>95</code>. No additional entry is
+        created, so the size remains <code>2</code>.
+      </p>
+
+      <p class="tamil">
+        தமிழில்: ஏற்கெனவே உள்ள <code>"Arun"</code> key-ஐ மீண்டும்
+        பயன்படுத்தினால், பழைய value update ஆகும். அதே key-க்காக duplicate entry
+        உருவாகாது.
+      </p>
+
+      <hr />
+
+      <h4>3. Practical Map Methods and Properties</h4>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Method / Property</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>set(key, value)</code></td>
+              <td>Adds an entry or updates an existing value.</td>
+            </tr>
+            <tr>
+              <td><code>get(key)</code></td>
+              <td>
+                Retrieves the value for a key, or <code>undefined</code> if the
+                key is absent.
+              </td>
+            </tr>
+            <tr>
+              <td><code>has(key)</code></td>
+              <td>Checks whether a key exists.</td>
+            </tr>
+            <tr>
+              <td><code>delete(key)</code></td>
+              <td>Removes an entry and returns whether it was removed.</td>
+            </tr>
+            <tr>
+              <td><code>size</code></td>
+              <td>Returns the number of entries.</td>
+            </tr>
+            <tr>
+              <td><code>clear()</code></td>
+              <td>Removes all entries.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <h4>4. Store an Object as a Map Value</h4>
+
+      <p>
+        A Map can store any JavaScript value as a value, including an object.
+        Let's store a user's details against the key <code>1</code>.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const map = new Map();
+
+console.log(map);
+
+map.set(1, { name: "k7", age: 10 });
+
+console.log(map);
+
+const user = map.get(1);
+
+console.log(user);</code></pre>
+      </div>
+
+      <h5>Output</h5>
+
+      <div class="code-block p-3">
+        <pre><code>Map(0) {}
+
+Map(1) { 1 => { name: 'k7', age: 10 } }
+
+{ name: 'k7', age: 10 }</code></pre>
+      </div>
+
+      <p>
+        The exact formatting of console output can vary between Node.js and
+        browser developer tools, but the underlying data is the same.
+      </p>
+
+      <hr />
+
+      <h4>5. Understand the Example Step by Step</h4>
+
+      <h5>Step 1: Create an Empty Map</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const map = new Map();
+
+console.log(map);</code></pre>
+      </div>
+
+      <p><code>new Map()</code> creates a Map with no entries.</p>
+
+      <div class="memory-diagram">
+        map
+        <br />
+        Map(0) {}
+        <br />
+        No key-value pairs yet
+      </div>
+
+      <h5>Step 2: Store an Object Using <code>set()</code></h5>
+
+      <div class="code-block p-3">
+        <pre><code>map.set(1, { name: "k7", age: 10 });</code></pre>
+      </div>
+
+      <p>The <code>set()</code> method receives two arguments:</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Argument</th>
+              <th>Value</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>First argument</td>
+              <td><code>1</code></td>
+              <td>The Map key</td>
+            </tr>
+            <tr>
+              <td>Second argument</td>
+              <td><code>{ name: "k7", age: 10 }</code></td>
+              <td>The object stored as the value</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="memory-diagram">
+        map
+        <br />
+        ┌─────────┬─────────────────────────────┐
+        <br />
+        │ Key │ Value │
+        <br />
+        ├─────────┼─────────────────────────────┤
+        <br />
+        │ 1 │ { name: "k7", age: 10 } │
+        <br />
+        └─────────┴─────────────────────────────┘
+        <br />
+        size = 1
+      </div>
+
+      <p>
+        Notice that <code>1</code> is the key, and the entire object is its
+        value. The object's properties, <code>name</code> and <code>age</code>,
+        are not separate Map entries.
+      </p>
+
+      <h5>Step 3: Retrieve the Object Using <code>get()</code></h5>
+
+      <div class="code-block p-3">
+        <pre><code>const user = map.get(1);
+
+console.log(user);      // { name: 'k7', age: 10 }
+console.log(user.name); // k7
+console.log(user.age);  // 10</code></pre>
+      </div>
+
+      <p>
+        <code>map.get(1)</code> retrieves the value associated with key
+        <code>1</code>. Because that value is an object, the variable
+        <code>user</code> refers to the same object stored in the Map; it is not
+        a separate copy.
+      </p>
+
+      <h5>Step 4: Prove That Both Refer to the Same Object</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const map = new Map();
+
+map.set(1, { name: "k7", age: 10 });
+
+const user = map.get(1);
+
+user.age = 20;
+
+console.log(user.age);     // 20
+console.log(map.get(1).age); // 20</code></pre>
+      </div>
+
+      <p>
+        Changing <code>user.age</code> also changes the object you retrieve from
+        the Map, because both references point to the same object.
+      </p>
+
+      <div class="success-box p-3">
+        <strong>Important takeaway:</strong> A Map stores the object as its
+        value. When you retrieve that object with <code>get()</code>, you get
+        the same object reference, not a deep copy.
+      </div>
+
+      <hr />
+
+      <h4>6. Map Keys Can Have Different Types</h4>
+
+      <p>
+        Map keys can be numbers, strings, objects, functions, and other
+        JavaScript values. For example, the number <code>1</code> and the string
+        <code>"1"</code> are different keys.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const data = new Map();
+
+data.set(1, "Number key");
+data.set("1", "String key");
+
+console.log(data.get(1));   // Number key
+console.log(data.get("1")); // String key
+console.log(data.size);     // 2</code></pre>
+      </div>
+
+      <hr />
+
+      <h4>Quick Revision</h4>
+
+      <div class="memory-diagram">
+        new Map() = Create an empty Map
+        <br />
+        set(key, value) = Add or update an entry
+        <br />
+        get(key) = Retrieve a value
+        <br />
+        has(key) = Check whether a key exists
+        <br />
+        delete(key) = Remove one entry
+        <br />
+        size = Count entries
+        <br />
+        clear() = Remove all entries
+        <br />
+        Same key again = Update its value
+        <br />
+        Object as value = Can retrieve and mutate the same object
+      </div>
+
+      <p class="tamil">
+        தமிழில்: <code>new Map()</code> காலியான Map-ஐ உருவாக்கும்.
+        <code>set()</code> value-ஐ சேர்க்க அல்லது update செய்யும்.
+        <code>get()</code> அந்த value-ஐப் பெறும். Value ஒரு object ஆக இருந்தால்,
+        <code>get()</code> மூலம் கிடைப்பது அதே object reference; தனி copy அல்ல.
+      </p>
+    </div>
+    <div class="container-fluid">
+      <h4>2. What Is a Set?</h4>
+
+      <p>
+        You've learned that a <code>Map</code> stores key-value pairs. A
+        <strong
+          >Set is a JavaScript data structure that stores unique values</strong
+        >. Adding the same value more than once does not create duplicate
+        entries.
+      </p>
+
+      <p>Imagine you have an array of numbers containing duplicates.</p>
+
+      <div class="code-block p-3">
+        <pre><code>const numbers = [10, 20, 10, 30, 20, 40];
+
+const uniqueNumbers = new Set(numbers);
+
+console.log(uniqueNumbers);
+// Set(4) { 10, 20, 30, 40 }
+
+console.log(uniqueNumbers.size); // 4</code></pre>
+      </div>
+
+      <h5>Understand the Flow</h5>
+
+      <div class="memory-diagram">
+        Original Array
+        <br />
+        [10, 20, 10, 30, 20, 40]
+        <br />
+        |
+        <br />
+        new Set(numbers)
+        <br />
+        |
+        <br />
+        Remove duplicate values
+        <br />
+        |
+        <br />
+        Set { 10, 20, 30, 40 }
+        <br />
+        |
+        <br />
+        size = 4
+      </div>
+
+      <ol>
+        <li><code>numbers</code> contains six values, including duplicates.</li>
+        <li>
+          <code>new Set(numbers)</code> creates a Set using the array's values.
+        </li>
+        <li>Repeated values are stored only once.</li>
+        <li>The resulting Set contains four unique values.</li>
+      </ol>
+
+      <p>
+        <strong>Important:</strong> The original array is not modified. The Set
+        is a separate collection.
+      </p>
+
+      <p class="tamil">
+        தமிழில்: Set என்பது duplicate values இல்லாமல் unique values மட்டும்
+        சேமிக்கும் data structure.
+      </p>
+
+      <hr />
+
+      <h4>2. Adding and Removing Values</h4>
+
+      <p>
+        You can create an empty Set and add values individually using the
+        <code>add()</code> method.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const fruits = new Set();
+
+fruits.add("Apple");
+fruits.add("Banana");
+fruits.add("Apple");
+
+console.log(fruits);      // Set(2) { 'Apple', 'Banana' }
+console.log(fruits.size); // 2
+
+console.log(fruits.has("Apple")); // true
+
+fruits.delete("Banana");
+
+console.log(fruits.size); // 1</code></pre>
+      </div>
+
+      <h5>What Happened?</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Operation</th>
+              <th>Set Contents</th>
+              <th>Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>new Set()</code></td>
+              <td>Empty</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td><code>add("Apple")</code></td>
+              <td>Apple</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><code>add("Banana")</code></td>
+              <td>Apple, Banana</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td><code>add("Apple")</code></td>
+              <td>Apple, Banana</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td><code>delete("Banana")</code></td>
+              <td>Apple</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Notice that adding <code>"Apple"</code> a second time does not increase
+        the size. A Set keeps only one occurrence of that string value.
+      </p>
+
+      <hr />
+
+      <h4>3. Practical Set Methods and Properties</h4>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Method / Property</th>
+              <th>Purpose</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>add(value)</code></td>
+              <td>
+                Adds a value if an equivalent value isn't already present.
+              </td>
+              <td><code>fruits.add("Mango")</code></td>
+            </tr>
+            <tr>
+              <td><code>has(value)</code></td>
+              <td>Checks whether a value exists.</td>
+              <td><code>fruits.has("Apple")</code></td>
+            </tr>
+            <tr>
+              <td><code>delete(value)</code></td>
+              <td>Removes a value.</td>
+              <td><code>fruits.delete("Apple")</code></td>
+            </tr>
+            <tr>
+              <td><code>size</code></td>
+              <td>Returns the number of unique values.</td>
+              <td><code>fruits.size</code></td>
+            </tr>
+            <tr>
+              <td><code>clear()</code></td>
+              <td>Removes all values.</td>
+              <td><code>fruits.clear()</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <h4>4. A Practical Example: Remove Duplicate Email Addresses</h4>
+
+      <p>
+        Suppose an API returns an array containing duplicate email addresses. We
+        want to keep each email only once.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const emails = [
+    "arun@example.com",
+    "priya@example.com",
+    "arun@example.com"
+];
+
+const uniqueEmails = [...new Set(emails)];
+
+console.log(uniqueEmails);
+// ["arun@example.com", "priya@example.com"]</code></pre>
+      </div>
+
+      <h5>Understand <code>[...new Set(emails)]</code></h5>
+
+      <div class="memory-diagram">
+        emails (Array)
+        <br />
+        ["arun@example.com", "priya@example.com", "arun@example.com"]
+        <br />
+        |
+        <br />
+        new Set(emails)
+        <br />
+        |
+        <br />
+        Set { "arun@example.com", "priya@example.com" }
+        <br />
+        |
+        <br />
+        ... (Spread Syntax)
+        <br />
+        |
+        <br />
+        New Array
+        <br />
+        ["arun@example.com", "priya@example.com"]
+      </div>
+
+      <p>There are two important operations here:</p>
+
+      <ul>
+        <li>
+          <code>new Set(emails)</code> removes duplicate email values by storing
+          only unique values.
+        </li>
+        <li>
+          <code>[...new Set(emails)]</code> uses spread syntax to collect the
+          Set's values into a new array.
+        </li>
+      </ul>
+
+      <div class="success-box p-3">
+        <strong>Remember:</strong> Spread syntax does not remove duplicates by
+        itself. The Set removes duplicates; spread syntax converts the Set's
+        iterable values into an array.
+      </div>
+
+      <hr />
+
+      <h4>5. What If the Email Addresses Are Stored in an Object?</h4>
+
+      <p>
+        Sometimes, the data may be stored in an object rather than an array.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const emails = {
+    mail1: "arun@example.com",
+    mail2: "priya@example.com",
+    mail3: "arun@example.com"
+};
+
+const emailValues = Object.values(emails);
+
+console.log(emailValues);
+// ["arun@example.com", "priya@example.com", "arun@example.com"]
+
+const uniqueEmails = [...new Set(emailValues)];
+
+console.log(uniqueEmails);
+// ["arun@example.com", "priya@example.com"]</code></pre>
+      </div>
+
+      <h5>Step-by-Step Explanation</h5>
+
+      <p><strong>Step 1: Extract the object's values.</strong></p>
+
+      <div class="code-block p-3">
+        <pre><code>const emailValues = Object.values(emails);</code></pre>
+      </div>
+
+      <p>
+        <code>Object.values()</code> returns an array containing the object's
+        values, without the property names.
+      </p>
+
+      <p><strong>Step 2: Remove duplicates and create a new array.</strong></p>
+
+      <div class="code-block p-3">
+        <pre><code>const uniqueEmails = [...new Set(emailValues)];</code></pre>
+      </div>
+
+      <p>
+        Here, the Set removes duplicate email values, and the spread syntax
+        creates an array from the Set.
+      </p>
+
+      <div class="memory-diagram">
+        Object
+        <br />
+        |
+        <br />
+        Object.values(emails)
+        <br />
+        |
+        <br />
+        Array of email values
+        <br />
+        |
+        <br />
+        new Set(emailValues)
+        <br />
+        |
+        <br />
+        Unique values
+        <br />
+        |
+        <br />
+        [...Set]
+        <br />
+        |
+        <br />
+        New array without duplicate email values
+      </div>
+
+      <div class="note p-3">
+        <strong>Important correction:</strong>
+        <code>[...new Set(emailValues)]</code> does not directly convert the
+        object into an array. First, <code>Object.values(emails)</code> converts
+        the object's values into an array. Then the Set removes duplicates, and
+        spread syntax creates the final array.
+      </div>
+
+      <hr />
+
+      <h4>6. Does Set Remove Duplicate Objects Too?</h4>
+
+      <p>
+        Be careful! For primitive values such as strings and numbers, Set
+        recognizes equivalent values. But objects are compared by reference, not
+        by their contents.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const users = new Set();
+
+users.add({ name: "Arun" });
+users.add({ name: "Arun" });
+
+console.log(users.size); // 2</code></pre>
+      </div>
+
+      <p>
+        Although both objects have the same properties and values, they are two
+        separately created objects with different references. Therefore, both
+        are stored in the Set.
+      </p>
+
+      <p>
+        However, adding the exact same object reference twice will not create a
+        duplicate.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const user = { name: "Arun" };
+
+const users = new Set();
+
+users.add(user);
+users.add(user);
+
+console.log(users.size); // 1</code></pre>
+      </div>
+
+      <hr />
+
+      <h4>7. Map vs Set</h4>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Map</th>
+              <th>Set</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Stores key-value pairs.</td>
+              <td>Stores unique values.</td>
+            </tr>
+            <tr>
+              <td>Created with <code>new Map()</code>.</td>
+              <td>Created with <code>new Set()</code>.</td>
+            </tr>
+            <tr>
+              <td>Uses <code>set(key, value)</code>.</td>
+              <td>Uses <code>add(value)</code>.</td>
+            </tr>
+            <tr>
+              <td>Uses <code>get(key)</code> to retrieve a value.</td>
+              <td>Uses <code>has(value)</code> to check for a value.</td>
+            </tr>
+            <tr>
+              <td>A repeated key updates its value.</td>
+              <td>A repeated equivalent value does not add another entry.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <h4>Quick Revision</h4>
+
+      <div class="memory-diagram">
+        new Set() = Create an empty Set
+        <br />
+        new Set(array) = Create a Set from iterable values
+        <br />
+        add(value) = Add a unique value
+        <br />
+        has(value) = Check whether the value exists
+        <br />
+        delete(value) = Remove a value
+        <br />
+        size = Count unique values
+        <br />
+        clear() = Remove all values
+        <br />
+        [...set] = Create an array from Set values
+        <br />
+        [...new Set(array)] = Create an array without duplicate values
+      </div>
+
+      <p class="tamil">
+        தமிழில்: <code>Set</code> unique values-ஐ மட்டும் சேமிக்கும்.
+        <code>new Set(array)</code> array-யிலிருந்து duplicate values-ஐ நீக்க
+        உதவும். <code>[...new Set(array)]</code> மூலம் அந்த unique values-ஐ
+        மீண்டும் ஒரு புதிய array-ஆகப் பெறலாம். Object values-ஐ array-ஆகப் பெற
+        முதலில் <code>Object.values()</code> பயன்படுத்தலாம்.
+      </p>
+    </div>
+    <div class="container-fluid">
+      <h4>Map vs Set — The Main Difference</h4>
+
+      <p>
+        Both <code>Map</code> and <code>Set</code> store collections of values,
+        but they serve different purposes.
+      </p>
+
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">Map</div>
+            <div class="ref-side">
+              <div class="memory-diagram">
+                Key → Value
+                <br />
+                1 → Arun
+                <br />
+                2 → Priya
+                <br />
+                3 → Priya
+              </div>
+              <p><strong>Stores key-value pairs.</strong></p>
+              <p>Keys must be unique, but values can repeat.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Set</div>
+            <div class="exec-side">
+              <div class="memory-diagram">
+                Unique Values
+                <br />
+                Arun
+                <br />
+                Priya
+              </div>
+              <p><strong>Stores unique values only.</strong></p>
+              <p>Adding the same value again does not create another entry.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <h4>1. Map — Keys Must Be Unique, Values Can Repeat</h4>
+
+      <div class="code-block p-3">
+        <pre><code>const users = new Map();
+
+users.set(1, "Arun");
+users.set(2, "Priya");
+users.set(3, "Priya");
+
+console.log(users.size); // 3
+console.log(users.get(2)); // Priya
+console.log(users.get(3)); // Priya</code></pre>
+      </div>
+
+      <p><strong>Why are there 3 entries?</strong></p>
+      <p>
+        The keys <code>1</code>, <code>2</code>, and <code>3</code> are
+        different. Even though two entries have the same value,
+        <code>"Priya"</code>, both entries are stored because their keys are
+        different.
+      </p>
+
+      <div class="memory-diagram">
+        Map
+        <br />
+        ┌─────────┬─────────┐
+        <br />
+        │ Key │ Value │
+        <br />
+        ├─────────┼─────────┤
+        <br />
+        │ 1 │ Arun │
+        <br />
+        │ 2 │ Priya │
+        <br />
+        │ 3 │ Priya │
+        <br />
+        └─────────┴─────────┘
+        <br />
+        size = 3
+      </div>
+
+      <h5>What If We Use the Same Key Again?</h5>
+
+      <div class="code-block p-3">
+        <pre><code>users.set(2, "Kumar");
+
+console.log(users.size);    // 3
+console.log(users.get(2)); // Kumar</code></pre>
+      </div>
+
+      <p>
+        The existing value for key <code>2</code> is updated from
+        <code>"Priya"</code> to <code>"Kumar"</code>. No new entry is created,
+        so the size remains <code>3</code>.
+      </p>
+
+      <hr />
+
+      <h4>2. Set — Only Unique Values Are Stored</h4>
+
+      <div class="code-block p-3">
+        <pre><code>const users = new Set();
+
+users.add("Arun");
+users.add("Priya");
+users.add("Priya");
+
+console.log(users.size); // 2
+
+console.log(users.has("Arun"));  // true
+console.log(users.has("Priya")); // true</code></pre>
+      </div>
+
+      <p><strong>Why are there only 2 values?</strong></p>
+      <p>
+        The second <code>add("Priya")</code> does not add another entry because
+        that value already exists in the Set.
+      </p>
+
+      <div class="memory-diagram">
+        Set
+        <br />
+        ┌─────────┐
+        <br />
+        │ Value │
+        <br />
+        ├─────────┤
+        <br />
+        │ Arun │
+        <br />
+        │ Priya │
+        <br />
+        └─────────┘
+        <br />
+        size = 2
+      </div>
+
+      <hr />
+
+      <h4>3. The Main Difference at a Glance</h4>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Map</th>
+              <th>Set</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Stores</td>
+              <td>Key-value pairs</td>
+              <td>Unique values</td>
+            </tr>
+            <tr>
+              <td>Duplicate keys or values</td>
+              <td>Duplicate keys are not stored; values can repeat.</td>
+              <td>Equivalent values are stored only once.</td>
+            </tr>
+            <tr>
+              <td>Add or update</td>
+              <td><code>set(key, value)</code></td>
+              <td><code>add(value)</code></td>
+            </tr>
+            <tr>
+              <td>Retrieve or check</td>
+              <td><code>get(key)</code>, <code>has(key)</code></td>
+              <td><code>has(value)</code></td>
+            </tr>
+            <tr>
+              <td>Count entries</td>
+              <td><code>map.size</code></td>
+              <td><code>set.size</code></td>
+            </tr>
+            <tr>
+              <td>Example use</td>
+              <td>Employee ID → Employee name</td>
+              <td>Unique email addresses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <h4>4. The Decision Rule</h4>
+
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">Map</div>
+            <div class="ref-side">
+              <p><strong>Question:</strong> Is this key already present?</p>
+              <div class="memory-diagram">
+                Existing key?
+                <br />
+                ├── Yes → Update its value
+                <br />
+                └── No → Add a new entry
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Set</div>
+            <div class="exec-side">
+              <p><strong>Question:</strong> Is this value already present?</p>
+              <div class="memory-diagram">
+                Existing value?
+                <br />
+                ├── Yes → Don't add it again
+                <br />
+                └── No → Add the value
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <h4>Quick Memory Trick</h4>
+
+      <div class="success-box p-3">
+        <p><strong>Map = Key → Value</strong></p>
+        <p>
+          Same key again? Update the value. Different keys can have the same
+          value.
+        </p>
+        <p><strong>Set = Unique Values Only</strong></p>
+        <p>Same value again? It isn't added twice.</p>
+      </div>
+
+      <p class="tamil">
+        <strong>Map:</strong> ஒரே key-ஐ மீண்டும் கொடுத்தால், அதன் value update
+        ஆகும். வெவ்வேறு keys-க்கு ஒரே value இருக்கலாம்.
+      </p>
+      <p class="tamil">
+        <strong>Set:</strong> ஒரே value-ஐ மீண்டும் கொடுத்தால், duplicate entry
+        சேராது.
+      </p>
+    </div>
+  </body>
+</html>
