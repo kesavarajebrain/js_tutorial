@@ -19708,6 +19708,838 @@ a();
         console.log(copyStringTwo)
 
 </pre>
+<hr>
+<h5>Currying</h5>
+<p>
+    A normal function can accept multiple arguments in one call.
+    In <span class="highlight">currying</span>, arguments are supplied
+    through a sequence of function calls.
+</p>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Normal Function</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(10, 20));
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                add(10, 20)
+                <br>
+                ↓
+                <br>
+                <span class="highlight">30</span>
+            </div>
+
+            <p class="tamil mb-0">
+                ஒரே function call-ல் இரண்டு arguments கொடுக்கிறோம்.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Curried Function</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+function add(a) {
+    return function (b) {
+        return a + b;
+    };
+}
+
+console.log(add(10)(20));
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                add(10)
+                <br>
+                ↓
+                <br>
+                Returns a function
+                <br>
+                ↓
+                <br>
+                (20)
+                <br>
+                ↓
+                <br>
+                <span class="highlight">30</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>1. Understand Currying Step by Step</h5>
+
+<div class="code-block p-3">
+<pre><code>
+function add(a) {
+    return function (b) {
+        return a + b;
+    };
+}
+
+const function1 = add(10);
+
+console.log(function1(20)); // 30
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Step 1 — Call add(10)</strong>
+
+            <div class="memory-diagram mt-2">
+                add(10)
+                <br>
+                ↓
+                <br>
+                a = 10
+                <br>
+                ↓
+                <br>
+                Returns inner function
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Step 2 — Store the Function</strong>
+
+            <div class="memory-diagram mt-2">
+                const function1 = add(10)
+                <br>
+                ↓
+                <br>
+                function1 stores
+                the returned function
+                <br>
+                ↓
+                <br>
+                a = 10 is remembered
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="example-box h-100">
+            <strong>Step 3 — Call function1(20)</strong>
+
+            <div class="memory-diagram mt-2">
+                function1(20)
+                <br>
+                ↓
+                <br>
+                b = 20
+                <br>
+                ↓
+                <br>
+                10 + 20
+                <br>
+                ↓
+                <br>
+                <span class="highlight">30</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why does the inner function remember 10?</strong>
+
+    <p class="mb-0 mt-2">
+        <span class="highlight">Closure</span> காரணமாக inner function,
+        outer function-ல் இருந்த <span class="highlight">a = 10</span>
+        value-ஐ நினைவில் வைத்திருக்கிறது.
+        <span class="highlight">add(10)</span> முடிந்த பிறகும்,
+        returned function அந்த value-ஐ access செய்ய முடியும்.
+    </p>
+</div>
+
+<h5>2. Assigning to a Variable Is Optional</h5>
+
+<p>
+    Inner function-ஐ variable-ல் store செய்வது கட்டாயமில்லை.
+    Direct-ஆகவும் chained calls செய்யலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+function add(a) {
+    return function (b) {
+        return a + b;
+    };
+}
+
+console.log(add(10)(20)); // 30
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    <span class="highlight">add(10)</span>
+    <br>
+    ↓
+    <br>
+    Returns the inner function
+    <br>
+    ↓
+    <br>
+    <span class="highlight">(20)</span>
+    <br>
+    ↓
+    <br>
+    Calls the returned function with b = 20
+    <br>
+    ↓
+    <br>
+    <span class="highlight">30</span>
+</div>
+
+<div class="success-box">
+    <strong>Remember the Difference:</strong>
+    <div class="code-block p-3 mt-2">
+<pre><code>
+add(10);       // Returns a function
+
+add(10)(20);   // Calls that function with 20
+</code></pre>
+    </div>
+</div>
+
+<h5>3. Practical Example — Multiply</h5>
+
+<div class="code-block p-3">
+<pre><code>
+function multiply(a) {
+    return function (b) {
+        return a * b;
+    };
+}
+
+const double = multiply(2);
+const triple = multiply(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">double</div>
+
+            <div class="memory-diagram mt-2">
+                multiply(2)
+                <br>
+                ↓
+                <br>
+                a = 2
+                <br>
+                ↓
+                <br>
+                double(5)
+                <br>
+                ↓
+                <br>
+                2 × 5
+                <br>
+                ↓
+                <span class="highlight">10</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">triple</div>
+
+            <div class="memory-diagram mt-2">
+                multiply(3)
+                <br>
+                ↓
+                <br>
+                a = 3
+                <br>
+                ↓
+                <br>
+                triple(5)
+                <br>
+                ↓
+                <br>
+                3 × 5
+                <br>
+                ↓
+                <span class="highlight">15</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Important Connection — Closure:</strong>
+
+    <p class="mb-0 mt-2">
+        <span class="highlight">double</span> function,
+        <span class="highlight">a = 2</span>-ஐ நினைவில் வைத்திருக்கிறது.
+        <span class="highlight">triple</span> function,
+        <span class="highlight">a = 3</span>-ஐ நினைவில் வைத்திருக்கிறது.
+        இரண்டும் ஒரே <span class="highlight">multiply</span> function-ல்
+        இருந்து வந்தாலும், அவற்றின் captured values வேறுபடுகின்றன.
+    </p>
+</div>
+
+<h5>4. Currying with Arrow Functions</h5>
+
+<p>
+    இதே concept-ஐ arrow function syntax-ல் எழுதலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const multiply = (a) => {
+    return (b) => a * b;
+};
+
+const double = multiply(2);
+const triple = multiply(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+</code></pre>
+</div>
+
+<p>
+    இதை இன்னும் compact-ஆக எழுதலாம்:
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const multiply = a => b => a * b;
+
+const double = multiply(2);
+const triple = multiply(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    multiply = a =&gt; b =&gt; a * b
+    <br>
+    ↓
+    <br>
+    First call → receives a
+    <br>
+    ↓
+    <br>
+    Returns another function
+    <br>
+    ↓
+    <br>
+    Second call → receives b
+    <br>
+    ↓
+    <br>
+    Returns a * b
+</div>
+
+<h5>5. What Is Actually Happening?</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">First Call</div>
+
+            <div class="memory-diagram mt-2">
+                multiply(2)
+                <br>
+                ↓
+                <br>
+                a = 2
+                <br>
+                ↓
+                <br>
+                Creates a function
+                that remembers a
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Second Call</div>
+
+            <div class="memory-diagram mt-2">
+                double(5)
+                <br>
+                ↓
+                <br>
+                b = 5
+                <br>
+                ↓
+                <br>
+                a * b
+                <br>
+                ↓
+                <span class="highlight">10</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="memory-diagram">
+    <strong>Currying</strong>
+    <br>
+    ↓
+    <br>
+    One function receives an argument
+    <br>
+    ↓
+    <br>
+    Returns another function
+    <br>
+    ↓
+    <br>
+    Next function receives another argument
+    <br>
+    ↓
+    <br>
+    Final result
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">Normal function → multiple arguments in one call</span>
+    <br>
+    <span class="highlight">Curried function → arguments supplied through multiple calls</span>
+    <br>
+    <span class="highlight">Closure → remembers values such as a</span>
+    <br>
+    <span class="highlight">add(10) → returns a function</span>
+    <br>
+    <span class="highlight">add(10)(20) → returns 30</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">Currying = ஒரு argument கொடு → function கிடைக்கும் → அடுத்த argument கொடு → result கிடைக்கும்.</span>
+</p>
+<h5>Currying — More Examples + Partial Application</h5>
+
+<h5>1. Practical Currying Example — Tax Calculation</h5>
+
+<p>
+    ஒரு product-ன் price மற்றும் tax percentage கொடுத்து
+    total amount calculate செய்யலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const totalAmount = price => taxPercent => {
+    const taxAmount = price * taxPercent / 100;
+
+    console.log("Tax amount:", taxAmount);
+
+    return `Total: ${price + taxAmount}`;
+};
+
+console.log(totalAmount(10890)(4.6));
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    totalAmount(10890)
+    <p>↓</p>
+    <p>price = 10890</p>
+    <p>Returns another function</p>
+    <p>↓</p>
+    totalAmount(10890)(4.6)
+    <p>↓</p>
+    <p>taxPercent = 4.6</p>
+    <p>↓</p>
+    Tax = 10890 × 4.6 / 100 = 500.94
+    <p>↓</p>
+    <span class="highlight">Total: 11390.94</span>
+</div>
+
+<div class="success-box">
+    <strong>What is happening?</strong>
+    <p class="mb-0 mt-2">
+        First call-ல் <span class="highlight">price</span> கிடைக்கிறது.
+        Second call-ல் <span class="highlight">taxPercent</span> கிடைக்கிறது.
+        Inner function closure மூலம் price-ஐ நினைவில் வைத்து
+        total calculate செய்கிறது.
+    </p>
+</div>
+
+<h5>2. More Compact Currying</h5>
+
+<p>
+    ஒரே logic-ஐ இன்னும் compact-ஆக எழுதலாம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+const totalAmount = price =>
+    taxPercent => price + price * taxPercent / 100;
+
+console.log(totalAmount(99)(2.5)); // 101.475
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    totalAmount(99)
+    <p>↓</p>
+    <p>price = 99 is remembered</p>
+    <p>↓</p>
+    <p>Call the returned function with 2.5</p>
+    <p>↓</p>
+    99 + (99 × 2.5 / 100)
+    <p>↓</p>
+    <span class="highlight">101.475</span>
+</div>
+
+<div class="success-box">
+    <strong>Notice:</strong>
+    <span class="highlight">price</span> மற்றும்
+    <span class="highlight">taxPercent</span> இரண்டு arguments-ம்
+    ஒரே call-ல் கொடுக்கப்படவில்லை.
+    Successive function calls மூலம் வழங்கப்படுகின்றன.
+</div>
+
+<h5>3. What Is Partial Application?</h5>
+
+<p>
+    <span class="highlight">Partial application</span> என்றால்,
+    ஒரு function-ன் சில arguments-ஐ முன்கூட்டியே fix செய்து,
+    மீதமுள்ள arguments-ஐ பின்னர் பெறக்கூடிய புதிய function உருவாக்குவது.
+</p>
+
+<div class="success-box">
+    <strong>Tamil Mental Model:</strong>
+    <p class="mb-0 mt-2">
+        சில arguments-ஐ இப்போதே கொடுத்து fix செய்.
+        மீதமுள்ள arguments-ஐ பின்னர் கொடுத்து function-ஐ பயன்படுத்திக்கொள்.
+    </p>
+</div>
+
+<h5>Example — Normal Function</h5>
+
+<div class="code-block p-3">
+<pre><code>
+function add(a, b, c) {
+    return a + b + c;
+}
+
+console.log(add(10, 2, 3)); // 15
+</code></pre>
+</div>
+
+<p>
+    இந்த function-க்கு மூன்று arguments தேவை:
+    <span class="highlight">a</span>, <span class="highlight">b</span>,
+    <span class="highlight">c</span>.
+</p>
+
+<h5>Partial Application — Fix One Argument</h5>
+
+<div class="code-block p-3">
+<pre><code>
+function add(a, b, c) {
+    return a + b + c;
+}
+
+const addTen = (b, c) => add(10, b, c);
+
+console.log(addTen(2, 3)); // 15
+console.log(addTen(5, 5)); // 20
+</code></pre>
+</div>
+
+<div class="memory-diagram">
+    addTen
+    <p>↓</p>
+    <p>a is fixed at 10</p>
+    <p>↓</p>
+    add(10, b, c)
+    <p>↓</p>
+    <p>Supply b and c later</p>
+    <p>↓</p>
+    <span class="highlight">Final result</span>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">First Call</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+addTen(2, 3);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a = 10
+                <p>b = 2</p>
+                <p>c = 3</p>
+                <p>↓</p>
+                <span class="highlight">15</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Second Call</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+addTen(5, 5);
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                a = 10
+                <p>b = 5</p>
+                <p>c = 5</p>
+                <p>↓</p>
+                <span class="highlight">20</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>What's happening?</strong>
+    <p class="mb-1 mt-2">
+        1. Original <span class="highlight">add()</span> function மூன்று arguments பெறுகிறது.
+    </p>
+    <p class="mb-1">
+        2. <span class="highlight">addTen()</span> முதல் argument-ஐ
+        <span class="highlight">10</span>-ஆக fix செய்கிறது.
+    </p>
+    <p class="mb-0">
+        3. ஒவ்வொரு call-லும் மீதமுள்ள இரண்டு arguments கொடுக்கப்படுகின்றன.
+    </p>
+</div>
+
+<h5>4. Currying vs Partial Application</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Currying</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+const addCurried =
+    a => b => c => a + b + c;
+
+console.log(addCurried(10)(2)(3));
+// 15
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                First call → a
+                <p>↓</p>
+                Second call → b
+                <p>↓</p>
+                Third call → c
+                <p>↓</p>
+                <span class="highlight">15</span>
+            </div>
+
+            <p class="tamil mb-0">
+                Arguments successive function calls மூலம்
+                ஒவ்வொன்றாக வழங்கப்படுகின்றன.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Partial Application</div>
+
+            <div class="code-block p-3 mt-2">
+<pre><code>
+function add(a, b, c) {
+    return a + b + c;
+}
+
+const addTen = (b, c) => add(10, b, c);
+
+console.log(addTen(2, 3));
+// 15
+</code></pre>
+            </div>
+
+            <div class="memory-diagram">
+                Fix a = 10
+                <p>↓</p>
+                Supply b and c together
+                <p>↓</p>
+                <span class="highlight">15</span>
+            </div>
+
+            <p class="tamil mb-0">
+                சில arguments முன்கூட்டியே fix செய்யப்படுகின்றன.
+                மீதமுள்ள arguments-ஐ ஒன்றாகவும் கொடுக்கலாம்.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Core Difference:</strong>
+    <p class="mb-1 mt-2">
+        <span class="highlight">Currying</span> → ஒரு function-ஐ
+        multiple single-argument function calls ஆக மாற்றுகிறது.
+    </p>
+    <p class="mb-0">
+        <span class="highlight">Partial application</span> → சில arguments-ஐ
+        முன்கூட்டியே fix செய்து, மீதமுள்ள arguments-ஐ பெறும் புதிய function உருவாக்குகிறது.
+    </p>
+</div>
+
+<h5>5. Practical Example — GST Calculation</h5>
+
+<p>
+    ஒரு application-ல் வெவ்வேறு tax rates-ஐ அடிக்கடி பயன்படுத்துகிறோம்
+    என்று வைத்துக்கொள்வோம்.
+</p>
+
+<div class="code-block p-3">
+<pre><code>
+function calculatePrice(price, taxRate) {
+    return price + price * taxRate;
+}
+
+const addGST18 = price => calculatePrice(price, 0.18);
+const addGST5 = price => calculatePrice(price, 0.05);
+
+console.log(addGST18(1000)); // 1180
+console.log(addGST5(1000));  // 1050
+</code></pre>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>18% GST</strong>
+
+            <div class="memory-diagram mt-2">
+                addGST18(1000)
+                <p>↓</p>
+                <p>Tax rate fixed at 0.18</p>
+                <p>↓</p>
+                1000 + (1000 × 0.18)
+                <p>↓</p>
+                <span class="highlight">1180</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>5% GST</strong>
+
+            <div class="memory-diagram mt-2">
+                addGST5(1000)
+                <p>↓</p>
+                <p>Tax rate fixed at 0.05</p>
+                <p>↓</p>
+                1000 + (1000 × 0.05)
+                <p>↓</p>
+                <span class="highlight">1050</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Why is this useful?</strong>
+    <p class="mb-0 mt-2">
+        Tax rate ஒவ்வொரு முறையும் எழுத வேண்டியதில்லை.
+        <span class="highlight">addGST18()</span> மற்றும்
+        <span class="highlight">addGST5()</span> போன்ற specialized functions
+        உருவாக்கி மீண்டும் மீண்டும் பயன்படுத்தலாம்.
+    </p>
+</div>
+
+<h5>Final Mental Model</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">Currying</div>
+
+            <div class="memory-diagram mt-2">
+                One argument
+                <p>↓</p>
+                Function returned
+                <p>↓</p>
+                Next argument
+                <p>↓</p>
+                Function returned again
+                <p>↓</p>
+                Final result
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">Partial Application</div>
+
+            <div class="memory-diagram mt-2">
+                Fix some arguments
+                <p>↓</p>
+                Create a specialized function
+                <p>↓</p>
+                Supply remaining arguments
+                <p>↓</p>
+                Final result
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-box">
+    <strong>Golden Rule:</strong>
+    <br>
+    <span class="highlight">Currying → arguments through successive calls</span>
+    <br>
+    <span class="highlight">Partial application → fix some arguments in advance</span>
+    <br>
+    <span class="highlight">Closure → remembers values like price or a</span>
+</div>
+
+<p class="tamil">
+    நினைவில் வைக்க:
+    <span class="highlight">Currying = one argument per function call.</span>
+    <br>
+    <span class="highlight">Partial Application = some arguments already fixed; give the rest later.</span>
+</p>
     <hr><br>
     <h3 class="center"> Object.assign() </h3>
     <p class="heading"> It's one of the most useful ES6 methods for working with objects in JavaScript. Its also allows
@@ -19950,5 +20782,4 @@ a();
         });
     };
 </script>
-
 </html>

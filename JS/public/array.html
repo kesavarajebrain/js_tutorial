@@ -20,7 +20,562 @@
     <span class="highlight">ordered collection of values</span>.
     Values-ஐ ஒரு sequence-ஆக store செய்ய பயன்படுகிறது.
 </p>
+<hr>
 
+<h4>Array Methods — Complete Revision Summary</h4>
+
+<p>
+    This is your quick-revision guide for all 11 array methods.
+    First understand each method's <span class="highlight">main question</span>,
+    then its <span class="highlight">return value</span> and whether it
+    <span class="highlight">mutates the original array</span>.
+</p>
+
+<h5>1. Consolidated Comparison Table</h5>
+
+<div class="table-responsive">
+<table class="table table-bordered table-sm align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Method</th>
+            <th>Main Job</th>
+            <th>Returns</th>
+            <th>Mutates Original Array?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>forEach()</strong></td>
+            <td>Perform an action for each item</td>
+            <td><span class="highlight">undefined</span></td>
+            <td>No*</td>
+        </tr>
+        <tr>
+            <td><strong>map()</strong></td>
+            <td>Transform every item</td>
+            <td>New array</td>
+            <td>No*</td>
+        </tr>
+        <tr>
+            <td><strong>filter()</strong></td>
+            <td>Keep matching items</td>
+            <td>New array</td>
+            <td>No*</td>
+        </tr>
+        <tr>
+            <td><strong>find()</strong></td>
+            <td>Find the first matching item</td>
+            <td>Element / <span class="highlight">undefined</span></td>
+            <td>No*</td>
+        </tr>
+        <tr>
+            <td><strong>findIndex()</strong></td>
+            <td>Find the first matching item's position</td>
+            <td>Index / <span class="highlight">-1</span></td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td><strong>some()</strong></td>
+            <td>Check whether at least one item matches</td>
+            <td>Boolean</td>
+            <td>No*</td>
+        </tr>
+        <tr>
+            <td><strong>every()</strong></td>
+            <td>Check whether all items match</td>
+            <td>Boolean</td>
+            <td>No*</td>
+        </tr>
+        <tr>
+            <td><strong>reduce()</strong></td>
+            <td>Accumulate or build a result</td>
+            <td>Any value</td>
+            <td>No*</td>
+        </tr>
+        <tr>
+            <td><strong>sort()</strong></td>
+            <td>Reorder elements</td>
+            <td>Same array reference</td>
+            <td><span class="highlight">Yes</span></td>
+        </tr>
+        <tr>
+            <td><strong>slice()</strong></td>
+            <td>Copy a portion of an array</td>
+            <td>New shallow-copy array</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td><strong>splice()</strong></td>
+            <td>Remove, insert or replace elements</td>
+            <td>Array of removed elements</td>
+            <td><span class="highlight">Yes</span></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<p class="note">
+    *The method itself does not mutate the original array, but your callback
+    can still modify the array or its objects. For example, mutating an object
+    returned by <span class="highlight">find()</span> or kept by
+    <span class="highlight">filter()</span> can affect the same object
+    in the original array.
+</p>
+
+<h5>2. One Question to Remember Each Method</h5>
+
+<div class="table-responsive">
+<table class="table table-bordered table-sm align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Method</th>
+            <th>Ask Yourself</th>
+            <th>Memory Word</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>forEach()</strong></td>
+            <td>"What action should I perform for each item?"</td>
+            <td><span class="highlight">DO</span></td>
+        </tr>
+        <tr>
+            <td><strong>map()</strong></td>
+            <td>"What should each item become?"</td>
+            <td><span class="highlight">TRANSFORM</span></td>
+        </tr>
+        <tr>
+            <td><strong>filter()</strong></td>
+            <td>"Should I keep this item?"</td>
+            <td><span class="highlight">SELECT</span></td>
+        </tr>
+        <tr>
+            <td><strong>find()</strong></td>
+            <td>"Which is the first item that matches?"</td>
+            <td><span class="highlight">WHAT?</span></td>
+        </tr>
+        <tr>
+            <td><strong>findIndex()</strong></td>
+            <td>"Where is the first matching item?"</td>
+            <td><span class="highlight">WHERE?</span></td>
+        </tr>
+        <tr>
+            <td><strong>some()</strong></td>
+            <td>"Does at least one item match?"</td>
+            <td><span class="highlight">ANY?</span></td>
+        </tr>
+        <tr>
+            <td><strong>every()</strong></td>
+            <td>"Do all items match?"</td>
+            <td><span class="highlight">ALL?</span></td>
+        </tr>
+        <tr>
+            <td><strong>reduce()</strong></td>
+            <td>"What final result am I building?"</td>
+            <td><span class="highlight">ACCUMULATE</span></td>
+        </tr>
+        <tr>
+            <td><strong>sort()</strong></td>
+            <td>"In what order should items appear?"</td>
+            <td><span class="highlight">REORDER</span></td>
+        </tr>
+        <tr>
+            <td><strong>slice()</strong></td>
+            <td>"Which portion should I copy?"</td>
+            <td><span class="highlight">COPY</span></td>
+        </tr>
+        <tr>
+            <td><strong>splice()</strong></td>
+            <td>"Which items should I remove, insert or replace?"</td>
+            <td><span class="highlight">MODIFY</span></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h5>3. Quick Syntax Reference</h5>
+
+<div class="table-responsive">
+<table class="table table-bordered table-sm align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Method</th>
+            <th>Syntax / Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>forEach()</td>
+            <td><code>arr.forEach((value, index, array) =&gt; {})</code></td>
+        </tr>
+        <tr>
+            <td>map()</td>
+            <td><code>arr.map(value =&gt; value * 2)</code></td>
+        </tr>
+        <tr>
+            <td>filter()</td>
+            <td><code>arr.filter(value =&gt; value &gt; 10)</code></td>
+        </tr>
+        <tr>
+            <td>find()</td>
+            <td><code>arr.find(value =&gt; value &gt; 10)</code></td>
+        </tr>
+        <tr>
+            <td>findIndex()</td>
+            <td><code>arr.findIndex(value =&gt; value &gt; 10)</code></td>
+        </tr>
+        <tr>
+            <td>some()</td>
+            <td><code>arr.some(value =&gt; value &gt; 10)</code></td>
+        </tr>
+        <tr>
+            <td>every()</td>
+            <td><code>arr.every(value =&gt; value &gt; 10)</code></td>
+        </tr>
+        <tr>
+            <td>reduce()</td>
+            <td><code>arr.reduce((acc, value) =&gt; acc + value, 0)</code></td>
+        </tr>
+        <tr>
+            <td>sort()</td>
+            <td><code>arr.sort((a, b) =&gt; a - b)</code></td>
+        </tr>
+        <tr>
+            <td>slice()</td>
+            <td><code>arr.slice(start, end)</code></td>
+        </tr>
+        <tr>
+            <td>splice()</td>
+            <td><code>arr.splice(start, deleteCount, ...items)</code></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h5>4. The Most Important Return-Value Differences</h5>
+
+<div class="row g-3">
+    <div class="col-lg-4 col-md-6">
+        <div class="example-box h-100">
+            <strong>Returns undefined</strong>
+            <div class="memory-diagram mt-2">
+                forEach()
+            </div>
+            <p class="mb-0">
+                Callback return values are ignored.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="example-box h-100">
+            <strong>Returns a new array</strong>
+            <div class="memory-diagram mt-2">
+                map()
+                <br>
+                filter()
+                <br>
+                slice()
+            </div>
+            <p class="mb-0">
+                Their returned arrays are shallow copies, not deep clones.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="example-box h-100">
+            <strong>Returns a single element</strong>
+            <div class="memory-diagram mt-2">
+                find()
+                <br>
+                ↓
+                <br>
+                undefined if no match
+            </div>
+            <p class="mb-0">
+                An object result can share a reference with the original array.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="example-box h-100">
+            <strong>Returns a number</strong>
+            <div class="memory-diagram mt-2">
+                findIndex()
+                <br>
+                ↓
+                <br>
+                -1 if no match
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="example-box h-100">
+            <strong>Returns a boolean</strong>
+            <div class="memory-diagram mt-2">
+                some()
+                <br>
+                every()
+                <br>
+                ↓
+                <br>
+                true / false
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="example-box h-100">
+            <strong>Returns an accumulated result</strong>
+            <div class="memory-diagram mt-2">
+                reduce()
+                <br>
+                ↓
+                <br>
+                number / string / object / array / ...
+            </div>
+            <p class="mb-0">
+                Depends on the accumulator and callback.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Returns the same array reference</strong>
+            <div class="memory-diagram mt-2">
+                sort()
+                <br>
+                ↓
+                <br>
+                Original array reordered
+            </div>
+            <p class="mb-0">
+                Default sorting compares string representations. Use a compare
+                function for numeric ordering.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="example-box h-100">
+            <strong>Returns removed elements</strong>
+            <div class="memory-diagram mt-2">
+                splice()
+                <br>
+                ↓
+                <br>
+                Array of removed items
+            </div>
+            <p class="mb-0">
+                The original array is modified; inserted items stay in it.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h5>5. The Critical Differences to Never Forget</h5>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">map() vs filter()</div>
+
+            <div class="memory-diagram mt-2">
+                map()
+                <br>
+                ↓
+                <br>
+                Every item produces an output
+                <br><br>
+                filter()
+                <br>
+                ↓
+                <br>
+                Each item is kept or removed
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">find() vs findIndex()</div>
+
+            <div class="memory-diagram mt-2">
+                find()
+                <br>
+                ↓
+                <br>
+                First matching element
+                <br><br>
+                findIndex()
+                <br>
+                ↓
+                <br>
+                First matching index
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="ref-box ref-side h-100">
+            <div class="ref-header">some() vs every()</div>
+
+            <div class="memory-diagram mt-2">
+                some()
+                <br>
+                ↓
+                <br>
+                One true is enough
+                <br><br>
+                every()
+                <br>
+                ↓
+                <br>
+                One false is enough
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="exec-box exec-side h-100">
+            <div class="exec-header">slice() vs splice()</div>
+
+            <div class="memory-diagram mt-2">
+                slice(start, end)
+                <br>
+                ↓
+                <br>
+                End position is excluded
+                <br>
+                Original unchanged
+                <br><br>
+                splice(start, deleteCount)
+                <br>
+                ↓
+                <br>
+                Delete a number of items
+                <br>
+                Original modified
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>6. Which Methods Stop Early?</h5>
+
+<div class="table-responsive">
+<table class="table table-bordered table-sm align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Method</th>
+            <th>When Does It Stop?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>find()</strong></td>
+            <td>As soon as the first match is found.</td>
+        </tr>
+        <tr>
+            <td><strong>findIndex()</strong></td>
+            <td>As soon as the first match is found.</td>
+        </tr>
+        <tr>
+            <td><strong>some()</strong></td>
+            <td>As soon as a truthy condition result is found.</td>
+        </tr>
+        <tr>
+            <td><strong>every()</strong></td>
+            <td>As soon as a falsy condition result is found.</td>
+        </tr>
+        <tr>
+            <td><strong>forEach(), map(), filter(), reduce()</strong></td>
+            <td>Normally process the array's elements; they do not short-circuit on a callback result.</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h5>7. Quick Chaining Reference</h5>
+
+<div class="memory-diagram">
+    numbers
+    <br>
+    ↓
+    <br>
+    filter() → <span class="highlight">array</span>
+    <br>
+    ↓
+    <br>
+    map() → <span class="highlight">array</span>
+    <br>
+    ↓
+    <br>
+    reduce() → <span class="highlight">final value</span>
+</div>
+
+<div class="code-block p-3">
+<pre><code>
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const total = numbers
+    .filter(num => num % 2 === 0)
+    .map(num => num * 10)
+    .reduce((acc, num) => acc + num, 0);
+
+console.log(total); // 120
+</code></pre>
+</div>
+
+<div class="success-box">
+    <strong>How to read the chain:</strong>
+    <br>
+    <span class="highlight">filter()</span> → keep even numbers: [2, 4, 6]
+    <br>
+    <span class="highlight">map()</span> → multiply by 10: [20, 40, 60]
+    <br>
+    <span class="highlight">reduce()</span> → add them together: 120
+</div>
+
+<h5>Final Memory Card</h5>
+
+<div class="memory-diagram">
+    <strong>forEach</strong> → Do
+    <br>
+    <strong>map</strong> → Transform
+    <br>
+    <strong>filter</strong> → Select
+    <br>
+    <strong>find</strong> → First match
+    <br>
+    <strong>findIndex</strong> → First match's position
+    <br>
+    <strong>some</strong> → At least one?
+    <br>
+    <strong>every</strong> → All?
+    <br>
+    <strong>reduce</strong> → Accumulate
+    <br>
+    <strong>sort</strong> → Reorder
+    <br>
+    <strong>slice</strong> → Copy a portion
+    <br>
+    <strong>splice</strong> → Modify the original
+</div>
+
+<div class="success-box">
+    <strong>Three last rules:</strong>
+    <br>
+    1. <span class="highlight">New array</span> does not necessarily mean new objects inside it.
+    <br>
+    2. <span class="highlight">sort()</span> and <span class="highlight">splice()</span> mutate the original array.
+    <br>
+    3. Always check a method's <span class="highlight">return type</span> before chaining another method.
+</div>
 <h4>Quick Table</h4>
 
 
