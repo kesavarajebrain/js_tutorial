@@ -161,9 +161,9 @@ Pattern problems ✅
 ✅ Partial Application — basic difference from Currying
 
 📌 new Keyword & Important Built-ins
-✅  What new means — creating a new object/instance
-✅  new with constructor functions — basic understanding
-✅  new with classes — basic understanding
+✅ What new means — creating a new object/instance
+✅ new with constructor functions — basic understanding
+✅ new with classes — basic understanding
 ✅ new Date()
 ✅ new Map()
 ✅ new Set()
@@ -171,16 +171,16 @@ Pattern problems ✅
 ✅ Primitive vs wrapper object — why wrapper objects are generally avoided
 
 📌 Dictionary / Map
-⏳ Object as a dictionary / key-value store
-⏳ Map
-⏳ new Map() — practical usage/revision
-⏳ Map.set()
-⏳ Map.get()
-⏳ Map.has()
-⏳ Map.delete()
-⏳ Set
-⏳ new Set() — practical usage/revision
-⏳ Object vs Map — when to use which
+✅ Object as a dictionary / key-value store
+✅ Map
+✅ new Map() — practical usage/revision
+✅ Map.set()
+✅ Map.get()
+✅ Map.has()
+✅ Map.delete()
+✅ Set
+✅ new Set() — practical usage/revision
+✅ Object vs Map — when to use which
 
 📌 Asynchronous JavaScript
 ⏳ Synchronous vs Asynchronous

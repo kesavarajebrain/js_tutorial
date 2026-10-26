@@ -2077,5 +2077,978 @@ console.log(users.has("Priya")); // true</code></pre>
         சேராது.
       </p>
     </div>
+    <hr />
+    <div class="container-fluid">
+      <h3>JavaScript Wrapper Objects, Dictionary and Map</h3>
+      <h4>
+        1. Why Should We Avoid <code>new String()</code>,
+        <code>new Number()</code> and <code>new Boolean()</code>?
+      </h4>
+
+      <p>
+        JavaScript has primitive values such as strings, numbers and booleans.
+        It also provides built-in constructors that can create
+        <strong>wrapper objects</strong> around these values.
+      </p>
+
+      <p>
+        The important difference is that using a constructor with
+        <code>new</code> creates an object, whereas calling the corresponding
+        function without <code>new</code> converts a value to a primitive.
+      </p>
+
+      <h5>Example 1: String</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const a = "hello";
+const b = new String("hello");
+
+console.log(typeof a); // "string"
+console.log(typeof b); // "object"
+
+console.log(a === b);  // false</code></pre>
+      </div>
+
+      <p>
+        Although both appear to represent the text <code>"hello"</code>, they
+        are different types of values:
+      </p>
+
+      <div class="memory-diagram">
+        a = "hello"
+        <br />
+        Primitive string
+        <br />
+        <br />
+        b = new String("hello")
+        <br />
+        String wrapper object
+      </div>
+
+      <p>
+        The strict equality operator <code>===</code> compares both type and
+        value. A primitive string and a String object are different, so the
+        comparison returns <code>false</code>.
+      </p>
+
+      <h5>Example 2: Number</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const a = 10;
+const b = new Number(10);
+
+console.log(typeof a); // "number"
+console.log(typeof b); // "object"
+
+console.log(a === b);  // false</code></pre>
+      </div>
+
+      <p>
+        <code>10</code> is a primitive number, while
+        <code>new Number(10)</code> creates a Number wrapper object.
+      </p>
+
+      <h5>Example 3: The Surprising Boolean Case</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const a = false;
+const b = new Boolean(false);
+
+console.log(typeof a); // "boolean"
+console.log(typeof b); // "object"
+
+console.log(Boolean(a)); // false
+console.log(Boolean(b)); // true
+
+if (b) {
+    console.log("This condition runs!");
+}</code></pre>
+      </div>
+
+      <p>
+        <strong
+          >Why does <code>new Boolean(false)</code> behave as true in a
+          condition?</strong
+        >
+      </p>
+
+      <p>
+        Because <code>new Boolean(false)</code> creates an object. In
+        JavaScript, every ordinary object is truthy, even when the primitive
+        value wrapped inside it is <code>false</code>, <code>0</code> or an
+        empty string.
+      </p>
+
+      <div class="error-box p-3">
+        <strong>Important:</strong> Don't use
+        <code>if (new Boolean(false))</code> to check a boolean value. The
+        condition will run because the wrapper object itself is truthy.
+      </div>
+
+      <hr />
+
+      <h4>2. What Should We Use Instead?</h4>
+
+      <p>
+        When you need to convert a value into a string, number or boolean, call
+        the built-in function <strong>without</strong> <code>new</code>.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const name = String(123);
+const age = Number("25");
+const isActive = Boolean(1);
+
+console.log(name);     // "123"
+console.log(typeof name); // "string"
+
+console.log(age);      // 25
+console.log(typeof age); // "number"
+
+console.log(isActive); // true
+console.log(typeof isActive); // "boolean"</code></pre>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Expression</th>
+              <th>Result</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>String(123)</code></td>
+              <td><code>"123"</code></td>
+              <td>Primitive string</td>
+            </tr>
+            <tr>
+              <td><code>Number("25")</code></td>
+              <td><code>25</code></td>
+              <td>Primitive number</td>
+            </tr>
+            <tr>
+              <td><code>Boolean(1)</code></td>
+              <td><code>true</code></td>
+              <td>Primitive boolean</td>
+            </tr>
+            <tr>
+              <td><code>new String("hello")</code></td>
+              <td>Wrapper object</td>
+              <td><code>"object"</code></td>
+            </tr>
+            <tr>
+              <td><code>new Number(10)</code></td>
+              <td>Wrapper object</td>
+              <td><code>"object"</code></td>
+            </tr>
+            <tr>
+              <td><code>new Boolean(false)</code></td>
+              <td>Wrapper object</td>
+              <td><code>"object"</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h5>When Would We Need Wrapper Objects?</h5>
+
+      <p>
+        In ordinary application code, almost never. You can call string methods
+        on primitive strings without manually creating a String object.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const name = "arun";
+
+console.log(name.toUpperCase()); // "ARUN"</code></pre>
+      </div>
+
+      <p>
+        JavaScript allows many methods to be used on primitive strings, numbers
+        and booleans through automatic boxing when needed. You normally don't
+        need to create wrapper objects yourself.
+      </p>
+
+      <p>
+        Explicit wrapper objects are mainly useful when studying JavaScript's
+        behavior or working with unusual legacy APIs that specifically require
+        an object. They are not the normal way to represent strings, numbers or
+        booleans.
+      </p>
+
+      <div class="success-box p-3">
+        <strong>Practical rule:</strong>
+        <p>
+          Use <code>"hello"</code>, <code>10</code> and <code>true</code> for
+          ordinary values.
+        </p>
+        <p>
+          Use <code>String(value)</code>, <code>Number(value)</code> and
+          <code>Boolean(value)</code> for conversions.
+        </p>
+        <p>
+          Avoid <code>new String()</code>, <code>new Number()</code> and
+          <code>new Boolean()</code> in normal application code.
+        </p>
+      </div>
+
+      <hr />
+
+      <h4>3. What Is a Dictionary?</h4>
+
+      <p>
+        A <strong>dictionary</strong> is a general programming concept: store a
+        value under a key and retrieve it later using that key.
+      </p>
+
+      <p>
+        JavaScript doesn't have a separate built-in data type called
+        <code>Dictionary</code>. An ordinary object or a built-in
+        <code>Map</code> can be used as a dictionary.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const userRoles = {
+    101: "Admin",
+    102: "Editor",
+    103: "Viewer"
+};
+
+console.log(userRoles[101]); // "Admin"
+console.log(userRoles[102]); // "Editor"</code></pre>
+      </div>
+
+      <p>
+        Here, the object is being used as a dictionary to map user IDs to roles.
+      </p>
+
+      <p class="tamil">
+        தமிழில்: Dictionary என்பது தனியான JavaScript datatype கிடையாது. ஒரு key
+        மூலம் value-ஐச் சேமித்து, அதே key மூலம் value-ஐப் பெறும் முறைக்குப்
+        பெயர்தான் dictionary.
+      </p>
+
+      <h5>How Does an Object Work as a Dictionary?</h5>
+
+      <p>
+        When you write a numeric property name such as <code>101</code> in an
+        ordinary object, JavaScript treats it as the string property key
+        <code>"101"</code>.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const obj = {};
+
+obj[101] = "Admin";
+
+console.log(obj[101]);   // "Admin"
+console.log(obj["101"]); // "Admin"
+
+console.log(Object.keys(obj)); // ["101"]</code></pre>
+      </div>
+
+      <p>
+        Both <code>obj[101]</code> and <code>obj["101"]</code> access the same
+        property because the number is converted to a string when used as an
+        ordinary object property key.
+      </p>
+
+      <hr />
+
+      <h4>4. What Is JavaScript's Built-in Map?</h4>
+
+      <p>
+        JavaScript provides a dedicated data structure called
+        <code>Map</code> for storing key-value pairs.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const userRoles = new Map();
+
+userRoles.set(101, "Admin");
+userRoles.set(102, "Editor");
+userRoles.set(103, "Viewer");
+
+console.log(userRoles.get(101)); // "Admin"
+console.log(userRoles.get(102)); // "Editor"
+console.log(userRoles.size);     // 3</code></pre>
+      </div>
+
+      <p>
+        A Map has its own methods for adding entries, retrieving values,
+        checking keys and counting entries.
+      </p>
+
+      <h5>Object Dictionary vs Map</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Object as Dictionary</th>
+              <th>Built-in Map</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Stores key-value pairs</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Key types</td>
+              <td>Strings and symbols</td>
+              <td>Any value, including objects and functions</td>
+            </tr>
+            <tr>
+              <td>Add or update</td>
+              <td><code>obj[key] = value</code></td>
+              <td><code>map.set(key, value)</code></td>
+            </tr>
+            <tr>
+              <td>Retrieve a value</td>
+              <td><code>obj[key]</code></td>
+              <td><code>map.get(key)</code></td>
+            </tr>
+            <tr>
+              <td>Check an own key</td>
+              <td><code>Object.hasOwn(obj, key)</code></td>
+              <td><code>map.has(key)</code></td>
+            </tr>
+            <tr>
+              <td>Count entries</td>
+              <td>
+                <code>Object.keys(obj).length</code> for enumerable string keys
+              </td>
+              <td><code>map.size</code></td>
+            </tr>
+            <tr>
+              <td>Remove an entry</td>
+              <td><code>delete obj[key]</code></td>
+              <td><code>map.delete(key)</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <h4>5. Why Doesn't Bracket Notation Work the Same Way on a Map?</h4>
+
+      <p>
+        This is the most important distinction to understand. A Map is still a
+        JavaScript object, but its entries are stored in an internal Map
+        collection, not as ordinary object properties.
+      </p>
+
+      <h5>Example A: An Ordinary Object</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const obj = {};
+
+obj[101] = "Admin";
+obj[102] = "Admin2";
+
+console.log(obj);
+// { '101': 'Admin', '102': 'Admin2' }
+
+console.log(obj[101]);   // "Admin"
+console.log(obj["101"]); // "Admin"</code></pre>
+      </div>
+
+      <p>
+        With an ordinary object, bracket assignment creates or updates an object
+        property.
+      </p>
+
+      <h5>Example B: Using Bracket Notation on a Map</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const obj1 = new Map();
+
+obj1[101] = "Adminttt";
+obj1[102] = "Admin28t";
+
+console.log(obj1[101]);   // "Adminttt"
+console.log(obj1["101"]); // "Adminttt"
+
+console.log(obj1.size);   // 0
+console.log(obj1.get(101)); // undefined</code></pre>
+      </div>
+
+      <p>
+        Notice that <code>obj1[101]</code> returns <code>"Adminttt"</code>. So
+        why is the Map's size still zero?
+      </p>
+
+      <p>Because this assignment:</p>
+
+      <div class="code-block p-3">
+        <pre><code>obj1[101] = "Adminttt";</code></pre>
+      </div>
+
+      <p>
+        creates an <strong>ordinary property on the Map object</strong>. It does
+        not add an entry to the Map's internal key-value collection.
+      </p>
+
+      <div class="memory-diagram">
+        obj1 = new Map()
+        <br />
+        |
+        <br />
+        +-- Ordinary object properties
+        <br />
+        | 101 → "Adminttt"
+        <br />
+        | 102 → "Admin28t"
+        <br />
+        |
+        <br />
+        +-- Map internal entries
+        <br />
+        (empty)
+        <br />
+        <br />
+        obj1.size = 0
+      </div>
+
+      <p>
+        The bracket properties are separate from the Map entries. That's why
+        <code>obj1[101]</code> returns a string, but
+        <code>obj1.get(101)</code> returns <code>undefined</code>.
+      </p>
+
+      <p>
+        The exact way a Map with extra ordinary properties is displayed by
+        <code>console.log()</code> depends on the JavaScript environment. The
+        reliable checks are <code>size</code>, <code>get()</code> and
+        <code>has()</code>.
+      </p>
+
+      <h5>The Correct Way to Store Entries in a Map</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const obj1 = new Map();
+
+obj1.set(101, "Adminttt");
+obj1.set(102, "Admin28t");
+
+console.log(obj1.get(101)); // "Adminttt"
+console.log(obj1.get(102)); // "Admin28t"
+console.log(obj1.size);     // 2</code></pre>
+      </div>
+
+      <p>
+        Now the values are stored as actual Map entries, so
+        <code>get()</code> retrieves them and <code>size</code> counts them.
+      </p>
+
+      <div class="success-box p-3">
+        <strong>Remember:</strong>
+        <p>
+          <code>obj[key] = value</code> creates or updates an ordinary object
+          property.
+        </p>
+        <p>
+          <code>map.set(key, value)</code> creates or updates an entry in a Map.
+        </p>
+        <p><code>obj[key]</code> reads an ordinary object property.</p>
+        <p>
+          <code>map.get(key)</code> reads a value from the Map's internal
+          collection.
+        </p>
+      </div>
+
+      <p class="tamil">தமிழில்:</p>
+      <ul>
+        <li>
+          <code>obj[key] = value</code> — ordinary object property-ஐ உருவாக்கும்
+          அல்லது update செய்யும்.
+        </li>
+        <li>
+          <code>map.set(key, value)</code> — Map collection-ல் entry-ஐ
+          உருவாக்கும் அல்லது update செய்யும்.
+        </li>
+        <li><code>obj[key]</code> — ordinary property-ஐப் படிக்கும்.</li>
+        <li>
+          <code>map.get(key)</code> — Map collection-ல் உள்ள value-ஐப் பெறும்.
+        </li>
+      </ul>
+
+      <hr />
+
+      <h4>6. An Important Difference in Key Types</h4>
+
+      <p>
+        With an object, the keys <code>101</code> and <code>"101"</code> refer
+        to the same property after key conversion. With a Map, the number and
+        string are different keys.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const obj = {};
+
+obj[101] = "Admin";
+
+console.log(obj[101]);   // "Admin"
+console.log(obj["101"]); // "Admin"
+
+const map = new Map();
+
+map.set(101, "Admin");
+map.set("101", "Editor");
+
+console.log(map.get(101));   // "Admin"
+console.log(map.get("101")); // "Editor"
+console.log(map.size);       // 2</code></pre>
+      </div>
+
+      <p>
+        This is useful when a numeric ID and a text identifier must be treated
+        as separate keys.
+      </p>
+
+      <hr />
+
+      <h4>7. When Should You Use an Object or a Map?</h4>
+
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">Use an Object</div>
+            <div class="ref-side">
+              <ul>
+                <li>
+                  Represent a user, product, configuration or other structured
+                  entity.
+                </li>
+                <li>Store named properties such as <code>user.name</code>.</li>
+                <li>Build a simple dictionary with string or symbol keys.</li>
+              </ul>
+              <div class="code-block p-3">
+                <pre><code>const user = {
+    name: "Arun",
+    role: "Admin"
+};
+
+console.log(user.role); // Admin</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Use a Map</div>
+            <div class="exec-side">
+              <ul>
+                <li>Maintain a collection of key-value entries.</li>
+                <li>
+                  Use keys that can be objects, numbers or other value types.
+                </li>
+                <li>
+                  Need convenient entry counting, insertion-order iteration and
+                  Map-specific methods.
+                </li>
+              </ul>
+              <div class="code-block p-3">
+                <pre><code>const roles = new Map();
+
+roles.set(101, "Admin");
+roles.set(102, "Editor");
+
+console.log(roles.size); // 2</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <h4>Final Revision</h4>
+
+      <div class="memory-diagram">
+        Wrapper objects
+        <br />
+        new String / new Number / new Boolean → Objects
+        <br />
+        String / Number / Boolean → Primitive conversions
+        <br />
+        <br />
+        Dictionary = The key-value storage pattern
+        <br />
+        Object = One way to implement a dictionary
+        <br />
+        Map = A dedicated built-in key-value data structure
+        <br />
+        <br />
+        Object: obj[key] = value
+        <br />
+        Map: map.set(key, value)
+        <br />
+        <br />
+        Map bracket assignment ≠ Map entry
+        <br />
+        Use map.set() and map.get() for actual Map entries
+      </div>
+    </div>
+    <div class="container-fluid">
+      <h4>Map Methods in JavaScript</h4>
+
+      <p>
+        A JavaScript <code>Map</code> stores data as key-value pairs. It
+        provides built-in methods to add entries, retrieve values, check whether
+        keys exist, and remove entries.
+      </p>
+
+      <hr />
+
+      <h5>1. Practical Example: Map Methods</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const employees = new Map();
+
+// 1. set() — add or update an entry
+employees.set(101, "Arun");
+employees.set(102, "Priya");
+
+// 2. get() — retrieve a value
+console.log(employees.get(101)); // "Arun"
+
+// 3. has() — check whether a key exists
+console.log(employees.has(102)); // true
+console.log(employees.has(103)); // false
+
+// 4. delete() — remove an entry
+console.log(employees.delete(101)); // true
+
+console.log(employees.has(101)); // false
+console.log(employees.size);     // 1
+
+// 5. clear() — remove all entries
+employees.clear();
+
+console.log(employees.size); // 0</code></pre>
+      </div>
+
+      <hr />
+
+      <h5>2. Understand Each Method</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Method / Property</th>
+              <th>Purpose</th>
+              <th>What It Returns</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>set(key, value)</code></td>
+              <td>Adds an entry or updates the value of an existing key.</td>
+              <td>The same Map, allowing method chaining.</td>
+            </tr>
+            <tr>
+              <td><code>get(key)</code></td>
+              <td>Retrieves the value associated with a key.</td>
+              <td>
+                The stored value, or <code>undefined</code> if the key is
+                absent.
+              </td>
+            </tr>
+            <tr>
+              <td><code>has(key)</code></td>
+              <td>Checks whether a key exists.</td>
+              <td><code>true</code> or <code>false</code>.</td>
+            </tr>
+            <tr>
+              <td><code>delete(key)</code></td>
+              <td>Removes an entry.</td>
+              <td>
+                <code>true</code> if an entry was removed; otherwise
+                <code>false</code>.
+              </td>
+            </tr>
+            <tr>
+              <td><code>size</code></td>
+              <td>Counts the Map's entries.</td>
+              <td>A number.</td>
+            </tr>
+            <tr>
+              <td><code>clear()</code></td>
+              <td>Removes every entry from the Map.</td>
+              <td><code>undefined</code>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="tamil">தமிழில்:</p>
+      <ul>
+        <li><code>set()</code> — value-ஐச் சேமிக்க அல்லது update செய்ய.</li>
+        <li><code>get()</code> — value-ஐ எடுக்க.</li>
+        <li><code>has()</code> — key இருக்கிறதா என்று பார்க்க.</li>
+        <li><code>delete()</code> — குறிப்பிட்ட entry-ஐ நீக்க.</li>
+        <li><code>size</code> — மொத்த entries எண்ணிக்கையைப் பெற.</li>
+        <li><code>clear()</code> — எல்லா entries-ஐயும் நீக்க.</li>
+      </ul>
+
+      <hr />
+
+      <h5>3. Important: <code>set()</code> Supports Method Chaining</h5>
+
+      <p>
+        The <code>set()</code> method returns the same Map, so you can call
+        <code>set()</code> multiple times in one statement.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const employees = new Map();
+
+employees
+    .set(101, "Arun")
+    .set(102, "Priya")
+    .set(103, "Kumar");
+
+console.log(employees.size); // 3</code></pre>
+      </div>
+
+      <p>
+        Each call adds or updates an entry and returns the Map itself, allowing
+        the next <code>set()</code> call.
+      </p>
+
+      <div class="success-box p-3">
+        <strong>Remember:</strong> <code>set()</code> returns the Map, but
+        <code>get()</code> returns a stored value. These return values are
+        different.
+      </div>
+
+      <hr />
+
+      <h5>4. Important: What If a Key Doesn't Exist?</h5>
+
+      <div class="code-block p-3">
+        <pre><code>const employees = new Map();
+
+employees.set(101, "Arun");
+
+console.log(employees.get(999)); // undefined
+console.log(employees.has(999)); // false
+console.log(employees.delete(999)); // false</code></pre>
+      </div>
+
+      <p>
+        <code>get()</code> returning <code>undefined</code> means no value was
+        found for that key, but it can also be the value explicitly stored for
+        an existing key. Use <code>has()</code> when you need to distinguish
+        those situations.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const data = new Map();
+
+data.set(1, undefined);
+
+console.log(data.get(1)); // undefined
+console.log(data.has(1)); // true
+
+console.log(data.get(2)); // undefined
+console.log(data.has(2)); // false</code></pre>
+      </div>
+
+      <p>
+        Both <code>get(1)</code> and <code>get(2)</code> return
+        <code>undefined</code>, but only key <code>1</code> exists in the Map.
+      </p>
+
+      <hr />
+
+      <h4>Object vs Map — How Do We Choose?</h4>
+
+      <p>
+        Both ordinary objects and Maps can store key-value data. The right
+        choice depends on what you're representing and how you need to work with
+        the data.
+      </p>
+
+      <h5>5. Use an Object for Structured Data</h5>
+
+      <p>
+        Use an object to describe an entity with named properties, such as a
+        user profile, product, configuration or API record.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const user = {
+    name: "Arun",
+    age: 25,
+    role: "Admin"
+};
+
+console.log(user.name); // Arun
+console.log(user.age);  // 25
+console.log(user.role); // Admin</code></pre>
+      </div>
+
+      <p>
+        Here, <code>name</code>, <code>age</code> and <code>role</code> describe
+        one user. The object represents a structured entity.
+      </p>
+
+      <div class="memory-diagram">
+        user (Object)
+        <br />
+        ├── name → "Arun"
+        <br />
+        ├── age → 25
+        <br />
+        └── role → "Admin"
+      </div>
+
+      <h5>6. Use a Map for a Key-Value Collection</h5>
+
+      <p>
+        Use a Map when you need a collection of entries that you look up by key,
+        especially when keys may be numbers, objects or other non-string values.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const employees = new Map();
+
+employees.set(101, "Arun");
+employees.set(102, "Priya");
+employees.set(103, "Kumar");
+
+console.log(employees.get(102)); // Priya
+console.log(employees.size);     // 3</code></pre>
+      </div>
+
+      <div class="memory-diagram">
+        employees (Map)
+        <br />
+        ├── 101 → "Arun"
+        <br />
+        ├── 102 → "Priya"
+        <br />
+        └── 103 → "Kumar"
+      </div>
+
+      <p>
+        Here, the employee IDs are keys used to look up employee names. The
+        collection has a built-in <code>size</code> property and methods such as
+        <code>set()</code>, <code>get()</code>, <code>has()</code> and
+        <code>delete()</code>.
+      </p>
+
+      <hr />
+
+      <h5>7. Object vs Map — Comparison</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Object</th>
+              <th>Map</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Best suited for</td>
+              <td>Structured data with named properties.</td>
+              <td>Collections of key-value entries.</td>
+            </tr>
+            <tr>
+              <td>Creation</td>
+              <td><code>{}</code></td>
+              <td><code>new Map()</code></td>
+            </tr>
+            <tr>
+              <td>Keys</td>
+              <td>Strings or symbols.</td>
+              <td>Any value, including objects.</td>
+            </tr>
+            <tr>
+              <td>Add or update</td>
+              <td><code>obj[key] = value</code></td>
+              <td><code>map.set(key, value)</code></td>
+            </tr>
+            <tr>
+              <td>Retrieve</td>
+              <td><code>obj[key]</code></td>
+              <td><code>map.get(key)</code></td>
+            </tr>
+            <tr>
+              <td>Check an own key</td>
+              <td><code>Object.hasOwn(obj, key)</code></td>
+              <td><code>map.has(key)</code></td>
+            </tr>
+            <tr>
+              <td>Count entries</td>
+              <td>
+                <code>Object.keys(obj).length</code> for enumerable string keys.
+              </td>
+              <td><code>map.size</code></td>
+            </tr>
+            <tr>
+              <td>Remove one entry</td>
+              <td><code>delete obj[key]</code></td>
+              <td><code>map.delete(key)</code></td>
+            </tr>
+            <tr>
+              <td>Remove all entries</td>
+              <td>
+                No direct equivalent; remove properties individually or replace
+                the object binding when appropriate.
+              </td>
+              <td><code>map.clear()</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <h4>Quick Revision</h4>
+
+      <div class="memory-diagram">
+        <strong>Map methods</strong>
+        <br />
+        set() → Add or update
+        <br />
+        get() → Retrieve a value
+        <br />
+        has() → Check whether a key exists
+        <br />
+        delete() → Remove one entry
+        <br />
+        size → Count entries
+        <br />
+        clear() → Remove all entries
+        <br />
+        <br />
+        <strong>Choosing between Object and Map</strong>
+        <br />
+        Object → Describe an entity
+        <br />
+        Map → Manage a key-value collection
+      </div>
+
+      <p class="tamil">
+        எளிமையாக நினைவில் வைத்துக்கொள்ளுங்கள்: User profile போன்ற structured
+        data-க்கு Object பொதுவாகப் பொருத்தமானது. Keys மூலம் பல entries-ஐ
+        நிர்வகிக்க வேண்டுமெனில் Map பயனுள்ளதாக இருக்கும்.
+      </p>
+    </div>
   </body>
 </html>
