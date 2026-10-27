@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <title>Async | Js Zero to Hero</title>
+  </head>
+  <body>
+    <a href="./index.html" rel="noopener noreferrer" class="mt-3">
+      <button class="btn btn-primary">← Back</button>
+    </a>
+    <div class="container-fluid">
+
+    <h4>Asynchronous JavaScript</h4>
+
+    <h5>Synchronous vs Asynchronous</h5>
+
+    <p><strong>Synchronous:</strong> Code executes one operation at a time, in order. The next operation waits for the current synchronous operation to finish.</p>
+    <p class="tamil">தமிழில் - ஒத்திசைவு  / ஒத்தியங்கு: ஒரு வேலையைச் செய்து முடித்த பிறகுதான் அடுத்த வேலையைச் செய்வது.</p>
+
+    <p><strong>Asynchronous:</strong> Allows time-consuming operations, such as timers and API requests, to complete without blocking the rest of the JavaScript code while waiting.</p>
+    <p class="tamil">தமிழில் - ஒத்திசையா / ஒத்தியங்கா: ஒரு வேலையின் முடிவுக்காகக் காத்திருக்கும்போது, மற்ற code தொடர்ந்து இயங்க அனுமதிக்கும் முறை.</p>
+
+    <div class="row g-3">
+
+        <div class="col-lg-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">1. Synchronous Code</div>
+                <div class="ref-side">
+                    <div class="code-block p-3">
+                        <pre><code>console.log("A");
+console.log("B");
+console.log("C");</code></pre>
+                    </div>
+                    <strong>Output</strong>
+                    <div class="code-block p-3">
+                        <pre><code>A
+B
+C</code></pre>
+                    </div>
+                    <p>Each statement finishes before the next statement executes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">2. Asynchronous Code</div>
+                <div class="exec-side">
+                    <div class="code-block p-3">
+                        <pre><code>console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+}, 1000);
+
+console.log("C");</code></pre>
+                    </div>
+                    <strong>Output</strong>
+                    <div class="code-block p-3">
+                        <pre><code>A
+C
+B</code></pre>
+                    </div>
+                    <p><code>setTimeout()</code> schedules the callback to run after approximately 1 second. Meanwhile, JavaScript continues to the next statement.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h5>3. Understand the Execution Order</h5>
+
+    <div class="memory-diagram">
+        console.log("A") → Prints A
+        <br>
+        setTimeout(...) → Schedules the callback
+        <br>
+        console.log("C") → Prints C
+        <br>
+        Timer finishes → Callback becomes eligible to run
+        <br>
+        Event loop → Callback runs when JavaScript can execute it
+        <br>
+        console.log("B") → Prints B
+    </div>
+
+    <div class="note p-3">
+        <strong>Important:</strong> The <code>1000</code> milliseconds is a minimum delay before the callback becomes eligible to execute, not a guarantee that it runs at exactly 1 second.
+    </div>
+
+    <h5>4. Does Asynchronous Mean JavaScript Runs Two Pieces of Code Simultaneously?</h5>
+
+    <p><strong>No, not automatically.</strong> JavaScript normally executes one piece of JavaScript code at a time on its main thread. The runtime, queues and event loop coordinate asynchronous callbacks so that JavaScript can continue working instead of waiting synchronously for every operation.</p>
+
+    <div class="success-box p-3">
+        <strong>Quick Revision</strong>
+        <p><strong>Synchronous</strong> → Execute in order; the next operation waits for the current one to finish.</p>
+        <p><strong>Asynchronous</strong> → Schedule or handle work that can complete later, allowing the remaining code to continue while waiting.</p>
+    </div>
+
+</div>
+  </body>
+</html>
