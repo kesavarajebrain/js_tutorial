@@ -100,7 +100,307 @@ B</code></pre>
         <p><strong>Synchronous</strong> → Execute in order; the next operation waits for the current one to finish.</p>
         <p><strong>Asynchronous</strong> → Schedule or handle work that can complete later, allowing the remaining code to continue while waiting.</p>
     </div>
+</div>
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="ref-box p-3 h-100">
+            <div class="ref-header">Single-threaded</div>
+            <div class="ref-side">
+                <p><strong>Example: One cashier</strong></p>
+                One cashier serves customers one at a time. The next customer waits until the current service is finished.
+                <div class="memory-diagram">
+                    One cashier
+                    <br>
+                    Customer 1 → Customer 2 → Customer 3
+                </div>
+                <p class="tamil">ஒரு நேரத்தில் ஒரு வேலையை மட்டும் execute செய்யும் ஒரு execution path.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="exec-box p-3 h-100">
+            <div class="exec-header">Multithreading</div>
+            <div class="exec-side">
+                <p><strong>Example: Multiple cashiers</strong></p>
+                Multiple cashiers serve different customers at the same time.
+                <div class="memory-diagram">
+                    Cashier 1 → Customer 1
+                    <br>
+                    Cashier 2 → Customer 2
+                    <br>
+                    Cashier 3 → Customer 3
+                </div>
+                <p class="tamil">பல execution paths இருப்பதால், பல threads தனித்தனியாக வேலை செய்யலாம்.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="success-box p-3">
+    <strong>Remember:</strong>
+    <br>
+    Single-threaded = One execution path at a time.
+    <br>
+    Multithreading = Multiple execution paths that can make progress independently and, on multiple CPU cores, may run simultaneously.
+</div>
+
+<div class="container-fluid">
+
+    <h4>Single-threaded vs Multithreaded — Synchronous vs Asynchronous</h4>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Concept</th>
+                    <th>What It Describes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Single / Multithreaded</strong></td>
+                    <td>How many execution threads are involved. Multiple threads may work concurrently and, on multiple CPU cores, execute in parallel.</td>
+                </tr>
+                <tr>
+                    <td><strong>Synchronous / Asynchronous</strong></td>
+                    <td>Whether the current execution flow waits for an operation to finish or can continue while it completes later.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">1. Synchronous</div>
+                <div class="ref-side">
+                    <p><strong>"நான் முடிஞ்சதும் மட்டும் அடுத்தது தொடங்கும்."</strong></p>
+                    <div class="memory-diagram">
+                        Line 1 → Finish
+                        <br>
+                        ↓
+                        <br>
+                        Line 2 → Finish
+                        <br>
+                        ↓
+                        <br>
+                        Line 3
+                    </div>
+                    <p>ஒவ்வொரு synchronous operation-உம் முடிந்த பிறகுதான் அடுத்த statement execute ஆகும். நீண்ட நேரம் எடுக்கும் operation, அதே thread-ல் அடுத்த code இயங்குவதைத் தடுக்கலாம் (block செய்யலாம்).</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">2. Asynchronous</div>
+                <div class="exec-side">
+                    <p><strong>"நான் முடியும் வரை காத்திருக்காதே; அடுத்த வேலையைத் தொடங்கு."</strong></p>
+                    <div class="memory-diagram">
+                        Line 1 → Start operation
+                        <br>
+                        ↓
+                        <br>
+                        Line 2 → Line 3
+                        <br>
+                        ↓
+                        <br>
+                        Result arrives later
+                    </div>
+                    <p>ஒரு asynchronous operation-ஐத் தொடங்கிவிட்டு, அதன் முடிவுக்காக JavaScript thread-ஐ நிறுத்தாமல் அடுத்த code-ஐ execute செய்யலாம்.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h4>3. Key Point: Async Does NOT Mean "Runs on Another Thread"</h4>
+
+    <div class="success-box p-3">
+        <strong>Asynchronous ≠ Multithreaded</strong>
+        <p>Async என்பது வேறொரு JavaScript thread-ல் code இயங்குகிறது என்று அர்த்தமல்ல. ஒரு single JavaScript thread-லேயே asynchronous programming செய்யலாம்.</p>
+    </div>
+
+    <p>Browser அல்லது Node.js runtime, timer மற்றும் network போன்ற asynchronous operations-ஐ manage செய்யும். Operation முடிந்ததும், callback அல்லது continuation execute ஆவதற்குத் தயாராகும். Event loop, JavaScript எப்போது அந்த callback-ஐ இயக்க முடியும் என்பதை coordinate செய்கிறது.</p>
+
+    <div class="memory-diagram">
+        JavaScript Thread
+        <br>
+        Start async operation
+        <br>
+        ↓
+        <br>
+        Continue executing other JS code
+        <br>
+        ↓
+        <br>
+        Runtime handles waiting / I/O
+        <br>
+        ↓
+        <br>
+        Result or callback becomes ready
+        <br>
+        ↓
+        <br>
+        JS thread executes the callback
+    </div>
+
+    <p><strong>Example:</strong></p>
+    <div class="code-block p-3">
+        <pre><code>console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+}, 1000);
+
+console.log("C");</code></pre>
+    </div>
+    <p><strong>Output:</strong> A → C → B</p>
+    <p><code>setTimeout()</code> timer-ஐ schedule செய்கிறது. JavaScript அதற்காக ஒரு second முழுவதும் காத்திருக்காமல் <code>"C"</code>-ஐ print செய்கிறது. Timer முடிந்ததும் callback பின்னர் execute ஆகும்.</p>
+
+    <div class="note p-3">
+        <strong>Note:</strong> Browser மற்றும் Node.js runtime-கள் தங்களுக்குள் threads அல்லது பிற system resources-ஐப் பயன்படுத்தலாம். ஆனால் சாதாரண main-thread JavaScript callbacks ஒவ்வொன்றாகத்தான் execute ஆகும். Web Workers போன்ற வசதிகள் மூலம் JavaScript-ல் கூடுதல் threads-ஐயும் பயன்படுத்தலாம்.
+    </div>
+
+    <hr>
+
+    <h4>4. Coffee Shop Analogy ☕</h4>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">Synchronous Coffee Shop</div>
+                <div class="ref-side">
+                    <p>Order கொடுத்துவிட்டு coffee தயாராகும் வரை counter-ல் காத்திருக்கிறாய். அந்த நேரத்தில் வேறு வேலை செய்ய முடியாது.</p>
+                    <div class="memory-diagram">
+                        Order
+                        <br>
+                        ↓
+                        <br>
+                        Wait at counter
+                        <br>
+                        ↓
+                        <br>
+                        Coffee ready
+                        <br>
+                        ↓
+                        <br>
+                        Continue
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">Asynchronous Coffee Shop</div>
+                <div class="exec-side">
+                    <p>Order கொடுத்துவிட்டு seat-ல் உட்கார்ந்து phone பார்க்கிறாய். Coffee தயாரானதும் notification கிடைக்கிறது.</p>
+                    <div class="memory-diagram">
+                        Place order
+                        <br>
+                        ↓
+                        <br>
+                        Sit and do other work
+                        <br>
+                        ↓
+                        <br>
+                        Notification
+                        <br>
+                        ↓
+                        <br>
+                        Collect coffee
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>இந்த analogy-யில், <strong>cashier = JavaScript thread</strong>; coffee தயாராகும் வரை எடுத்துக்கொள்ளும் நேரம் = asynchronous operation. Customer காத்திருக்கும் நேரத்தை வீணாக்காமல் வேறு வேலை செய்கிறார்.</p>
+
+    <p>ஒரு cashier ஒரு நேரத்தில் ஒரு customer-ஐ serve செய்தாலும், coffee தயாராகும் வேலை பின்னணியில் நடக்கலாம். அதுபோல, ஒரு JavaScript thread மற்ற code-ஐ execute செய்யும்போது asynchronous operation-க்காக காத்திருக்காமல் இருக்கலாம். உண்மையான system-ல் runtime பல operations-ஐ ஒரே நேரத்தில் manage செய்யவும் முடியும்.</p>
+
+    <hr>
+
+    <h4>5. Final Memory Trick</h4>
+
+    <div class="memory-diagram">
+        Threading = How many execution threads?
+        <br>
+        Synchronous = Finish before continuing
+        <br>
+        Asynchronous = Continue while waiting
+        <br>
+        Event Loop = Coordinates when callbacks can run
+    </div>
+
+    <div class="success-box p-3">
+        <strong>One-line takeaway:</strong>
+        <p>JavaScript single-threaded-ஆக execute ஆனாலும் asynchronous operations-ஐப் பயன்படுத்தலாம். ஏனெனில், ஒவ்வொரு operation-ம் முடியும் வரை JavaScript thread காத்திருக்க வேண்டிய அவசியமில்லை.</p>
+    </div>
+
+</div>
+<div class="container-fluid">
+    <h4>Program vs Process vs Thread</h4>
+    <p>ஒரு program run ஆகும்போது, OS அதற்கான process-ஐ உருவாக்கி manage செய்கிறது. அந்த process-க்குள் ஒன்று அல்லது அதற்கு மேற்பட்ட threads மூலம் instructions execute ஆகலாம்.</p>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">1. Program</div>
+                <div class="ref-side">
+                    <strong>Written Code</strong>
+                    <p>நாம் எழுதும் instructions அல்லது code.</p>
+                    <div class="memory-diagram">JavaScript Code<br>console.log("Hello");</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">2. Process</div>
+                <div class="exec-side">
+                    <strong>Running Instance</strong>
+                    <p>Program இயங்கும்போது OS உருவாக்கி manage செய்யும் instance. இதற்குச் சொந்தமான memory மற்றும் resources இருக்கும்.</p>
+                    <div class="memory-diagram">Process<br>Memory + Resources</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">3. Thread</div>
+                <div class="ref-side">
+                    <strong>Execution Path</strong>
+                    <p>Process-க்குள் instructions execute ஆகும் பாதை. ஒவ்வொரு thread-க்கும் தனித்த execution state இருக்கும்.</p>
+                    <div class="memory-diagram">Thread<br>Instruction → Instruction</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5>How Are They Related?</h5>
+    <div class="memory-diagram">
+        Program (Code)
+        <br>
+        ↓ Run
+        <br>
+        Process (Running Instance)
+        <br>
+        ├── Thread 1
+        <br>
+        ├── Thread 2
+        <br>
+        └── Thread 3
+    </div>
+
+    <p>ஒரு process-க்குள் ஒரு thread அல்லது பல threads இருக்கலாம். Multiple threads ஒரே process-ன் memory மற்றும் resources-ஐப் பகிர்ந்துகொள்ள முடியும்.</p>
+
+    <div class="success-box p-3">
+        <strong>Remember:</strong>
+        <p>Program = என்ன code எழுதப்பட்டிருக்கிறது?</p>
+        <p>Process = அந்த program இயங்கும் instance எது?</p>
+        <p>Thread = அந்த process-க்குள் instructions execute ஆகும் பாதை எது?</p>
+    </div>
+
+    <p class="tamil">ஒரே program-ஐ பல முறை இயக்கினால், பல process instances உருவாகலாம். ஒரு process-க்குள் ஒன்று அல்லது பல threads இருக்கலாம். OS அந்த threads எப்போது execute ஆக வேண்டும் என்பதை schedule செய்கிறது.</p>
 </div>
   </body>
 </html>

@@ -183,7 +183,7 @@ Pattern problems ✅
 ✅ Object vs Map — when to use which
 
 📌 Asynchronous JavaScript
-⏳ Synchronous vs Asynchronous
+✅ Synchronous vs Asynchronous
 ⏳ Web APIs
 ⏳ Callback Queue
 ⏳ Microtask Queue
