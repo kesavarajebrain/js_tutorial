@@ -8,6 +8,7 @@
     <title>Array | Js Zero to Hero</title>
 </head>
 <body>
+            <button id="scrollTopBtn" title="Go to top">⬆</button>
      <a href="./index.html" rel="noopener noreferrer" class="mt-3">
         <button class="btn btn-primary">← Back</button>
     </a>
@@ -6053,4 +6054,20 @@ console.log(result);
     <span class="highlight">Method chaining = "ஒரு method-ன் result-ஐ அடுத்த method-க்கு கொடு."</span>
 </p>
 </body>
+<script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.onscroll = function () {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollBtn.style.display = "flex";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    };
+    scrollBtn.onclick = function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+</script>
 </html>

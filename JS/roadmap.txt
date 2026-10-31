@@ -184,11 +184,11 @@ Pattern problems ✅
 
 📌 Asynchronous JavaScript
 ✅ Synchronous vs Asynchronous
-⏳ Web APIs
-⏳ Callback Queue
-⏳ Microtask Queue
-⏳ Event Loop — Deep Dive
-⏳ Callback Hell
+✅ Web APIs
+✅ Callback Queue
+✅ Microtask Queue
+✅ Event Loop — Deep Dive
+✅ Callback Hell
 ⏳ Promises
 ⏳ Promise states
 ⏳ Promise chaining
