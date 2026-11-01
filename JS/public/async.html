@@ -13,241 +13,310 @@
       <button class="btn btn-primary">← Back</button>
     </a>
     <div class="container-fluid">
+      <h4>Asynchronous JavaScript</h4>
 
-    <h4>Asynchronous JavaScript</h4>
+      <h5>Synchronous vs Asynchronous</h5>
 
-    <h5>Synchronous vs Asynchronous</h5>
+      <p>
+        <strong>Synchronous:</strong> Code executes one operation at a time, in
+        order. The next operation waits for the current synchronous operation to
+        finish.
+      </p>
+      <p class="tamil">
+        தமிழில் - ஒத்திசைவு / ஒத்தியங்கு: ஒரு வேலையைச் செய்து முடித்த பிறகுதான்
+        அடுத்த வேலையைச் செய்வது.
+      </p>
 
-    <p><strong>Synchronous:</strong> Code executes one operation at a time, in order. The next operation waits for the current synchronous operation to finish.</p>
-    <p class="tamil">தமிழில் - ஒத்திசைவு  / ஒத்தியங்கு: ஒரு வேலையைச் செய்து முடித்த பிறகுதான் அடுத்த வேலையைச் செய்வது.</p>
+      <p>
+        <strong>Asynchronous:</strong> Allows time-consuming operations, such as
+        timers and API requests, to complete without blocking the rest of the
+        JavaScript code while waiting.
+      </p>
+      <p class="tamil">
+        தமிழில் - ஒத்திசையா / ஒத்தியங்கா: ஒரு வேலையின் முடிவுக்காகக்
+        காத்திருக்கும்போது, மற்ற code தொடர்ந்து இயங்க அனுமதிக்கும் முறை.
+      </p>
 
-    <p><strong>Asynchronous:</strong> Allows time-consuming operations, such as timers and API requests, to complete without blocking the rest of the JavaScript code while waiting.</p>
-    <p class="tamil">தமிழில் - ஒத்திசையா / ஒத்தியங்கா: ஒரு வேலையின் முடிவுக்காகக் காத்திருக்கும்போது, மற்ற code தொடர்ந்து இயங்க அனுமதிக்கும் முறை.</p>
-
-    <div class="row g-3">
-
+      <div class="row g-3">
         <div class="col-lg-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">1. Synchronous Code</div>
-                <div class="ref-side">
-                    <div class="code-block p-3">
-                        <pre><code>console.log("A");
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">1. Synchronous Code</div>
+            <div class="ref-side">
+              <div class="code-block p-3">
+                <pre><code>console.log("A");
 console.log("B");
 console.log("C");</code></pre>
-                    </div>
-                    <strong>Output</strong>
-                    <div class="code-block p-3">
-                        <pre><code>A
+              </div>
+              <strong>Output</strong>
+              <div class="code-block p-3">
+                <pre><code>A
 B
 C</code></pre>
-                    </div>
-                    <p>Each statement finishes before the next statement executes.</p>
-                </div>
+              </div>
+              <p>Each statement finishes before the next statement executes.</p>
             </div>
+          </div>
         </div>
 
         <div class="col-lg-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">2. Asynchronous Code</div>
-                <div class="exec-side">
-                    <div class="code-block p-3">
-                        <pre><code>console.log("A");
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">2. Asynchronous Code</div>
+            <div class="exec-side">
+              <div class="code-block p-3">
+                <pre><code>console.log("A");
 
 setTimeout(() => {
     console.log("B");
 }, 1000);
 
 console.log("C");</code></pre>
-                    </div>
-                    <strong>Output</strong>
-                    <div class="code-block p-3">
-                        <pre><code>A
+              </div>
+              <strong>Output</strong>
+              <div class="code-block p-3">
+                <pre><code>A
 C
 B</code></pre>
-                    </div>
-                    <p><code>setTimeout()</code> schedules the callback to run after approximately 1 second. Meanwhile, JavaScript continues to the next statement.</p>
-                </div>
+              </div>
+              <p>
+                <code>setTimeout()</code> schedules the callback to run after
+                approximately 1 second. Meanwhile, JavaScript continues to the
+                next statement.
+              </p>
             </div>
+          </div>
         </div>
+      </div>
 
-    </div>
+      <h5>3. Understand the Execution Order</h5>
 
-    <h5>3. Understand the Execution Order</h5>
-
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         console.log("A") → Prints A
-        <br>
+        <br />
         setTimeout(...) → Schedules the callback
-        <br>
+        <br />
         console.log("C") → Prints C
-        <br>
+        <br />
         Timer finishes → Callback becomes eligible to run
-        <br>
+        <br />
         Event loop → Callback runs when JavaScript can execute it
-        <br>
+        <br />
         console.log("B") → Prints B
-    </div>
+      </div>
 
-    <div class="note p-3">
-        <strong>Important:</strong> The <code>1000</code> milliseconds is a minimum delay before the callback becomes eligible to execute, not a guarantee that it runs at exactly 1 second.
-    </div>
+      <div class="note p-3">
+        <strong>Important:</strong> The <code>1000</code> milliseconds is a
+        minimum delay before the callback becomes eligible to execute, not a
+        guarantee that it runs at exactly 1 second.
+      </div>
 
-    <h5>4. Does Asynchronous Mean JavaScript Runs Two Pieces of Code Simultaneously?</h5>
+      <h5>
+        4. Does Asynchronous Mean JavaScript Runs Two Pieces of Code
+        Simultaneously?
+      </h5>
 
-    <p><strong>No, not automatically.</strong> JavaScript normally executes one piece of JavaScript code at a time on its main thread. The runtime, queues and event loop coordinate asynchronous callbacks so that JavaScript can continue working instead of waiting synchronously for every operation.</p>
+      <p>
+        <strong>No, not automatically.</strong> JavaScript normally executes one
+        piece of JavaScript code at a time on its main thread. The runtime,
+        queues and event loop coordinate asynchronous callbacks so that
+        JavaScript can continue working instead of waiting synchronously for
+        every operation.
+      </p>
 
-    <div class="success-box p-3">
+      <div class="success-box p-3">
         <strong>Quick Revision</strong>
-        <p><strong>Synchronous</strong> → Execute in order; the next operation waits for the current one to finish.</p>
-        <p><strong>Asynchronous</strong> → Schedule or handle work that can complete later, allowing the remaining code to continue while waiting.</p>
+        <p>
+          <strong>Synchronous</strong> → Execute in order; the next operation
+          waits for the current one to finish.
+        </p>
+        <p>
+          <strong>Asynchronous</strong> → Schedule or handle work that can
+          complete later, allowing the remaining code to continue while waiting.
+        </p>
+      </div>
     </div>
-</div>
-<div class="row g-3">
-    <div class="col-md-6">
-        <div class="ref-box p-3 h-100">
-            <div class="ref-header">Single-threaded</div>
-            <div class="ref-side">
-                <p><strong>Example: One cashier</strong></p>
-                One cashier serves customers one at a time. The next customer waits until the current service is finished.
-                <div class="memory-diagram">
-                    One cashier
-                    <br>
-                    Customer 1 → Customer 2 → Customer 3
-                </div>
-                <p class="tamil">ஒரு நேரத்தில் ஒரு வேலையை மட்டும் execute செய்யும் ஒரு execution path.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="exec-box p-3 h-100">
-            <div class="exec-header">Multithreading</div>
-            <div class="exec-side">
-                <p><strong>Example: Multiple cashiers</strong></p>
-                Multiple cashiers serve different customers at the same time.
-                <div class="memory-diagram">
-                    Cashier 1 → Customer 1
-                    <br>
-                    Cashier 2 → Customer 2
-                    <br>
-                    Cashier 3 → Customer 3
-                </div>
-                <p class="tamil">பல execution paths இருப்பதால், பல threads தனித்தனியாக வேலை செய்யலாம்.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="success-box p-3">
-    <strong>Remember:</strong>
-    <br>
-    Single-threaded = One execution path at a time.
-    <br>
-    Multithreading = Multiple execution paths that can make progress independently and, on multiple CPU cores, may run simultaneously.
-</div>
-
-<div class="container-fluid">
-
-    <h4>Single-threaded vs Multithreaded — Synchronous vs Asynchronous</h4>
-
-    <div class="table-responsive">
-        <table class="table table-bordered table-sm align-middle">
-            <thead>
-                <tr>
-                    <th>Concept</th>
-                    <th>What It Describes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Single / Multithreaded</strong></td>
-                    <td>How many execution threads are involved. Multiple threads may work concurrently and, on multiple CPU cores, execute in parallel.</td>
-                </tr>
-                <tr>
-                    <td><strong>Synchronous / Asynchronous</strong></td>
-                    <td>Whether the current execution flow waits for an operation to finish or can continue while it completes later.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
     <div class="row g-3">
-        <div class="col-md-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">1. Synchronous</div>
-                <div class="ref-side">
-                    <p><strong>"நான் முடிஞ்சதும் மட்டும் அடுத்தது தொடங்கும்."</strong></p>
-                    <div class="memory-diagram">
-                        Line 1 → Finish
-                        <br>
-                        ↓
-                        <br>
-                        Line 2 → Finish
-                        <br>
-                        ↓
-                        <br>
-                        Line 3
-                    </div>
-                    <p>ஒவ்வொரு synchronous operation-உம் முடிந்த பிறகுதான் அடுத்த statement execute ஆகும். நீண்ட நேரம் எடுக்கும் operation, அதே thread-ல் அடுத்த code இயங்குவதைத் தடுக்கலாம் (block செய்யலாம்).</p>
-                </div>
+      <div class="col-md-6">
+        <div class="ref-box p-3 h-100">
+          <div class="ref-header">Single-threaded</div>
+          <div class="ref-side">
+            <p><strong>Example: One cashier</strong></p>
+            One cashier serves customers one at a time. The next customer waits
+            until the current service is finished.
+            <div class="memory-diagram">
+              One cashier
+              <br />
+              Customer 1 → Customer 2 → Customer 3
             </div>
+            <p class="tamil">
+              ஒரு நேரத்தில் ஒரு வேலையை மட்டும் execute செய்யும் ஒரு execution
+              path.
+            </p>
+          </div>
         </div>
-        <div class="col-md-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">2. Asynchronous</div>
-                <div class="exec-side">
-                    <p><strong>"நான் முடியும் வரை காத்திருக்காதே; அடுத்த வேலையைத் தொடங்கு."</strong></p>
-                    <div class="memory-diagram">
-                        Line 1 → Start operation
-                        <br>
-                        ↓
-                        <br>
-                        Line 2 → Line 3
-                        <br>
-                        ↓
-                        <br>
-                        Result arrives later
-                    </div>
-                    <p>ஒரு asynchronous operation-ஐத் தொடங்கிவிட்டு, அதன் முடிவுக்காக JavaScript thread-ஐ நிறுத்தாமல் அடுத்த code-ஐ execute செய்யலாம்.</p>
-                </div>
+      </div>
+      <div class="col-md-6">
+        <div class="exec-box p-3 h-100">
+          <div class="exec-header">Multithreading</div>
+          <div class="exec-side">
+            <p><strong>Example: Multiple cashiers</strong></p>
+            Multiple cashiers serve different customers at the same time.
+            <div class="memory-diagram">
+              Cashier 1 → Customer 1
+              <br />
+              Cashier 2 → Customer 2
+              <br />
+              Cashier 3 → Customer 3
             </div>
+            <p class="tamil">
+              பல execution paths இருப்பதால், பல threads தனித்தனியாக வேலை
+              செய்யலாம்.
+            </p>
+          </div>
         </div>
+      </div>
     </div>
-
-    <hr>
-
-    <h4>3. Key Point: Async Does NOT Mean "Runs on Another Thread"</h4>
 
     <div class="success-box p-3">
+      <strong>Remember:</strong>
+      <br />
+      Single-threaded = One execution path at a time.
+      <br />
+      Multithreading = Multiple execution paths that can make progress
+      independently and, on multiple CPU cores, may run simultaneously.
+    </div>
+
+    <div class="container-fluid">
+      <h4>Single-threaded vs Multithreaded — Synchronous vs Asynchronous</h4>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>What It Describes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Single / Multithreaded</strong></td>
+              <td>
+                How many execution threads are involved. Multiple threads may
+                work concurrently and, on multiple CPU cores, execute in
+                parallel.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Synchronous / Asynchronous</strong></td>
+              <td>
+                Whether the current execution flow waits for an operation to
+                finish or can continue while it completes later.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">1. Synchronous</div>
+            <div class="ref-side">
+              <p>
+                <strong>"நான் முடிஞ்சதும் மட்டும் அடுத்தது தொடங்கும்."</strong>
+              </p>
+              <div class="memory-diagram">
+                Line 1 → Finish
+                <br />
+                ↓
+                <br />
+                Line 2 → Finish
+                <br />
+                ↓
+                <br />
+                Line 3
+              </div>
+              <p>
+                ஒவ்வொரு synchronous operation-உம் முடிந்த பிறகுதான் அடுத்த
+                statement execute ஆகும். நீண்ட நேரம் எடுக்கும் operation, அதே
+                thread-ல் அடுத்த code இயங்குவதைத் தடுக்கலாம் (block செய்யலாம்).
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">2. Asynchronous</div>
+            <div class="exec-side">
+              <p>
+                <strong
+                  >"நான் முடியும் வரை காத்திருக்காதே; அடுத்த வேலையைத்
+                  தொடங்கு."</strong
+                >
+              </p>
+              <div class="memory-diagram">
+                Line 1 → Start operation
+                <br />
+                ↓
+                <br />
+                Line 2 → Line 3
+                <br />
+                ↓
+                <br />
+                Result arrives later
+              </div>
+              <p>
+                ஒரு asynchronous operation-ஐத் தொடங்கிவிட்டு, அதன் முடிவுக்காக
+                JavaScript thread-ஐ நிறுத்தாமல் அடுத்த code-ஐ execute செய்யலாம்.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <h4>3. Key Point: Async Does NOT Mean "Runs on Another Thread"</h4>
+
+      <div class="success-box p-3">
         <strong>Asynchronous ≠ Multithreaded</strong>
-        <p>Async என்பது வேறொரு JavaScript thread-ல் code இயங்குகிறது என்று அர்த்தமல்ல. ஒரு single JavaScript thread-லேயே asynchronous programming செய்யலாம்.</p>
-    </div>
+        <p>
+          Async என்பது வேறொரு JavaScript thread-ல் code இயங்குகிறது என்று
+          அர்த்தமல்ல. ஒரு single JavaScript thread-லேயே asynchronous programming
+          செய்யலாம்.
+        </p>
+      </div>
 
-    <p>Browser அல்லது Node.js runtime, timer மற்றும் network போன்ற asynchronous operations-ஐ manage செய்யும். Operation முடிந்ததும், callback அல்லது continuation execute ஆவதற்குத் தயாராகும். Event loop, JavaScript எப்போது அந்த callback-ஐ இயக்க முடியும் என்பதை coordinate செய்கிறது.</p>
+      <p>
+        Browser அல்லது Node.js runtime, timer மற்றும் network போன்ற asynchronous
+        operations-ஐ manage செய்யும். Operation முடிந்ததும், callback அல்லது
+        continuation execute ஆவதற்குத் தயாராகும். Event loop, JavaScript எப்போது
+        அந்த callback-ஐ இயக்க முடியும் என்பதை coordinate செய்கிறது.
+      </p>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         JavaScript Thread
-        <br>
+        <br />
         Start async operation
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Continue executing other JS code
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Runtime handles waiting / I/O
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Result or callback becomes ready
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         JS thread executes the callback
-    </div>
+      </div>
 
-    <p><strong>Example:</strong></p>
-    <div class="code-block p-3">
+      <p><strong>Example:</strong></p>
+      <div class="code-block p-3">
         <pre><code>console.log("A");
 
 setTimeout(() => {
@@ -255,167 +324,229 @@ setTimeout(() => {
 }, 1000);
 
 console.log("C");</code></pre>
-    </div>
-    <p><strong>Output:</strong> A → C → B</p>
-    <p><code>setTimeout()</code> timer-ஐ schedule செய்கிறது. JavaScript அதற்காக ஒரு second முழுவதும் காத்திருக்காமல் <code>"C"</code>-ஐ print செய்கிறது. Timer முடிந்ததும் callback பின்னர் execute ஆகும்.</p>
+      </div>
+      <p><strong>Output:</strong> A → C → B</p>
+      <p>
+        <code>setTimeout()</code> timer-ஐ schedule செய்கிறது. JavaScript அதற்காக
+        ஒரு second முழுவதும் காத்திருக்காமல் <code>"C"</code>-ஐ print செய்கிறது.
+        Timer முடிந்ததும் callback பின்னர் execute ஆகும்.
+      </p>
 
-    <div class="note p-3">
-        <strong>Note:</strong> Browser மற்றும் Node.js runtime-கள் தங்களுக்குள் threads அல்லது பிற system resources-ஐப் பயன்படுத்தலாம். ஆனால் சாதாரண main-thread JavaScript callbacks ஒவ்வொன்றாகத்தான் execute ஆகும். Web Workers போன்ற வசதிகள் மூலம் JavaScript-ல் கூடுதல் threads-ஐயும் பயன்படுத்தலாம்.
-    </div>
+      <div class="note p-3">
+        <strong>Note:</strong> Browser மற்றும் Node.js runtime-கள் தங்களுக்குள்
+        threads அல்லது பிற system resources-ஐப் பயன்படுத்தலாம். ஆனால் சாதாரண
+        main-thread JavaScript callbacks ஒவ்வொன்றாகத்தான் execute ஆகும். Web
+        Workers போன்ற வசதிகள் மூலம் JavaScript-ல் கூடுதல் threads-ஐயும்
+        பயன்படுத்தலாம்.
+      </div>
 
-    <hr>
+      <hr />
 
-    <h4>4. Coffee Shop Analogy ☕</h4>
+      <h4>4. Coffee Shop Analogy ☕</h4>
 
-    <div class="row g-3">
+      <div class="row g-3">
         <div class="col-md-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">Synchronous Coffee Shop</div>
-                <div class="ref-side">
-                    <p>Order கொடுத்துவிட்டு coffee தயாராகும் வரை counter-ல் காத்திருக்கிறாய். அந்த நேரத்தில் வேறு வேலை செய்ய முடியாது.</p>
-                    <div class="memory-diagram">
-                        Order
-                        <br>
-                        ↓
-                        <br>
-                        Wait at counter
-                        <br>
-                        ↓
-                        <br>
-                        Coffee ready
-                        <br>
-                        ↓
-                        <br>
-                        Continue
-                    </div>
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">Synchronous Coffee Shop</div>
+            <div class="ref-side">
+              <p>
+                Order கொடுத்துவிட்டு coffee தயாராகும் வரை counter-ல்
+                காத்திருக்கிறாய். அந்த நேரத்தில் வேறு வேலை செய்ய முடியாது.
+              </p>
+              <div class="memory-diagram">
+                Order
+                <br />
+                ↓
+                <br />
+                Wait at counter
+                <br />
+                ↓
+                <br />
+                Coffee ready
+                <br />
+                ↓
+                <br />
+                Continue
+              </div>
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">Asynchronous Coffee Shop</div>
-                <div class="exec-side">
-                    <p>Order கொடுத்துவிட்டு seat-ல் உட்கார்ந்து phone பார்க்கிறாய். Coffee தயாரானதும் notification கிடைக்கிறது.</p>
-                    <div class="memory-diagram">
-                        Place order
-                        <br>
-                        ↓
-                        <br>
-                        Sit and do other work
-                        <br>
-                        ↓
-                        <br>
-                        Notification
-                        <br>
-                        ↓
-                        <br>
-                        Collect coffee
-                    </div>
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Asynchronous Coffee Shop</div>
+            <div class="exec-side">
+              <p>
+                Order கொடுத்துவிட்டு seat-ல் உட்கார்ந்து phone பார்க்கிறாய்.
+                Coffee தயாரானதும் notification கிடைக்கிறது.
+              </p>
+              <div class="memory-diagram">
+                Place order
+                <br />
+                ↓
+                <br />
+                Sit and do other work
+                <br />
+                ↓
+                <br />
+                Notification
+                <br />
+                ↓
+                <br />
+                Collect coffee
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <p>இந்த analogy-யில், <strong>cashier = JavaScript thread</strong>; coffee தயாராகும் வரை எடுத்துக்கொள்ளும் நேரம் = asynchronous operation. Customer காத்திருக்கும் நேரத்தை வீணாக்காமல் வேறு வேலை செய்கிறார்.</p>
+      <p>
+        இந்த analogy-யில், <strong>cashier = JavaScript thread</strong>; coffee
+        தயாராகும் வரை எடுத்துக்கொள்ளும் நேரம் = asynchronous operation. Customer
+        காத்திருக்கும் நேரத்தை வீணாக்காமல் வேறு வேலை செய்கிறார்.
+      </p>
 
-    <p>ஒரு cashier ஒரு நேரத்தில் ஒரு customer-ஐ serve செய்தாலும், coffee தயாராகும் வேலை பின்னணியில் நடக்கலாம். அதுபோல, ஒரு JavaScript thread மற்ற code-ஐ execute செய்யும்போது asynchronous operation-க்காக காத்திருக்காமல் இருக்கலாம். உண்மையான system-ல் runtime பல operations-ஐ ஒரே நேரத்தில் manage செய்யவும் முடியும்.</p>
+      <p>
+        ஒரு cashier ஒரு நேரத்தில் ஒரு customer-ஐ serve செய்தாலும், coffee
+        தயாராகும் வேலை பின்னணியில் நடக்கலாம். அதுபோல, ஒரு JavaScript thread மற்ற
+        code-ஐ execute செய்யும்போது asynchronous operation-க்காக காத்திருக்காமல்
+        இருக்கலாம். உண்மையான system-ல் runtime பல operations-ஐ ஒரே நேரத்தில்
+        manage செய்யவும் முடியும்.
+      </p>
 
-    <hr>
+      <hr />
 
-    <h4>5. Final Memory Trick</h4>
+      <h4>5. Final Memory Trick</h4>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         Threading = How many execution threads?
-        <br>
+        <br />
         Synchronous = Finish before continuing
-        <br>
+        <br />
         Asynchronous = Continue while waiting
-        <br>
+        <br />
         Event Loop = Coordinates when callbacks can run
-    </div>
+      </div>
 
-    <div class="success-box p-3">
+      <div class="success-box p-3">
         <strong>One-line takeaway:</strong>
-        <p>JavaScript single-threaded-ஆக execute ஆனாலும் asynchronous operations-ஐப் பயன்படுத்தலாம். ஏனெனில், ஒவ்வொரு operation-ம் முடியும் வரை JavaScript thread காத்திருக்க வேண்டிய அவசியமில்லை.</p>
+        <p>
+          JavaScript single-threaded-ஆக execute ஆனாலும் asynchronous
+          operations-ஐப் பயன்படுத்தலாம். ஏனெனில், ஒவ்வொரு operation-ம் முடியும்
+          வரை JavaScript thread காத்திருக்க வேண்டிய அவசியமில்லை.
+        </p>
+      </div>
     </div>
+    <div class="container-fluid">
+      <h4>Program vs Process vs Thread</h4>
+      <p>
+        ஒரு program run ஆகும்போது, OS அதற்கான process-ஐ உருவாக்கி manage
+        செய்கிறது. அந்த process-க்குள் ஒன்று அல்லது அதற்கு மேற்பட்ட threads
+        மூலம் instructions execute ஆகலாம்.
+      </p>
 
-</div>
-<div class="container-fluid">
-    <h4>Program vs Process vs Thread</h4>
-    <p>ஒரு program run ஆகும்போது, OS அதற்கான process-ஐ உருவாக்கி manage செய்கிறது. அந்த process-க்குள் ஒன்று அல்லது அதற்கு மேற்பட்ட threads மூலம் instructions execute ஆகலாம்.</p>
-
-    <div class="row g-3">
+      <div class="row g-3">
         <div class="col-md-4">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">1. Program</div>
-                <div class="ref-side">
-                    <strong>Written Code</strong>
-                    <p>நாம் எழுதும் instructions அல்லது code.</p>
-                    <div class="memory-diagram">JavaScript Code<br>console.log("Hello");</div>
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">1. Program</div>
+            <div class="ref-side">
+              <strong>Written Code</strong>
+              <p>நாம் எழுதும் instructions அல்லது code.</p>
+              <div class="memory-diagram">
+                JavaScript Code<br />console.log("Hello");
+              </div>
             </div>
+          </div>
         </div>
         <div class="col-md-4">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">2. Process</div>
-                <div class="exec-side">
-                    <strong>Running Instance</strong>
-                    <p>Program இயங்கும்போது OS உருவாக்கி manage செய்யும் instance. இதற்குச் சொந்தமான memory மற்றும் resources இருக்கும்.</p>
-                    <div class="memory-diagram">Process<br>Memory + Resources</div>
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">2. Process</div>
+            <div class="exec-side">
+              <strong>Running Instance</strong>
+              <p>
+                Program இயங்கும்போது OS உருவாக்கி manage செய்யும் instance.
+                இதற்குச் சொந்தமான memory மற்றும் resources இருக்கும்.
+              </p>
+              <div class="memory-diagram">Process<br />Memory + Resources</div>
             </div>
+          </div>
         </div>
         <div class="col-md-4">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">3. Thread</div>
-                <div class="ref-side">
-                    <strong>Execution Path</strong>
-                    <p>Process-க்குள் instructions execute ஆகும் பாதை. ஒவ்வொரு thread-க்கும் தனித்த execution state இருக்கும்.</p>
-                    <div class="memory-diagram">Thread<br>Instruction → Instruction</div>
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">3. Thread</div>
+            <div class="ref-side">
+              <strong>Execution Path</strong>
+              <p>
+                Process-க்குள் instructions execute ஆகும் பாதை. ஒவ்வொரு
+                thread-க்கும் தனித்த execution state இருக்கும்.
+              </p>
+              <div class="memory-diagram">
+                Thread<br />Instruction → Instruction
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <h5>How Are They Related?</h5>
-    <div class="memory-diagram">
+      <h5>How Are They Related?</h5>
+      <div class="memory-diagram">
         Program (Code)
-        <br>
+        <br />
         ↓ Run
-        <br>
+        <br />
         Process (Running Instance)
-        <br>
+        <br />
         ├── Thread 1
-        <br>
+        <br />
         ├── Thread 2
-        <br>
+        <br />
         └── Thread 3
-    </div>
+      </div>
 
-    <p>ஒரு process-க்குள் ஒரு thread அல்லது பல threads இருக்கலாம். Multiple threads ஒரே process-ன் memory மற்றும் resources-ஐப் பகிர்ந்துகொள்ள முடியும்.</p>
+      <p>
+        ஒரு process-க்குள் ஒரு thread அல்லது பல threads இருக்கலாம். Multiple
+        threads ஒரே process-ன் memory மற்றும் resources-ஐப் பகிர்ந்துகொள்ள
+        முடியும்.
+      </p>
 
-    <div class="success-box p-3">
+      <div class="success-box p-3">
         <strong>Remember:</strong>
         <p>Program = என்ன code எழுதப்பட்டிருக்கிறது?</p>
         <p>Process = அந்த program இயங்கும் instance எது?</p>
         <p>Thread = அந்த process-க்குள் instructions execute ஆகும் பாதை எது?</p>
+      </div>
+
+      <p class="tamil">
+        ஒரே program-ஐ பல முறை இயக்கினால், பல process instances உருவாகலாம். ஒரு
+        process-க்குள் ஒன்று அல்லது பல threads இருக்கலாம். OS அந்த threads
+        எப்போது execute ஆக வேண்டும் என்பதை schedule செய்கிறது.
+      </p>
     </div>
+    <hr />
+    <div class="container-fluid">
+      <h4>Web APIs — How Does JavaScript Handle Asynchronous Operations?</h4>
 
-    <p class="tamil">ஒரே program-ஐ பல முறை இயக்கினால், பல process instances உருவாகலாம். ஒரு process-க்குள் ஒன்று அல்லது பல threads இருக்கலாம். OS அந்த threads எப்போது execute ஆக வேண்டும் என்பதை schedule செய்கிறது.</p>
-</div>
-<hr>
-<div class="container-fluid">
+      <p>
+        JavaScript single-threaded என்றால், <code>setTimeout()</code> போன்ற
+        asynchronous operations-ஐ யார் handle செய்கிறார்கள்?
+      </p>
+      <p>
+        <strong
+          >Answer: The JavaScript runtime environment provides additional
+          capabilities through APIs.</strong
+        >
+        In a browser, these include timer, network and DOM APIs. These
+        capabilities are separate from the core JavaScript language.
+      </p>
 
-    <h4>Web APIs — How Does JavaScript Handle Asynchronous Operations?</h4>
+      <h5>1. What If We Have Only JavaScript?</h5>
 
-    <p>JavaScript single-threaded என்றால், <code>setTimeout()</code> போன்ற asynchronous operations-ஐ யார் handle செய்கிறார்கள்?</p>
-    <p><strong>Answer: The JavaScript runtime environment provides additional capabilities through APIs.</strong> In a browser, these include timer, network and DOM APIs. These capabilities are separate from the core JavaScript language.</p>
+      <p>
+        JavaScript language provides variables, functions, loops, objects and
+        built-in features. When JavaScript runs in a browser, it can also use
+        the additional capabilities provided by the browser.
+      </p>
 
-    <h5>1. What If We Have Only JavaScript?</h5>
-
-    <p>JavaScript language provides variables, functions, loops, objects and built-in features. When JavaScript runs in a browser, it can also use the additional capabilities provided by the browser.</p>
-
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>console.log("Start");
 
 setTimeout(() => {
@@ -423,433 +554,539 @@ setTimeout(() => {
 }, 2000);
 
 console.log("End");</code></pre>
-    </div>
+      </div>
 
-    <p><strong>Output:</strong></p>
-    <div class="code-block p-3">
+      <p><strong>Output:</strong></p>
+      <div class="code-block p-3">
         <pre><code>Start
 End
 Timer finished</code></pre>
-    </div>
+      </div>
 
-    <p>Here, <code>setTimeout()</code> is not core JavaScript syntax. It is a timer API provided by the runtime environment. The browser manages the timer while JavaScript continues executing the next statement.</p>
+      <p>
+        Here, <code>setTimeout()</code> is not core JavaScript syntax. It is a
+        timer API provided by the runtime environment. The browser manages the
+        timer while JavaScript continues executing the next statement.
+      </p>
 
-    <hr>
+      <hr />
 
-    <h5>2. What Are Web APIs?</h5>
+      <h5>2. What Are Web APIs?</h5>
 
-    <p><strong>Web APIs are capabilities exposed by the browser that JavaScript code can use.</strong> They let web applications interact with timers, web pages, network requests, user events and other browser features.</p>
+      <p>
+        <strong
+          >Web APIs are capabilities exposed by the browser that JavaScript code
+          can use.</strong
+        >
+        They let web applications interact with timers, web pages, network
+        requests, user events and other browser features.
+      </p>
 
-    <div class="row g-3">
+      <div class="row g-3">
         <div class="col-md-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">Timer API</div>
-                <div class="ref-side">
-                    <code>setTimeout()</code>, <code>setInterval()</code>
-                    <p class="mb-0">Schedule a callback to run after a delay or repeatedly at intervals.</p>
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">Timer API</div>
+            <div class="ref-side">
+              <code>setTimeout()</code>, <code>setInterval()</code>
+              <p class="mb-0">
+                Schedule a callback to run after a delay or repeatedly at
+                intervals.
+              </p>
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">Network API</div>
-                <div class="exec-side">
-                    <code>fetch()</code>
-                    <p class="mb-0">Make HTTP requests and handle responses from servers.</p>
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Network API</div>
+            <div class="exec-side">
+              <code>fetch()</code>
+              <p class="mb-0">
+                Make HTTP requests and handle responses from servers.
+              </p>
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">DOM APIs</div>
-                <div class="ref-side">
-                    <code>document</code>, event listeners
-                    <p class="mb-0">Access and update web page elements and respond to user interactions.</p>
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">DOM APIs</div>
+            <div class="ref-side">
+              <code>document</code>, event listeners
+              <p class="mb-0">
+                Access and update web page elements and respond to user
+                interactions.
+              </p>
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">Other Browser APIs</div>
-                <div class="exec-side">
-                    Examples include storage, notifications and geolocation APIs.
-                    <p class="mb-0">Provide access to additional browser capabilities, subject to permissions where required.</p>
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Other Browser APIs</div>
+            <div class="exec-side">
+              Examples include storage, notifications and geolocation APIs.
+              <p class="mb-0">
+                Provide access to additional browser capabilities, subject to
+                permissions where required.
+              </p>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <p class="note p-2">Important: Not every Web API is asynchronous. For example, many DOM property accesses are synchronous. Web APIs include both synchronous and asynchronous functionality.</p>
+      <p class="note p-2">
+        Important: Not every Web API is asynchronous. For example, many DOM
+        property accesses are synchronous. Web APIs include both synchronous and
+        asynchronous functionality.
+      </p>
 
-    <hr>
+      <hr />
 
-    <h5>3. How Does the Browser Expose These APIs to JavaScript?</h5>
+      <h5>3. How Does the Browser Expose These APIs to JavaScript?</h5>
 
-    <p>When a browser runs JavaScript in a web page, it provides a global environment with access to browser APIs. That's why you can call <code>setTimeout()</code> without importing it.</p>
+      <p>
+        When a browser runs JavaScript in a web page, it provides a global
+        environment with access to browser APIs. That's why you can call
+        <code>setTimeout()</code> without importing it.
+      </p>
 
-    <p>For example, in a browser:</p>
+      <p>For example, in a browser:</p>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>console.log(typeof setTimeout);        // "function"
 console.log(typeof window.setTimeout); // "function"
 
 window.setTimeout(() => {
     console.log("Hello");
 }, 1000);</code></pre>
-    </div>
+      </div>
 
-    <p>You don't need a separate JavaScript import for these built-in browser APIs. The browser exposes them through the environment in which your code runs.</p>
+      <p>
+        You don't need a separate JavaScript import for these built-in browser
+        APIs. The browser exposes them through the environment in which your
+        code runs.
+      </p>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         Browser creates the page's JavaScript environment
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Exposes APIs such as window.setTimeout
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         JavaScript calls the API
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Browser manages the timer
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Callback becomes eligible to run
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Event loop coordinates when the callback executes
-    </div>
+      </div>
 
-    <hr>
+      <hr />
 
-    <h5>4. JavaScript Engine vs Browser Environment</h5>
+      <h5>4. JavaScript Engine vs Browser Environment</h5>
 
-    <div class="row g-3">
+      <div class="row g-3">
         <div class="col-md-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">JavaScript Engine</div>
-                <div class="ref-side">
-                    <p>Executes JavaScript code.</p>
-                    <p>Examples of JavaScript language features:</p>
-                    <ul class="mb-0">
-                        <li>Variables and functions</li>
-                        <li>Loops and conditions</li>
-                        <li>Objects and arrays</li>
-                        <li>Built-in objects such as <code>Map</code>, <code>Set</code>, <code>Date</code> and <code>Promise</code></li>
-                    </ul>
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">JavaScript Engine</div>
+            <div class="ref-side">
+              <p>Executes JavaScript code.</p>
+              <p>Examples of JavaScript language features:</p>
+              <ul class="mb-0">
+                <li>Variables and functions</li>
+                <li>Loops and conditions</li>
+                <li>Objects and arrays</li>
+                <li>
+                  Built-in objects such as <code>Map</code>, <code>Set</code>,
+                  <code>Date</code> and <code>Promise</code>
+                </li>
+              </ul>
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">Browser Environment</div>
-                <div class="exec-side">
-                    <p>Provides browser-specific capabilities that JavaScript can use.</p>
-                    <ul class="mb-0">
-                        <li><code>window</code> and <code>document</code></li>
-                        <li>Timer APIs</li>
-                        <li>DOM and event APIs</li>
-                        <li>Network APIs such as <code>fetch()</code></li>
-                    </ul>
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Browser Environment</div>
+            <div class="exec-side">
+              <p>
+                Provides browser-specific capabilities that JavaScript can use.
+              </p>
+              <ul class="mb-0">
+                <li><code>window</code> and <code>document</code></li>
+                <li>Timer APIs</li>
+                <li>DOM and event APIs</li>
+                <li>Network APIs such as <code>fetch()</code></li>
+              </ul>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <p>The JavaScript engine and browser environment work together. The engine executes JavaScript; the browser supplies additional functionality through its host APIs.</p>
+      <p>
+        The JavaScript engine and browser environment work together. The engine
+        executes JavaScript; the browser supplies additional functionality
+        through its host APIs.
+      </p>
 
-    <hr>
+      <hr />
 
-    <h5>5. JavaScript Built-ins vs Browser APIs</h5>
+      <h5>5. JavaScript Built-ins vs Browser APIs</h5>
 
-    <div class="table-responsive">
+      <div class="table-responsive">
         <table class="table table-bordered table-sm align-middle">
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>Provided by</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>const</code>, <code>if</code>, <code>for</code>, functions</td>
-                    <td>JavaScript language</td>
-                </tr>
-                <tr>
-                    <td><code>Array</code>, <code>map()</code>, <code>filter()</code></td>
-                    <td>JavaScript built-ins</td>
-                </tr>
-                <tr>
-                    <td><code>Map</code>, <code>Set</code>, <code>Date</code>, <code>Promise</code></td>
-                    <td>JavaScript built-ins</td>
-                </tr>
-                <tr>
-                    <td><code>window</code>, <code>document</code>, DOM methods</td>
-                    <td>Browser APIs</td>
-                </tr>
-                <tr>
-                    <td><code>setTimeout()</code>, <code>setInterval()</code></td>
-                    <td>Host-provided timer APIs; in browsers, provided by the browser environment</td>
-                </tr>
-                <tr>
-                    <td><code>fetch()</code></td>
-                    <td>Host-provided API; available in browsers and also in modern Node.js versions</td>
-                </tr>
-                <tr>
-                    <td><code>console</code></td>
-                    <td>Host-provided console API</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Provided by</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>const</code>, <code>if</code>, <code>for</code>, functions
+              </td>
+              <td>JavaScript language</td>
+            </tr>
+            <tr>
+              <td>
+                <code>Array</code>, <code>map()</code>, <code>filter()</code>
+              </td>
+              <td>JavaScript built-ins</td>
+            </tr>
+            <tr>
+              <td>
+                <code>Map</code>, <code>Set</code>, <code>Date</code>,
+                <code>Promise</code>
+              </td>
+              <td>JavaScript built-ins</td>
+            </tr>
+            <tr>
+              <td><code>window</code>, <code>document</code>, DOM methods</td>
+              <td>Browser APIs</td>
+            </tr>
+            <tr>
+              <td><code>setTimeout()</code>, <code>setInterval()</code></td>
+              <td>
+                Host-provided timer APIs; in browsers, provided by the browser
+                environment
+              </td>
+            </tr>
+            <tr>
+              <td><code>fetch()</code></td>
+              <td>
+                Host-provided API; available in browsers and also in modern
+                Node.js versions
+              </td>
+            </tr>
+            <tr>
+              <td><code>console</code></td>
+              <td>Host-provided console API</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <hr>
+      <hr />
 
-    <h5>6. What Happens in Node.js?</h5>
+      <h5>6. What Happens in Node.js?</h5>
 
-    <p>JavaScript doesn't run only in browsers. Node.js can also execute JavaScript, but it provides a different runtime environment.</p>
+      <p>
+        JavaScript doesn't run only in browsers. Node.js can also execute
+        JavaScript, but it provides a different runtime environment.
+      </p>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>console.log(typeof setTimeout); // "function"
 
 console.log(typeof document);   // "undefined" in standard Node.js</code></pre>
-    </div>
+      </div>
 
-    <p><code>setTimeout()</code> works in Node.js too. That doesn't mean Node.js is running a browser. Node.js provides its own timer APIs and other capabilities, such as filesystem access.</p>
+      <p>
+        <code>setTimeout()</code> works in Node.js too. That doesn't mean
+        Node.js is running a browser. Node.js provides its own timer APIs and
+        other capabilities, such as filesystem access.
+      </p>
 
-    <div class="row g-3">
+      <div class="row g-3">
         <div class="col-md-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">Browser JavaScript</div>
-                <div class="ref-side">
-                    <code>window</code>, <code>document</code>, DOM, browser timers and network APIs.
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">Browser JavaScript</div>
+            <div class="ref-side">
+              <code>window</code>, <code>document</code>, DOM, browser timers
+              and network APIs.
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">Node.js JavaScript</div>
-                <div class="exec-side">
-                    Node.js timers, filesystem APIs, process information and server-side capabilities.
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Node.js JavaScript</div>
+            <div class="exec-side">
+              Node.js timers, filesystem APIs, process information and
+              server-side capabilities.
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <hr>
+      <hr />
 
-    <h5>Quick Revision</h5>
+      <h5>Quick Revision</h5>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         JavaScript language = Core syntax and language features
-        <br>
+        <br />
         JavaScript built-ins = Array, Map, Set, Date, Promise
-        <br>
+        <br />
         Browser APIs = DOM, window, browser timers, browser networking
-        <br>
+        <br />
         Node.js APIs = Filesystem, Node.js timers, process-related features
-        <br>
-        <br>
+        <br />
+        <br />
         Engine = Executes JavaScript
-        <br>
+        <br />
         Runtime environment = Provides host capabilities
-        <br>
+        <br />
         Event loop = Coordinates when queued callbacks can execute
+      </div>
+
+      <p class="tamil">
+        நினைவில் வைத்துக்கொள்ளுங்கள்: JavaScript engine code-ஐ execute
+        செய்கிறது. Browser அல்லது Node.js போன்ற runtime environment, அந்த code
+        பயன்படுத்தக்கூடிய கூடுதல் APIs-ஐ வழங்குகிறது. அதனால்தான்
+        <code>setTimeout()</code> மற்றும் <code>fetch()</code> போன்றவற்றை
+        browser-ல் பயன்படுத்துவதற்கு தனியாக import செய்ய வேண்டியதில்லை.
+      </p>
     </div>
+    <hr />
+    <div class="container-fluid">
+      <h4>
+        Callback Task Queue or Macrotask queue — Where Does a Callback Wait?
+      </h4>
 
-    <p class="tamil">நினைவில் வைத்துக்கொள்ளுங்கள்: JavaScript engine code-ஐ execute செய்கிறது. Browser அல்லது Node.js போன்ற runtime environment, அந்த code பயன்படுத்தக்கூடிய கூடுதல் APIs-ஐ வழங்குகிறது. அதனால்தான் <code>setTimeout()</code> மற்றும் <code>fetch()</code> போன்றவற்றை browser-ல் பயன்படுத்துவதற்கு தனியாக import செய்ய வேண்டியதில்லை.</p>
-
-</div>
-<hr>
-<div class="container-fluid">
-
-    <h4>Callback Task Queue or Macrotask queue — Where Does a Callback Wait?</h4>
-
-    <p>நாம் ஏற்கெனவே புரிந்துகொண்டது:</p>
-    <ul>
+      <p>நாம் ஏற்கெனவே புரிந்துகொண்டது:</p>
+      <ul>
         <li>Browser timer-ஐ schedule செய்கிறது.</li>
         <li>Timer முடிந்ததும், callback execute செய்யத் தயாராகிறது.</li>
-        <li>JavaScript main thread ஏற்கெனவே synchronous code-ஐ execute செய்துகொண்டிருந்தால், callback அதை இடைமறித்து run ஆக முடியாது.</li>
-    </ul>
+        <li>
+          JavaScript main thread ஏற்கெனவே synchronous code-ஐ execute
+          செய்துகொண்டிருந்தால், callback அதை இடைமறித்து run ஆக முடியாது.
+        </li>
+      </ul>
 
-    <p><strong>Question:</strong> Execute செய்யத் தயாராக இருக்கும் callback எங்கே காத்திருக்கும்?</p>
-    <p><strong>Answer:</strong> Callback Task Queue-ல் காத்திருக்கலாம்.</p>
+      <p>
+        <strong>Question:</strong> Execute செய்யத் தயாராக இருக்கும் callback
+        எங்கே காத்திருக்கும்?
+      </p>
+      <p><strong>Answer:</strong> Callback Task Queue-ல் காத்திருக்கலாம்.</p>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         <strong>1. JavaScript Main Thread</strong>
-        <br>
+        <br />
         தற்போதைய code-ஐ execute செய்கிறது
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         <strong>2. Timer Expires</strong>
-        <br>
+        <br />
         Callback execute செய்யத் தயாராகிறது
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         <strong>3. Callback Task Queue</strong>
-        <br>
+        <br />
         Callback தனது turn-க்காகக் காத்திருக்கிறது
-        <br>
-        ↓
-        Callback execute ஆகிறது
-    </div>
+        <br />
+        ↓ Callback execute ஆகிறது
+      </div>
 
-    <div class="row g-3">
+      <div class="row g-3">
         <div class="col-md-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">Example: Timer Callback</div>
-                <div class="ref-side">
-                    <div class="code-block p-3">
-                        <pre><code>console.log("A");
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">Example: Timer Callback</div>
+            <div class="ref-side">
+              <div class="code-block p-3">
+                <pre><code>console.log("A");
 
 setTimeout(() => {
     console.log("B");
 }, 1000);
 
 console.log("C");</code></pre>
-                    </div>
-                    <p><strong>Output</strong></p>
-                    <div class="code-block p-3">
-                        <pre><code>A
+              </div>
+              <p><strong>Output</strong></p>
+              <div class="code-block p-3">
+                <pre><code>A
 C
 B</code></pre>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">Execution Order</div>
-                <div class="exec-side">
-                    <div class="memory-diagram">
-                        Print A
-                        <br>
-                        ↓
-                        <br>
-                        Schedule timer
-                        <br>
-                        ↓
-                        <br>
-                        Print C
-                        <br>
-                        ↓
-                        <br>
-                        Timer expires
-                        <br>
-                        ↓
-                        <br>
-                        Callback waits in task queue
-                        <br>
-                        ↓
-                        <br>
-                        Print B
-                    </div>
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Execution Order</div>
+            <div class="exec-side">
+              <div class="memory-diagram">
+                Print A
+                <br />
+                ↓
+                <br />
+                Schedule timer
+                <br />
+                ↓
+                <br />
+                Print C
+                <br />
+                ↓
+                <br />
+                Timer expires
+                <br />
+                ↓
+                <br />
+                Callback waits in task queue
+                <br />
+                ↓
+                <br />
+                Print B
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="note p-3">
-        <strong>Important:</strong> Timer முடிந்தவுடன் callback உடனே execute ஆகும் என்று அர்த்தமில்லை. Main thread-ல் ஏற்கெனவே இயங்கும் code முடிந்து, callback execute செய்ய வாய்ப்பு கிடைக்கும்போதுதான் அது run ஆகும்.
-    </div>
+      <div class="note p-3">
+        <strong>Important:</strong> Timer முடிந்தவுடன் callback உடனே execute
+        ஆகும் என்று அர்த்தமில்லை. Main thread-ல் ஏற்கெனவே இயங்கும் code
+        முடிந்து, callback execute செய்ய வாய்ப்பு கிடைக்கும்போதுதான் அது run
+        ஆகும்.
+      </div>
 
-    <div class="success-box p-3">
+      <div class="success-box p-3">
         <strong>Remember:</strong>
-        <p>Callback Task Queue = Execute செய்யத் தயாராக இருக்கும் callbacks காத்திருக்கும் waiting line.</p>
-        <p>Callback Queue என்பது தனியாக ஒரு thread அல்ல; அது waiting callbacks-க்கான queue.</p>
+        <p>
+          Callback Task Queue = Execute செய்யத் தயாராக இருக்கும் callbacks
+          காத்திருக்கும் waiting line.
+        </p>
+        <p>
+          Callback Queue என்பது தனியாக ஒரு thread அல்ல; அது waiting
+          callbacks-க்கான queue.
+        </p>
+      </div>
     </div>
+    <hr />
+    <div class="container-fluid">
+      <h4>Microtask Queue vs Callback Task Queue</h4>
+      <p>Macro - BIG, Micro - small</p>
 
-</div>
-<hr>
-<div class="container-fluid">
+      <p>
+        நாம் ஏற்கெனவே கற்றுக்கொண்டது: Timer முடிந்த பிறகு அதன் callback execute
+        ஆகத் தயாராகி Task Queue-ல் காத்திருக்கும். ஆனால் எல்லா asynchronous
+        callbacks-உம் ஒரே queue-ல் காத்திருப்பதில்லை.
+      </p>
 
-    <h4>Microtask Queue vs Callback Task Queue</h4>
-    <p>Macro - BIG, Micro - small</p>
+      <p>
+        JavaScript runtime-ல் இரண்டு முக்கியமான scheduling mechanisms உள்ளன:
+      </p>
 
-    <p>நாம் ஏற்கெனவே கற்றுக்கொண்டது: Timer முடிந்த பிறகு அதன் callback execute ஆகத் தயாராகி Task Queue-ல் காத்திருக்கும். ஆனால் எல்லா asynchronous callbacks-உம் ஒரே queue-ல் காத்திருப்பதில்லை.</p>
-
-    <p>JavaScript runtime-ல் இரண்டு முக்கியமான scheduling mechanisms உள்ளன:</p>
-
-    <div class="row g-3">
+      <div class="row g-3">
         <div class="col-md-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">1. Callback Task Queue</div>
-                <div class="ref-side">
-                    <p><strong>Ordinary Tasks</strong></p>
-                    <ul>
-                        <li><code>setTimeout()</code></li>
-                        <li><code>setInterval()</code></li>
-                        <li>Many DOM event callbacks</li>
-                        <li>Other browser tasks</li>
-                    </ul>
-                    <p class="mb-0">Task execute செய்யத் தயாரான பிறகு தனது turn-க்காகக் காத்திருக்கும்.</p>
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">1. Callback Task Queue</div>
+            <div class="ref-side">
+              <p><strong>Ordinary Tasks</strong></p>
+              <ul>
+                <li><code>setTimeout()</code></li>
+                <li><code>setInterval()</code></li>
+                <li>Many DOM event callbacks</li>
+                <li>Other browser tasks</li>
+              </ul>
+              <p class="mb-0">
+                Task execute செய்யத் தயாரான பிறகு தனது turn-க்காகக்
+                காத்திருக்கும்.
+              </p>
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">2. Microtask Queue</div>
-                <div class="exec-side">
-                    <p><strong>Microtasks</strong></p>
-                    <ul>
-                        <li><code>Promise.then()</code></li>
-                        <li><code>Promise.catch()</code></li>
-                        <li><code>Promise.finally()</code></li>
-                        <li><code>queueMicrotask()</code></li>
-                    </ul>
-                    <p class="mb-0">Microtask checkpoint-இல் execute செய்யப்படுவதற்காகக் காத்திருக்கும்.</p>
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">2. Microtask Queue</div>
+            <div class="exec-side">
+              <p><strong>Microtasks</strong></p>
+              <ul>
+                <li><code>Promise.then()</code></li>
+                <li><code>Promise.catch()</code></li>
+                <li><code>Promise.finally()</code></li>
+                <li><code>queueMicrotask()</code></li>
+              </ul>
+              <p class="mb-0">
+                Microtask checkpoint-இல் execute செய்யப்படுவதற்காகக்
+                காத்திருக்கும்.
+              </p>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <p><strong>Important:</strong> Microtask Queue என்பது Task Queue-ஐ விட முன்னுரிமையாக process செய்யப்படும் தனி queue. இது ஒரே queue-ல் priority கொடுப்பது போன்றது அல்ல; இரண்டும் தனித்தனியான scheduling mechanisms.</p>
+      <p>
+        <strong>Important:</strong> Microtask Queue என்பது Task Queue-ஐ விட
+        முன்னுரிமையாக process செய்யப்படும் தனி queue. இது ஒரே queue-ல் priority
+        கொடுப்பது போன்றது அல்ல; இரண்டும் தனித்தனியான scheduling mechanisms.
+      </p>
 
-    <hr>
+      <hr />
 
-    <h4>1. How Does the Browser Process These Queues?</h4>
+      <h4>1. How Does the Browser Process These Queues?</h4>
 
-    <p>Current JavaScript task முடிந்ததும், browser microtask checkpoint-ஐச் செய்கிறது. அதாவது, Microtask Queue-ல் இருக்கும் microtasks அனைத்தும் empty ஆகும் வரை ஒவ்வொன்றாக execute செய்யப்படும். அதன் பிறகு browser அடுத்த task-ஐ process செய்யலாம்; rendering-க்கும் வாய்ப்பு கிடைக்கலாம்.</p>
+      <p>
+        Current JavaScript task முடிந்ததும், browser microtask checkpoint-ஐச்
+        செய்கிறது. அதாவது, Microtask Queue-ல் இருக்கும் microtasks அனைத்தும்
+        empty ஆகும் வரை ஒவ்வொன்றாக execute செய்யப்படும். அதன் பிறகு browser
+        அடுத்த task-ஐ process செய்யலாம்; rendering-க்கும் வாய்ப்பு கிடைக்கலாம்.
+      </p>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         Current JavaScript Task finishes
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Microtask Queue
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Process microtasks until EMPTY
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Rendering opportunity (when applicable)
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Next Task from a Task Queue
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Next Microtask Checkpoint
-    </div>
+      </div>
 
-    <div class="success-box p-3">
-        <strong>Remember:</strong> Microtasks are processed before the event loop moves on to another task. If a microtask adds another microtask, that new microtask is also processed in the same checkpoint.
-    </div>
+      <div class="success-box p-3">
+        <strong>Remember:</strong> Microtasks are processed before the event
+        loop moves on to another task. If a microtask adds another microtask,
+        that new microtask is also processed in the same checkpoint.
+      </div>
 
-    <hr>
+      <hr />
 
-    <h4>2. First Example — Promise vs setTimeout vs queueMicrotask</h4>
+      <h4>2. First Example — Promise vs setTimeout vs queueMicrotask</h4>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>console.log("Start");
 
 setTimeout(() => {
@@ -865,86 +1102,102 @@ queueMicrotask(() => {
 });
 
 console.log("End");</code></pre>
-    </div>
+      </div>
 
-    <h5>Final Output</h5>
+      <h5>Final Output</h5>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>Start
 End
 Promise microtask
 Direct microtask
 Timer callback</code></pre>
-    </div>
+      </div>
 
-    <h5>Why This Output?</h5>
+      <h5>Why This Output?</h5>
 
-    <p>Let's follow the execution order:</p>
+      <p>Let's follow the execution order:</p>
 
-    <div class="table-responsive">
+      <div class="table-responsive">
         <table class="table table-bordered table-sm align-middle">
-            <thead>
-                <tr>
-                    <th>Step</th>
-                    <th>Operation</th>
-                    <th>Where It Goes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><code>console.log("Start")</code></td>
-                    <td>Executes immediately</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><code>setTimeout()</code></td>
-                    <td>Schedules a Timer Task</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><code>Promise.then()</code></td>
-                    <td>Microtask Queue</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td><code>queueMicrotask()</code></td>
-                    <td>Microtask Queue</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td><code>console.log("End")</code></td>
-                    <td>Executes immediately</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Microtask checkpoint</td>
-                    <td>Promise callback, then Direct microtask</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Timer Task</td>
-                    <td>Timer callback executes later</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Operation</th>
+              <th>Where It Goes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><code>console.log("Start")</code></td>
+              <td>Executes immediately</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><code>setTimeout()</code></td>
+              <td>Schedules a Timer Task</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><code>Promise.then()</code></td>
+              <td>Microtask Queue</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><code>queueMicrotask()</code></td>
+              <td>Microtask Queue</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><code>console.log("End")</code></td>
+              <td>Executes immediately</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Microtask checkpoint</td>
+              <td>Promise callback, then Direct microtask</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Timer Task</td>
+              <td>Timer callback executes later</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <p><strong>Why does Promise execute before setTimeout?</strong> Because Promise callbacks are microtasks, and microtasks are drained before the next ordinary task is processed.</p>
+      <p>
+        <strong>Why does Promise execute before setTimeout?</strong> Because
+        Promise callbacks are microtasks, and microtasks are drained before the
+        next ordinary task is processed.
+      </p>
 
-    <p><strong>Why does Promise microtask execute before Direct microtask?</strong> Both are added to the Microtask Queue in that order. The queue follows FIFO (First In, First Out) ordering.</p>
+      <p>
+        <strong
+          >Why does Promise microtask execute before Direct microtask?</strong
+        >
+        Both are added to the Microtask Queue in that order. The queue follows
+        FIFO (First In, First Out) ordering.
+      </p>
 
-    <div class="note p-3">
-        <strong>Note:</strong> <code>setTimeout(..., 0)</code> does not mean the callback runs immediately. It becomes eligible after the timer delay and runs when the event loop gets to its task. Here, the microtasks run first.
-    </div>
+      <div class="note p-3">
+        <strong>Note:</strong> <code>setTimeout(..., 0)</code> does not mean the
+        callback runs immediately. It becomes eligible after the timer delay and
+        runs when the event loop gets to its task. Here, the microtasks run
+        first.
+      </div>
 
-    <hr>
+      <hr />
 
-    <h4>3. FIFO — What Happens When One Microtask Adds Another?</h4>
+      <h4>3. FIFO — What Happens When One Microtask Adds Another?</h4>
 
-    <p>Let's understand an interesting case: a microtask can schedule another microtask while the queue is already being processed.</p>
+      <p>
+        Let's understand an interesting case: a microtask can schedule another
+        microtask while the queue is already being processed.
+      </p>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>console.log("Start");
 
 queueMicrotask(() => {
@@ -962,136 +1215,155 @@ queueMicrotask(() => {
 });
 
 console.log("End");</code></pre>
-    </div>
+      </div>
 
-    <h5>Final Output</h5>
+      <h5>Final Output</h5>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>Start
 End
 M1 - A
 M1 - B
 M3
 M2</code></pre>
-    </div>
+      </div>
 
-    <h5>Understand the Queue Step by Step</h5>
+      <h5>Understand the Queue Step by Step</h5>
 
-    <p>Before microtask processing begins, the first two microtasks are already queued.</p>
+      <p>
+        Before microtask processing begins, the first two microtasks are already
+        queued.
+      </p>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         Initial Microtask Queue
-        <br>
+        <br />
         ┌──────────┐
-        <br>
-        │ M1       │
-        <br>
-        │ M3       │
-        <br>
+        <br />
+        │ M1 │
+        <br />
+        │ M3 │
+        <br />
         └──────────┘
-    </div>
+      </div>
 
-    <div class="table-responsive">
+      <div class="table-responsive">
         <table class="table table-bordered table-sm align-middle">
-            <thead>
-                <tr>
-                    <th>Step</th>
-                    <th>What Happens</th>
-                    <th>Remaining Queue</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>M1 starts and prints <code>M1 - A</code>.</td>
-                    <td>M3</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>M1 schedules M2 at the end of the queue.</td>
-                    <td>M3 → M2</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>M1 prints <code>M1 - B</code> and finishes.</td>
-                    <td>M3 → M2</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>M3 executes.</td>
-                    <td>M2</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>M2 executes.</td>
-                    <td>Empty</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>What Happens</th>
+              <th>Remaining Queue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>M1 starts and prints <code>M1 - A</code>.</td>
+              <td>M3</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>M1 schedules M2 at the end of the queue.</td>
+              <td>M3 → M2</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>M1 prints <code>M1 - B</code> and finishes.</td>
+              <td>M3 → M2</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>M3 executes.</td>
+              <td>M2</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>M2 executes.</td>
+              <td>Empty</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <div class="success-box p-3">
-        <strong>Important:</strong> M2 does not jump ahead of M3. It is added to the end of the Microtask Queue, so M3 executes first.
-    </div>
+      <div class="success-box p-3">
+        <strong>Important:</strong> M2 does not jump ahead of M3. It is added to
+        the end of the Microtask Queue, so M3 executes first.
+      </div>
 
-    <hr>
+      <hr />
 
-    <h4>4. Task Queue vs Microtask Queue — Quick Comparison</h4>
+      <h4>4. Task Queue vs Microtask Queue — Quick Comparison</h4>
 
-    <div class="table-responsive">
+      <div class="table-responsive">
         <table class="table table-bordered table-sm align-middle">
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>Task Queue</th>
-                    <th>Microtask Queue</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Also called</td>
-                    <td>Callback Queue / Macrotask Queue (informal terms)</td>
-                    <td>Microtask Queue</td>
-                </tr>
-                <tr>
-                    <td>Examples</td>
-                    <td>setTimeout, setInterval, many DOM event callbacks</td>
-                    <td>Promise.then/catch/finally, queueMicrotask</td>
-                </tr>
-                <tr>
-                    <td>When processed?</td>
-                    <td>When the event loop selects a task</td>
-                    <td>At a microtask checkpoint</td>
-                </tr>
-                <tr>
-                    <td>Processing order</td>
-                    <td>After the current microtask checkpoint</td>
-                    <td>Before the next task is selected</td>
-                </tr>
-                <tr>
-                    <td>Can add more work?</td>
-                    <td>Yes, tasks can schedule more tasks</td>
-                    <td>Yes, microtasks can schedule more microtasks</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Task Queue</th>
+              <th>Microtask Queue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Also called</td>
+              <td>Callback Queue / Macrotask Queue (informal terms)</td>
+              <td>Microtask Queue</td>
+            </tr>
+            <tr>
+              <td>Examples</td>
+              <td>setTimeout, setInterval, many DOM event callbacks</td>
+              <td>Promise.then/catch/finally, queueMicrotask</td>
+            </tr>
+            <tr>
+              <td>When processed?</td>
+              <td>When the event loop selects a task</td>
+              <td>At a microtask checkpoint</td>
+            </tr>
+            <tr>
+              <td>Processing order</td>
+              <td>After the current microtask checkpoint</td>
+              <td>Before the next task is selected</td>
+            </tr>
+            <tr>
+              <td>Can add more work?</td>
+              <td>Yes, tasks can schedule more tasks</td>
+              <td>Yes, microtasks can schedule more microtasks</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <p class="note p-3"><strong>Technical note:</strong> "Macrotask Queue" and "Callback Queue" are commonly used learning terms. Browser standards describe multiple task queues/task sources rather than one single universal FIFO queue for all tasks. The Microtask Queue is a separate scheduling mechanism.</p>
+      <p class="note p-3">
+        <strong>Technical note:</strong> "Macrotask Queue" and "Callback Queue"
+        are commonly used learning terms. Browser standards describe multiple
+        task queues/task sources rather than one single universal FIFO queue for
+        all tasks. The Microtask Queue is a separate scheduling mechanism.
+      </p>
 
-    <hr>
+      <hr />
 
-    <h4>5. Microtask Starvation</h4>
+      <h4>5. Microtask Starvation</h4>
 
-    <p>We know that the browser processes microtasks until the Microtask Queue becomes empty.</p>
+      <p>
+        We know that the browser processes microtasks until the Microtask Queue
+        becomes empty.
+      </p>
 
-    <p><strong>But what happens when microtasks continuously add more microtasks?</strong></p>
+      <p>
+        <strong
+          >But what happens when microtasks continuously add more
+          microtasks?</strong
+        >
+      </p>
 
-    <p>This can cause a problem called <strong>Microtask Starvation</strong>.</p>
+      <p>
+        This can cause a problem called <strong>Microtask Starvation</strong>.
+      </p>
 
-    <h5>Example: Scheduling Microtasks Repeatedly</h5>
+      <h5>Example: Scheduling Microtasks Repeatedly</h5>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>console.log("Start");
 
 let count = 1;
@@ -1112,273 +1384,332 @@ setTimeout(() => {
 queueMicrotask(repeatMicrotask);
 
 console.log("End");</code></pre>
-    </div>
+      </div>
 
-    <h5>Final Output</h5>
+      <h5>Final Output</h5>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>Start
 End
 Microtask 1
 Microtask 2
 Microtask 3
 Timer</code></pre>
-    </div>
+      </div>
 
-    <p><strong>Why does the Timer execute last?</strong></p>
+      <p><strong>Why does the Timer execute last?</strong></p>
 
-    <ol>
+      <ol>
         <li>The timer callback is scheduled as a task.</li>
         <li><code>repeatMicrotask</code> is added to the Microtask Queue.</li>
-        <li>The current JavaScript task finishes, and the microtask checkpoint begins.</li>
+        <li>
+          The current JavaScript task finishes, and the microtask checkpoint
+          begins.
+        </li>
         <li>Microtask 1 schedules Microtask 2.</li>
         <li>Microtask 2 schedules Microtask 3.</li>
         <li>The queue becomes empty only after Microtask 3 finishes.</li>
         <li>Now the event loop can move on to the Timer task.</li>
-    </ol>
+      </ol>
 
-    <hr>
+      <hr />
 
-    <h4>6. What If We Remove the Condition?</h4>
+      <h4>6. What If We Remove the Condition?</h4>
 
-    <p>Imagine removing this condition:</p>
+      <p>Imagine removing this condition:</p>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>if (count < 3) {
     count++;
     queueMicrotask(repeatMicrotask);
 }</code></pre>
-    </div>
+      </div>
 
-    <p>And always scheduling another microtask:</p>
+      <p>And always scheduling another microtask:</p>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>function repeatMicrotask() {
     console.log("Microtask", count++);
     queueMicrotask(repeatMicrotask);
 }</code></pre>
-    </div>
+      </div>
 
-    <p>Now each microtask schedules another microtask forever. The Microtask Queue never becomes empty.</p>
+      <p>
+        Now each microtask schedules another microtask forever. The Microtask
+        Queue never becomes empty.
+      </p>
 
-    <div class="error-box p-3">
+      <div class="error-box p-3">
         <strong>Microtask Starvation</strong>
-        <p>When microtasks continuously schedule more microtasks, the browser may never get an opportunity to process the next task or update the page.</p>
+        <p>
+          When microtasks continuously schedule more microtasks, the browser may
+          never get an opportunity to process the next task or update the page.
+        </p>
         <p>This can:</p>
         <ul class="mb-0">
-            <li>Delay timer callbacks.</li>
-            <li>Delay browser rendering and UI updates.</li>
-            <li>Make a webpage appear frozen or unresponsive.</li>
+          <li>Delay timer callbacks.</li>
+          <li>Delay browser rendering and UI updates.</li>
+          <li>Make a webpage appear frozen or unresponsive.</li>
         </ul>
-    </div>
+      </div>
 
-    <p><strong>Why is this dangerous?</strong> The browser drains microtasks before moving on to another task. If that drain never finishes, other work cannot get its normal turn.</p>
+      <p>
+        <strong>Why is this dangerous?</strong> The browser drains microtasks
+        before moving on to another task. If that drain never finishes, other
+        work cannot get its normal turn.
+      </p>
 
-    <hr>
+      <hr />
 
-    <h4>7. Final Mental Model</h4>
+      <h4>7. Final Mental Model</h4>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         Synchronous JavaScript Task
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Microtask Queue → Drain until empty
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Rendering opportunity (when applicable)
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Task Queue → Select next task
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Its Microtask Checkpoint
-    </div>
+      </div>
 
-    <div class="success-box p-3">
+      <div class="success-box p-3">
         <strong>Remember These 5 Points</strong>
         <ol class="mb-0">
-            <li>Not all asynchronous callbacks use the same queue.</li>
-            <li>Timer callbacks and many DOM event callbacks are tasks.</li>
-            <li>Promise callbacks and <code>queueMicrotask()</code> callbacks are microtasks.</li>
-            <li>Microtasks are drained before the event loop moves to the next task.</li>
-            <li>Continuously scheduling microtasks can cause Microtask Starvation.</li>
+          <li>Not all asynchronous callbacks use the same queue.</li>
+          <li>Timer callbacks and many DOM event callbacks are tasks.</li>
+          <li>
+            Promise callbacks and <code>queueMicrotask()</code> callbacks are
+            microtasks.
+          </li>
+          <li>
+            Microtasks are drained before the event loop moves to the next task.
+          </li>
+          <li>
+            Continuously scheduling microtasks can cause Microtask Starvation.
+          </li>
         </ol>
+      </div>
     </div>
+    <hr />
+    <div class="container-fluid">
+      <h4>Event Loop — How JavaScript Handles Asynchronous Execution</h4>
 
-</div>
-<hr>
-<div class="container-fluid">
+      <p>
+        The
+        <strong
+          >Event Loop is not a queue, and it is not another JavaScript
+          thread.</strong
+        >
+        It is part of the runtime's execution-scheduling mechanism. It
+        coordinates when queued tasks and microtasks can execute.
+      </p>
+      <p>
+        <b
+          >JavaScript executes the current task (synchronous) to completion,
+          processes pending microtasks at the microtask queue, and then the
+          browser can proceed to another ordinary task(callback queue or
+          macrotask queue).</b
+        >
+      </p>
+      <p>
+        We have already learned about the Call Stack, Web APIs, Task Queue and
+        Microtask Queue. Now let's understand how they work together.
+      </p>
 
-    <h4>Event Loop — How JavaScript Handles Asynchronous Execution</h4>
+      <hr />
 
-    <p>The <strong>Event Loop is not a queue, and it is not another JavaScript thread.</strong> It is part of the runtime's execution-scheduling mechanism. It coordinates when queued tasks and microtasks can execute.</p>
-<p><b>JavaScript executes the current task (synchronous) to completion, processes pending microtasks at the microtask queue, and then the browser can proceed to another ordinary task(callback queue or macrotask queue).</b></p>
-    <p>We have already learned about the Call Stack, Web APIs, Task Queue and Microtask Queue. Now let's understand how they work together.</p>
+      <h4>1. Browser JavaScript Execution Model</h4>
 
-    <hr>
-
-    <h4>1. Browser JavaScript Execution Model</h4>
-
-    <div class="row g-3">
+      <div class="row g-3">
         <div class="col-lg-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">JavaScript Engine</div>
-                <div class="ref-side">
-                    <h6>Call Stack</h6>
-                    <p>Executes synchronous JavaScript and callbacks when they get their turn.</p>
-                    <div class="memory-diagram">
-                        Global Execution Context
-                        <br>
-                        ↓
-                        <br>
-                        Function Execution Contexts
-                        <br>
-                        ↓
-                        <br>
-                        LIFO — Last In, First Out
-                    </div>
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">JavaScript Engine</div>
+            <div class="ref-side">
+              <h6>Call Stack</h6>
+              <p>
+                Executes synchronous JavaScript and callbacks when they get
+                their turn.
+              </p>
+              <div class="memory-diagram">
+                Global Execution Context
+                <br />
+                ↓
+                <br />
+                Function Execution Contexts
+                <br />
+                ↓
+                <br />
+                LIFO — Last In, First Out
+              </div>
             </div>
+          </div>
         </div>
         <div class="col-lg-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">Browser Environment</div>
-                <div class="exec-side">
-                    <h6>Web APIs</h6>
-                    <p>Provide capabilities such as timers, networking and DOM events.</p>
-                    <div class="memory-diagram">
-                        Timer API
-                        <br>
-                        Network API
-                        <br>
-                        DOM / Event APIs
-                    </div>
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Browser Environment</div>
+            <div class="exec-side">
+              <h6>Web APIs</h6>
+              <p>
+                Provide capabilities such as timers, networking and DOM events.
+              </p>
+              <div class="memory-diagram">
+                Timer API
+                <br />
+                Network API
+                <br />
+                DOM / Event APIs
+              </div>
             </div>
+          </div>
         </div>
         <div class="col-lg-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">Microtask Queue</div>
-                <div class="ref-side">
-                    <p>Holds microtasks waiting for execution.</p>
-                    <div class="memory-diagram">
-                        Promise.then()
-                        <br>
-                        Promise.catch()
-                        <br>
-                        Promise.finally()
-                        <br>
-                        queueMicrotask()
-                    </div>
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">Microtask Queue</div>
+            <div class="ref-side">
+              <p>Holds microtasks waiting for execution.</p>
+              <div class="memory-diagram">
+                Promise.then()
+                <br />
+                Promise.catch()
+                <br />
+                Promise.finally()
+                <br />
+                queueMicrotask()
+              </div>
             </div>
+          </div>
         </div>
         <div class="col-lg-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">Task Queue</div>
-                <div class="exec-side">
-                    <p>Holds ordinary tasks waiting for execution.</p>
-                    <div class="memory-diagram">
-                        Timer callbacks
-                        <br>
-                        Many DOM event callbacks
-                        <br>
-                        Other browser tasks
-                    </div>
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Task Queue</div>
+            <div class="exec-side">
+              <p>Holds ordinary tasks waiting for execution.</p>
+              <div class="memory-diagram">
+                Timer callbacks
+                <br />
+                Many DOM event callbacks
+                <br />
+                Other browser tasks
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="success-box p-3 mt-3">
+      <div class="success-box p-3 mt-3">
         <strong>Event Loop</strong>
-        <p class="mb-0">Coordinates task execution and microtask checkpoints. It helps determine when queued JavaScript callbacks can run on the Call Stack.</p>
-    </div>
+        <p class="mb-0">
+          Coordinates task execution and microtask checkpoints. It helps
+          determine when queued JavaScript callbacks can run on the Call Stack.
+        </p>
+      </div>
 
-    <h5>2. Responsibility of Each Component</h5>
+      <h5>2. Responsibility of Each Component</h5>
 
-    <div class="table-responsive">
+      <div class="table-responsive">
         <table class="table table-bordered table-sm align-middle">
-            <thead>
-                <tr>
-                    <th>Component</th>
-                    <th>Responsibility</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Call Stack</strong></td>
-                    <td>Tracks JavaScript functions currently executing. Function execution contexts are pushed and popped in LIFO order.</td>
-                </tr>
-                <tr>
-                    <td><strong>Web APIs</strong></td>
-                    <td>Provide browser capabilities such as timers, network requests and DOM events.</td>
-                </tr>
-                <tr>
-                    <td><strong>Task Queue</strong></td>
-                    <td>Tasks waiting for their turn to execute. Commonly called Callback Queue or Macrotask Queue.</td>
-                </tr>
-                <tr>
-                    <td><strong>Microtask Queue</strong></td>
-                    <td>Holds microtasks such as Promise callbacks and <code>queueMicrotask()</code> callbacks.</td>
-                </tr>
-                <tr>
-                    <td><strong>Event Loop</strong></td>
-                    <td>Coordinates task selection and microtask processing.</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Responsibility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Call Stack</strong></td>
+              <td>
+                Tracks JavaScript functions currently executing. Function
+                execution contexts are pushed and popped in LIFO order.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Web APIs</strong></td>
+              <td>
+                Provide browser capabilities such as timers, network requests
+                and DOM events.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Task Queue</strong></td>
+              <td>
+                Tasks waiting for their turn to execute. Commonly called
+                Callback Queue or Macrotask Queue.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Microtask Queue</strong></td>
+              <td>
+                Holds microtasks such as Promise callbacks and
+                <code>queueMicrotask()</code> callbacks.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Event Loop</strong></td>
+              <td>Coordinates task selection and microtask processing.</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <hr>
+      <hr />
 
-    <h4>3. How Does the Event Loop Actually Work?</h4>
+      <h4>3. How Does the Event Loop Actually Work?</h4>
 
-    <p>Let's understand one simplified browser event loop cycle.</p>
+      <p>Let's understand one simplified browser event loop cycle.</p>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         <strong>1. Select an ordinary task</strong>
-        <br>
+        <br />
         Initial JavaScript script or a timer callback
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         <strong>2. Execute the current task</strong>
-        <br>
+        <br />
         JavaScript runs until the task's synchronous execution finishes
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         <strong>3. Process the Microtask Queue</strong>
-        <br>
+        <br />
         Execute microtasks in FIFO order until the queue is empty
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         <strong>4. Consider Browser Rendering</strong>
-        <br>
+        <br />
         The browser gets a rendering opportunity when appropriate
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         <strong>5. Continue the Event Loop</strong>
-        <br>
+        <br />
         Select another task when available and repeat
-    </div>
+      </div>
 
-    <div class="note p-3">
-        <strong>Important:</strong> The current JavaScript task runs to completion. A queued callback cannot interrupt synchronous code that is already executing. Microtasks also run until the Microtask Queue is empty before the event loop moves on to another ordinary task.
-    </div>
+      <div class="note p-3">
+        <strong>Important:</strong> The current JavaScript task runs to
+        completion. A queued callback cannot interrupt synchronous code that is
+        already executing. Microtasks also run until the Microtask Queue is
+        empty before the event loop moves on to another ordinary task.
+      </div>
 
-    <hr>
+      <hr />
 
-    <h4>4. Example 1 — Synchronous Code, Promise and setTimeout</h4>
+      <h4>4. Example 1 — Synchronous Code, Promise and setTimeout</h4>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>console.log("A");
 
 setTimeout(() => {
@@ -1390,83 +1721,88 @@ Promise.resolve().then(() => {
 });
 
 console.log("D");</code></pre>
-    </div>
+      </div>
 
-    <h5>Final Output</h5>
+      <h5>Final Output</h5>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>A
 D
 C
 B</code></pre>
-    </div>
+      </div>
 
-    <h5>Execution Walkthrough</h5>
+      <h5>Execution Walkthrough</h5>
 
-    <div class="table-responsive">
+      <div class="table-responsive">
         <table class="table table-bordered table-sm align-middle">
-            <thead>
-                <tr>
-                    <th>Step</th>
-                    <th>What Happens?</th>
-                    <th>Result / Scheduling</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Initial script starts.</td>
-                    <td>Task execution begins.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><code>console.log("A")</code></td>
-                    <td>Prints A</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><code>setTimeout()</code></td>
-                    <td>Schedules a timer task.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td><code>Promise.then()</code></td>
-                    <td>Schedules a microtask.</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td><code>console.log("D")</code></td>
-                    <td>Prints D</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Initial script finishes.</td>
-                    <td>Microtask checkpoint begins.</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Promise callback executes.</td>
-                    <td>Prints C</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Microtask Queue becomes empty; timer task executes when selected.</td>
-                    <td>Prints B</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>What Happens?</th>
+              <th>Result / Scheduling</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Initial script starts.</td>
+              <td>Task execution begins.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><code>console.log("A")</code></td>
+              <td>Prints A</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><code>setTimeout()</code></td>
+              <td>Schedules a timer task.</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><code>Promise.then()</code></td>
+              <td>Schedules a microtask.</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><code>console.log("D")</code></td>
+              <td>Prints D</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Initial script finishes.</td>
+              <td>Microtask checkpoint begins.</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Promise callback executes.</td>
+              <td>Prints C</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>
+                Microtask Queue becomes empty; timer task executes when
+                selected.
+              </td>
+              <td>Prints B</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <div class="success-box p-3">
+      <div class="success-box p-3">
         <strong>Remember the execution order:</strong>
-        <p class="mb-0">Synchronous statements → Microtasks → Next ordinary task.</p>
-    </div>
+        <p class="mb-0">
+          Synchronous statements → Microtasks → Next ordinary task.
+        </p>
+      </div>
 
-    <hr>
+      <hr />
 
-    <h4>5. Example 2 — Microtask Inside a Timer Callback</h4>
+      <h4>5. Example 2 — Microtask Inside a Timer Callback</h4>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>console.log("Start");
 
 setTimeout(() => {
@@ -1480,67 +1816,71 @@ setTimeout(() => {
 }, 0);
 
 console.log("End");</code></pre>
-    </div>
+      </div>
 
-    <h5>Final Output</h5>
+      <h5>Final Output</h5>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>Start
 End
 Timer - A
 Timer - B
 Microtask inside Timer</code></pre>
-    </div>
+      </div>
 
-    <h5>Why Does This Happen?</h5>
+      <h5>Why Does This Happen?</h5>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         Initial Script
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Print Start → Print End
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Initial Microtask Checkpoint (empty)
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Timer Task Starts
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Print Timer - A
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Schedule Promise Microtask
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Print Timer - B
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Timer Callback Finishes
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Microtask Checkpoint
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Print Microtask inside Timer
-    </div>
+      </div>
 
-    <p>The Promise callback doesn't interrupt the timer callback. It waits until the current timer task finishes, then executes during the microtask checkpoint.</p>
+      <p>
+        The Promise callback doesn't interrupt the timer callback. It waits
+        until the current timer task finishes, then executes during the
+        microtask checkpoint.
+      </p>
 
-    <hr>
+      <hr />
 
-    <h4>6. Example 3 — Comprehensive Event Loop Dry Run</h4>
+      <h4>6. Example 3 — Comprehensive Event Loop Dry Run</h4>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>console.log("1");
 
 setTimeout(() => {
@@ -1560,214 +1900,233 @@ Promise.resolve().then(() => {
 });
 
 console.log("6");</code></pre>
-    </div>
+      </div>
 
-    <h5>Final Output</h5>
+      <h5>Final Output</h5>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>1
 6
 4
 5
 2
 3</code></pre>
-    </div>
+      </div>
 
-    <h5>Detailed Execution Walkthrough</h5>
+      <h5>Detailed Execution Walkthrough</h5>
 
-    <div class="table-responsive">
+      <div class="table-responsive">
         <table class="table table-bordered table-sm align-middle">
-            <thead>
-                <tr>
-                    <th>Step</th>
-                    <th>What Happens?</th>
-                    <th>Output / Queue State</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>First synchronous statement executes.</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><code>setTimeout()</code> schedules a timer task.</td>
-                    <td>Task: Timer callback</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><code>Promise.then()</code> schedules a microtask.</td>
-                    <td>Microtask: Promise callback</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Last synchronous statement executes.</td>
-                    <td>6</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Initial script finishes; Promise microtask executes.</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td><code>queueMicrotask()</code> schedules another microtask.</td>
-                    <td>Microtask: 5 is queued</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Newly scheduled microtask executes.</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Microtask Queue becomes empty; timer task executes.</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Timer callback schedules a Promise microtask.</td>
-                    <td>Microtask: 3 is queued</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Timer callback finishes; microtask executes.</td>
-                    <td>3</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>What Happens?</th>
+              <th>Output / Queue State</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>First synchronous statement executes.</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><code>setTimeout()</code> schedules a timer task.</td>
+              <td>Task: Timer callback</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><code>Promise.then()</code> schedules a microtask.</td>
+              <td>Microtask: Promise callback</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Last synchronous statement executes.</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Initial script finishes; Promise microtask executes.</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>
+                <code>queueMicrotask()</code> schedules another microtask.
+              </td>
+              <td>Microtask: 5 is queued</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Newly scheduled microtask executes.</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Microtask Queue becomes empty; timer task executes.</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Timer callback schedules a Promise microtask.</td>
+              <td>Microtask: 3 is queued</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Timer callback finishes; microtask executes.</td>
+              <td>3</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <h5>Visualize the Queue Changes</h5>
+      <h5>Visualize the Queue Changes</h5>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         After Initial Script:
-        <br>
+        <br />
         Microtask Queue: [Promise → 4]
-        <br>
+        <br />
         Task Queue: [Timer → 2]
-        <br>
-        <br>
+        <br />
+        <br />
         After Promise Microtask:
-        <br>
+        <br />
         Microtask Queue: [queueMicrotask → 5]
-        <br>
+        <br />
         Task Queue: [Timer → 2]
-        <br>
-        <br>
+        <br />
+        <br />
         After Microtask 5:
-        <br>
+        <br />
         Microtask Queue: Empty
-        <br>
+        <br />
         Task Queue: [Timer → 2]
-        <br>
-        <br>
+        <br />
+        <br />
         Timer Callback Executes:
-        <br>
+        <br />
         Prints 2 and schedules Promise → 3
-        <br>
-        <br>
+        <br />
+        <br />
         After Timer Callback:
-        <br>
+        <br />
         Microtask Queue: [Promise → 3]
-        <br>
-        <br>
+        <br />
+        <br />
         Final Microtask:
-        <br>
+        <br />
         Prints 3
-    </div>
+      </div>
 
-    <hr>
+      <hr />
 
-    <h4>7. Final Mental Model</h4>
+      <h4>7. Final Mental Model</h4>
 
-    <div class="row g-3">
+      <div class="row g-3">
         <div class="col-md-6">
-            <div class="ref-box p-3 h-100">
-                <div class="ref-header">JavaScript Engine</div>
-                <div class="ref-side">
-                    <p><strong>Call Stack</strong></p>
-                    Executes synchronous code and callbacks one at a time on the main JavaScript thread.
-                </div>
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">JavaScript Engine</div>
+            <div class="ref-side">
+              <p><strong>Call Stack</strong></p>
+              Executes synchronous code and callbacks one at a time on the main
+              JavaScript thread.
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="exec-box p-3 h-100">
-                <div class="exec-header">Browser Runtime</div>
-                <div class="exec-side">
-                    <p><strong>Web APIs + Queues</strong></p>
-                    Manages browser capabilities and holds tasks and microtasks waiting for execution.
-                </div>
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">Browser Runtime</div>
+            <div class="exec-side">
+              <p><strong>Web APIs + Queues</strong></p>
+              Manages browser capabilities and holds tasks and microtasks
+              waiting for execution.
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         Event Loop = Execution Scheduler
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Current Task completes
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Drain Microtask Queue
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Rendering opportunity (when appropriate)
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Next Task
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Repeat
-    </div>
+      </div>
 
-    <div class="success-box p-3">
+      <div class="success-box p-3">
         <strong>5 Rules to Remember</strong>
         <ol class="mb-0">
-            <li>The Event Loop is not a queue or a separate JavaScript thread.</li>
-            <li>The Call Stack executes JavaScript code one piece at a time.</li>
-            <li>The current task runs to completion; queued callbacks cannot interrupt it.</li>
-            <li>After a task, microtasks are processed until the Microtask Queue is empty.</li>
-            <li>The Event Loop then continues with another task, with browser rendering opportunities when appropriate.</li>
+          <li>
+            The Event Loop is not a queue or a separate JavaScript thread.
+          </li>
+          <li>The Call Stack executes JavaScript code one piece at a time.</li>
+          <li>
+            The current task runs to completion; queued callbacks cannot
+            interrupt it.
+          </li>
+          <li>
+            After a task, microtasks are processed until the Microtask Queue is
+            empty.
+          </li>
+          <li>
+            The Event Loop then continues with another task, with browser
+            rendering opportunities when appropriate.
+          </li>
         </ol>
+      </div>
+      <div class="success-box p-3">
+        <strong>Event Loop — Golden Rule</strong>
+        <div class="memory-diagram">
+          Synchronous Code
+          <br />
+          ↓
+          <br />
+          Microtask Queue (until empty)
+          <br />
+          ↓
+          <br />
+          Next Ordinary Task
+          <br />
+          ↓
+          <br />
+          Repeat
+        </div>
+        <p class="mb-0">
+          The current task cannot be interrupted by queued callbacks. Microtasks
+          are processed before the Event Loop moves to another ordinary task.
+        </p>
+      </div>
     </div>
-    <div class="success-box p-3">
-    <strong>Event Loop — Golden Rule</strong>
-    <div class="memory-diagram">
-        Synchronous Code
-        <br>
-        ↓
-        <br>
-        Microtask Queue (until empty)
-        <br>
-        ↓
-        <br>
-        Next Ordinary Task
-        <br>
-        ↓
-        <br>
-        Repeat
-    </div>
-    <p class="mb-0">The current task cannot be interrupted by queued callbacks. Microtasks are processed before the Event Loop moves to another ordinary task.</p>
-</div>
+    <hr />
+    <div class="container-fluid">
+      <h4>Callback Hell — Understanding Nested Callbacks</h4>
 
-</div>
-<hr>
-<div class="container-fluid">
+      <h5>1. First, Why Were Callbacks Introduced?</h5>
 
-    <h4>Callback Hell — Understanding Nested Callbacks</h4>
+      <p>
+        Callbacks allow us to execute a function after an asynchronous operation
+        finishes and provide its result to another function.
+      </p>
 
-    <h5>1. First, Why Were Callbacks Introduced?</h5>
-
-    <p>Callbacks allow us to execute a function after an asynchronous operation finishes and provide its result to another function.</p>
-
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>function getUser(callback) {
     setTimeout(() => {
         const user = {
@@ -1782,119 +2141,134 @@ console.log("6");</code></pre>
 getUser((user) => {
     console.log(user);
 });</code></pre>
-    </div>
+      </div>
 
-    <h5>How Does It Work?</h5>
+      <h5>How Does It Work?</h5>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         1. getUser() starts an asynchronous operation
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         2. Timer finishes after approximately 1 second
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         3. callback(user) executes the function we passed
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         4. User information is printed
-    </div>
+      </div>
 
-    <p>Here, <code>callback(user)</code> invokes the callback function and passes the user object as an argument.</p>
+      <p>
+        Here, <code>callback(user)</code> invokes the callback function and
+        passes the user object as an argument.
+      </p>
 
-    <div class="success-box p-3">
-        <strong>Remember:</strong> Callbacks are useful for handling the results of asynchronous operations.
-    </div>
+      <div class="success-box p-3">
+        <strong>Remember:</strong> Callbacks are useful for handling the results
+        of asynchronous operations.
+      </div>
 
-    <hr>
+      <hr />
 
-    <h4>2. Now Imagine Multiple Dependent API Calls</h4>
+      <h4>2. Now Imagine Multiple Dependent API Calls</h4>
 
-    <p>Suppose we are developing an e-commerce application. We need to retrieve information through multiple API calls.</p>
+      <p>
+        Suppose we are developing an e-commerce application. We need to retrieve
+        information through multiple API calls.
+      </p>
 
-    <p>Each operation depends on the result of the previous operation.</p>
+      <p>Each operation depends on the result of the previous operation.</p>
 
-    <div class="row g-2">
+      <div class="row g-2">
         <div class="col-md-4 col-lg">
-            <div class="ref-box p-2 h-100">
-                <div class="ref-header">1. Get User</div>
-                <div class="ref-side">
-                    <strong>User ID</strong>
-                    <p class="mb-0">Retrieve user information.</p>
-                </div>
+          <div class="ref-box p-2 h-100">
+            <div class="ref-header">1. Get User</div>
+            <div class="ref-side">
+              <strong>User ID</strong>
+              <p class="mb-0">Retrieve user information.</p>
             </div>
+          </div>
         </div>
         <div class="col-md-4 col-lg">
-            <div class="exec-box p-2 h-100">
-                <div class="exec-header">2. Get Orders</div>
-                <div class="exec-side">
-                    <strong>User ID</strong>
-                    <p class="mb-0">Retrieve the user's orders.</p>
-                </div>
+          <div class="exec-box p-2 h-100">
+            <div class="exec-header">2. Get Orders</div>
+            <div class="exec-side">
+              <strong>User ID</strong>
+              <p class="mb-0">Retrieve the user's orders.</p>
             </div>
+          </div>
         </div>
         <div class="col-md-4 col-lg">
-            <div class="ref-box p-2 h-100">
-                <div class="ref-header">3. Order Details</div>
-                <div class="ref-side">
-                    <strong>Order ID</strong>
-                    <p class="mb-0">Retrieve order information.</p>
-                </div>
+          <div class="ref-box p-2 h-100">
+            <div class="ref-header">3. Order Details</div>
+            <div class="ref-side">
+              <strong>Order ID</strong>
+              <p class="mb-0">Retrieve order information.</p>
             </div>
+          </div>
         </div>
         <div class="col-md-6 col-lg">
-            <div class="exec-box p-2 h-100">
-                <div class="exec-header">4. Shipping Details</div>
-                <div class="exec-side">
-                    <strong>Address ID</strong>
-                    <p class="mb-0">Retrieve shipping information.</p>
-                </div>
+          <div class="exec-box p-2 h-100">
+            <div class="exec-header">4. Shipping Details</div>
+            <div class="exec-side">
+              <strong>Address ID</strong>
+              <p class="mb-0">Retrieve shipping information.</p>
             </div>
+          </div>
         </div>
         <div class="col-md-6 col-lg">
-            <div class="ref-box p-2 h-100">
-                <div class="ref-header">5. Display Result</div>
-                <div class="ref-side">
-                    <strong>Final Data</strong>
-                    <p class="mb-0">Display order and shipping details.</p>
-                </div>
+          <div class="ref-box p-2 h-100">
+            <div class="ref-header">5. Display Result</div>
+            <div class="ref-side">
+              <strong>Final Data</strong>
+              <p class="mb-0">Display order and shipping details.</p>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="memory-diagram">
+      <div class="memory-diagram">
         Get User
-        <br>
+        <br />
         ↓ user.id
-        <br>
+        <br />
         Get Orders
-        <br>
+        <br />
         ↓ orders[0].id
-        <br>
+        <br />
         Get Order Details
-        <br>
+        <br />
         ↓ orderDetails.addressId
-        <br>
+        <br />
         Get Shipping Details
-        <br>
+        <br />
         ↓
-        <br>
+        <br />
         Display Final Result
-    </div>
+      </div>
 
-    <p><strong>Notice:</strong> Each API call needs data from the previous API call. Therefore, we need to wait for one result before starting the next dependent operation.</p>
+      <p>
+        <strong>Notice:</strong> Each API call needs data from the previous API
+        call. Therefore, we need to wait for one result before starting the next
+        dependent operation.
+      </p>
 
-    <hr>
+      <hr />
 
-    <h4>3. What Exactly Is Callback Hell?</h4>
+      <h4>3. What Exactly Is Callback Hell?</h4>
 
-    <p>When multiple asynchronous operations depend on each other, we may end up placing callbacks inside other callbacks, creating deeply nested code.</p>
+      <p>
+        When multiple asynchronous operations depend on each other, we may end
+        up placing callbacks inside other callbacks, creating deeply nested
+        code.
+      </p>
 
-    <p>Let's look at the same e-commerce workflow using nested callbacks.</p>
+      <p>Let's look at the same e-commerce workflow using nested callbacks.</p>
 
-    <div class="code-block p-3">
+      <div class="code-block p-3">
         <pre><code>getUser(101, function(user) {
 
     getOrders(user.id, function(orders) {
@@ -1915,94 +2289,2045 @@ getUser((user) => {
     });
 
 });</code></pre>
+      </div>
+
+      <p>
+        Here, assume each function performs an asynchronous operation and
+        invokes its callback when the result is ready.
+      </p>
+
+      <h5>Look at the Structure</h5>
+
+      <div class="memory-diagram">
+        getUser()
+        <br />
+        └── getOrders()
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;└── getOrderDetails()
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── getShippingDetails()
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──
+        Display Result
+      </div>
+
+      <p>
+        Every callback is nested inside the previous callback. As more dependent
+        operations are added, the code moves further and further to the right.
+      </p>
+
+      <div class="error-box p-3">
+        <strong>This structure is commonly called:</strong>
+        <ul class="mb-0">
+          <li>Callback Hell</li>
+          <li>Pyramid of Doom</li>
+        </ul>
+      </div>
+
+      <hr />
+
+      <h4>4. Why Is Callback Hell a Problem?</h4>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="error-box p-3 h-100">
+            <strong>Deep Nesting</strong>
+            <p class="mb-0">
+              Too many nested callbacks make the code difficult to follow.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="error-box p-3 h-100">
+            <strong>Readability</strong>
+            <p class="mb-0">Understanding the execution flow becomes harder.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="error-box p-3 h-100">
+            <strong>Error Handling</strong>
+            <p class="mb-0">
+              Each asynchronous operation may need separate error handling.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="error-box p-3 h-100">
+            <strong>Maintenance</strong>
+            <p class="mb-0">
+              Changing or debugging deeply nested code becomes more difficult.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <h4>5. Important: Callbacks Are Not Bad</h4>
+
+      <p>
+        Callbacks are still useful and widely used in JavaScript. The problem is
+        not callbacks themselves; it is excessive nesting of dependent
+        asynchronous callbacks.
+      </p>
+
+      <div class="success-box p-3">
+        <strong>Final Takeaway</strong>
+        <p>
+          <strong>Callback</strong> = A function passed to another function to
+          be executed later or at a particular point.
+        </p>
+        <p>
+          <strong>Callback Hell</strong> = Deeply nested callbacks that make
+          asynchronous code difficult to read, maintain and handle errors in.
+        </p>
+        <p class="tamil mb-0">
+          Callbacks தவறானவை அல்ல. அதிகமான dependent callbacks ஒன்றுக்குள் ஒன்று
+          nest ஆகும்போதுதான் Callback Hell பிரச்சினை உருவாகிறது.
+        </p>
+      </div>
+    </div>
+    <hr />
+    <div class="container-fluid">
+      <h4>Why Did JavaScript Introduce Callbacks, Promises and async/await?</h4>
+
+      <p>
+        Think of these as the evolution of writing and managing asynchronous
+        JavaScript code. The goal was to make asynchronous operations easier to
+        organize, read, maintain and handle errors.
+      </p>
+
+      <div class="memory-diagram">
+        Callbacks → Promises → async/await
+        <br />
+        Basic asynchronous handling → Better chaining → Cleaner syntax
+      </div>
+
+      <hr />
+
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">1. Callbacks — Earlier Approach</div>
+            <div class="ref-side">
+              <badge color="secondary">Traditional approach</badge>
+              <p>
+                <strong>Purpose:</strong> Execute a function after an operation
+                completes.
+              </p>
+
+              <div class="code-block p-2">
+                <pre><code>function getUser(callback) {
+    setTimeout(() => {
+        const user = {
+            name: "Arun"
+        };
+
+        callback(user);
+    }, 1000);
+}
+
+getUser((user) => {
+    console.log(user.name);
+});</code></pre>
+              </div>
+
+              <p><strong>Problem:</strong></p>
+              <p>Multiple dependent callbacks can become deeply nested.</p>
+
+              <div class="error-box p-2">
+                <strong>Callback Hell</strong>
+                <br />
+                Difficult to read, maintain and handle errors.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">2. Promises — ES2015 (ES6)</div>
+            <div class="exec-side">
+              <badge color="success">Better asynchronous management</badge>
+              <p>
+                <strong>Purpose:</strong> Represent the eventual success or
+                failure of an asynchronous operation.
+              </p>
+
+              <div class="code-block p-2">
+                <pre><code>function getUser() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                name: "Arun"
+            });
+        }, 1000);
+    });
+}
+
+getUser()
+    .then(user => {
+        console.log(user.name);
+    })
+    .catch(error => {
+        console.log(error);
+    });</code></pre>
+              </div>
+
+              <p><strong>Benefits:</strong></p>
+              <ul>
+                <li>Cleaner chaining using <code>.then()</code>.</li>
+                <li>Centralized error handling using <code>.catch()</code>.</li>
+                <li>Better composition of asynchronous operations.</li>
+              </ul>
+
+              <p>
+                <strong>Remaining challenge:</strong> Poorly structured Promise
+                chains can still become complicated.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">3. async/await — ES2017 (ES8)</div>
+            <div class="ref-side">
+              <badge color="success">Cleaner asynchronous syntax</badge>
+              <p>
+                <strong>Purpose:</strong> Make Promise-based code easier to read
+                and write using syntax that resembles normal sequential
+                JavaScript.
+              </p>
+
+              <div class="code-block p-2">
+                <pre><code>async function displayUser() {
+    try {
+        const user = await getUser();
+
+        console.log(user.name);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+displayUser();</code></pre>
+              </div>
+
+              <p><strong>Benefits:</strong></p>
+              <ul>
+                <li>Code looks more sequential.</li>
+                <li>Less chaining syntax.</li>
+                <li>Familiar error handling with <code>try/catch</code>.</li>
+              </ul>
+
+              <p>
+                <strong>Important:</strong> async/await works on top of
+                Promises; it does not replace them.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <h4>How Did the Approach Evolve?</h4>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Approach</th>
+              <th>Introduced / Era</th>
+              <th>Main Idea</th>
+              <th>Main Improvement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Callbacks</strong></td>
+              <td>Early JavaScript</td>
+              <td>Pass a function to be called later.</td>
+              <td>Handle asynchronous results.</td>
+            </tr>
+            <tr>
+              <td><strong>Promises</strong></td>
+              <td>ES2015 (ES6)</td>
+              <td>Represent an eventual result.</td>
+              <td>Chaining and better error handling.</td>
+            </tr>
+            <tr>
+              <td><strong>async/await</strong></td>
+              <td>ES2017 (ES8)</td>
+              <td>Write Promise-based code with cleaner syntax.</td>
+              <td>More readable asynchronous workflows.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <h4>Important Things to Understand</h4>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="note p-3 h-100">
+            <strong>1. Callbacks are not always asynchronous.</strong>
+            <p class="mb-0">
+              A callback is simply a function passed to another function. It can
+              execute immediately or later, depending on how the receiving
+              function uses it.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="note p-3 h-100">
+            <strong>2. Promises have three states.</strong>
+            <p class="mb-0">
+              Pending, Fulfilled and Rejected. Once fulfilled or rejected, the
+              Promise is settled.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="note p-3 h-100">
+            <strong>3. async functions always return a Promise.</strong>
+            <p class="mb-0">
+              Even when you return a normal value from an async function,
+              JavaScript wraps the result in a fulfilled Promise.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="note p-3 h-100">
+            <strong>4. await does not block the JavaScript thread.</strong>
+            <p class="mb-0">
+              It suspends the execution of the async function until the awaited
+              Promise settles, allowing other JavaScript work to proceed.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="success-box p-3 mt-3">
+        <h5>Final Memory Trick</h5>
+        <p>
+          <strong>Callbacks:</strong> Let me know when the operation finishes.
+        </p>
+        <p>
+          <strong>Promises:</strong> Give me an object representing the future
+          result.
+        </p>
+        <p>
+          <strong>async/await:</strong> Let me write Promise-based code in a
+          sequential-looking style.
+        </p>
+        <p class="tamil mb-0">
+          மூன்றின் நோக்கமும் asynchronous operations-ஐ handle செய்வதுதான். ஆனால்
+          code எழுதும் முறையும், maintain செய்யும் எளிமையும் படிப்படியாக
+          மேம்பட்டன.
+        </p>
+      </div>
+    </div>
+    <hr />
+    <div class="container-fluid">
+      <h4>JavaScript Promises</h4>
+
+      <h5>1. What Exactly Is a Promise?</h5>
+
+      <p>
+        A
+        <strong
+          >Promise is a JavaScript object that represents the eventual result of
+          an operation.</strong
+        >
+        That result may be a success or a failure.
+      </p>
+
+      <p>Imagine ordering food online:</p>
+
+      <div class="row g-2">
+        <div class="col-md-3">
+          <div class="ref-box p-2 h-100">
+            <div class="ref-header">1. Order</div>
+            <div class="ref-side">You place an order.</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="ref-box p-2 h-100">
+            <div class="ref-header">2. Pending (there is no explicit method)</div>
+            <div class="ref-side">Restaurant prepares the food.</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="exec-box p-2 h-100">
+            <div class="exec-header">3. Success (Fulfilled / method - resolve)</div>
+            <div class="exec-side">Food is delivered.</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="error-box p-2 h-100">
+            <strong>OR Failure  (Rejected / method - reject)</strong>
+            <p class="mb-0">Order is cancelled.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        You don't have the final result immediately. The Promise represents the
+        operation's eventual outcome.
+      </p>
+
+      <p class="tamil">
+        Promise என்பது ஒரு asynchronous operation-ன் எதிர்கால result-ஐக்
+        குறிக்கும் JavaScript object. அந்த operation வெற்றியடையலாம் அல்லது
+        தோல்வியடையலாம்.
+      </p>
+
+      <hr />
+
+      <h4>2. How Do We Create a Promise?</h4>
+
+      <div class="code-block p-3">
+        <pre><code>const myPromise = new Promise((resolve, reject) => {
+
+    // Asynchronous operation
+
+});</code></pre>
+      </div>
+
+      <p>Understand the important parts:</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Part</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>new Promise()</code></td>
+              <td>Creates a new Promise object.</td>
+            </tr>
+            <tr>
+              <td><code>resolve(value)</code></td>
+              <td>Indicates successful completion with a result.</td>
+            </tr>
+            <tr>
+              <td><code>reject(reason)</code></td>
+              <td>Indicates failure with a reason.</td>
+            </tr>
+            <tr>
+              <td>Executor function</td>
+              <td>The function passed to the Promise constructor.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <h4>3. What Is an Executor Function?</h4>
+
+      <p>
+        The function passed inside <code>new Promise()</code> is called the
+        <strong>executor function</strong>.
+      </p>
+
+      <p>
+        <strong>Important:</strong> The executor function runs immediately and
+        synchronously when the Promise is created. The Promise constructor
+        itself does not automatically make the executor asynchronous.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const myPromise = new Promise((resolve, reject) => {
+
+    console.log("Executor started");
+
+    const paymentSuccessful = true;
+
+    if (paymentSuccessful) {
+        resolve("Payment successful");
+    } else {
+        reject("Payment failed");
+    }
+
+    console.log("Executor finished");
+
+});
+
+console.log("Outside Promise");</code></pre>
+      </div>
+
+      <h5>Output</h5>
+
+      <div class="code-block p-3">
+        <pre><code>Executor started
+Executor finished
+Outside Promise</code></pre>
+      </div>
+
+      <h5>What's Happening?</h5>
+      <ol>
+        <li><code>new Promise()</code> creates a Promise object.</li>
+        <li>The executor function runs immediately.</li>
+        <li>We check whether the payment was successful.</li>
+        <li>
+          <code>resolve()</code> or <code>reject()</code> settles the Promise.
+        </li>
+        <li>The remaining synchronous code continues.</li>
+      </ol>
+
+      <div class="success-box p-3">
+        <strong>Remember:</strong> Promise executor = Synchronous execution. The
+        operation inside it can be asynchronous when we use APIs such as
+        <code>setTimeout()</code> or <code>fetch()</code>.
+      </div>
+
+      <hr />
+
+      <h4>4. What Are the Three States of a Promise?</h4>
+
+      <p>A Promise has exactly three states:</p>
+
+      <div class="row g-2">
+        <div class="col-md-4">
+          <div class="ref-box p-3 h-100">
+            <div class="ref-header">1. Pending</div>
+            <div class="ref-side">
+              <strong>Waiting</strong>
+              <p class="mb-0">
+                The operation has not yet settled. Its outcome is not known.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="exec-box p-3 h-100">
+            <div class="exec-header">2. Fulfilled</div>
+            <div class="exec-side">
+              <strong>Success</strong>
+              <p class="mb-0">
+                <code>resolve(value)</code> successfully fulfills the Promise.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="error-box p-3 h-100">
+            <strong>3. Rejected</strong>
+            <p class="mb-0"><strong>Failure</strong></p>
+            <code>reject(reason)</code> rejects the Promise.
+          </div>
+        </div>
+      </div>
+
+      <div class="memory-diagram">
+        Pending
+        <br />
+        ├── resolve(value) → Fulfilled
+        <br />
+        └── reject(reason) → Rejected
+        <br />
+        <br />
+        Fulfilled / Rejected = Settled
+      </div>
+
+      <p>
+        <strong>Important:</strong> Once a Promise is fulfilled or rejected, its
+        state cannot change again. This is called a
+        <strong>settled Promise</strong>.
+      </p>
+
+      <hr />
+
+      <h4>5. What Happens If resolve() and reject() Are Both Called?</h4>
+
+      <div class="code-block p-3">
+        <pre><code>const promise = new Promise((resolve, reject) => {
+
+    resolve("Success");
+    reject("Failure");
+
+});</code></pre>
+      </div>
+
+      <p>
+        Here, the Promise becomes fulfilled with <code>"Success"</code>. The
+        subsequent <code>reject()</code> cannot change its state.
+      </p>
+
+      <div class="success-box p-3">
+        <strong>Remember: First settlement wins.</strong>
+        <p class="mb-0">
+          Once the Promise has been fulfilled or rejected, subsequent attempts
+          to settle it have no effect.
+        </p>
+      </div>
+
+      <hr />
+
+      <h4>6. Promises with Asynchronous Operations</h4>
+
+      <p>
+        Now let's place an actual asynchronous operation inside the executor
+        function using <code>setTimeout()</code>.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const myPromise = new Promise((resolve, reject) => {
+
+    console.log("Promise started");
+
+    setTimeout(() => {
+        resolve("Employee details received");
+    }, 2000);
+
+});
+
+console.log("Outside Promise");</code></pre>
+      </div>
+
+      <h5>Output</h5>
+
+      <div class="code-block p-3">
+        <pre><code>Promise started
+Outside Promise
+
+// After approximately 2 seconds,
+// the Promise becomes fulfilled.</code></pre>
+      </div>
+
+      <p>Notice the difference:</p>
+      <ul>
+        <li>
+          <code>"Promise started"</code> prints immediately because the executor
+          runs synchronously.
+        </li>
+        <li><code>setTimeout()</code> schedules the timer operation.</li>
+        <li>
+          <code>Outside Promise</code> prints without waiting for the timer.
+        </li>
+        <li>
+          After approximately 2 seconds, <code>resolve()</code> fulfills the
+          Promise.
+        </li>
+      </ul>
+
+      <div class="note p-3">
+        <strong>Important:</strong> Calling <code>resolve()</code> changes the
+        Promise's outcome. It does not automatically print or return the result
+        to the calling code.
+      </div>
+
+      <hr />
+
+      <h4>7. How Do We Receive the Promise Result?</h4>
+
+      <p>
+        This is where <code>.then()</code> and <code>.catch()</code> come in.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const myPromise = new Promise((resolve, reject) => {
+
+    console.log("Promise started");
+
+    setTimeout(() => {
+        resolve("Employee details received");
+    }, 2000);
+
+});
+
+console.log("Outside Promise");
+
+myPromise.then((result) => {
+    console.log(result);
+}).catch((error) => {
+    console.log(error);
+});</code></pre>
+      </div>
+
+      <h5>Output</h5>
+
+      <div class="code-block p-3">
+        <pre><code>Promise started
+Outside Promise
+
+// After approximately 2 seconds:
+Employee details received</code></pre>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Purpose</th>
+              <th>When It Executes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.then()</code></td>
+              <td>Handles the fulfilled value.</td>
+              <td>When the Promise is fulfilled.</td>
+            </tr>
+            <tr>
+              <td><code>.catch()</code></td>
+              <td>
+                Handles rejection or an error in the preceding Promise chain.
+              </td>
+              <td>When the Promise chain becomes rejected.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="tamil">
+        தமிழில்: <code>resolve()</code> மூலம் success result கிடைத்தால்
+        <code>.then()</code> பயன்படுத்தி பெறலாம். Promise reject ஆனால்
+        <code>.catch()</code> மூலம் error-ஐ handle செய்யலாம்.
+      </p>
+
+      <hr />
+
+      <h4>8. Promise Execution Order — Connect It with the Event Loop</h4>
+
+      <p>
+        Now let's connect Promises with what we learned about the Call Stack and
+        Microtask Queue.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>console.log("A");
+
+const promise = new Promise((resolve, reject) => {
+
+    console.log("B");
+
+    resolve("Success");
+
+    console.log("C");
+
+});
+
+promise.then((result) => {
+    console.log(result);
+});
+
+console.log("D");</code></pre>
+      </div>
+
+      <h5>What Is the Output?</h5>
+
+      <div class="code-block p-3">
+        <pre><code>A
+B
+C
+D
+Success</code></pre>
+      </div>
+
+      <h5>Execution Walkthrough</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>What Happens?</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>First synchronous statement executes.</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Promise is created; executor runs immediately.</td>
+              <td>B</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><code>resolve("Success")</code> fulfills the Promise.</td>
+              <td>
+                Schedules the Promise reaction as a microtask when the handler
+                is attached.
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Executor continues executing.</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Last synchronous statement executes.</td>
+              <td>D</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Current task finishes; microtask executes.</td>
+              <td>Success</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="memory-diagram">
+        Synchronous Execution
+        <br />
+        A → B → C → D
+        <br />
+        ↓
+        <br />
+        Microtask Queue
+        <br />
+        ↓
+        <br />
+        Promise .then() callback
+        <br />
+        ↓
+        <br />
+        Success
+      </div>
+
+      <div class="success-box p-3">
+        <strong>Very Important:</strong>
+        <p>
+          Calling <code>resolve()</code> does not immediately execute the
+          <code>.then()</code> callback. The Promise reaction is scheduled as a
+          microtask.
+        </p>
+        <p class="mb-0">
+          That's why all synchronous code finishes first, and then the Promise
+          callback executes.
+        </p>
+      </div>
+
+      <hr />
+
+      <h4>9. Final Mental Model</h4>
+
+      <div class="memory-diagram">
+        new Promise()
+        <br />
+        ↓
+        <br />
+        Executor runs immediately (synchronously)
+        <br />
+        ↓
+        <br />
+        resolve(value) OR reject(reason)
+        <br />
+        ↓
+        <br />
+        Promise becomes fulfilled or rejected
+        <br />
+        ↓
+        <br />
+        .then() OR .catch() reaction becomes a microtask
+        <br />
+        ↓
+        <br />
+        Executes after the current JavaScript task
+      </div>
+
+      <div class="success-box p-3">
+        <strong>Quick Revision</strong>
+        <p><strong>Promise</strong> = Represents an eventual result.</p>
+        <p><strong>Executor</strong> = Runs immediately and synchronously.</p>
+        <p><strong>resolve()</strong> = Fulfills the Promise.</p>
+        <p><strong>reject()</strong> = Rejects the Promise.</p>
+        <p><strong>.then()</strong> = Handles fulfillment.</p>
+        <p><strong>.catch()</strong> = Handles rejection.</p>
+        <p class="mb-0">
+          <strong>Event Loop</strong> = Promise reactions execute as microtasks
+          after the current task finishes.
+        </p>
+      </div>
+       <h4>10. Where Do We Use Promises in Real Applications?</h4>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Example</th>
+                    <th>Why Promise?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>API calls</td>
+                    <td>Fetch employee details</td>
+                    <td>Server response arrives later.</td>
+                </tr>
+                <tr>
+                    <td>Database operations</td>
+                    <td>Retrieve user records</td>
+                    <td>Database query completes later.</td>
+                </tr>
+                <tr>
+                    <td>File operations</td>
+                    <td>Read or write files in Node.js</td>
+                    <td>Asynchronous file operations complete later.</td>
+                </tr>
+                <tr>
+                    <td>Authentication</td>
+                    <td>Verify login with a server</td>
+                    <td>Authentication result arrives later.</td>
+                </tr>
+                <tr>
+                    <td>Image processing</td>
+                    <td>Decode an image using browser APIs</td>
+                    <td>Some image decoding operations are asynchronous.</td>
+                </tr>
+                <tr>
+                    <td>Dashboard loading</td>
+                    <td>Load multiple API responses</td>
+                    <td>Coordinate multiple independent requests.</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <p>Here, assume each function performs an asynchronous operation and invokes its callback when the result is ready.</p>
+    <p>Promises are not limited to API calls. They are useful whenever an API or operation provides an eventual result through a Promise.</p>
 
-    <h5>Look at the Structure</h5>
+    <h5>Do All Operations Need Promises?</h5>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Promise Needed?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Array <code>map()</code></td>
+                    <td>No, normally synchronous.</td>
+                </tr>
+                <tr>
+                    <td>Filtering an array</td>
+                    <td>No, normally synchronous.</td>
+                </tr>
+                <tr>
+                    <td>Adding two numbers</td>
+                    <td>No, synchronous calculation.</td>
+                </tr>
+                <tr>
+                    <td>Fetching API data</td>
+                    <td>Yes, browser <code>fetch()</code> returns a Promise.</td>
+                </tr>
+                <tr>
+                    <td>Reading a file asynchronously</td>
+                    <td>Commonly, depending on the API used.</td>
+                </tr>
+                <tr>
+                    <td>Asynchronous database query</td>
+                    <td>Commonly, depending on the library.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+
+    <h4>Promise Chaining — Connecting Multiple Asynchronous Operations</h4>
+
+    <h5>1. The Problem: Multiple Dependent Operations</h5>
+
+    <p>Imagine an e-commerce application where each operation depends on the result of the previous operation.</p>
+
+    <div class="memory-diagram">
+        getUser(101)
+        <br>
+        ↓ user.id
+        <br>
+        getOrders(user.id)
+        <br>
+        ↓ orders[0].id
+        <br>
+        getOrderDetails(orders[0].id)
+        <br>
+        ↓
+        <br>
+        Display Order Details
+    </div>
+
+    <p>Instead of nesting callbacks (Callback Hell), we can use <strong>Promise Chaining</strong> with <code>.then()</code>.</p>
+
+    <div class="code-block p-3">
+        <pre><code>getUser(101)
+    .then((user) => {
+        console.log(user);
+        return getOrders(user.id);
+    })
+    .then((orders) => {
+        console.log(orders);
+        return getOrderDetails(orders[0].id);
+    })
+    .then((details) => {
+        console.log(details);
+    })
+    .catch((error) => {
+        console.log(error);
+    });</code></pre>
+    </div>
+
+    <h5>How Does the Chain Work?</h5>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Operation</th>
+                    <th>What Happens?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><code>getUser(101)</code></td>
+                    <td>Returns a Promise containing user information.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>First <code>.then()</code></td>
+                    <td>Receives the user and returns <code>getOrders(user.id)</code>.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Second <code>.then()</code></td>
+                    <td>Receives the orders and returns <code>getOrderDetails()</code>.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Third <code>.then()</code></td>
+                    <td>Receives and displays the order details.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><code>.catch()</code></td>
+                    <td>Handles a rejection or error occurring in the preceding chain.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="success-box p-3">
+        <strong>Important:</strong> Notice the <code>return</code> statements. Each one passes the next Promise to the chain, allowing the following <code>.then()</code> to wait for its result.
+    </div>
+
+    <hr>
+
+    <h4>2. The Most Important Rule of Promise Chaining</h4>
+
+    <p><strong>Every <code>.then()</code> returns a new Promise.</strong></p>
+
+    <p>The value returned from one <code>.then()</code> callback becomes the fulfillment value available to the next <code>.then()</code>.</p>
+
+    <div class="code-block p-3">
+        <pre><code>Promise.resolve(10)
+    .then((value) => {
+        console.log(value);
+        return value * 2;
+    })
+    .then((value) => {
+        console.log(value);
+        return value + 5;
+    })
+    .then((value) => {
+        console.log(value);
+    });</code></pre>
+    </div>
+
+    <h5>Output</h5>
+
+    <div class="code-block p-3">
+        <pre><code>10
+20
+25</code></pre>
+    </div>
+
+    <h5>Understand How Values Travel Through the Chain</h5>
+
+    <div class="memory-diagram">
+        Promise.resolve(10)
+        <br>
+        ↓
+        <br>
+        First .then(value)
+        <br>
+        value = 10
+        <br>
+        return 10 * 2
+        <br>
+        ↓
+        <br>
+        Second .then(value)
+        <br>
+        value = 20
+        <br>
+        return 20 + 5
+        <br>
+        ↓
+        <br>
+        Third .then(value)
+        <br>
+        value = 25
+    </div>
+
+    <p>Each <code>return</code> passes its result to the next <code>.then()</code>.</p>
+
+    <hr>
+
+    <h4>3. What Exactly Does Each .then() Return?</h4>
+
+    <p>This is important to understand deeply:</p>
+
+    <div class="row g-2">
+        <div class="col-md-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">Return a Normal Value</div>
+                <div class="ref-side">
+                    <div class="code-block p-2">
+                        <pre><code>.then(() => {
+    return 100;
+})</code></pre>
+                    </div>
+                    <p>The new Promise fulfills with <code>100</code>.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">Return Another Promise</div>
+                <div class="exec-side">
+                    <div class="code-block p-2">
+                        <pre><code>.then(() => {
+    return getUser();
+})</code></pre>
+                    </div>
+                    <p>The next <code>.then()</code> waits for that Promise to settle and receives its fulfillment value.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="note p-3 h-100">
+                <strong>No return statement</strong>
+                <div class="code-block p-2">
+                    <pre><code>.then(() => {
+    console.log("Hello");
+})</code></pre>
+                </div>
+                <p class="mb-0">The new Promise fulfills with <code>undefined</code>.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="error-box p-3 h-100">
+                <strong>Throw an Error</strong>
+                <div class="code-block p-2">
+                    <pre><code>.then(() => {
+    throw new Error("Failed");
+})</code></pre>
+                </div>
+                <p class="mb-0">The new Promise becomes rejected, and the rejection can be handled by a following <code>.catch()</code>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-box p-3">
+        <strong>Golden Rule:</strong> Return a value to pass it to the next <code>.then()</code>. Return a Promise to make the chain wait for that asynchronous operation. Use <code>throw</code> to pass an error into the rejection path.
+    </div>
+
+    <hr>
+
+    <h4>4. Quick Revision</h4>
+
+    <div class="memory-diagram">
+        Promise → .then() → New Promise
+        <br>
+        <br>
+        return 100 → Next .then() receives 100
+        <br>
+        return another Promise → Chain waits for it
+        <br>
+        No return → Next .then() receives undefined
+        <br>
+        throw Error → Chain becomes rejected
+        <br>
+        .catch() → Handles rejection
+    </div>
+
+    <p class="tamil">தமிழில்: ஒரு <code>.then()</code> callback-ல் return செய்யும் value, அடுத்த <code>.then()</code>-க்கு கிடைக்கும். Return செய்யாமல் விட்டால் <code>undefined</code> கிடைக்கும். இன்னொரு Promise-ஐ return செய்தால், அது settle ஆகும் வரை chain காத்திருந்து அதன் result-ஐ அடுத்த <code>.then()</code>-க்கு வழங்கும்.</p>
+
+</div>
+<hr>
+<div class="container-fluid">
+
+    <h4>Promise Error Handling — .catch() and .finally()</h4>
+
+    <h5>1. What Happens When a .then() Throws an Error?</h5>
+
+    <p>When an error is thrown inside a <code>.then()</code> callback, the Promise returned by that <code>.then()</code> becomes rejected. The remaining success handlers are skipped until a rejection handler handles the error.</p>
+
+    <div class="code-block p-3">
+        <pre><code>Promise.resolve(10)
+    .then((value) => {
+        console.log("First:", value);
+        throw new Error("Something went wrong");
+    })
+    .then((value) => {
+        console.log("Second:", value);
+    })
+    .catch((error) => {
+        console.log("Error:", error.message);
+    });</code></pre>
+    </div>
+
+    <h5>Output</h5>
+
+    <div class="code-block p-3">
+        <pre><code>First: 10
+Error: Something went wrong</code></pre>
+    </div>
+
+    <p><strong>Why didn't the Second .then() execute?</strong></p>
+
+    <div class="memory-diagram">
+        Promise.resolve(10)
+        <br>
+        ↓
+        <br>
+        First .then() → Prints 10
+        <br>
+        ↓
+        <br>
+        throw new Error()
+        <br>
+        ↓
+        <br>
+        Returned Promise becomes REJECTED
+        <br>
+        ↓
+        <br>
+        Second .then() → Skipped
+        <br>
+        ↓
+        <br>
+        .catch() → Handles the error
+    </div>
+
+    <div class="success-box p-3">
+        <strong>Remember:</strong> A thrown error inside a Promise callback turns the returned Promise into a rejected Promise. The next success handler is skipped, and the error travels down the chain until a rejection handler handles it.
+    </div>
+
+    <hr>
+
+    <h4>2. One .catch() Can Handle Errors from Multiple Operations</h4>
+
+    <p>One of the major advantages of Promise chaining is that we can handle errors from multiple preceding asynchronous operations using a single <code>.catch()</code>.</p>
 
     <div class="memory-diagram">
         getUser()
         <br>
-        └── getOrders()
+        ↓
         <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;└── getOrderDetails()
+        getOrders(user.id)
         <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── getShippingDetails()
+        ↓
         <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Display Result
+        getOrderDetails(orders[0].id)
+        <br>
+        ↓
+        <br>
+        Display Details
+        <br>
+        <br>
+        Any rejection / thrown error
+        <br>
+        ↓
+        <br>
+        .catch()
     </div>
 
-    <p>Every callback is nested inside the previous callback. As more dependent operations are added, the code moves further and further to the right.</p>
-
-    <div class="error-box p-3">
-        <strong>This structure is commonly called:</strong>
-        <ul class="mb-0">
-            <li>Callback Hell</li>
-            <li>Pyramid of Doom</li>
-        </ul>
+    <div class="code-block p-3">
+        <pre><code>getUser()
+    .then(user => getOrders(user.id))
+    .then(orders => getOrderDetails(orders[0].id))
+    .then(details => console.log(details))
+    .catch(error => {
+        console.log("Error:", error);
+    });</code></pre>
     </div>
 
-    <hr>
+    <p>The final <code>.catch()</code> can handle a rejection or an error thrown anywhere in the preceding Promise chain, provided the error is represented as a rejection in that chain.</p>
 
-    <h4>4. Why Is Callback Hell a Problem?</h4>
-
-    <div class="row g-3">
-        <div class="col-md-6">
-            <div class="error-box p-3 h-100">
-                <strong>Deep Nesting</strong>
-                <p class="mb-0">Too many nested callbacks make the code difficult to follow.</p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="error-box p-3 h-100">
-                <strong>Readability</strong>
-                <p class="mb-0">Understanding the execution flow becomes harder.</p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="error-box p-3 h-100">
-                <strong>Error Handling</strong>
-                <p class="mb-0">Each asynchronous operation may need separate error handling.</p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="error-box p-3 h-100">
-                <strong>Maintenance</strong>
-                <p class="mb-0">Changing or debugging deeply nested code becomes more difficult.</p>
-            </div>
-        </div>
+    <div class="note p-3">
+        <strong>Important:</strong> A synchronous error thrown while initially calling <code>getUser()</code> before it returns a Promise is not automatically caught by the attached <code>.catch()</code>. The chain must first be established as a Promise chain.
     </div>
 
     <hr>
 
-    <h4>5. Important: Callbacks Are Not Bad</h4>
+    <h4>3. What Is <code>.finally()</code>?</h4>
 
-    <p>Callbacks are still useful and widely used in JavaScript. The problem is not callbacks themselves; it is excessive nesting of dependent asynchronous callbacks.</p>
+    <p><code>.finally()</code> executes whether the Promise is fulfilled or rejected. It is useful for cleanup operations, such as hiding a loading indicator or releasing resources.</p>
+
+    <div class="code-block p-3">
+        <pre><code>Promise.resolve("Success")
+    .then(value => {
+        console.log(value);
+    })
+    .finally(() => {
+        console.log("Operation completed");
+    });</code></pre>
+    </div>
+
+    <p><strong>Output:</strong></p>
+    <div class="code-block p-3">
+        <pre><code>Success
+Operation completed</code></pre>
+    </div>
+
+    <p>It also executes when the Promise is rejected:</p>
+
+    <div class="code-block p-3">
+        <pre><code>Promise.reject("Failed")
+    .catch(error => {
+        console.log(error);
+    })
+    .finally(() => {
+        console.log("Operation completed");
+    });</code></pre>
+    </div>
+
+    <p><strong>Output:</strong></p>
+    <div class="code-block p-3">
+        <pre><code>Failed
+Operation completed</code></pre>
+    </div>
+
+    <h5>How Is .finally() Different from .then() and .catch()?</h5>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>When It Executes</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>.then()</code></td>
+                    <td>When fulfilled (success handler).</td>
+                    <td>Process the successful result.</td>
+                </tr>
+                <tr>
+                    <td><code>.catch()</code></td>
+                    <td>When rejected (rejection handler).</td>
+                    <td>Handle errors.</td>
+                </tr>
+                <tr>
+                    <td><code>.finally()</code></td>
+                    <td>When fulfilled or rejected.</td>
+                    <td>Perform cleanup or final actions.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="success-box p-3">
-        <strong>Final Takeaway</strong>
-        <p><strong>Callback</strong> = A function passed to another function to be executed later or at a particular point.</p>
-        <p><strong>Callback Hell</strong> = Deeply nested callbacks that make asynchronous code difficult to read, maintain and handle errors in.</p>
-        <p class="tamil mb-0">Callbacks தவறானவை அல்ல. அதிகமான dependent callbacks ஒன்றுக்குள் ஒன்று nest ஆகும்போதுதான் Callback Hell பிரச்சினை உருவாகிறது.</p>
+        <strong>Important:</strong> <code>.finally()</code> normally preserves the original Promise outcome. It doesn't receive the fulfillment value or rejection reason as an argument.
+    </div>
+
+    <hr>
+
+    <h4>4. Comprehensive Example — .then(), .catch() and .finally()</h4>
+
+    <div class="code-block p-3">
+        <pre><code>Promise.resolve(100)
+    .then((value) => {
+        console.log("A:", value);
+        return value + 50;
+    })
+    .then((value) => {
+        console.log("B:", value);
+        throw new Error("Failed");
+    })
+    .then((value) => {
+        console.log("C:", value);
+    })
+    .catch((error) => {
+        console.log("D:", error.message);
+        return 500;
+    })
+    .finally(() => {
+        console.log("E: Finished");
+    })
+    .then((value) => {
+        console.log("F:", value);
+    });</code></pre>
+    </div>
+
+    <h5>Final Output</h5>
+
+    <div class="code-block p-3">
+        <pre><code>A: 100
+B: 150
+D: Failed
+E: Finished
+F: 500</code></pre>
+    </div>
+
+    <h5>Step-by-Step Execution</h5>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>What Happens?</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><code>Promise.resolve(100)</code></td>
+                    <td>Promise fulfilled with 100.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>First <code>.then()</code> prints A and returns 150.</td>
+                    <td>A: 100</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Second <code>.then()</code> receives 150 and throws an error.</td>
+                    <td>B: 150</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Third <code>.then()</code> is skipped because the chain is rejected.</td>
+                    <td>C is not printed.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><code>.catch()</code> receives the error and returns 500.</td>
+                    <td>D: Failed</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><code>.finally()</code> executes.</td>
+                    <td>E: Finished</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Next <code>.then()</code> receives the value 500.</td>
+                    <td>F: 500</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h5>Visualize the Promise Flow</h5>
+
+    <div class="memory-diagram">
+        Promise.resolve(100)
+        <br>
+        ↓
+        <br>
+        .then() → A: 100 → return 150
+        <br>
+        ↓
+        <br>
+        .then() → B: 150 → throw Error
+        <br>
+        ↓
+        <br>
+        Promise REJECTED
+        <br>
+        ↓
+        <br>
+        Next .then() skipped
+        <br>
+        ↓
+        <br>
+        .catch() → D: Failed → return 500
+        <br>
+        ↓
+        <br>
+        Promise FULFILLED with 500
+        <br>
+        ↓
+        <br>
+        .finally() → E: Finished
+        <br>
+        ↓
+        <br>
+        .then() → F: 500
+    </div>
+
+    <hr>
+
+    <h4>5. Important Detail — Does .finally() Always Preserve the Result?</h4>
+
+    <p>Normally, yes. But there is one important exception: if the <code>.finally()</code> callback throws an error or returns a rejected Promise, the resulting Promise becomes rejected.</p>
+
+    <div class="code-block p-3">
+        <pre><code>Promise.resolve(100)
+    .finally(() => {
+        throw new Error("Finally failed");
+    })
+    .then(value => {
+        console.log(value);
+    })
+    .catch(error => {
+        console.log(error.message);
+    });</code></pre>
+    </div>
+
+    <p><strong>Output:</strong></p>
+    <div class="code-block p-3">
+        <pre><code>Finally failed</code></pre>
+    </div>
+
+    <p>Here, the original value <code>100</code> is not passed to the success handler because the error thrown inside <code>.finally()</code> changes the resulting Promise into a rejected state.</p>
+
+    <hr>
+
+    <h4>Quick Revision</h4>
+
+    <div class="memory-diagram">
+        .then() → Handles successful results
+        <br>
+        .catch() → Handles rejections and errors
+        <br>
+        .finally() → Runs after either outcome
+        <br>
+        <br>
+        Error inside .then() → Chain becomes rejected
+        <br>
+        Rejected chain → Next success .then() is skipped
+        <br>
+        .catch() returns 500 → Next .then() receives 500
+        <br>
+        .finally() → Normally preserves the outcome
+    </div>
+
+    <div class="success-box p-3">
+        <strong>Remember:</strong>
+        <p><code>.then()</code> → Success handling</p>
+        <p><code>.catch()</code> → Error handling</p>
+        <p><code>.finally()</code> → Cleanup, regardless of success or failure</p>
+        <p class="tamil mb-0">Promise chain-ல் error வந்தால் அது rejection ஆக அடுத்தடுத்த handlers-க்கு செல்கிறது. <code>.catch()</code> அதை handle செய்யும். <code>.finally()</code> success அல்லது failure இரண்டிலும் execute ஆகும்.</p>
+    </div>
+
+</div>
+<hr>
+<div class="container-fluid">
+
+    <h4>JavaScript Promise Combinators</h4>
+
+    <p><strong>Promise Combinators</strong> are built-in static methods that help us work with multiple Promises together. Depending on the requirement, we can wait for all Promises, wait for the first result, or collect every outcome.</p>
+
+    <h5>1. Four Important Promise Combinators</h5>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Main Purpose</th>
+                    <th>Outcome</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Promise.all()</strong></td>
+                    <td>Waits for all Promises to fulfill.</td>
+                    <td>Rejects if any one Promise rejects.</td>
+                </tr>
+                <tr>
+                    <td><strong>Promise.allSettled()</strong></td>
+                    <td>Waits for all Promises to settle.</td>
+                    <td>Returns every fulfilled or rejected outcome.</td>
+                </tr>
+                <tr>
+                    <td><strong>Promise.race()</strong></td>
+                    <td>Waits for the first Promise to settle.</td>
+                    <td>Returns the first fulfillment or rejection.</td>
+                </tr>
+                <tr>
+                    <td><strong>Promise.any()</strong></td>
+                    <td>Waits for the first Promise to fulfill.</td>
+                    <td>Rejects with AggregateError if all reject.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="note p-2">Remember: <code>settle</code> means either fulfilled or rejected.</p>
+
+    <hr>
+
+    <h4>2. Promise.all() — All Must Fulfill</h4>
+
+    <p>Imagine an employee dashboard that needs three independent API responses:</p>
+
+    <div class="row g-2">
+        <div class="col-md-4">
+            <div class="ref-box p-2 h-100">
+                <div class="ref-header">Employee API</div>
+                <div class="ref-side">Employee details</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="exec-box p-2 h-100">
+                <div class="exec-header">Department API</div>
+                <div class="exec-side">Department details</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="ref-box p-2 h-100">
+                <div class="ref-header">Projects API</div>
+                <div class="ref-side">Project details</div>
+            </div>
+        </div>
+    </div>
+
+    <p>These requests are independent. We can start all three without waiting for one to finish before starting the next.</p>
+
+    <div class="code-block p-3">
+        <pre><code>const employeePromise =
+    Promise.resolve("Employee details");
+
+const departmentPromise =
+    Promise.resolve("Department details");
+
+const projectPromise =
+    Promise.resolve("Project details");
+
+Promise.all([
+    employeePromise,
+    departmentPromise,
+    projectPromise
+])
+.then((results) => {
+    console.log(results);
+})
+.catch((error) => {
+    console.log(error);
+});</code></pre>
+    </div>
+
+    <h5>Output</h5>
+
+    <div class="code-block p-3">
+        <pre><code>[
+    "Employee details",
+    "Department details",
+    "Project details"
+]</code></pre>
+    </div>
+
+    <p><strong>How does it work?</strong></p>
+    <ul>
+        <li><code>Promise.all()</code> receives multiple Promises.</li>
+        <li>It waits until all of them fulfill.</li>
+        <li>It returns an array containing all fulfillment values.</li>
+        <li>The result order matches the input order, not the order in which the requests finish.</li>
+    </ul>
+
+    <div class="success-box p-3">
+        <strong>Remember:</strong> Promise.all() = All must fulfill. Even if one Promise rejects, the returned Promise rejects without waiting for the remaining Promises to fulfill.
+    </div>
+
+    <div class="note p-3">
+        <strong>Important:</strong> Promise.all() does not automatically cancel the other operations when one rejects. Those operations may continue running.
+    </div>
+
+    <hr>
+
+    <h4>3. Real-World Example — Multiple API Calls</h4>
+
+    <p>In a real application, <code>fetch()</code> already returns a Promise. We don't need to create a new Promise manually just to make an API request.</p>
+
+    <div class="code-block p-3">
+        <pre><code>const employeePromise =
+    fetch("/api/employee")
+        .then(res => {
+            if (!res.ok) throw new Error("Employee API failed");
+            return res.json();
+        });
+
+const departmentPromise =
+    fetch("/api/department")
+        .then(res => {
+            if (!res.ok) throw new Error("Department API failed");
+            return res.json();
+        });
+
+const projectPromise =
+    fetch("/api/projects")
+        .then(res => {
+            if (!res.ok) throw new Error("Projects API failed");
+            return res.json();
+        });
+
+Promise.all([
+    employeePromise,
+    departmentPromise,
+    projectPromise
+])
+.then(([employee, department, projects]) => {
+    console.log(employee);
+    console.log(department);
+    console.log(projects);
+})
+.catch(error => {
+    console.log("Dashboard loading failed:", error.message);
+});</code></pre>
+    </div>
+
+    <p>Notice this syntax:</p>
+    <div class="code-block p-3">
+        <pre><code>.then(([employee, department, projects]) => {
+    // Use each API response
+});</code></pre>
+    </div>
+
+    <p>This is <strong>array destructuring</strong>. Promise.all() returns an array, and we extract its values into separate variables.</p>
+
+    <div class="note p-3">
+        <strong>Fetch important detail:</strong> A server response such as HTTP 404 or 500 does not automatically reject a fetch Promise. Checking <code>response.ok</code> and throwing an error ensures those HTTP failures enter the <code>.catch()</code> path. Network errors and JSON parsing errors can also reject the chain.
+    </div>
+
+    <hr>
+
+    <h4>4. Promise.allSettled() — Wait for Every Outcome</h4>
+
+    <p>Wait for all Promises to finish, regardless of whether they succeed or fail</p>
+
+    <div class="code-block p-3">
+        <pre><code>const p1 = Promise.resolve("Employee details");
+const p2 = Promise.reject("Department API failed");
+const p3 = Promise.resolve("Project details");
+
+Promise.allSettled([p1, p2, p3])
+    .then(results => {
+        console.log(results);
+    });</code></pre>
+    </div>
+
+    <h5>Output</h5>
+
+    <div class="code-block p-3">
+        <pre><code>[
+    { status: "fulfilled", value: "Employee details" },
+    { status: "rejected", reason: "Department API failed" },
+    { status: "fulfilled", value: "Project details" }
+]</code></pre>
+    </div>
+
+    <p>Unlike <code>Promise.all()</code>, one rejected Promise does not cause the combined Promise to reject. It waits for every input Promise to settle and reports each outcome.</p>
+
+    <div class="success-box p-3">
+        <strong>Use case:</strong> A dashboard where you want to display whichever sections loaded successfully, while separately showing errors for failed sections.
+    </div>
+
+    <hr>
+
+    <h4>5. Promise.race() — First Promise to Settle Wins</h4>
+
+    <p><code>Promise.race()</code> returns the outcome of whichever Promise settles first. That could be a success or a failure.</p>
+
+    <div class="code-block p-3">
+        <pre><code>const p1 = new Promise(resolve => {
+    setTimeout(() => resolve("First API"), 1000);
+});
+
+const p2 = new Promise(resolve => {
+    setTimeout(() => resolve("Second API"), 2000);
+});
+
+Promise.race([p1, p2])
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+        console.log(error);
+    });</code></pre>
+    </div>
+
+    <h5>Output</h5>
+
+    <div class="code-block p-3">
+        <pre><code>First API</code></pre>
+    </div>
+
+    <p><code>p1</code> fulfills after approximately 1 second, while <code>p2</code> fulfills after approximately 2 seconds. Therefore, <code>p1</code> wins the race.</p>
+
+    <div class="note p-3">
+        <strong>Important:</strong> Promise.race() doesn't cancel the losing Promises. They continue running unless you explicitly cancel the underlying operation where supported.
+    </div>
+
+    <div class="success-box p-3">
+        <strong>Use case:</strong> Implementing a timeout or selecting whichever of multiple requests responds first.
+    </div>
+
+    <hr>
+
+    <h4>6. Promise.any() — First Successful Promise Wins</h4>
+
+    <p>What if the first Promise fails, but another Promise succeeds? With <code>Promise.any()</code>, we don't care about the first rejection. We want the first successful result.</p>
+
+    <div class="code-block p-3">
+        <pre><code>const p1 = Promise.reject("Server 1 failed");
+
+const p2 = new Promise(resolve => {
+    setTimeout(() => resolve("Server 2 success"), 1000);
+});
+
+const p3 = new Promise(resolve => {
+    setTimeout(() => resolve("Server 3 success"), 2000);
+});
+
+Promise.any([p1, p2, p3])
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+        console.log(error);
+    });</code></pre>
+    </div>
+
+    <h5>Output</h5>
+
+    <div class="code-block p-3">
+        <pre><code>Server 2 success</code></pre>
+    </div>
+
+    <p>Although the first Promise rejects immediately, <code>Promise.any()</code> continues waiting for a successful result. Server 2 fulfills first, so its result is returned.</p>
+
+    <div class="note p-3">
+        <strong>What if all Promises reject?</strong> Promise.any() rejects with an <code>AggregateError</code>, which contains the rejection reasons in its <code>errors</code> property.
+    </div>
+
+    <div class="code-block p-3">
+        <pre><code>Promise.any([
+    Promise.reject("Server 1 failed"),
+    Promise.reject("Server 2 failed")
+])
+.catch(error => {
+    console.log(error instanceof AggregateError); // true
+    console.log(error.errors);
+    // ["Server 1 failed", "Server 2 failed"]
+});</code></pre>
+    </div>
+
+    <div class="success-box p-3">
+        <strong>Use case:</strong> Trying multiple servers or service providers and accepting whichever one succeeds first.
+    </div>
+
+    <hr>
+
+    <h4>7. All Four Methods — Side-by-Side Comparison</h4>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Waits For</th>
+                    <th>What Determines the Result?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>all()</strong></td>
+                    <td>All Promises to fulfill</td>
+                    <td>All must succeed; one rejection rejects the combined Promise.</td>
+                </tr>
+                <tr>
+                    <td><strong>allSettled()</strong></td>
+                    <td>All Promises to settle</td>
+                    <td>Collects every success and failure.</td>
+                </tr>
+                <tr>
+                    <td><strong>race()</strong></td>
+                    <td>First Promise to settle</td>
+                    <td>First success OR failure wins.</td>
+                </tr>
+                <tr>
+                    <td><strong>any()</strong></td>
+                    <td>First Promise to fulfill</td>
+                    <td>First success wins; all failures produce AggregateError.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="note p-3">
+        <strong>One additional point:</strong> Array <code>map()</code> itself is synchronous, but you can use an asynchronous callback with it. In that case, it returns an array of Promises, and <code>Promise.all()</code> is commonly used to collect their results.
+        <div class="code-block p-2 mt-2">
+            <pre><code>const ids = [101, 102, 103];
+
+const promises = ids.map(id => fetch(`/api/users/${id}`));
+
+Promise.all(promises).then(responses => {
+    console.log(responses);
+});</code></pre>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+    <h4>Promise Combinators — Quick Revision</h4>
+
+    <div class="row g-3">
+
+        <div class="col-md-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">1. Promise.all()</div>
+                <div class="ref-side">
+                    <strong>All must fulfill.</strong>
+                    <p>Waits for all Promises to fulfill. If even one rejects, the returned Promise becomes rejected.</p>
+                    <div class="memory-diagram">
+                        All succeed → Fulfilled
+                        <br>
+                        Any one fails → Rejected
+                    </div>
+                    <p class="tamil mb-0">அனைத்து Promises-உம் success ஆக வேண்டும். ஏதாவது ஒன்று reject ஆனால், result Promise reject ஆகும்.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">2. Promise.allSettled()</div>
+                <div class="exec-side">
+                    <strong>Everyone must finish.</strong>
+                    <p>Waits for every Promise to settle, whether fulfilled or rejected. Returns the outcome of each Promise.</p>
+                    <div class="memory-diagram">
+                        Success + Failure
+                        <br>
+                        ↓
+                        <br>
+                        All outcomes are collected
+                        <br>
+                        Combined Promise fulfills
+                    </div>
+                    <p class="tamil mb-0">எல்லா Promises-உம் முடியும் வரை காத்திருக்கும். Success அல்லது failure இரண்டின் முடிவுகளையும் தரும்.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">3. Promise.race()</div>
+                <div class="ref-side">
+                    <strong>First result wins.</strong>
+                    <p>Returns the outcome of whichever Promise settles first. Settling means either fulfilled or rejected.</p>
+                    <div class="memory-diagram">
+                        First fulfilled → Fulfilled
+                        <br>
+                        First rejected → Rejected
+                    </div>
+                    <p class="tamil mb-0">முதலில் எந்த Promise settle ஆகிறதோ, அதன் result கிடைக்கும். அது success அல்லது failure ஆக இருக்கலாம்.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">4. Promise.any()</div>
+                <div class="exec-side">
+                    <strong>First success wins.</strong>
+                    <p>Returns the first successfully fulfilled Promise. It ignores individual rejections while waiting for a success.</p>
+                    <div class="memory-diagram">
+                        First fulfillment → Fulfilled
+                        <br>
+                        All reject → AggregateError
+                    </div>
+                    <p class="tamil mb-0">முதலில் success ஆகும் Promise-ன் result கிடைக்கும். எல்லாமே reject ஆனால் AggregateError கிடைக்கும்.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h4>Easy Memory Trick</h4>
+
+    <div class="memory-diagram">
+        <strong>all()</strong> = Everyone must succeed.
+        <br>
+        <strong>allSettled()</strong> = Everyone must finish.
+        <br>
+        <strong>race()</strong> = First result wins (success or failure).
+        <br>
+        <strong>any()</strong> = First success wins.
+    </div>
+
+    <h4>One Common Point</h4>
+
+    <div class="success-box p-3">
+        All four methods return a Promise.
+        <br>
+        None of them automatically cancels the other operations when one Promise settles or rejects.
+    </div>
+
+    <div class="note p-3">
+        <strong>Important distinction:</strong>
+        <code>Promise.all()</code> does not throw an error immediately when an input rejects. Instead, its returned Promise becomes rejected. We can handle that rejection using <code>.catch()</code>.
+    </div>
+
+</div>
+
+    <div class="success-box p-3">
+        <strong>Final Memory Trick</strong>
+        <p><code>all()</code> = All succeed.</p>
+        <p><code>allSettled()</code> = Get all outcomes.</p>
+        <p><code>race()</code> = First to settle wins.</p>
+        <p class="mb-0"><code>any()</code> = First success wins.</p>
     </div>
 
 </div>
   </body>
   <script>
-    const scrollBtn = document.getElementById('scrollTopBtn');
+    const scrollBtn = document.getElementById("scrollTopBtn");
     window.onscroll = function () {
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            scrollBtn.style.display = "flex";
-        } else {
-            scrollBtn.style.display = "none";
-        }
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) {
+        scrollBtn.style.display = "flex";
+      } else {
+        scrollBtn.style.display = "none";
+      }
     };
     scrollBtn.onclick = function () {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     };
-</script>
+  </script>
 </html>

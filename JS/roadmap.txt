@@ -189,13 +189,13 @@ Pattern problems ✅
 ✅ Microtask Queue
 ✅ Event Loop — Deep Dive
 ✅ Callback Hell
-⏳ Promises
-⏳ Promise states
-⏳ Promise chaining
-⏳ Promise.all()
-⏳ Promise.allSettled()
-⏳ Promise.race()
-⏳ Promise.any()
+✅ Promises
+✅ Promise states
+✅ Promise chaining
+✅ Promise.all()
+✅ Promise.allSettled()
+✅ Promise.race()
+✅ Promise.any()
 ⏳ async/await
 ⏳ fetch()
 ⏳ Error handling
