@@ -196,21 +196,21 @@ Pattern problems ✅
 ✅ Promise.allSettled()
 ✅ Promise.race()
 ✅ Promise.any()
-⏳ async/await
-⏳ fetch()
-⏳ Error handling
-⏳ Sequential vs parallel async operations
+✅ async/await
+✅ fetch()
+✅ Error handling
+✅ Sequential vs parallel async operations
 
 📌 DOM & Browser Events
-⏳ Event listeners
-⏳ Event object
-⏳ Event propagation
-⏳ Event bubbling
-⏳ Event capturing — basic understanding
-⏳ Event target vs current target
-⏳ stopPropagation()
-⏳ preventDefault()
-⏳ Event delegation
+✅ Event listeners
+✅ Event object
+✅ Event propagation
+✅ Event bubbling
+✅ Event capturing — basic understanding
+✅ Event target vs current target
+✅ stopPropagation()
+✅ preventDefault()
+✅ Event delegation
 
 📌 Prototype & Advanced JavaScript
 ⏳ What is Prototype?
@@ -292,7 +292,35 @@ Agent/RAG/tool integration
               +
 Evaluation/security/production
 
+Future-Ready Engineering Skills
+1. Software Foundation: JavaScript → TypeScript → Node.js.
+2. AI Fundamentals: LLMs, Gemini, Prompt Engineering.
+3. AI Application Engineering: Embeddings, RAG, Vector Databases.
+4. Agentic AI: AI Agents, Tool Calling, MCP, A2A.
+5. Cloud Engineering: Google Cloud, Deployment, Production AI.
+6. Practical Implementation: Real-world AI projects and automation.
 
+TypeScript Strengthening
+Advanced types, generics, utility types, practical patterns.
+
+Node.js & Backend Engineering
+REST APIs, authentication, database, backend architecture.
+
+LLM & Gemini Engineering
+Prompting, embeddings, structured outputs, function calling.
+
+RAG Systems
+Document ingestion, chunking, vector databases, retrieval.
+
+Agentic AI & AI Agents
+Tool calling, memory, orchestration, MCP, A2A.
+
+Cloud & Production AI
+Google Cloud, Cloud Run, deployment, evaluation and monitoring.
+
+Practical Capstone
+
+Angular Test Coverage AI Agent.
 Date	Target
 Sep 20	Start accelerated sprint
 Oct 15	Core JS substantially complete
@@ -316,3 +344,1214 @@ Resume-ready project	⏳	Dec 2026
 deployment:
 angulardemoprjs@gmail.com - angular tutorial , rxjs tutorial
 sigaiapp070@gmail.com - js tutorial
+
+# AI APPLICATION ENGINEER – MASTER LEARNING ROADMAP
+
+**Roadmap Version:** 1.0  
+**Created:** 03 November 2026  
+**Career Goal:** AI Application Engineer  
+**Long-term Goal:** AI-Native Full-Stack Product Engineer  
+**Primary Target:** 03 February 2027  
+**Contingency Target:** 03 March 2027  
+**Learning Approach:** Dependency-first, practical, project-based, AI-assisted learning.
+
+---
+
+# 1. CAREER OBJECTIVE
+
+Become an AI Application Engineer capable of independently designing, developing, testing, validating and deploying real-world AI-powered applications.
+
+### Target Capabilities
+
+- Strong JavaScript and TypeScript foundation.
+- Full-stack application development.
+- Backend engineering and API integration.
+- Python fundamentals for AI development.
+- LLM application development.
+- Prompt and context engineering.
+- Structured AI outputs and function calling.
+- Embeddings and vector databases.
+- Retrieval-Augmented Generation (RAG).
+- AI agents and agentic workflows.
+- Model Context Protocol (MCP).
+- AI evaluation and testing.
+- AI application security.
+- Production deployment and monitoring.
+- AI-assisted software engineering.
+
+**Important:** The goal is not to memorize every technology or manually write every line of code. The goal is to understand the technologies, build complete applications using AI, and independently validate the results.
+
+---
+
+# 2. MASTER ROADMAP – PHASE OVERVIEW
+
+| Phase | Learning Area | Target Period |
+|---|---|---|
+| 00 | JavaScript Fundamentals | Nov 3–16, 2026 |
+| 01 | TypeScript + Backend Prerequisites | Nov 17–30, 2026 |
+| 02 | Python + AI Mathematics | Dec 1–7, 2026 |
+| 03 | AI Fundamentals + LLM Engineering | Dec 8–21, 2026 |
+| 04 | Embeddings + Vector Database + RAG | Dec 22–Jan 4 |
+| 05 | AI Agents + MCP | Jan 5–18, 2027 |
+| 06 | Production AI Engineering + Capstone | Jan 19–Feb 3, 2027 |
+
+**Contingency period: February 4 – March 3, 2027.**
+
+The contingency period is for completing unfinished concepts, practical implementation, assessments and project improvements. It is not an excuse to skip essential topics.
+
+If a prerequisite is not mastered, the next dependent topic must wait.
+
+---
+
+# PHASE 00 – JAVASCRIPT FUNDAMENTALS
+
+**Priority:** Highest  
+**Status:** Currently learning  
+**Target:** November 16, 2026  
+**Additional buffer:** November 17–30, 2026
+
+### 00.1 JavaScript Core
+
+- Variables: var, let and const.
+- Data types.
+- Primitive and reference values.
+- Operators.
+- Type coercion.
+- Conditional statements.
+- Loops.
+- Break and continue.
+- Strict mode.
+
+### 00.2 JavaScript Execution
+
+- Global Execution Context.
+- Function Execution Context.
+- Memory creation phase.
+- Execution phase.
+- Call stack.
+- Hoisting.
+- Temporal Dead Zone.
+- Scope.
+- Scope chain.
+- Lexical environment.
+- Shadowing.
+
+### 00.3 Functions
+
+- Function declarations.
+- Function expressions.
+- Arrow functions.
+- Parameters and arguments.
+- Return values.
+- Default parameters.
+- Rest parameters.
+- Callback functions.
+- Higher-order functions.
+- Closures.
+- Currying.
+- this keyword.
+- bind, call and apply.
+
+### 00.4 Array and Object Fundamentals
+
+- Array creation and manipulation.
+- Array indexes and length.
+- forEach.
+- map.
+- filter.
+- reduce.
+- find and findIndex.
+- some and every.
+- Array destructuring.
+- Spread and rest operators.
+- Object creation.
+- Object properties and methods.
+- Object references.
+- Shallow copy and deep copy.
+- Object destructuring.
+- Object.keys, values and entries.
+- Object-as-dictionary.
+- Map vs Object.
+- Set.
+
+### 00.5 Constructors and Built-in Objects
+
+- The new keyword.
+- What new does.
+- Constructor functions.
+- Classes and instances.
+- new Date().
+- new Map().
+- new Set().
+- new String(), new Number(), new Boolean().
+- Primitive values vs wrapper objects.
+- Basic RegExp and Error usage.
+
+### 00.6 Asynchronous JavaScript
+
+- Synchronous and asynchronous execution.
+- Single-threaded JavaScript.
+- Callbacks.
+- Callback hell.
+- Promises.
+- Promise states.
+- then, catch and finally.
+- Promise chaining.
+- Promise.all.
+- Promise.allSettled.
+- Promise.race.
+- Promise.any.
+- async and await.
+- Error handling in async functions.
+
+### 00.7 JavaScript Runtime
+
+- JavaScript engine.
+- V8 basics.
+- Event loop.
+- Call stack.
+- Callback queue.
+- Microtask queue.
+- Macrotask/task queue.
+- setTimeout.
+- setInterval.
+- Promise scheduling.
+- Closures in asynchronous code.
+
+### 00.8 Browser and DOM
+
+- DOM fundamentals.
+- Selecting elements.
+- Updating elements.
+- Event listeners.
+- Event bubbling.
+- Event capturing.
+- Event delegation.
+- Default event behaviour.
+- Event propagation.
+
+### 00.9 Error Handling and Modules
+
+- try and catch.
+- finally.
+- throw.
+- Error objects.
+- Custom errors.
+- Error propagation.
+- ES modules.
+- import and export.
+
+### Completion Criteria
+
+- Explain important concepts in your own words.
+- Understand JavaScript execution flow.
+- Analyse callbacks, closures and asynchronous code.
+- Understand Promise behaviour and event loop.
+- Identify common errors in AI-generated JavaScript.
+- Pass the final JavaScript assessment.
+
+**Deliverable:** Complete JavaScript fundamentals notes, exercises and final assessment.
+
+---
+
+# PHASE 01 – TYPESCRIPT + BACKEND PREREQUISITES
+
+**Target:** November 17–30, 2026  
+**Prerequisite:** JavaScript fundamentals.
+
+## 01.1 TypeScript
+
+- Type annotations.
+- Type inference.
+- Primitive and reference types.
+- Arrays and tuples.
+- Interfaces.
+- Type aliases.
+- Optional and readonly properties.
+- Union types.
+- Intersection types.
+- Literal types.
+- any, unknown, never and void.
+- Functions and overloads.
+- Type narrowing.
+- Type guards.
+- Generics.
+- Generic constraints.
+- keyof and typeof.
+- Indexed access types.
+- Conditional types.
+- Mapped types.
+- Utility types.
+- Classes and abstract classes.
+- Access modifiers.
+- Modules.
+- tsconfig and compiler options.
+
+## 01.2 Runtime Validation
+
+- Compile-time vs runtime validation.
+- JSON Schema.
+- Zod.
+- Pydantic awareness.
+- API input validation.
+- API response validation.
+- Untrusted AI output validation.
+
+## 01.3 Web and Networking Fundamentals
+
+- Client-server architecture.
+- HTTP and HTTPS.
+- HTTP methods.
+- HTTP status codes.
+- Headers.
+- Request and response lifecycle.
+- JSON serialization.
+- REST architecture.
+- Cookies and sessions.
+- CORS.
+- DNS basics.
+- TLS basics.
+- WebSockets.
+- Server-Sent Events (SSE).
+- Webhooks.
+- HTTP streaming.
+
+## 01.4 Node.js Essentials
+
+- Node.js architecture.
+- V8 engine basics.
+- Node.js event loop.
+- Non-blocking I/O.
+- Asynchronous programming.
+- CommonJS and ES modules.
+- File system.
+- Buffer.
+- Streams.
+- Environment variables.
+- Process.
+- Error handling.
+- Logging.
+- Debugging.
+- Basic performance diagnostics.
+
+## 01.5 Backend Essentials
+
+Primary framework: Node.js + NestJS.
+
+- REST API development.
+- Controllers and services.
+- Modules.
+- Dependency injection.
+- Middleware.
+- DTOs.
+- Validation.
+- Exception handling.
+- Authentication.
+- Authorization.
+- JWT.
+- Role-based permissions.
+- API keys.
+- API security basics.
+
+## 01.6 Database Essentials
+
+Primary relational database: PostgreSQL.
+
+- Database fundamentals.
+- SQL queries.
+- CRUD.
+- Primary and foreign keys.
+- Joins.
+- Relationships.
+- Indexes.
+- Transactions.
+- ACID basics.
+- Data consistency.
+- Database migrations.
+- Query performance basics.
+- PostgreSQL JSONB.
+
+Maintain existing MongoDB knowledge:
+
+- Document modelling.
+- CRUD.
+- Aggregation.
+- Indexing.
+- Data relationships.
+
+Additional awareness:
+
+- Redis for caching and short-lived state.
+- Object storage for documents and files.
+
+## 01.7 Engineering Workflow
+
+- Git fundamentals.
+- Branching and merging.
+- GitHub.
+- Pull requests.
+- Code review.
+- npm/pnpm.
+- Environment management.
+- ESLint and Prettier.
+- Debugging.
+- Unit testing.
+- Integration testing.
+- End-to-end testing.
+- Mocking.
+- Test coverage.
+- GitHub Actions basics.
+
+### Completion Criteria
+
+- Understand TypeScript type safety.
+- Understand frontend-to-backend communication.
+- Build and consume APIs.
+- Validate untrusted data.
+- Understand basic database operations.
+- Write and understand unit tests.
+
+**Deliverable:** A tested TypeScript API client and a small backend API.
+
+---
+
+# PHASE 02 – PYTHON + AI MATHEMATICS
+
+**Target:** December 1–7, 2026  
+**Prerequisite:** Basic programming and data structures.
+
+## 02.1 Python Fundamentals
+
+- Python setup.
+- Variables and data types.
+- Strings.
+- Lists.
+- Tuples.
+- Dictionaries.
+- Sets.
+- Conditions.
+- Loops.
+- Functions.
+- Lambda functions.
+- Comprehensions.
+- Modules and packages.
+- Exception handling.
+- File handling.
+- JSON handling.
+- Classes and OOP.
+- Iterators and generators.
+- Decorators – practical basics.
+- Type hints.
+- Dataclasses.
+- Virtual environments.
+- Package management.
+- Async and await.
+
+## 02.2 Python AI Ecosystem
+
+- NumPy basics.
+- Pandas basics.
+- Pydantic.
+- FastAPI fundamentals.
+- HTTP clients.
+- Data processing.
+- Logging.
+- pytest basics.
+
+## 02.3 Essential Mathematics
+
+- Vectors.
+- Matrices – basics.
+- Dot product.
+- Cosine similarity.
+- Probability basics.
+- Mean and median.
+- Variance.
+- Standard deviation.
+- Precision.
+- Recall.
+- F1 score.
+
+## 02.4 Data Fundamentals
+
+- Structured and unstructured data.
+- CSV.
+- JSON.
+- XML basics.
+- Text processing.
+- Data cleaning.
+- Metadata.
+- Encoding.
+- Data ingestion.
+- Batch vs streaming data.
+
+### Completion Criteria
+
+- Read and understand Python code.
+- Write basic Python programs.
+- Process JSON and files.
+- Understand vectors and similarity.
+- Build a small Python API.
+
+**Deliverable:** Document-processing script + basic FastAPI service.
+
+---
+
+# PHASE 03 – AI FUNDAMENTALS + LLM ENGINEERING
+
+**Target:** December 8–21, 2026  
+**Prerequisite:** Programming, APIs, asynchronous execution and JSON.
+
+## 03.1 AI Fundamentals
+
+- Artificial Intelligence.
+- Machine Learning.
+- Supervised learning.
+- Unsupervised learning.
+- Reinforcement learning – basic concepts.
+- Deep learning.
+- Neural networks.
+- Generative AI.
+- Foundation models.
+- Large Language Models.
+- Transformer architecture.
+- Attention mechanism.
+- Training vs inference.
+- Pre-training vs fine-tuning.
+- Model parameters.
+- Model weights.
+- Open-source vs closed models.
+- AI limitations.
+
+## 03.2 LLM Internals
+
+- Tokens.
+- Tokenization.
+- Embeddings – introduction.
+- Context windows.
+- Input and output tokens.
+- Inference.
+- Temperature.
+- Top-p.
+- Sampling.
+- Hallucinations.
+- Model reasoning limitations.
+- Model selection.
+- Multimodal fundamentals.
+
+## 03.3 Prompt Engineering
+
+- System instructions.
+- Developer instructions.
+- User instructions.
+- Role prompting.
+- Zero-shot prompting.
+- Few-shot prompting.
+- Task decomposition.
+- Output constraints.
+- Example-driven prompts.
+- Context engineering.
+- Prompt templates.
+- Prompt versioning.
+- Prompt injection awareness.
+
+## 03.4 LLM API Integration
+
+Primary initial provider: OpenAI API.
+
+- API authentication.
+- SDK integration.
+- Model selection.
+- API request and response.
+- Responses API.
+- Conversation state.
+- Multi-turn interactions.
+- Streaming responses.
+- Server-Sent Events.
+- Structured Outputs.
+- JSON Schema.
+- Function calling.
+- Tool calling.
+- Token counting.
+- Cost tracking.
+- Rate limits.
+- Retries.
+- Timeouts.
+- Context management.
+- File inputs.
+- Image inputs.
+- Error handling.
+- Provider abstraction.
+- Model fallback.
+
+## 03.5 AI Application Design
+
+- Deterministic code vs AI output.
+- Structured response parsing.
+- Runtime schema validation.
+- Output sanitization.
+- Refusal handling.
+- AI failure handling.
+- Safe API integration.
+- Human-readable response formatting.
+
+### Completion Criteria
+
+- Explain how LLM APIs work.
+- Build an AI chatbot.
+- Implement streaming.
+- Implement structured output.
+- Handle errors and rate limits.
+- Track token usage and cost.
+
+**Deliverable:** Angular + Node.js + LLM API chatbot with conversation history and streaming.
+
+---
+
+# PHASE 04 – EMBEDDINGS + VECTOR DATABASE + RAG
+
+**Target:** December 22, 2026 – January 4, 2027  
+**Prerequisite:** LLM APIs, Python basics, databases, vectors and similarity.
+
+## 04.1 Embeddings
+
+- Embedding concepts.
+- Text-to-vector conversion.
+- Embedding models.
+- Embedding dimensions.
+- Semantic similarity.
+- Cosine similarity.
+- Dot product.
+- Vector distance.
+- Model selection.
+- Embedding storage.
+- Embedding versioning.
+
+## 04.2 Vector Database
+
+Primary implementation: PostgreSQL + pgvector.
+
+- Vector database concepts.
+- Vector storage.
+- Similarity search.
+- Vector indexing.
+- Approximate nearest-neighbour search.
+- HNSW.
+- IVFFlat concepts.
+- Metadata filtering.
+- Hybrid search.
+- Vector performance.
+- Updates and deletion.
+- Multi-tenant data isolation.
+
+## 04.3 RAG Fundamentals
+
+- What is RAG?
+- Why RAG is needed.
+- RAG vs fine-tuning.
+- RAG architecture.
+- Document ingestion.
+- PDF/DOCX/HTML processing.
+- Text extraction.
+- OCR basics.
+- Text cleaning.
+- Chunking.
+- Chunk size.
+- Chunk overlap.
+- Metadata extraction.
+- Embedding generation.
+- Vector storage.
+- Query embedding.
+- Retrieval.
+- Context assembly.
+- LLM generation.
+- Source citations.
+- Grounded responses.
+
+## 04.4 Advanced RAG
+
+- Semantic search.
+- Keyword search.
+- Hybrid retrieval.
+- Metadata filtering.
+- Reranking.
+- Query rewriting.
+- Multi-query retrieval.
+- Parent-child chunking.
+- Context compression.
+- Conversational RAG.
+- Agentic RAG.
+- Access-controlled RAG.
+- Document updates and re-indexing.
+
+## 04.5 RAG Evaluation
+
+- Recall@K.
+- Precision@K.
+- MRR.
+- NDCG basics.
+- Context relevance.
+- Context precision.
+- Context recall.
+- Faithfulness.
+- Answer correctness.
+- Citation accuracy.
+
+### Completion Criteria
+
+- Explain the RAG pipeline.
+- Generate and store embeddings.
+- Implement vector search.
+- Retrieve relevant documents.
+- Generate grounded responses.
+- Display source citations.
+- Evaluate retrieval quality.
+
+**Deliverable:** PDF-based Personal Knowledge Assistant using PostgreSQL + pgvector + LLM.
+
+---
+
+# PHASE 05 – AI AGENTS + MCP
+
+**Target:** January 5–18, 2027  
+**Prerequisite:** LLM APIs, function calling, databases, async programming and RAG fundamentals.
+
+## 05.1 Agent Fundamentals
+
+- LLM vs AI agent.
+- AI workflow vs agent.
+- Deterministic workflows.
+- Agent loops.
+- Planning.
+- Task decomposition.
+- Tool selection.
+- Tool execution.
+- Agent state.
+- Agent memory.
+- Context management.
+- Stopping conditions.
+
+## 05.2 Function and Tool Calling
+
+- Tool definitions.
+- JSON Schema.
+- Function selection.
+- Function arguments.
+- Tool invocation.
+- Tool result handling.
+- Multiple tool calls.
+- Tool chaining.
+- Parallel tool calls.
+- Error handling.
+- Tool validation.
+- Tool permissions.
+- Idempotency.
+- Execution logs.
+
+## 05.3 Agent Architecture
+
+- Single-agent systems.
+- Sequential workflows.
+- Conditional workflows.
+- Parallel workflows.
+- Tool-based workflows.
+- Agent routing.
+- Agent handoffs.
+- Specialist agents.
+- Shared context.
+- Persistent state.
+- Checkpoints.
+- Human approval.
+- Agent recovery.
+- Retry and timeout.
+- Long-running workflows.
+
+## 05.4 Memory and State
+
+- Conversation memory.
+- Short-term memory.
+- Long-term memory.
+- Working memory.
+- Database-backed memory.
+- User preferences.
+- State persistence.
+- Context summarization.
+- Memory retrieval.
+- Memory privacy and deletion.
+
+## 05.5 MCP – Model Context Protocol
+
+- Why MCP?
+- MCP architecture.
+- MCP clients.
+- MCP servers.
+- MCP tools.
+- MCP resources.
+- MCP prompts.
+- JSON-RPC basics.
+- Protocol lifecycle.
+- Transport mechanisms.
+- Authentication.
+- Authorization.
+- Tool discovery.
+- Remote MCP servers.
+- MCP server development.
+- MCP client integration.
+- MCP security.
+
+## 05.6 Agent Frameworks
+
+Learning order:
+
+1. Direct LLM API + custom tool loop.
+2. OpenAI Agents SDK – TypeScript.
+3. LangGraph / LangGraph.js.
+4. LangChain fundamentals.
+5. LlamaIndex – RAG ecosystem awareness.
+6. CrewAI / AutoGen – use cases and comparison.
+
+Do not attempt to master every framework simultaneously.
+
+## 05.7 Advanced Agent Concepts
+
+- Multi-agent coordination.
+- Manager and specialist patterns.
+- Agent delegation.
+- Agent-to-agent communication concepts.
+- Background workflows.
+- Scheduled tasks.
+- Human-supervised workflows.
+- Agent permissions.
+- Tool sandboxing.
+- Failure recovery.
+- Agent evaluation.
+- Agent tracing.
+
+### Completion Criteria
+
+- Build a single AI agent.
+- Connect external tools.
+- Execute controlled workflows.
+- Persist useful agent state.
+- Implement human approval.
+- Build a simple MCP server.
+- Integrate an MCP tool.
+
+**Deliverable:** AI Customer Support / Business Workflow Agent.
+
+---
+
+# PHASE 06 – PRODUCTION AI ENGINEERING + CAPSTONE
+
+**Target:** January 19 – February 3, 2027  
+**Prerequisite:** Working AI application, RAG and agent fundamentals.
+
+## 06.1 AI Testing and Evaluation
+
+- Unit testing AI components.
+- Integration testing.
+- End-to-end testing.
+- Golden datasets.
+- Expected vs actual results.
+- Structured output validation.
+- Factuality testing.
+- Hallucination testing.
+- RAG retrieval evaluation.
+- Tool selection accuracy.
+- Tool execution accuracy.
+- Agent completion accuracy.
+- Regression testing.
+- Model comparison.
+- Prompt comparison.
+- Human evaluation.
+- LLM-as-a-judge.
+- Continuous evaluation.
+- Promptfoo fundamentals.
+- Custom evaluation harnesses.
+
+## 06.2 AI Security
+
+- Prompt injection.
+- Indirect prompt injection.
+- Jailbreak attempts.
+- Sensitive information disclosure.
+- System prompt leakage.
+- Data poisoning.
+- Improper output handling.
+- Vector database security.
+- Embedding weaknesses.
+- Excessive agent permissions.
+- Unsafe tool execution.
+- Data privacy.
+- Tenant isolation.
+- API key protection.
+- Access control.
+- Audit logging.
+- Secrets management.
+
+## 06.3 Guardrails
+
+- Input validation.
+- Output validation.
+- Content moderation.
+- PII detection.
+- Data masking.
+- Allowed tool lists.
+- Tool permission control.
+- Output constraints.
+- Policy enforcement.
+- Human approval.
+- Safe refusal handling.
+- Defence-in-depth approach.
+
+## 06.4 Observability and Monitoring
+
+- Structured logging.
+- Application metrics.
+- Distributed tracing.
+- LLM request tracing.
+- Agent step tracing.
+- Tool-call logging.
+- Error tracking.
+- Latency monitoring.
+- Token monitoring.
+- Cost monitoring.
+- Model performance monitoring.
+- Alerting.
+- Prompt version tracking.
+- User feedback.
+
+## 06.5 Performance and Cost Optimization
+
+- Model selection.
+- Small vs large models.
+- Model routing.
+- Token optimization.
+- Context compression.
+- Response caching.
+- Semantic caching.
+- Request batching.
+- Parallel execution.
+- Rate limit handling.
+- Exponential backoff.
+- Circuit breakers.
+- Timeouts.
+- Fallback mechanisms.
+- Background processing.
+- Cost per task.
+- Latency vs quality trade-offs.
+
+## 06.6 DevOps and Cloud
+
+- Linux basics.
+- Docker fundamentals.
+- Images and containers.
+- Docker Compose.
+- Application containerization.
+- CI/CD.
+- GitHub Actions.
+- Build and test automation.
+- Environment configuration.
+- Secrets management.
+- Cloud computing basics.
+- Cloud networking.
+- Application deployment.
+- Managed databases.
+- Object storage.
+- IAM and permissions.
+- DNS and HTTPS.
+- Reverse proxy basics.
+- Logging and monitoring.
+- Backup and recovery.
+- Deployment rollback.
+- Infrastructure-as-code basics.
+
+Choose one primary cloud provider initially: AWS, Azure or GCP.
+
+### Completion Criteria
+
+- Write automated AI tests.
+- Evaluate RAG quality.
+- Identify common prompt injection risks.
+- Apply permission controls.
+- Implement error handling and monitoring.
+- Deploy a working application.
+- Track cost and latency.
+- Explain production architecture.
+
+**Deliverable:** Production-like deployed AI application with security, evaluation, logging and monitoring.
+
+---
+
+# 3. MAIN PRACTICAL PROJECT
+
+## AI KNOWLEDGE AND WORKFLOW ASSISTANT
+
+Build one application progressively throughout the roadmap.
+
+### Stage 1 – Foundation
+- Angular frontend.
+- Node.js backend.
+- API connectivity.
+- Database integration.
+
+### Stage 2 – LLM
+- Chat interface.
+- LLM API.
+- Streaming responses.
+- Conversation history.
+- Structured output.
+
+### Stage 3 – RAG
+- Document upload.
+- PDF processing.
+- Chunking.
+- Embedding generation.
+- Vector storage.
+- Retrieval.
+- Grounded responses.
+- Source citations.
+
+### Stage 4 – Agents
+- Tool calling.
+- Database lookup.
+- Single-agent workflow.
+- Agent state.
+- Human approval.
+- MCP integration.
+
+### Stage 5 – Production
+- Authentication.
+- Authorization.
+- Evaluation.
+- Prompt injection protection.
+- Logging.
+- Monitoring.
+- Usage and cost tracking.
+- Docker.
+- Cloud deployment.
+
+### Final Technology Stack
+
+- Frontend: Angular + TypeScript.
+- Backend: Node.js + NestJS.
+- Database: PostgreSQL.
+- Vector Search: pgvector.
+- AI Language Models: OpenAI API initially.
+- Python: AI ecosystem and data processing.
+- Agent SDK: OpenAI Agents SDK.
+- Protocol: MCP.
+- Testing: Jest/Vitest, Playwright, Promptfoo.
+- Deployment: Docker + GitHub Actions + one cloud provider.
+
+---
+
+# 4. ADDITIONAL PROJECTS
+
+### Project 1 – Angular Test AI Agent
+
+- Analyse Angular components.
+- Generate Jasmine unit tests.
+- Identify missing test cases.
+- Execute tests.
+- Analyse coverage.
+- Suggest improvements.
+
+### Project 2 – RAG Knowledge Assistant
+
+- Upload PDFs.
+- Extract document content.
+- Generate embeddings.
+- Store vectors.
+- Retrieve relevant information.
+- Generate grounded answers.
+- Display citations.
+
+### Project 3 – AI Business Workflow Agent
+
+- Understand business requests.
+- Select tools.
+- Retrieve database information.
+- Execute controlled workflows.
+- Request human approval for sensitive actions.
+- Maintain audit history.
+
+---
+
+# 5. WEEKLY LEARNING STRATEGY
+
+**Suggested commitment: 24–30 focused hours per week.**
+
+| Activity | Weekly Hours |
+|---|---:|
+| Concept learning | 5 |
+| Hands-on implementation | 7 |
+| AI-assisted development | 4 |
+| Main project | 7 |
+| Revision and assessment | 3 |
+| Total | 26 |
+
+The allocation can change depending on the phase and workload.
+
+### Learning Method
+
+1. Understand prerequisites.
+2. Learn the concept.
+3. Study practical examples.
+4. Explore implementation using AI.
+5. Implement an example.
+6. Analyse the generated code.
+7. Test edge cases and failures.
+8. Explain the concept independently.
+9. Complete assessment.
+10. Mark the topic complete.
+
+---
+
+# 6. PHASE COMPLETION RULES
+
+A phase is complete only after all four gates are satisfied.
+
+### Gate 1 – Understanding
+Can explain the concept in your own words.
+
+### Gate 2 – Implementation
+Can implement the concept in a practical application.
+
+### Gate 3 – Validation
+Can test correctness, edge cases, errors and security.
+
+### Gate 4 – Engineering Independence
+Can explain the architecture, trade-offs, limitations and AI-generated implementation.
+
+Do not mark topics complete just because a tutorial or video has been watched.
+
+---
+
+# 7. LEARNING PRIORITIES
+
+### Must Learn in the Current Three-Month Track
+
+- JavaScript fundamentals.
+- TypeScript.
+- Backend and API fundamentals.
+- Database fundamentals.
+- Python essentials.
+- AI and LLM fundamentals.
+- LLM APIs.
+- Prompt and context engineering.
+- Structured Outputs.
+- Function and tool calling.
+- Embeddings.
+- Vector databases.
+- RAG.
+- AI agent fundamentals.
+- MCP fundamentals.
+- AI evaluation.
+- AI security.
+- Testing.
+- Docker and deployment basics.
+- One complete AI application.
+
+### Continue in the Following Learning Cycle
+
+- Advanced Python.
+- Advanced system design.
+- Advanced RAG.
+- Advanced agent orchestration.
+- LangGraph in depth.
+- Advanced MCP.
+- Multimodal AI.
+- Voice AI.
+- Advanced observability.
+- Advanced cloud architecture.
+- Advanced ML and Deep Learning.
+- Fine-tuning.
+- LoRA / QLoRA.
+- Model serving and optimization.
+- More complex multi-agent architectures.
+
+These are not forgotten or considered unnecessary. They are the next specialization steps after the core AI Application Engineer milestone.
+
+---
+
+# 8. MASTER TARGET DATES
+
+| Milestone | Target |
+|---|---|
+| Complete JavaScript Fundamentals | November 2026 |
+| Complete TypeScript + Backend Prerequisites | November 2026 |
+| Complete Python Essentials | December 2026 |
+| Complete LLM Engineering | December 2026 |
+| Complete RAG Fundamentals | January 2027 |
+| Complete Agent + MCP Fundamentals | January 2027 |
+| Complete Production AI Core | February 2027 |
+| Main Target Completion | February 3, 2027 |
+| Contingency Completion | March 3, 2027 |
+
+Dates are planning targets. Learning quality and completion gates take priority over superficial speed.
+
+---
+
+# 9. OFFICIAL PROGRESS TRACKER
+
+| Phase | Status |
+|---|---|
+| Phase 00 – JavaScript | In Progress |
+| Phase 01 – TypeScript + Backend | Not Started |
+| Phase 02 – Python + Mathematics | Not Started |
+| Phase 03 – AI + LLM | Not Started |
+| Phase 04 – RAG | Not Started |
+| Phase 05 – Agents + MCP | Not Started |
+| Phase 06 – Production AI | Not Started |
+
+Status values:
+- Not Started
+- In Progress
+- Under Assessment
+- Completed
+
+For each topic, track:
+- Topic name.
+- Prerequisites.
+- Explanation completed.
+- Practical exercise completed.
+- Assessment completed.
+- Completion status.
+
+---
+
+# 10. FINAL CAREER GOAL
+
+Become an engineer capable of:
+
+1. Understanding business problems.
+2. Designing complete application architecture.
+3. Building frontend and backend applications.
+4. Integrating LLMs.
+5. Developing RAG systems.
+6. Creating AI agents and tool-based workflows.
+7. Integrating MCP.
+8. Validating AI-generated outputs.
+9. Securing AI applications.
+10. Testing, deploying and monitoring production AI systems.
+11. Using AI coding agents effectively.
+12. Adapting to new AI technologies without depending on one framework or provider.
+
+**Primary Career Direction:** AI Application Engineer.
+
+**Long-Term Direction:** AI-Native Full-Stack Product Engineer.
+
+**Primary Milestone:** February 3, 2027.
+
+**Contingency Milestone:** March 3, 2027.
+
+**Core Learning Principle:**
+
+Understand first. Build next. Validate always. Adapt continuously.
+
+The objective is not to compete with AI at typing code. The objective is to become an engineer who can use AI effectively to create reliable, secure and valuable software products.
+
+---
+
+**END OF MASTER ROADMAP**

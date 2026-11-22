@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <title>DOM & Browser Events | Js Zero to Hero</title>
+  </head>
+
+  <body>
+    <button id="scrollTopBtn" title="Go to top">⬆</button>
+    <a href="./index.html" rel="noopener noreferrer" class="mt-3">
+      <button class="btn btn-primary">← Back</button>
+    </a>
+    <div class="container-fluid">
+      <!-- Topic: DOM & Browser Events -->
+
+      <h3>DOM & Browser Events</h3>
+
+      <h5>1. What is DOM?</h5>
+      <p>
+        <strong>DOM</strong> stands for <strong>Document Object Model</strong>.
+        நாம் HTML எழுதும்போது, Browser அந்த HTML-ஐ parse செய்து ஒரு tree-like
+        object structure உருவாக்குகிறது. இதைத்தான் DOM என்கிறோம். JavaScript
+        மூலம் இந்த structure-ஐ access மற்றும் modify செய்ய முடியும்.
+      </p>
+
+      <div class="row g-2">
+        <div class="col-md-6">
+          <div class="example-box p-2 h-100">
+            <strong>HTML</strong>
+            <div class="code-block p-2 mt-1">
+              <pre><code>&lt;h1 id="title"&gt;Hello World&lt;/h1&gt;
+&lt;button id="clickBtn"&gt;Click Me&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="example-box p-2 h-100">
+            <strong>JavaScript – Modify DOM</strong>
+            <div class="code-block p-2 mt-1">
+              <pre><code>const title = document.getElementById("title");
+
+title.textContent = "Welcome!";</code></pre>
+            </div>
+            <small
+              >Heading text changes from "Hello World" to "Welcome!".</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <h5>2. What are Browser Events?</h5>
+      <p>
+        User webpage-ல் ஏதாவது action செய்யும்போது Browser ஒரு
+        <strong>Event</strong> உருவாக்குகிறது. JavaScript மூலம் அந்த event-ஐ
+        listen செய்து அதற்கான action-ஐ execute செய்யலாம்.
+      </p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>When does it occur?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>click</code></td>
+              <td>User element-ஐ click செய்யும்போது</td>
+            </tr>
+            <tr>
+              <td><code>input</code></td>
+              <td>Input value மாறும்போது</td>
+            </tr>
+            <tr>
+              <td><code>change</code></td>
+              <td>Value change commit ஆகும்போது (element-ஐப் பொறுத்து)</td>
+            </tr>
+            <tr>
+              <td><code>submit</code></td>
+              <td>Form submit செய்யப்படும்போது</td>
+            </tr>
+            <tr>
+              <td><code>keydown</code></td>
+              <td>Keyboard key press செய்யும்போது</td>
+            </tr>
+            <tr>
+              <td><code>mouseover</code></td>
+              <td>Pointer element மீது வரும்போது</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h5>3. addEventListener()</h5>
+      <p>
+        ஒரு element-ல் குறிப்பிட்ட event நடந்தால், அதற்கான callback function
+        execute ஆக வேண்டும் என்று
+        <code>addEventListener()</code> பயன்படுத்துகிறோம்.
+      </p>
+
+      <div class="row g-2">
+        <div class="col-md-5">
+          <div class="example-box p-2 h-100">
+            <strong>HTML</strong>
+            <div class="code-block p-2 mt-1">
+              <pre><code>&lt;button id="clickBtn"&gt;Click Me&lt;/button&gt;
+
+&lt;p id="message"&gt;Waiting...&lt;/p&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="example-box p-2 h-100">
+            <strong>JavaScript</strong>
+            <div class="code-block p-2 mt-1">
+              <pre><code>const button = document.getElementById("clickBtn");
+const message = document.getElementById("message");
+
+button.addEventListener("click", function() {
+    message.textContent = "Button clicked!";
+});</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note p-2 mb-2">
+        **Execution flow**
+        <ol class="mb-0">
+          <li>
+            <code>getElementById()</code> மூலம் DOM elements-ஐ access
+            செய்கிறோம்.
+          </li>
+          <li>
+            <code>addEventListener()</code> மூலம் click event listener register
+            செய்கிறோம்.
+          </li>
+          <li>
+            User button-ஐ click செய்ததும் callback function execute ஆகிறது.
+          </li>
+          <li>Paragraph text update ஆகிறது.</li>
+        </ol>
+      </div>
+
+      <h5>4. Event Object</h5>
+      <p>
+        User ஒரு button-ஐ click செய்யும்போது, அந்த நிகழ்வைப் பற்றிய தகவல்களை
+        Browser ஒரு <strong>Event Object</strong> மூலம் callback function-க்கு
+        வழங்குகிறது.
+      </p>
+
+      <div class="row g-2">
+        <div class="col-md-5">
+          <div class="example-box p-2 h-100">
+            <strong>HTML</strong>
+            <div class="code-block p-2 mt-1">
+              <pre><code>&lt;button id="clickBtn"&gt;Click Me&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="example-box p-2 h-100">
+            <strong>JavaScript</strong>
+            <div class="code-block p-2 mt-1">
+              <pre><code>const button = document.getElementById("clickBtn");
+
+button.addEventListener("click", function(event) {
+    console.log(event);
+});</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mb-1">
+        <code>event</code> என்பது Browser callback-க்கு தானாக அனுப்பும்
+        parameter. Parameter name-ஐ நமக்கு விருப்பமான பெயரில் எழுதலாம்:
+      </p>
+      <div class="code-block p-2">
+        <pre><code>button.addEventListener("click", function(e) {
+    console.log(e);
+});</code></pre>
+      </div>
+      <div class="note p-2 mb-2">
+        <code>event</code> மற்றும் <code>e</code> இரண்டும் ஒரே Event Object-ஐக்
+        குறிக்கின்றன.
+      </div>
+
+      <h5>5. Important Event Object Properties</h5>
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>event.type</code></td>
+              <td>எந்த event நடந்தது? (click, input, etc.)</td>
+            </tr>
+            <tr>
+              <td><code>event.target</code></td>
+              <td>Event முதலில் எந்த element-ல் ஏற்பட்டது?</td>
+            </tr>
+            <tr>
+              <td><code>event.currentTarget</code></td>
+              <td>Listener attach செய்யப்பட்டுள்ள element எது?</td>
+            </tr>
+            <tr>
+              <td><code>event.clientX</code></td>
+              <td>Mouse-ன் horizontal viewport position</td>
+            </tr>
+            <tr>
+              <td><code>event.clientY</code></td>
+              <td>Mouse-ன் vertical viewport position</td>
+            </tr>
+            <tr>
+              <td><code>event.key</code></td>
+              <td>எந்த keyboard key press செய்யப்பட்டது?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h5>6. event.target vs event.currentTarget</h5>
+      <p>
+        Parent <code>div</code>-ல் event listener register செய்துள்ளோம். அதன்
+        உள்ளே மூன்று child buttons இருக்கின்றன.
+      </p>
+
+      <div class="row g-2">
+        <div class="col-md-5">
+          <div class="example-box p-2 h-100">
+            <strong>HTML Structure</strong>
+            <div class="code-block p-2 mt-1">
+              <pre><code>&lt;div id="parent"&gt;
+    &lt;button id="btn1"&gt;Button 1&lt;/button&gt;
+    &lt;button id="btn2"&gt;Button 2&lt;/button&gt;
+    &lt;button id="btn3"&gt;Button 3&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="example-box p-2 h-100">
+            <strong>JavaScript</strong>
+            <div class="code-block p-2 mt-1">
+              <pre><code>const parent = document.getElementById("parent");
+
+parent.addEventListener("click", function(event) {
+    console.log("Clicked Element:", event.target.id);
+    console.log("Listener Element:", event.currentTarget.id);
+});</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-2">
+        <div class="col-md-6">
+          <div class="success-box p-2 h-100">
+            <strong>event.target</strong>
+            <p class="mb-0">
+              Event முதலில் எந்த element-ல் ஏற்பட்டதோ அந்த element. உதாரணமாக,
+              <code>btn2</code> click செய்தால் <code>event.target.id</code> →
+              <code>"btn2"</code>.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="note p-2 h-100">
+            <strong>event.currentTarget</strong>
+            <p class="mb-0">
+              தற்போது callback execute ஆகும் listener attach செய்யப்பட்ட
+              element. இங்கு parent-ல் listener இருப்பதால்
+              <code>event.currentTarget.id</code> → <code>"parent"</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight p-2 mt-2">
+        **Quick Revision**
+        <ul class="mb-0">
+          <li>
+            <strong>DOM:</strong> Browser உருவாக்கும் HTML document object
+            structure.
+          </li>
+          <li>
+            <strong>Event:</strong> User அல்லது Browser நிகழ்த்தும்
+            action/event.
+          </li>
+          <li>
+            <strong>addEventListener():</strong> ஒரு element-ல் event-ஐ listen
+            செய்யும்.
+          </li>
+          <li>
+            <strong>Event Object:</strong> நடந்த event பற்றிய தகவல்களை வழங்கும்.
+          </li>
+          <li><strong>target:</strong> Event முதலில் ஏற்பட்ட element.</li>
+          <li>
+            <strong>currentTarget:</strong> Listener attach செய்யப்பட்ட element.
+          </li>
+        </ul>
+      </div>
+      <hr />
+      <!-- Topic: Event Propagation & Event Delegation -->
+
+      <h3>Event Propagation</h3>
+
+      <h5>1. What is Event Propagation?</h5>
+      <p>
+        ஒரு webpage-ல் nested HTML elements இருக்கின்றன என்று வைத்துக்கொள்வோம்.
+        User innermost button-ஐ click செய்யும்போது, Browser அந்த event-ஐ DOM
+        hierarchy வழியாகக் கொண்டு செல்கிறது. இந்த process-தான்
+        <strong>Event Propagation</strong>.
+      </p>
+
+      <div class="code-block p-2">
+        <pre><code>&lt;div id="outer"&gt;
+    &lt;div id="parent"&gt;
+        &lt;button id="child"&gt;Click Me&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <h5>2. Event Propagation – Three Phases</h5>
+      <div class="row g-2">
+        <div class="col-md-4">
+          <div class="example-box p-2 h-100 text-center">
+            <strong>Phase 1 – Capturing</strong>
+            <div class="memory-diagram p-2 mt-2">
+              <strong>Outer</strong>
+              <div>↓</div>
+              <strong>Parent</strong>
+              <div>↓</div>
+              <strong>Child</strong>
+            </div>
+            <small class="d-block mt-2">Outside → Inside</small>
+            <small
+              >Event target-ஐ அடைவதற்கு முன் ancestor elements வழியாகப்
+              பயணிக்கும்.</small
+            >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="example-box p-2 h-100 text-center">
+            <strong>Phase 2 – Target</strong>
+            <div class="memory-diagram p-2 mt-2">
+              <strong>Child Button</strong>
+              <div>↓</div>
+              <span class="highlight">Actual Event Target</span>
+            </div>
+            <small class="d-block mt-2">Target Element</small>
+            <small>Event உண்மையில் ஏற்பட்ட element-ஐ அடைகிறது.</small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="example-box p-2 h-100 text-center">
+            <strong>Phase 3 – Bubbling</strong>
+            <div class="memory-diagram p-2 mt-2">
+              <strong>Child</strong>
+              <div>↑</div>
+              <strong>Parent</strong>
+              <div>↑</div>
+              <strong>Outer</strong>
+            </div>
+            <small class="d-block mt-2">Inside → Outside</small>
+            <small
+              >Bubbling செய்யக்கூடிய events ancestor elements நோக்கிப்
+              பயணிக்கும்.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <h5>3. Understanding Each Phase</h5>
+      <div class="row g-2">
+        <div class="col-md-4">
+          <div class="note p-2 h-100">
+            <strong>Capturing – Parent observes first</strong>
+            <p class="mb-0">
+              Event target-ஐ அடைவதற்கு முன்பே parent அல்லது ancestor elements
+              event-ஐ observe அல்லது handle செய்யலாம்.
+            </p>
+            <small>Example: Application-level click monitoring.</small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="note p-2 h-100">
+            <strong>Target – Actual action</strong>
+            <p class="mb-0">
+              User interaction செய்த element-ஐ event அடைகிறது. அந்த element-ல்
+              register செய்யப்பட்ட listeners execute ஆகலாம்.
+            </p>
+            <small>Example: Add to Cart button click.</small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="note p-2 h-100">
+            <strong>Bubbling – Parent responds afterwards</strong>
+            <p class="mb-0">
+              Event target-ஐ அடைந்த பிறகு, bubbling support செய்யும் event
+              parent மற்றும் ancestor elements நோக்கிப் பயணிக்கும்.
+            </p>
+            <small>Example: Parent-level click handling.</small>
+          </div>
+        </div>
+      </div>
+
+      <h5>4. Why is Event Propagation Needed?</h5>
+      <p>Shopping Cart example எடுத்துக்கொள்வோம். மூன்று levels இருக்கின்றன:</p>
+      <div class="code-block p-2">
+        <pre><code>&lt;div id="cart"&gt;                 &lt;!-- Grandparent --&gt;
+    &lt;div id="product"&gt;           &lt;!-- Parent --&gt;
+        &lt;button id="addToCart"&gt;Add to Cart&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+      <p>
+        User <code>Add to Cart</code> button-ஐ click செய்தால், button-ல் மட்டும்
+        event listener இல்லாமல், <code>product</code> மற்றும் <code>cart</code>
+        போன்ற parent elements-ல் உள்ள listeners-ம் அந்த click event-ஐ கவனிக்க
+        முடியும். இதற்குத்தான் Event Propagation உதவுகிறது.
+      </p>
+
+      <h5>5. Capturing vs Bubbling – Code Example</h5>
+      <p>
+        <code>addEventListener()</code>-ன் மூன்றாவது argument-ல்
+        <code>true</code> அல்லது <code>{ capture: true }</code> கொடுத்தால்
+        capturing listener register ஆகும். Default-ஆக listener bubbling phase-ல்
+        செயல்படும்.
+      </p>
+
+      <div class="code-block p-3">
+        <pre><code>const outer = document.getElementById("outer");
+const parent = document.getElementById("parent");
+const child = document.getElementById("child");
+
+// Capturing listeners
+outer.addEventListener("click", () =&gt; console.log("Outer Capture"), true);
+parent.addEventListener("click", () =&gt; console.log("Parent Capture"), true);
+
+// Target listener
+child.addEventListener("click", () =&gt; console.log("Child Target"));
+
+// Bubbling listeners
+parent.addEventListener("click", () =&gt; console.log("Parent Bubble"));
+outer.addEventListener("click", () =&gt; console.log("Outer Bubble"));</code></pre>
+      </div>
+
+      <div class="success-box p-2 mb-2">
+        **Expected order when Child button is clicked:**
+        <ol class="mb-0">
+          <li>Outer Capture</li>
+          <li>Parent Capture</li>
+          <li>Child Target</li>
+          <li>Parent Bubble</li>
+          <li>Outer Bubble</li>
+        </ol>
+      </div>
+
+      <h5>6. Event Delegation</h5>
+      <p>
+        <strong>Event Delegation</strong> என்பது ஒவ்வொரு child element-க்கும்
+        தனித்தனியாக event listener register செய்யாமல், parent element-ல் ஒரே
+        listener register செய்து, bubbling மூலம் child events-ஐ handle செய்யும்
+        technique.
+      </p>
+
+      <p>
+        உதாரணமாக, Product List-ல் 100 products இருக்கின்றன என்று
+        வைத்துக்கொள்வோம்.
+      </p>
+
+      <div class="code-block p-2">
+        <pre><code>&lt;ul id="productList"&gt;
+    &lt;li&gt;Product 1 &lt;button&gt;Add&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;Product 2 &lt;button&gt;Add&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;Product 3 &lt;button&gt;Add&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      </div>
+
+      <div class="row g-2">
+        <div class="col-md-6">
+          <div class="example-box p-2 h-100">
+            <strong>Approach 1 – Individual Listeners</strong>
+            <small class="d-block mb-1"
+              >ஒவ்வொரு button-க்கும் listener register செய்கிறோம்.</small
+            >
+            <div class="code-block p-2">
+              <pre><code>const buttons = document.querySelectorAll(
+    "#productList button"
+);
+
+buttons.forEach(button =&gt; {
+    button.addEventListener("click", function() {
+        console.log("Product added");
+    });
+});</code></pre>
+            </div>
+            <small>100 buttons இருந்தால் 100 listeners தேவைப்படும்.</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="example-box p-2 h-100">
+            <strong>Approach 2 – Event Delegation</strong>
+            <small class="d-block mb-1"
+              >Parent-ல் ஒரே listener register செய்கிறோம்.</small
+            >
+            <div class="code-block p-2">
+              <pre><code>const productList = document.getElementById("productList");
+
+productList.addEventListener("click", function(event) {
+
+    const button = event.target.closest("button");
+
+    if (button &amp;&amp; productList.contains(button)) {
+        console.log("Product added");
+    }
+
+});</code></pre>
+            </div>
+            <small
+              >ஒரே parent listener மூலம் எல்லா product buttons-ஐயும் handle
+              செய்யலாம்.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <h5>7. How Event Delegation Works</h5>
+      <ol>
+        <li>User Product 2-ன் Add button-ஐ click செய்கிறார்.</li>
+        <li>Event முதலில் அந்த button-ல் ஏற்படுகிறது.</li>
+        <li>Event parent <code>ul</code>-க்கு bubble ஆகிறது.</li>
+        <li>Parent-ல் register செய்த listener execute ஆகிறது.</li>
+        <li>
+          <code>event.target.closest("button")</code> மூலம் click செய்யப்பட்ட
+          button-ஐ கண்டுபிடிக்கிறோம்.
+        </li>
+        <li>
+          அந்த button product list-க்குள் இருப்பதை உறுதி செய்து action execute
+          செய்கிறோம்.
+        </li>
+      </ol>
+
+      <div class="note p-2 mb-2">
+        **Why use <code>closest()</code> instead of <code>matches()</code>?**
+        <ul class="mb-0">
+          <li>
+            <code>event.target.matches("button")</code> – Click செய்யப்பட்ட
+            element button-ஆக இருந்தால் மட்டும் match ஆகும்.
+          </li>
+          <li>
+            <code>event.target.closest("button")</code> – Button-க்குள்
+            இருக்கும் icon அல்லது span போன்ற child element click
+            செய்யப்பட்டாலும், அருகிலுள்ள button-ஐ கண்டுபிடிக்கும்.
+          </li>
+        </ul>
+      </div>
+
+      <div class="highlight p-2">
+        **Quick Revision**
+        <ul class="mb-0">
+          <li><strong>Capturing:</strong> Outer → Inner</li>
+          <li><strong>Target:</strong> Actual event element</li>
+          <li><strong>Bubbling:</strong> Inner → Outer</li>
+          <li>
+            <strong>Event Delegation:</strong> Parent-ல் ஒரே listener வைத்து
+            child events-ஐ handle செய்வது.
+          </li>
+        </ul>
+      </div>
+      <hr />
+      <!-- Topic: stopPropagation() vs preventDefault() -->
+
+      <h3>stopPropagation() vs preventDefault()</h3>
+
+      <h5>1. stopPropagation() – Stop Event Propagation</h5>
+      <p>
+        ஒரு Product Card-ல் இரண்டு actions இருக்கின்றன என்று வைத்துக்கொள்வோம்:
+      </p>
+      <ul>
+        <li>Card-ஐ click செய்தால் Product Details page திறக்க வேண்டும்.</li>
+        <li>
+          அதற்குள் இருக்கும் Delete button-ஐ click செய்தால் Product delete ஆக
+          வேண்டும்.
+        </li>
+        <li>
+          Delete button click செய்யும்போது Card-ன் click handler execute
+          ஆகக்கூடாது.
+        </li>
+      </ul>
+
+      <div class="code-block p-2">
+        <pre><code>&lt;div id="productCard"&gt;
+    &lt;h3&gt;Laptop&lt;/h3&gt;
+
+    &lt;button id="deleteBtn"&gt;
+        Delete Product
+    &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <div class="code-block p-3">
+        <pre><code>const card = document.getElementById("productCard");
+const deleteBtn = document.getElementById("deleteBtn");
+
+card.addEventListener("click", function() {
+    console.log("Opening product details");
+});
+
+deleteBtn.addEventListener("click", function(event) {
+    console.log("Deleting product");
+
+    event.stopPropagation();
+});</code></pre>
+      </div>
+
+      <div class="row g-2">
+        <div class="col-md-6">
+          <div class="success-box p-2 h-100">
+            **Case 1 – Click Product Card**
+
+            <div class="code-block p-2 mt-1">
+              <pre><code>Opening product details</code></pre>
+            </div>
+            <small>Card listener execute ஆகும்.</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="success-box p-2 h-100">
+            **Case 2 – Click Delete Button**
+
+            <div class="code-block p-2 mt-1">
+              <pre><code>Deleting product</code></pre>
+            </div>
+            <small
+              >Delete listener execute ஆகும். Event parent Card-க்கு bubble
+              ஆகாது.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="note p-2 mb-2">
+        **Why parent listener does not execute?**
+
+        <code>event.stopPropagation()</code> event தொடர்ந்து ancestor
+        elements-க்கு propagate ஆவதைத் தடுக்கிறது. இதனால் parent Card-ன்
+        bubbling listener execute ஆகாது.
+      </div>
+
+      <h5>2. preventDefault() – Stop Browser's Default Action</h5>
+      <p>
+        ஒரு Login Form எடுத்துக்கொள்வோம். Form submit செய்யும்போது Browser
+        normally தனது default form submission action-ஐச் செய்கிறது. ஆனால் நாம்
+        JavaScript மூலம் validation செய்து, அதன் பிறகு API request அனுப்ப
+        விரும்புகிறோம்.
+      </p>
+
+      <div class="code-block p-2">
+        <pre><code>&lt;form id="loginForm"&gt;
+    &lt;input type="email" placeholder="Email"&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+
+      <div class="code-block p-3">
+        <pre><code>const loginForm = document.getElementById("loginForm");
+
+loginForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    console.log("Handling form submission using JavaScript");
+
+});</code></pre>
+      </div>
+
+      <div class="note p-2 mb-2">
+        **What happens here?**
+        <ul class="mb-0">
+          <li>
+            <code>event.preventDefault()</code> – Browser-ன் default form
+            submission-ஐத் தடுக்கிறது.
+          </li>
+          <li>JavaScript callback தொடர்ந்து execute ஆகிறது.</li>
+          <li>இப்போது நாமே form validation மற்றும் API request செய்யலாம்.</li>
+        </ul>
+      </div>
+
+      <h5>3. Common Example – Anchor Link</h5>
+      <div class="row g-2">
+        <div class="col-md-5">
+          <div class="example-box p-2 h-100">
+            **HTML**
+            <div class="code-block p-2 mt-1">
+              <pre><code>&lt;a href="https://example.com"
+   id="myLink"&gt;
+    Visit Website
+&lt;/a&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="example-box p-2 h-100">
+            **JavaScript**
+            <div class="code-block p-2 mt-1">
+              <pre><code>const link = document.getElementById("myLink");
+
+link.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    console.log("Navigation prevented");
+
+});</code></pre>
+            </div>
+            <small
+              >Link click செய்தாலும் browser அந்த URL-க்கு navigate
+              ஆகாது.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <h5>4. stopPropagation() vs preventDefault()</h5>
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Purpose</th>
+              <th>What does it stop?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>stopPropagation()</code></td>
+              <td>Event propagation-ஐ நிறுத்துகிறது.</td>
+              <td>
+                Event ancestor elements-க்கு தொடர்ந்து propagate ஆவதைத்
+                தடுக்கிறது.
+              </td>
+            </tr>
+            <tr>
+              <td><code>preventDefault()</code></td>
+              <td>Browser default action-ஐத் தடுக்கிறது.</td>
+              <td>
+                Form submission, link navigation போன்ற default behavior-ஐத்
+                தடுக்கிறது.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight p-2 mb-2">
+        **Easy way to remember**
+        <ul class="mb-0">
+          <li><strong>stopPropagation()</strong> → Stop the event journey.</li>
+          <li>
+            <strong>preventDefault()</strong> → Stop the browser's default
+            action.
+          </li>
+        </ul>
+      </div>
+
+      <h5>5. Can We Use Both Together?</h5>
+      <p>ஆம்! ஒரே event handler-ல் இரண்டையும் பயன்படுத்தலாம்.</p>
+
+      <div class="code-block p-2">
+        <pre><code>&lt;div id="parent"&gt;
+    &lt;a href="https://example.com" id="child"&gt;
+        Click Me
+    &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <div class="code-block p-3">
+        <pre><code>const parent = document.getElementById("parent");
+const child = document.getElementById("child");
+
+parent.addEventListener("click", function() {
+    console.log("Parent clicked");
+});
+
+child.addEventListener("click", function(event) {
+
+    console.log("Child clicked");
+
+    event.preventDefault();
+    event.stopPropagation();
+
+});</code></pre>
+      </div>
+
+      <div class="success-box p-2 mb-2">
+        **Output when user clicks the link:**
+        <div class="code-block p-2 mt-1">
+          <pre><code>Child clicked</code></pre>
+        </div>
+        <strong>What happened?</strong>
+        <ol class="mb-0">
+          <li><code>preventDefault()</code> – Link navigation-ஐத் தடுத்தது.</li>
+          <li>
+            <code>stopPropagation()</code> – Parent-க்கு bubbling செல்வதைத்
+            தடுத்தது.
+          </li>
+        </ol>
+      </div>
+
+      <div class="note p-2 mb-2">
+        **Important distinction:**
+        <code>stopPropagation()</code> அதே element-ல் register செய்யப்பட்ட மற்ற
+        event listeners-ஐ நிறுத்தாது. அது event propagation-ஐ மட்டுமே
+        நிறுத்துகிறது. <code>preventDefault()</code> event handler execution-ஐ
+        நிறுத்தாது; அது cancel செய்யக்கூடிய browser default action-ஐ மட்டுமே
+        தடுக்கிறது.
+      </div>
+
+      <div class="highlight p-2">
+        **Quick Revision**
+        <ul class="mb-0">
+          <li>
+            <strong>stopPropagation:</strong> Parent / ancestor listeners-க்கு
+            event தொடர்ந்து செல்லாமல் தடுக்கிறது.
+          </li>
+          <li>
+            <strong>preventDefault:</strong> Browser-ன் default behavior-ஐத்
+            தடுக்கிறது.
+          </li>
+          <li>
+            <strong>Both together:</strong> Default action-ஐயும் event
+            propagation-ஐயும் தனித்தனியாகத் தடுக்கலாம்.
+          </li>
+        </ul>
+      </div>
+      <hr />
+      <!-- Topic: Event Delegation – closest(), dataset & Dynamic Elements -->
+
+      <h3>Event Delegation – Practical Implementation</h3>
+
+      <p>
+        Shopping Application-ல் products dynamically add செய்யப்படுகின்றன என்று
+        வைத்துக்கொள்வோம். ஒவ்வொரு product button-க்கும் தனித்தனியாக event
+        listener register செய்யாமல், parent element-ல் ஒரே listener
+        பயன்படுத்தலாம்.
+      </p>
+
+      <h5>1. Complete HTML Structure</h5>
+      <div class="code-block p-2">
+        <pre><code>&lt;div id="productList"&gt;
+
+    &lt;button class="add-btn" data-product-id="1"&gt;
+        &lt;span&gt;Add Product 1&lt;/span&gt;
+    &lt;/button&gt;
+
+    &lt;button class="add-btn" data-product-id="2"&gt;
+        &lt;span&gt;Add Product 2&lt;/span&gt;
+    &lt;/button&gt;
+
+    &lt;button class="add-btn" data-product-id="3"&gt;
+        &lt;span&gt;Add Product 3&lt;/span&gt;
+    &lt;/button&gt;
+
+&lt;/div&gt;
+
+&lt;button id="addNewProduct"&gt;Add New Product&lt;/button&gt;
+
+&lt;p id="message"&gt;&lt;/p&gt;</code></pre>
+      </div>
+
+      <h5>2. Complete JavaScript Implementation</h5>
+      <div class="code-block p-3">
+        <pre><code>const productList = document.getElementById("productList");
+const addBtn = document.getElementById("addNewProduct");
+const message = document.getElementById("message");
+
+let nextProductId = 4;
+
+// 1. Event Delegation
+productList.addEventListener("click", function(event) {
+
+    const button = event.target.closest(".add-btn");
+
+    if (!button || !productList.contains(button)) {
+        return;
+    }
+
+    const productId = button.dataset.productId;
+
+    console.log("Product added:", productId);
+
+    message.textContent = `Product ${productId} added to cart`;
+});
+
+// 2. Dynamic Product Creation
+addBtn.addEventListener("click", function() {
+
+    const newButton = document.createElement("button");
+
+    newButton.className = "add-btn";
+    newButton.dataset.productId = nextProductId;
+
+    const span = document.createElement("span");
+    span.textContent = `Add Product ${nextProductId}`;
+
+    newButton.appendChild(span);
+    productList.appendChild(newButton);
+
+    console.log("New product created:", nextProductId);
+
+    nextProductId++;
+});</code></pre>
+      </div>
+
+      <h5>3. What is closest()?</h5>
+      <p>
+        User <strong>Add Product 1</strong> என்ற text-ஐ click செய்கிறார் என்று
+        வைத்துக்கொள்வோம். அந்த text ஒரு <code>span</code> element-க்குள்
+        இருக்கிறது.
+      </p>
+
+      <div class="row g-2">
+        <div class="col-md-5">
+          <div class="example-box p-2 h-100">
+            **HTML**
+            <div class="code-block p-2 mt-1">
+              <pre><code>&lt;button class="add-btn"&gt;
+    &lt;span&gt;Add Product 1&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="example-box p-2 h-100">
+            **Check event.target**
+            <div class="code-block p-2 mt-1">
+              <pre><code>productList.addEventListener("click", function(event) {
+    console.log(event.target);
+});</code></pre>
+            </div>
+            <small
+              >Text-ன் உள்ளே இருக்கும் span-ஐ click செய்தால்
+              <code>event.target</code> என்பது span element.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <p>
+        ஆனால் நமக்குத் தேவையானது parent button. அதற்காக
+        <code>closest(".add-btn")</code> பயன்படுத்துகிறோம்.
+      </p>
+
+      <div class="code-block p-2">
+        <pre><code>const button = event.target.closest(".add-btn");</code></pre>
+      </div>
+
+      **How closest() works**
+
+      <box class="memory-diagram" padding="12px" gap="{2}">
+        <box align="center" gap="{1}">
+          <badge color="info">1. Clicked element</badge>
+          **span**
+          <text color="secondary" size="xs">.add-btn? No</text>
+          <icon name="arrow-down" color="secondary" size="lg" />
+          <badge color="success">2. Parent element</badge>
+          **button.add-btn**
+          <text color="success" size="xs" weight="medium"
+            >Selector matched! Returns this button</text
+          >
+        </box>
+      </box>
+
+      <p>
+        <code>closest()</code> என்பது தற்போதைய element-லிருந்து ஆரம்பித்து, அதன்
+        parent elements வழியாக மேலே சென்று, கொடுக்கப்பட்ட CSS selector-க்கு
+        match ஆகும் மிக அருகிலுள்ள element-ஐ return செய்கிறது.
+      </p>
+
+      <h5>4. What if the Button Itself is Clicked?</h5>
+      <div class="code-block p-2">
+        <pre><code>// If user clicks directly on the button:
+event.target = button;
+
+const button = event.target.closest(".add-btn");</code></pre>
+      </div>
+      <p>
+        <code>closest()</code> முதலில் அந்த button-ஐயே check செய்யும். அது
+        <code>.add-btn</code> selector-க்கு match ஆவதால், அதே button-ஐ return
+        செய்யும்.
+      </p>
+
+      <h5>5. What if No Matching Element Exists?</h5>
+      <p>
+        <code>.add-btn</code> class இல்லாத element-ஐ click செய்தால்,
+        <code>closest()</code> matching element கிடைக்காததால்
+        <code>null</code> return செய்யும்.
+      </p>
+
+      <div class="code-block p-2">
+        <pre><code>if (!button || !productList.contains(button)) {
+    return;
+}</code></pre>
+      </div>
+      <div class="note p-2 mb-2">
+        **Why these two conditions?**
+        <ul class="mb-0">
+          <li>
+            <code>!button</code> – Matching <code>.add-btn</code> கிடைக்கவில்லை
+            என்றால் handler-ஐ நிறுத்துகிறது.
+          </li>
+          <li>
+            <code>!productList.contains(button)</code> – கிடைத்த button இந்த
+            productList-க்குள் இருக்கிறதா என்பதை உறுதி செய்கிறது.
+          </li>
+        </ul>
+      </div>
+
+      <h5>6. What is dataset?</h5>
+      <p>
+        HTML-ல் <code>data-</code> என்று தொடங்கும் attributes-ஐ custom data
+        store செய்யப் பயன்படுத்தலாம். JavaScript-ல் Browser வழங்கும் built-in
+        <strong>dataset</strong> property மூலம் அந்த values-ஐ access செய்யலாம்.
+      </p>
+
+      <div class="code-block p-2">
+        <pre><code>&lt;button class="add-btn" data-product-id="101"&gt;
+    Add Product
+&lt;/button&gt;</code></pre>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>HTML Attribute</th>
+              <th>JavaScript dataset</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>data-product-id="101"</code></td>
+              <td><code>button.dataset.productId</code></td>
+            </tr>
+            <tr>
+              <td><code>data-user-name="Raj"</code></td>
+              <td><code>button.dataset.userName</code></td>
+            </tr>
+            <tr>
+              <td><code>data-order-id="500"</code></td>
+              <td><code>button.dataset.orderId</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note p-2 mb-2">
+        **Important – HTML to JavaScript mapping**
+        <ul class="mb-0">
+          <li>
+            HTML attribute name-ல் hyphen பயன்படுத்துகிறோம்:
+            <code>data-product-id</code>.
+          </li>
+          <li>
+            JavaScript-ல் camelCase பயன்படுத்துகிறோம்:
+            <code>dataset.productId</code>.
+          </li>
+          <li>
+            <code>dataset</code> Browser வழங்கும் property; நாம் தனியாக create
+            செய்ய வேண்டியதில்லை.
+          </li>
+          <li>
+            Dataset values always strings. Number தேவைப்பட்டால்
+            <code>Number(button.dataset.productId)</code> பயன்படுத்தலாம்.
+          </li>
+        </ul>
+      </div>
+
+      <h5>7. Dynamic Product Creation – How Does It Work?</h5>
+      <div class="row g-2">
+        <div class="col-md-6">
+          <div class="example-box p-2 h-100">
+            **Create a new button**
+            <div class="code-block p-2 mt-1">
+              <pre><code>const newButton = document.createElement("button");
+
+newButton.className = "add-btn";
+newButton.dataset.productId = nextProductId;</code></pre>
+            </div>
+            <small
+              >New button create செய்து class மற்றும் product ID assign
+              செய்கிறோம்.</small
+            >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="example-box p-2 h-100">
+            **Add button to DOM**
+            <div class="code-block p-2 mt-1">
+              <pre><code>const span = document.createElement("span");
+
+span.textContent = `Add Product ${nextProductId}`;
+
+newButton.appendChild(span);
+productList.appendChild(newButton);</code></pre>
+            </div>
+            <small
+              >Span-ஐ button-க்குள் சேர்த்து, button-ஐ productList-க்குள்
+              சேர்க்கிறோம்.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <h5>8. Why Does Event Delegation Work for New Elements?</h5>
+      <ol>
+        <li>
+          முதலில் parent <code>productList</code>-ல் ஒரே click listener register
+          செய்கிறோம்.
+        </li>
+        <li>
+          பிறகு புதிய product button-ஐ dynamically create செய்து DOM-ல்
+          சேர்க்கிறோம்.
+        </li>
+        <li>New button-ஐ click செய்தால் event parent-க்கு bubble ஆகிறது.</li>
+        <li>
+          ஏற்கனவே register செய்த parent listener அந்த event-ஐ handle செய்கிறது.
+        </li>
+      </ol>
+
+      <div class="highlight p-2">
+        **Quick Revision**
+        <ul class="mb-0">
+          <li>
+            <strong><code>event.target</code>:</strong> User click செய்த actual
+            element.
+          </li>
+          <li>
+            <strong><code>closest()</code>:</strong> Current element அல்லது அதன்
+            ancestors-ல் matching element-ஐத் தேடும்.
+          </li>
+          <li>
+            <strong><code>contains()</code>:</strong> ஒரு element மற்றொரு
+            element-க்குள் இருக்கிறதா என்று check செய்யும்.
+          </li>
+          <li>
+            <strong><code>dataset</code>:</strong> HTML custom
+            <code>data-*</code> attributes-ஐ JavaScript-ல் access செய்யும்.
+          </li>
+          <li>
+            <strong>Event Delegation:</strong> Dynamically added child
+            elements-ஐயும் parent listener மூலம் handle செய்யலாம்.
+          </li>
+        </ul>
+      </div>
+      <hr />
+      <!-- Topic: Click on Empty Space – Document-level Event Listener -->
+
+      <h3>Click on Empty Space – Document-level Event Listener</h3>
+
+      <p>
+        சில நேரங்களில் webpage-ல் எந்த button அல்லது element-ஐயும் click
+        செய்யாமல், காலியான page area-ஐ user click செய்தாரா என்பதை detect செய்ய
+        வேண்டியிருக்கும். இதற்காக
+        <strong>document-level event listener</strong> பயன்படுத்தலாம்.
+      </p>
+
+      <h5>1. Implementation</h5>
+
+      <div class="code-block p-3">
+        <pre><code>document.addEventListener("click", function(event) {
+
+    if (
+        event.target === document.body ||
+        event.target === document.documentElement
+    ) {
+        console.log("User clicked on empty page space");
+    }
+
+});</code></pre>
+      </div>
+
+      <h5>2. How Does It Work?</h5>
+
+      <p>
+        <code>document</code>-ல் click listener register செய்துள்ளோம். Click
+        event bubbling மூலம் document வரை வந்ததும்,
+        <code>event.target</code> எந்த element என்பதை check செய்கிறோம்.
+      </p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead>
+            <tr>
+              <th>User action</th>
+              <th>event.target</th>
+              <th>Condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Button click</td>
+              <td><code>button</code></td>
+              <td><span class="text-danger">False</span></td>
+            </tr>
+            <tr>
+              <td>Heading click</td>
+              <td><code>h1</code> / <code>h2</code></td>
+              <td><span class="text-danger">False</span></td>
+            </tr>
+            <tr>
+              <td>Empty body area click</td>
+              <td><code>body</code></td>
+              <td><span class="text-success">True</span></td>
+            </tr>
+            <tr>
+              <td>Area outside body</td>
+              <td><code>html</code></td>
+              <td><span class="text-success">True</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h5>3. Ensure Body Covers the Viewport</h5>
+
+      <p>
+        சில நேரங்களில் body முழு viewport-ஐயும் cover செய்யாமல் இருக்கலாம்.
+        அப்போது body-க்கு குறைந்தபட்ச viewport height கொடுக்கலாம்.
+      </p>
+
+      <div class="code-block p-2">
+        <pre><code>body {
+    min-height: 100vh;
+}</code></pre>
+      </div>
+
+      <p>
+        <code>100vh</code> என்பது viewport-ன் முழு உயரம்.
+        <code>min-height: 100vh</code> மூலம் body குறைந்தபட்சம் viewport உயரம்
+        முழுவதும் இருக்கும்.
+      </p>
+
+      <div class="note p-2 mb-2">
+        **Important:** இந்த approach body அல்லது document element-ல் நேரடியாக
+        target ஆகும் clicks-ஐ மட்டுமே detect செய்கிறது. ஒரு empty
+        <code>div</code>-ன் காலியான பகுதியில் click செய்தால்
+        <code>event.target</code> அந்த div ஆக இருக்கும்; இந்த condition match
+        ஆகாது.
+      </div>
+
+      <div class="highlight p-2">
+        **Quick Revision:** <code>document.addEventListener("click", ...)</code>
+        மூலம் document-level click events-ஐ listen செய்யலாம்.
+        <code>event.target</code> body அல்லது html ஆக இருந்தால், user empty page
+        space-ஐ click செய்திருக்கிறார் என்று கண்டறியலாம்.
+      </div>
+    </div>
+  </body>
+  <script>
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) {
+        scrollBtn.style.display = "flex";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    };
+    scrollBtn.onclick = function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+  </script>
+</html>

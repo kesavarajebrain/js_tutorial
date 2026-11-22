@@ -4310,6 +4310,601 @@ Promise.all(promises).then(responses => {
     </div>
 
 </div>
+<hr>
+<div class="container-fluid">
+
+    <h4>JavaScript async / await</h4>
+
+    <p><strong>async/await</strong> is modern JavaScript syntax for working with Promises. It makes asynchronous code easier to read and write because it looks similar to normal sequential JavaScript.</p>
+
+    <h5>1. Why Do We Need async/await?</h5>
+
+    <p>Remember our Promise chaining example with multiple dependent API calls:</p>
+
+    <div class="code-block p-3">
+        <pre><code>getUser(101)
+    .then(user => {
+        return getOrders(user.id);
+    })
+    .then(orders => {
+        return getOrderDetails(orders[0].id);
+    })
+    .then(details => {
+        console.log(details);
+    })
+    .catch(error => {
+        console.log(error);
+    });</code></pre>
+    </div>
+
+    <p>Now look at the same workflow using async/await:</p>
+
+    <div class="code-block p-3">
+        <pre><code>async function loadOrder() {
+    try {
+        const user = await getUser(101);
+
+        const orders = await getOrders(user.id);
+
+        const details = await getOrderDetails(orders[0].id);
+
+        console.log(details);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+loadOrder();</code></pre>
+    </div>
+
+    <p><strong>See the difference?</strong> The code looks sequential and is easier to read. Each <code>await</code> waits for the previous operation's result before continuing the function.</p>
+
+    <div class="success-box p-3">
+        <strong>Remember:</strong> async/await does not replace Promises. It is a cleaner way to work with Promise-based operations.
+    </div>
+
+    <hr>
+
+    <h4>2. What Does async Do?</h4>
+
+    <p>When we add <code>async</code> before a function, that function <strong>always returns a Promise</strong>, even when we return a normal value.</p>
+
+    <div class="code-block p-3">
+        <pre><code>async function greet() {
+    return "Hello";
+}
+
+const result = greet();
+
+console.log(result);</code></pre>
+    </div>
+
+    <p>The result is a Promise fulfilled with <code>"Hello"</code>.</p>
+
+    <p>Conceptually, returning a normal value from an async function is similar to:</p>
+
+    <div class="code-block p-3">
+        <pre><code>function greet() {
+    return Promise.resolve("Hello");
+}</code></pre>
+    </div>
+
+    <p>We can consume the result using <code>.then()</code>:</p>
+
+    <div class="code-block p-3">
+        <pre><code>greet().then(result => {
+    console.log(result); // Hello
+});</code></pre>
+    </div>
+
+    <div class="note p-3">
+        <strong>Important:</strong> An async function can have zero or more <code>await</code> expressions. Even without <code>await</code>, it still returns a Promise.
+    </div>
+
+    <hr>
+
+    <h4>3. What Does await Do?</h4>
+
+    <p><code>await</code> performs two important jobs:</p>
+
+    <div class="row g-2">
+        <div class="col-md-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">1. Gets the Fulfilled Value</div>
+                <div class="ref-side">
+                    <p>It gives us the actual fulfillment value instead of making us work directly with the Promise object.</p>
+                    <div class="code-block p-2">
+                        <pre><code>const name = await getName();
+
+// name = "John"</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">2. Suspends the Async Function</div>
+                <div class="exec-side">
+                    <p>It pauses the remaining execution of the current async function until the awaited operation settles.</p>
+                    <div class="code-block p-2">
+                        <pre><code>const name = await getName();
+
+// Remaining code
+// resumes later</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p><strong>Important:</strong> await does not block the entire JavaScript thread. Other JavaScript work can continue while the async function is suspended.</p>
+
+    <h5>Example: await with an Asynchronous Operation</h5>
+
+    <div class="code-block p-3">
+        <pre><code>function getEmployee() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve("Employee details");
+        }, 2000);
+    });
+}
+
+async function loadEmployee() {
+    console.log("Start");
+
+    const result = await getEmployee();
+
+    console.log(result);
+    console.log("End");
+}
+
+loadEmployee();
+
+console.log("Outside");</code></pre>
+    </div>
+
+    <h5>Output</h5>
+
+    <div class="code-block p-3">
+        <pre><code>Start
+Outside
+
+// After approximately 2 seconds:
+Employee details
+End</code></pre>
+    </div>
+
+    <h5>Why Does This Happen?</h5>
+
+    <div class="memory-diagram">
+        1. loadEmployee() starts executing
+        <br>
+        ↓
+        <br>
+        2. Prints Start
+        <br>
+        ↓
+        <br>
+        3. await getEmployee()
+        <br>
+        ↓
+        <br>
+        4. loadEmployee() suspends
+        <br>
+        ↓
+        <br>
+        5. JavaScript continues → Prints Outside
+        <br>
+        ↓
+        <br>
+        6. Timer finishes and Promise fulfills
+        <br>
+        ↓
+        <br>
+        7. loadEmployee() resumes
+        <br>
+        ↓
+        <br>
+        8. Prints Employee details → End
+    </div>
+
+    <hr>
+
+    <h4>4. Difference Between async with await and async without await</h4>
+
+    <p>This is an important concept. Let's understand what happens in both cases.</p>
+
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">A. async WITH await</div>
+                <div class="ref-side">
+                    <div class="code-block p-2">
+                        <pre><code>async function getEmployee() {
+    const result = await Promise.resolve("John");
+
+    console.log(result);
+    console.log("Completed");
+}
+
+console.log("Start");
+getEmployee();
+console.log("End");</code></pre>
+                    </div>
+                    <strong>Output</strong>
+                    <div class="code-block p-2">
+                        <pre><code>Start
+End
+John
+Completed</code></pre>
+                    </div>
+                    <p><code>await</code> suspends the function. The caller continues and prints <code>End</code>. The function resumes in a later microtask.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">B. async WITHOUT await</div>
+                <div class="exec-side">
+                    <div class="code-block p-2">
+                        <pre><code>async function getEmployee() {
+    const result = Promise.resolve("John");
+
+    console.log(result);
+    console.log("Completed");
+}
+
+console.log("Start");
+getEmployee();
+console.log("End");</code></pre>
+                    </div>
+                    <strong>Output order</strong>
+                    <div class="code-block p-2">
+                        <pre><code>Start
+Promise object
+Completed
+End</code></pre>
+                    </div>
+                    <p><code>result</code> is still a Promise object. Because there is no <code>await</code>, the function does not suspend and its statements execute synchronously.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>The exact formatting of the logged Promise object varies between Node.js and browser developer tools. The important point is that it is a Promise, not the string <code>"John"</code>.</p>
+
+    <div class="success-box p-3">
+        <strong>Main Difference:</strong>
+        <p><strong>With await:</strong> Gets the fulfilled value and suspends the remaining execution of the async function.</p>
+        <p class="mb-0"><strong>Without await:</strong> Gets the Promise object itself. The async function continues without waiting for that Promise.</p>
+    </div>
+
+    <hr>
+
+    <h4>5. Without await vs With await — Same Function</h4>
+
+    <p>Let's make the difference even clearer using a separate function that returns a Promise.</p>
+
+    <h5>Without await</h5>
+
+    <div class="code-block p-3">
+        <pre><code>function getName() {
+    return Promise.resolve("John");
+}
+
+async function test() {
+    const name = getName();
+
+    console.log(name); // Promise object
+}
+
+test();</code></pre>
+    </div>
+
+    <h5>With await</h5>
+
+    <div class="code-block p-3">
+        <pre><code>function getName() {
+    return Promise.resolve("John");
+}
+
+async function test() {
+    const name = await getName();
+
+    console.log(name); // John
+}
+
+test();</code></pre>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>What Does name Contain?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>const name = getName()</code></td>
+                    <td>Promise object</td>
+                </tr>
+                <tr>
+                    <td><code>const name = await getName()</code></td>
+                    <td>Fulfilled value: <code>"John"</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="memory-diagram">
+        Without await
+        <br>
+        getName() → Promise object
+        <br>
+        <br>
+        With await
+        <br>
+        await getName() → "John"
+    </div>
+
+    <hr>
+
+    <h4>6. Position of await Matters</h4>
+
+    <p>The position where we write <code>await</code> determines which statements execute immediately and which statements resume later.</p>
+
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">Example A — await After Start</div>
+                <div class="ref-side">
+                    <div class="code-block p-2">
+                        <pre><code>function getName() {
+    return Promise.resolve("John");
+}
+
+async function test() {
+    console.log("Start");
+
+    const name = await getName();
+
+    console.log("Name:", name);
+    console.log("End");
+}
+
+console.log("A");
+test();
+console.log("B");</code></pre>
+                    </div>
+                    <strong>Output</strong>
+                    <div class="code-block p-2">
+                        <pre><code>A
+Start
+B
+Name: John
+End</code></pre>
+                    </div>
+                    <p><code>Start</code> executes before await. The function suspends at await, allowing <code>B</code> to execute first.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">Example B — await Before Start</div>
+                <div class="exec-side">
+                    <div class="code-block p-2">
+                        <pre><code>function getName() {
+    return Promise.resolve("John");
+}
+
+async function test() {
+    const name = await getName();
+
+    console.log("Start");
+    console.log("Name:", name);
+    console.log("End");
+}
+
+console.log("A");
+test();
+console.log("B");</code></pre>
+                    </div>
+                    <strong>Output</strong>
+                    <div class="code-block p-2">
+                        <pre><code>A
+B
+Start
+Name: John
+End</code></pre>
+                    </div>
+                    <p>Here, the function reaches await immediately and suspends. Therefore, <code>B</code> executes before all the remaining statements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-box p-3">
+        <strong>Golden Rule:</strong> Code before the first await executes immediately. Code after an await resumes later, even if the awaited Promise is already fulfilled.
+    </div>
+
+    <hr>
+
+    <h4>7. What Happens Without await at That Position?</h4>
+
+    <div class="code-block p-3">
+        <pre><code>function getName() {
+    return Promise.resolve("John");
+}
+
+async function test() {
+    const name = getName();
+
+    console.log("Start");
+    console.log("Name:", name);
+    console.log("End");
+}
+
+console.log("A");
+test();
+console.log("B");</code></pre>
+    </div>
+
+    <h5>Output Order</h5>
+
+    <div class="code-block p-3">
+        <pre><code>A
+Start
+Name: Promise object
+End
+B</code></pre>
+    </div>
+
+    <p>Because there is no <code>await</code>, the entire function body runs synchronously. The function logs the Promise object rather than waiting for its value.</p>
+
+    <hr>
+
+    <h4>8. How Does await Handle a Rejected Promise?</h4>
+
+    <p>When an awaited Promise is rejected, <code>await</code> throws the rejection reason inside the async function. We can handle it with normal <code>try/catch</code>.</p>
+
+    <div class="code-block p-3">
+        <pre><code>async function loadEmployee() {
+    try {
+        const employee = await Promise.reject(
+            new Error("Employee not found")
+        );
+
+        console.log(employee);
+
+    } catch (error) {
+        console.log("Error:", error.message);
+    }
+}
+
+loadEmployee();</code></pre>
+    </div>
+
+    <p><strong>Output:</strong></p>
+    <div class="code-block p-3">
+        <pre><code>Error: Employee not found</code></pre>
+    </div>
+
+    <p>This is one reason async/await is convenient: Promise rejections can be handled using familiar synchronous-looking <code>try/catch</code> syntax.</p>
+
+    <hr>
+
+    <h4>9. Can We Use async Without await and await Without async?</h4>
+
+    <div class="row g-2">
+        <div class="col-md-6">
+            <div class="ref-box p-3 h-100">
+                <div class="ref-header">async Without await</div>
+                <div class="ref-side">
+                    <badge color="success">Allowed</badge>
+                    <div class="code-block p-2">
+                        <pre><code>async function greet() {
+    return "Hello";
+}</code></pre>
+                    </div>
+                    <p class="mb-0">Allowed. The function still returns a Promise, even though it contains no await.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="exec-box p-3 h-100">
+                <div class="exec-header">await Without async</div>
+                <div class="exec-side">
+                    <badge color="warning">Depends on Context</badge>
+                    <div class="code-block p-2">
+                        <pre><code>function greet() {
+    const name = await getName();
+}</code></pre>
+                    </div>
+                    <p class="mb-0">Not allowed inside an ordinary function. It causes a SyntaxError.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p><strong>Modern JavaScript exception:</strong> Top-level <code>await</code> is allowed inside JavaScript modules, without wrapping the code in an async function.</p>
+
+    <div class="code-block p-3">
+        <pre><code>// Browser HTML module
+&lt;script type="module"&gt;
+    const name = await Promise.resolve("John");
+    console.log(name); // John
+&lt;/script&gt;</code></pre>
+    </div>
+    <h4>Final Revision — async vs await</h4>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Concept</th>
+                    <th>Responsibility</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>async</code></td>
+                    <td>Makes a function always return a Promise.</td>
+                </tr>
+                <tr>
+                    <td><code>await</code></td>
+                    <td>Gets a Promise's fulfillment value and suspends the surrounding async function until it settles.</td>
+                </tr>
+                <tr>
+                    <td>Without await</td>
+                    <td>You work with the Promise object itself; the function does not suspend at that point.</td>
+                </tr>
+                <tr>
+                    <td>With await</td>
+                    <td>You receive the fulfillment value; a rejection is thrown at the await expression.</td>
+                </tr>
+                <tr>
+                    <td><code>try/catch</code></td>
+                    <td>Handles errors from rejected Promises awaited inside the try block.</td>
+                </tr>
+                <tr>
+                    <td>Multiple await expressions</td>
+                    <td>Run sequentially when written one after another.</td>
+                </tr>
+                <tr>
+                    <td><code>Promise.all()</code></td>
+                    <td>Coordinates multiple independent Promises together.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="memory-diagram">
+        async = Function returns a Promise
+        <br>
+        await = Get the fulfilled value
+        <br>
+        await = Suspend the remaining async function code
+        <br>
+        Rejected Promise = await throws an error
+        <br>
+        try/catch = Handle that error
+        <br>
+        No await = Promise object is received directly
+    </div>
+
+    <div class="success-box p-3">
+        <strong>One-line Memory Trick</strong>
+        <p><strong>async:</strong> "My function will return a Promise."</p>
+        <p><strong>await:</strong> "Give me the fulfilled value, and continue this function when it is ready."</p>
+        <p class="tamil mb-0">async function எப்போதும் Promise return செய்யும். await பயன்படுத்தினால் Promise-ன் fulfilled value கிடைக்கும்; அதுவரை அந்த async function-ன் மீதமுள்ள execution suspend ஆகும். மற்ற JavaScript வேலைகள் தொடர்ந்து நடக்கலாம்.</p>
+    </div>
+</div>
   </body>
   <script>
     const scrollBtn = document.getElementById("scrollTopBtn");
